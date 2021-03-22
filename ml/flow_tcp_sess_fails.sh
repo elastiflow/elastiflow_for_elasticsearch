@@ -46,6 +46,10 @@ DETECTOR=$( cat << EOF
 {
   "job_type": "anomaly_detector",
   "description": "Failed TCP Sessions",
+  "groups": [
+    "elastiflow",
+    "availability"
+  ],
   "analysis_config": {
     "bucket_span": "10m",
     "detectors": [

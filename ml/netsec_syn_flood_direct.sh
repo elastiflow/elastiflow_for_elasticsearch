@@ -46,6 +46,11 @@ DETECTOR=$( cat << EOF
 {
   "job_type": "anomaly_detector",
   "description": "SYN Flood Direct Attack",
+  "groups": [
+    "elastiflow",
+    "security",
+    "ddos"
+  ],
   "analysis_config": {
     "bucket_span": "5m",
     "detectors": [

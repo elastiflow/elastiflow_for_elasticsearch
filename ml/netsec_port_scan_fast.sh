@@ -46,6 +46,11 @@ DETECTOR=$( cat << EOF
 {
   "job_type": "anomaly_detector",
   "description": "Port Scan (fast)",
+  "groups": [
+    "elastiflow",
+    "security",
+    "reconnaissance"
+  ],
   "analysis_config": {
     "bucket_span": "15m",
     "detectors": [

@@ -46,6 +46,11 @@ DETECTOR=$( cat << EOF
 {
   "job_type": "anomaly_detector",
   "description": "Brute Force Access Attempt (CLI)",
+  "groups": [
+    "elastiflow",
+    "security",
+    "access"
+  ],
   "analysis_config": {
     "bucket_span": "15m",
     "detectors": [
