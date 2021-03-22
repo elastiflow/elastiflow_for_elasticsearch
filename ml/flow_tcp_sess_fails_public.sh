@@ -45,7 +45,7 @@ fi
 DETECTOR=$( cat << EOF
 {
   "job_type": "anomaly_detector",
-  "description": "Failed TCP Sessions",
+  "description": "Failed TCP Sessions (public)",
   "groups": [
     "elastiflow",
     "availability"
@@ -57,11 +57,13 @@ DETECTOR=$( cat << EOF
         "detector_description": "Excessive Unestablished Connections",
         "function": "high_count",
         "over_field_name": "client.domain",
+        "by_field_name": "flow.server.l4.port.name",
         "partition_field_name": "server.domain",
         "detector_index": 0
       }
     ],
     "influencers": [
+      "flow.server.l4.port.name",
       "server.domain",
       "client.domain"
     ]
@@ -84,15 +86,15 @@ DETECTOR=$( cat << EOF
     "custom_urls": [
       {
         "url_name": "Top Conversations",
-        "url_value": "dashboards#/view/c2da3880-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:server.domain,negate:!f,params:(query:'\$server.domain$'),type:phrase),query:(match_phrase:(server.domain:'\$server.domain$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:client.domain,negate:!f,params:(query:'\$client.domain$'),type:phrase),query:(match_phrase:(client.domain:'\$client.domain$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
+        "url_value": "dashboards#/view/c2da3880-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:server.domain,negate:!f,params:(query:'\$server.domain$'),type:phrase),query:(match_phrase:(server.domain:'\$server.domain$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:client.domain,negate:!f,params:(query:'\$client.domain$'),type:phrase),query:(match_phrase:(client.domain:'\$client.domain$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.server.l4.port.name,negate:!f,params:(query:'\$flow.server.l4.port.name$'),type:phrase),query:(match_phrase:(flow.server.l4.port.name:'\$flow.server.l4.port.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
       },
       {
         "url_name": "Flow Records",
-        "url_value": "dashboards#/view/abfed250-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:server.domain,negate:!f,params:(query:'\$server.domain$'),type:phrase),query:(match_phrase:(server.domain:'\$server.domain$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:client.domain,negate:!f,params:(query:'\$client.domain$'),type:phrase),query:(match_phrase:(client.domain:'\$client.domain$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
+        "url_value": "dashboards#/view/abfed250-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:server.domain,negate:!f,params:(query:'\$server.domain$'),type:phrase),query:(match_phrase:(server.domain:'\$server.domain$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:client.domain,negate:!f,params:(query:'\$client.domain$'),type:phrase),query:(match_phrase:(client.domain:'\$client.domain$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.server.l4.port.name,negate:!f,params:(query:'\$flow.server.l4.port.name$'),type:phrase),query:(match_phrase:(flow.server.l4.port.name:'\$flow.server.l4.port.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
       }
     ]
   },
-  "results_index_name": "custom-elastiflow_flow_tcp_sess_fails",
+  "results_index_name": "custom-elastiflow_flow_tcp_sess_fails_public",
   "allow_lazy_open": false
 }
 EOF
@@ -100,13 +102,20 @@ EOF
 
 DATAFEED=$( cat << EOF
 {
-  "job_id": "elastiflow_flow_tcp_sess_fails",
+  "job_id": "elastiflow_flow_tcp_sess_fails_public",
   "indices": [
     "elastiflow-flow-ecs-*"
   ],
   "query": {
     "bool": {
       "must": [
+        {
+          "term": {
+            "flow.locality": {
+              "value": "public"
+            }
+          }
+        },
         {
           "term": {
             "network.transport": {
@@ -151,7 +160,7 @@ DATAFEED=$( cat << EOF
 EOF
 )
 
-echo ""; echo "Installing anomaly_detector elastiflow_flow_tcp_sess_fails ..."
-curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/anomaly_detectors/elastiflow_flow_tcp_sess_fails?pretty -H "Content-Type: application/json" -d "${DETECTOR}"
-echo ""; echo "Installing datafeed elastiflow_flow_tcp_sess_fails ..."
-curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/datafeeds/datafeed-elastiflow_flow_tcp_sess_fails?pretty -H "Content-Type: application/json" -d "${DATAFEED}"
+echo ""; echo "Installing anomaly_detector elastiflow_flow_tcp_sess_fails_public ..."
+curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/anomaly_detectors/elastiflow_flow_tcp_sess_fails_public?pretty -H "Content-Type: application/json" -d "${DETECTOR}"
+echo ""; echo "Installing datafeed elastiflow_flow_tcp_sess_fails_public ..."
+curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/datafeeds/datafeed-elastiflow_flow_tcp_sess_fails_public?pretty -H "Content-Type: application/json" -d "${DATAFEED}"
