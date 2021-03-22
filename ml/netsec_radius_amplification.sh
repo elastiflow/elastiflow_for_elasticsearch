@@ -45,7 +45,7 @@ fi
 DETECTOR=$( cat << EOF
 {
   "job_type": "anomaly_detector",
-  "description": "UDP Amplification Attack",
+  "description": "RADIUS Amplification Attack",
   "groups": [
     "elastiflow",
     "security",
@@ -55,7 +55,7 @@ DETECTOR=$( cat << EOF
     "bucket_span": "5m",
     "detectors": [
       {
-        "detector_description": "Excessive UDP Responders",
+        "detector_description": "Excessive RADIUS Responders",
         "function": "high_distinct_count",
         "field_name": "source.domain",
         "by_field_name": "destination.domain",
@@ -95,7 +95,7 @@ DETECTOR=$( cat << EOF
       }
     ]
   },
-  "results_index_name": "custom-elastiflow_netsec_udp_amplification",
+  "results_index_name": "custom-elastiflow_netsec_radius_amplification",
   "allow_lazy_open": false
 }
 EOF
@@ -103,7 +103,7 @@ EOF
 
 DATAFEED=$( cat << EOF
 {
-  "job_id": "elastiflow_netsec_udp_amplification",
+  "job_id": "elastiflow_netsec_radius_amplification",
   "indices": [
     "elastiflow-flow-ecs-*"
   ],
@@ -123,28 +123,10 @@ DATAFEED=$( cat << EOF
         {
           "terms": {
             "source.port": [
-              17,
-              19,
-              69,
-              111,
-              123,
-              137,
-              161,
-              389,
-              520,
-              751,
-              1434,
               1645,
               1646,
               1812,
-              1813,
-              1900,
-              3702,
-              5093,
-              5353,
-              11211,
-              27015,
-              27960
+              1813
             ]
           }
         }
@@ -170,7 +152,7 @@ DATAFEED=$( cat << EOF
 EOF
 )
 
-echo ""; echo "Installing anomaly_detector elastiflow_netsec_udp_amplification ..."
-curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/anomaly_detectors/elastiflow_netsec_udp_amplification?pretty -H "Content-Type: application/json" -d "${DETECTOR}"
-echo ""; echo "Installing datafeed elastiflow_netsec_udp_amplification ..."
-curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/datafeeds/datafeed-elastiflow_netsec_udp_amplification?pretty -H "Content-Type: application/json" -d "${DATAFEED}"
+echo ""; echo "Installing anomaly_detector elastiflow_netsec_radius_amplification ..."
+curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/anomaly_detectors/elastiflow_netsec_radius_amplification?pretty -H "Content-Type: application/json" -d "${DETECTOR}"
+echo ""; echo "Installing datafeed elastiflow_netsec_radius_amplification ..."
+curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/datafeeds/datafeed-elastiflow_netsec_radius_amplification?pretty -H "Content-Type: application/json" -d "${DATAFEED}"
