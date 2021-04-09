@@ -58,6 +58,7 @@ DETECTOR=$( cat << EOF
         "function": "sum",
         "field_name": "network.bytes",
         "by_field_name": "flow.src.as.label",
+        "partition_field_name": "host.name",
         "detector_index": 0
       },
       {
@@ -65,12 +66,14 @@ DETECTOR=$( cat << EOF
         "function": "sum",
         "field_name": "network.packets",
         "by_field_name": "flow.src.as.label",
+        "partition_field_name": "host.name",
         "detector_index": 1
       },
       {
         "detector_description": "Unusual Source ASN Flows",
         "function": "count",
         "by_field_name": "flow.src.as.label",
+        "partition_field_name": "host.name",
         "detector_index": 2
       }
     ],
@@ -96,15 +99,15 @@ DETECTOR=$( cat << EOF
     "custom_urls": [
       {
         "url_name": "Top Talkers",
-        "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.src.as.label,negate:!f,params:(query:'\$flow.src.as.label$'),type:phrase),query:(match_phrase:(flow.src.as.label:'\$flow.src.as.label$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
+        "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:host.name,negate:!f,params:(query:'\$host.name$'),type:phrase),query:(match_phrase:(host.name:'\$host.name$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.src.as.label,negate:!f,params:(query:'\$flow.src.as.label$'),type:phrase),query:(match_phrase:(flow.src.as.label:'\$flow.src.as.label$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
       },
       {
         "url_name": "Threats",
-        "url_value": "dashboards#/view/f7fbc0b0-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.src.as.label,negate:!f,params:(query:'\$flow.src.as.label$'),type:phrase),query:(match_phrase:(flow.src.as.label:'\$flow.src.as.label$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
+        "url_value": "dashboards#/view/f7fbc0b0-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:host.name,negate:!f,params:(query:'\$host.name$'),type:phrase),query:(match_phrase:(host.name:'\$host.name$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.src.as.label,negate:!f,params:(query:'\$flow.src.as.label$'),type:phrase),query:(match_phrase:(flow.src.as.label:'\$flow.src.as.label$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
       },
       {
         "url_name": "Flow Records",
-        "url_value": "dashboards#/view/abfed250-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.src.as.label,negate:!f,params:(query:'\$flow.src.as.label$'),type:phrase),query:(match_phrase:(flow.src.as.label:'\$flow.src.as.label$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
+        "url_value": "dashboards#/view/abfed250-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:host.name,negate:!f,params:(query:'\$host.name$'),type:phrase),query:(match_phrase:(host.name:'\$host.name$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.src.as.label,negate:!f,params:(query:'\$flow.src.as.label$'),type:phrase),query:(match_phrase:(flow.src.as.label:'\$flow.src.as.label$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
       }
     ]
   },
