@@ -45,7 +45,7 @@ fi
 DETECTOR=$( cat << EOF
 {
   "job_type": "anomaly_detector",
-  "description": "Rare Autonomous System",
+  "description": "Rare Client-Side Autonomous System",
   "groups": [
     "elastiflow",
     "security",
@@ -57,12 +57,12 @@ DETECTOR=$( cat << EOF
       {
         "detector_description": "Rare ASN",
         "function": "rare",
-        "by_field_name": "as.label",
+        "by_field_name": "flow.client.as.label",
         "detector_index": 0
       }
     ],
     "influencers": [
-      "as.label"
+      "flow.client.as.label"
     ]
   },
   "analysis_limits": {
@@ -83,19 +83,19 @@ DETECTOR=$( cat << EOF
     "custom_urls": [
       {
         "url_name": "Top Talkers",
-        "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:as.label,negate:!f,params:(query:'\$as.label$'),type:phrase),query:(match_phrase:(as.label:'\$as.label$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
+        "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.client.as.label,negate:!f,params:(query:'\$flow.client.as.label$'),type:phrase),query:(match_phrase:(flow.client.as.label:'\$flow.client.as.label$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
       },
       {
         "url_name": "Threats",
-        "url_value": "dashboards#/view/f7fbc0b0-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:as.label,negate:!f,params:(query:'\$as.label$'),type:phrase),query:(match_phrase:(as.label:'\$as.label$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
+        "url_value": "dashboards#/view/f7fbc0b0-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.client.as.label,negate:!f,params:(query:'\$flow.client.as.label$'),type:phrase),query:(match_phrase:(flow.client.as.label:'\$flow.client.as.label$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
       },
       {
         "url_name": "Flow Records",
-        "url_value": "dashboards#/view/abfed250-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:as.label,negate:!f,params:(query:'\$as.label$'),type:phrase),query:(match_phrase:(as.label:'\$as.label$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
+        "url_value": "dashboards#/view/abfed250-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.client.as.label,negate:!f,params:(query:'\$flow.client.as.label$'),type:phrase),query:(match_phrase:(flow.client.as.label:'\$flow.client.as.label$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
       }
     ]
   },
-  "results_index_name": "custom-elastiflow_netsec_rare_asn",
+  "results_index_name": "custom-elastiflow_netsec_rare_asn_client",
   "allow_lazy_open": false
 }
 EOF
@@ -103,7 +103,7 @@ EOF
 
 DATAFEED=$( cat << EOF
 {
-  "job_id": "elastiflow_netsec_rare_asn",
+  "job_id": "elastiflow_netsec_rare_asn_client",
   "indices": [
     "elastiflow-flow-ecs-*"
   ],
@@ -112,7 +112,7 @@ DATAFEED=$( cat << EOF
       "must": [
         {
           "exists": {
-            "field": "as.label"
+            "field": "flow.client.as.label"
           }
         },
         {
@@ -144,7 +144,7 @@ DATAFEED=$( cat << EOF
 EOF
 )
 
-echo ""; echo "Installing anomaly_detector elastiflow_netsec_rare_asn ..."
-curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/anomaly_detectors/elastiflow_netsec_rare_asn?pretty -H "Content-Type: application/json" -d "${DETECTOR}"
-echo ""; echo "Installing datafeed elastiflow_netsec_rare_asn ..."
-curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/datafeeds/datafeed-elastiflow_netsec_rare_asn?pretty -H "Content-Type: application/json" -d "${DATAFEED}"
+echo ""; echo "Installing anomaly_detector elastiflow_netsec_rare_asn_client ..."
+curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/anomaly_detectors/elastiflow_netsec_rare_asn_client?pretty -H "Content-Type: application/json" -d "${DETECTOR}"
+echo ""; echo "Installing datafeed elastiflow_netsec_rare_asn_client ..."
+curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/datafeeds/datafeed-elastiflow_netsec_rare_asn_client?pretty -H "Content-Type: application/json" -d "${DATAFEED}"
