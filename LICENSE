@@ -1,0 +1,201 @@
+ELASTIFLOW END-USER LICENSE AGREEMENT
+
+READ CAREFULLY THE TERMS AND CONDITIONS OF THIS END-USER LICENSE AGREEMENT
+(“AGREEMENT”). BY DOWNLOADING, INSTALLING AND/OR UTILIZING THE LICENSED
+SOFTWARE, INCLUDING ANY UNDERLYING SERVICES, OR ANY TECHNOLOGY, IDEA, DATA AND
+DATABASES, ALGORITHM OR INFORMATION CONTAINED THEREIN OR PROVIDED THEREWITH
+(COLLECTIVELY, THE “SOFTWARE”), ESTABLISHES A BINDING AGREEMENT BETWEEN YOU AS
+THE PERSON LICENSING THE PRODUCTS, EITHER ON BEHALF OF YOURSELF OR ANY THIRD
+PARTY ENTITY (“YOU” OR "LICENSEE") AND ELASTIFLOW INC. (“ELASTIFLOW”), YOU
+(WHETHER AN INDIVIDUAL OR FORMAL LEGAL ENTITY) (HEREINAFTER REFERRED TO AS
+“YOU”), AND YOU AGREE TO BE BOUND BY THE TERMS AND CONDITIONS OF THIS AGREEMENT
+WITH RESPECT TO YOUR USE OF THE PRODUCTS. BY INSTALLING AND/OR BY USING THE
+PRODUCTS, YOU REPRESENT AND WARRANT THAT YOU HAVE THE LEGAL CAPACITY AND
+AUTHORITY TO ENTER INTO A BINDING AGREEMENT TO ADHERE TO THE TERMS AND
+CONDITIONS SET FORTH HEREIN, AND THAT THE PRODUCTS WILL BE USED ONLY IN
+ACCORDANCE WITH THESE TERMS AND CONDITIONS AND WITH ALL APPLICABLE LAWS. IF AN
+INDIVIDUAL IS REGISTERING OR USING THE SOFTWARE ON BEHALF OF AN ENTITY OR
+ORGANIZATION, THAT INDIVIDUAL WARRANTS, REPRESENTS, AND COVENANTS TO ELASTIFLOW
+THAT SUCH INDIVIDUAL IS DULY AUTHORIZED TO AGREE TO THESE TERMS AND CONDITIONS
+ON BEHALF OF THE ORGANIZATION AND TO BIND THE ORGANIZATION TO THEM. WHERE
+APPLICABLE, THIS AGREEMENT APPLIES TO ALL SOFTWARE PROVIDED BY ELASTIFLOW,
+INCLUDING ANY EVALUATION LICENSE. IN THE EVENT CUSTOMER HAS EXECUTED A SEPARATE
+LICENSSE AGREEMENT WITH ELASTIFLOW, OR AN ELASTIFLOW AUTHORIZED RESELLER, SUCH
+LICENSE AGREEMENT SHALL INSTEAD GOVERN THE PARTIES’ RESPECTIVE RIGHTS AND
+OBLIGATIONS WITH RESPECT TO THE SUBJECT MATTER SET FORTH HEREIN.
+
+1. Grant of Rights
+
+1.1 License; Copies. Subject to the terms and conditions of this Agreement,
+ElastiFlow hereby grants to Customer a non-exclusive, non-transferable, license
+(without the right to grant sublicenses) to execute and use the free object code
+version of ElastiFlow’s proprietary software products (the “Software”), solely
+for Customer’s own internal business operations, in accordance with the related
+documentation, and in accordance with the license term, scope and type of use as
+may be communicated by ElastiFlow. Customer may make a reasonable number of
+back-up or archival copies of the Software, provided that each such copy shall
+include ElastiFlow’s copyright and any other proprietary notices that appear on
+the original copies of the Software.
+
+1.2 Restrictions. Except as otherwise expressly provided in this Agreement (or
+where such restrictions are prohibited by law), Customer shall have no right,
+and Customer specifically agrees not to: (i) transfer, assign or sublicense its
+license rights to any other person; (ii) make error corrections or otherwise
+modify or adapt the Software or create derivative works based upon the Software,
+or to permit third parties to do so; (iii) rent, lease, loan or use the Software
+as a service bureau, as an application service provider, to perform consulting
+or training services for a third party or in any commercial time share
+arrangement; (iv) decompile, decrypt, reverse engineer, disassemble or otherwise
+reduce the Software to human-readable form to gain access to trade secrets or
+confidential information in the Software; (v) use the Software in contravention
+to any applicable laws or government regulations; or (vi) remove any product
+identification, trademark, copyright or other notices contained in or on the
+Software.
+
+1.3 Ownership. ElastiFlow and its suppliers reserve any and all rights, implied
+or otherwise, which are not expressly granted to Customer hereunder, and retain
+all rights, title and interest in and to the Software. Customer acknowledges and
+agrees that this Agreement in no way shall be construed to provide to Customer,
+or any third party, any express or implied license to use, copy or otherwise
+exploit the Software or any portion thereof, (including any intellectual
+property embodied therein) other than as specifically set forth in this
+Agreement. Without limiting the foregoing, Customer may not sublicense or
+otherwise distribute the Software or any portion thereof to any affiliate or any
+other third party, unless otherwise authorized by ElastiFlow in writing.
+
+1.4 Audit Rights. ElastiFlow may, upon thirty (30) days advance notice and at
+its expense, conduct an annual audit, during Customer’s normal business hours,
+of Customer’s use of the Software to verify compliance with this Agreement.
+
+1.5 Remote Diagnostics. Customer agrees that the Software may transmit to
+ElastiFlow technical and related information about Customer’s use of the
+Software which may include, without limitation, system performance, capacity
+usage, internet protocol address, operating system, application software,
+peripheral hardware, and other non-personally identifiable Software usage
+statistics to trouble shoot the Software, facilitate the provisioning of
+updates, support, invoicing or online services, and to enhance, improve, and
+develop current and future ElastiFlow products and services. Such transmission
+may be on a daily or other periodic basis, or upon a failure or crash of the
+Software.
+
+1.6 Data Sharing. Customer understands and acknowledges that the Software allows
+for sharing of flow data collected through Customer’s use of the Software (the
+“Flow Data”), and, unless Customer opts out such Flow Data sharing, ElastiFlow
+may, in its discretion, and otherwise has the right to, provide such Flow Data
+to partners and service providers of ElastiFlow for such third party’s use as
+part of its offerings to its own customers. By using the Software, Customer
+affirmatively acknowledges that (a) unless Customer elects to opt out (through
+functionality provided by the Software), Customer is allowing such Flow Data to
+be provided to such third parties, (b) Customer has the right to provide Flow
+Data as set forth herein, and (c). such use of any Flow Data is perpetual.
+
+2. Disclaimer
+
+THE SOFTWARE IS PROVIDED ON AN “AS IS” AND “WHERE IS” BASIS AND WITHOUT ANY
+WARRANTY OF ANY KIND, WHETHER EXPRESS OR IMPLIED, STATUTORY OR OTHERWISE,
+INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR PARTICULAR PURPOSE AND FREEDOM FROM INFRINGEMENT. ELASTIFLOW SHALL NOT HAVE
+ANY LIABILITY OR OBLIGATION FOR DAMAGES OF ANY TYPE, INCLUDING BUT NOT LIMITED
+TO ACTUAL, DIRECT, INDIRECT, CONSEQUENTIAL AND INCIDENTAL DAMAGES, ARISING OUT
+OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THE SOFTWARE, IN EXCESS OF
+$100, EVEN IF ELASTIFLOW HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+THE ENTIRE RISK ARISING OUT OF THE USE OR PERFORMANCE OF SOFTWARE REMAINS WITH
+CUSTOMER. These limitations shall apply notwithstanding any failure of essential
+purpose of any limited remedy.
+
+3. Termination
+
+3.1 By Either Party. Either party shall have the right to terminate this
+Agreement (and any license granted under an Order), without liability at any
+time upon notice.
+
+3.2 Effect of Termination. Upon any termination of this Agreement, for any
+reason, all applicable licenses are also terminated, and Customer shall
+immediately cease use of the applicable Software and shall return to ElastiFlow
+such Software and all copies thereof. Termination of the term of this Agreement
+shall not limit either party from pursuing any remedies available to it,
+including injunctive relief.
+
+3.3 Survival. The provisions of Sections 1.4, 2, 3.2, 4 and 5 shall survive
+termination of this Agreement.
+
+4. Confidentiality.
+
+Either party may, from time to time, deliver to the other certain non-public
+information including formulas, flow charts, diagnostic routines, business
+information, forecasts, financial plans and data, balance sheet information,
+customer information, marketing plans, hardware, software and unannounced
+product information (collectively, “Confidential Information”). Such
+Confidential Information, if in writing, shall be marked prominently with the
+legend “confidential”, “proprietary”, or with a similar legend, or if disclosed
+orally shall be described as Confidential Information at the time of oral
+disclosure. However, regardless of any marking or subsequent summary,
+information disclosed shall be considered confidential if a reasonable person
+under the circumstances would understand such information to be of a
+confidential nature. Notwithstanding anything to the contrary herein, the
+Software, Documentation and non-public Product information shall be deemed
+Confidential Information. A party shall not use or disclose Confidential
+Information of the other, except as expressly authorized by this Agreement or
+in writing by the disclosing party, using the same degree of care which
+receiving party uses with respect to its own proprietary information, but in no
+event with less than with reasonable care. The foregoing obligations of
+confidentiality shall not apply to any information that the receiving party can
+show is or was (i) already known to the receiving party at the time of
+disclosure without obligation of confidentiality; (ii) independently developed
+by the receiving party without use of or access to the other party’s
+Confidential Information; (iii) approved for disclosure by the disclosing party
+beforehand and in writing; (iv) publicly known without breach of this Agreement;
+(v) lawfully received by receiving party from a third party without obligation
+of confidentiality; or (vi) required to be disclosed by applicable law or order
+of a court, tribunal or other governmental agency; provided, however, that the
+receiving party shall promptly notify the disclosing party in writing of such
+requirement, and shall cooperate with the disclosing party to minimize the scope
+of any such disclosure, and in the obtaining of a confidentiality, protective or
+similar order.
+
+5. General Provisions.
+
+(a) This Agreement shall be interpreted and enforced in accordance with the laws
+of the State of Delaware, without regard to its conflict of laws principles. The
+UN Convention on Contracts for the International Sale of Goods shall not apply.
+(b) This Agreement and all Orders agreed by the parties are the entire agreement
+of the parties, and supersedes all prior agreements and communications, written
+or oral, between the parties with respect to the subject matter of this
+Agreement. The terms and conditions of any purchase orders or invoices issued by
+a party shall not be binding even if accepted by the other party. If any
+provision of this Agreement shall be held to be invalid, illegal or
+unenforceable, the remaining provisions shall not be affected or impaired. This
+Agreement may be modified only by a written agreement executed by authorized
+officers of each party. No delay or omission to exercise any right or remedy
+accruing to either party hereunder shall impair that right or remedy, or be
+construed to be a waiver of any breach or default. (c) This Agreement may be
+executed in two (2) or more counterparts, each of which shall be considered an
+original. (d) Customer may not assign this Agreement without the prior written
+consent of ElastiFlow and any such attempted assignment shall be void.
+ElastiFlow may assign this Agreement in the event of a merger, acquisition or
+sale of all or substantially all of ElastiFlow’s assets. Subject to the
+foregoing, this Agreement shall be binding upon and insure to the benefit of the
+parties hereto, their successors and permitted assigns. (e) ElastiFlow and
+Customer agree that nothing contained herein shall be construed as creating any
+agency, partnership, or other form of joint enterprise between the parties. (f)
+Except for the obligation to pay monies due and owing, neither party shall be
+liable for any delay or failure in performance due to events outside the
+defaulting party’s reasonable control, including without limitation acts of God,
+labor disputes, shortages of supplies, fire, war, and disruption related to
+terrorism, epidemics, or delays of common carriers. (g) Customer hereby
+acknowledges that the Software supplied by ElastiFlow hereunder may be subject
+to export controls under the laws and regulations of the United States, as well
+as any applicable laws and regulations of the territories outside of the United
+States. Customer shall comply with such laws and regulations and agrees not to
+export, re-export or transfer any Software without first obtaining all required
+governmental authorizations or licenses. ElastiFlow and Customer each agree to
+provide the other such information and assistance as may reasonably be required
+by the other in connection with securing such authorizations or licenses, and to
+take timely action to obtain all required support documents. (h) Any notice
+under this Agreement must be in writing and is deemed given and effective 3
+business days after mailing first class, postage prepaid, or when delivered by
+overnight express or other delivery service, to the party at the address listed
+above. (i) Customer agrees that ElastiFlow may list Customer’s name in any
+customer lists and it will cooperate with ElastiFlow in the preparation of a
+press release to be issued by ElastiFlow immediately following the Effective
+Date announcing the signing of Customer as a customer of ElastiFlow.
