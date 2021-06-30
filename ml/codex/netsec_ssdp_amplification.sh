@@ -57,7 +57,7 @@ DETECTOR=$( cat << EOF
       {
         "detector_description": "Excessive SSDP Responders",
         "function": "high_distinct_count",
-        "field_name": "flow.src.host.name",
+        "field_name": "flow.src.ip.addr",
         "partition_field_name": "flow.dst.host.name",
         "detector_index": 0
       }

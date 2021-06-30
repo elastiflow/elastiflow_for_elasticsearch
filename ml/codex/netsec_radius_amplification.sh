@@ -57,7 +57,7 @@ DETECTOR=$( cat << EOF
       {
         "detector_description": "Excessive RADIUS Responders",
         "function": "high_distinct_count",
-        "field_name": "flow.src.host.name",
+        "field_name": "flow.src.ip.addr",
         "by_field_name": "flow.dst.host.name",
         "partition_field_name": "flow.src.l4.port.id",
         "detector_index": 0

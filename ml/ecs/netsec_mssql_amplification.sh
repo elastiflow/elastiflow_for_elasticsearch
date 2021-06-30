@@ -57,7 +57,7 @@ DETECTOR=$( cat << EOF
       {
         "detector_description": "Excessive MSSQL Responders",
         "function": "high_distinct_count",
-        "field_name": "source.domain",
+        "field_name": "source.ip",
         "partition_field_name": "destination.domain",
         "detector_index": 0
       }
