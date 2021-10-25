@@ -59,7 +59,7 @@ DETECTOR=$( cat << EOF
         "function": "high_distinct_count",
         "field_name": "client.port",
         "by_field_name": "flow.server.l4.port.name",
-        "over_field_name": "client.domain",
+        "over_field_name": "client.ip",
         "partition_field_name": "server.domain",
         "detector_index": 0
       }
@@ -67,6 +67,7 @@ DETECTOR=$( cat << EOF
     "influencers": [
       "server.domain",
       "client.domain",
+      "client.ip",
       "flow.server.l4.port.name"
     ]
   },
@@ -88,19 +89,19 @@ DETECTOR=$( cat << EOF
     "custom_urls": [
       {
         "url_name": "RiskIQ PassiveTotal",
-        "url_value": "https://community.riskiq.com/research?query=\$client.domain$"
+        "url_value": "https://community.riskiq.com/research?query=\$client.ip$"
       },
       {
         "url_name": "Top Conversations",
-        "url_value": "dashboards#/view/c2da3880-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:server.domain,negate:!f,params:(query:'\$server.domain$'),type:phrase),query:(match_phrase:(server.domain:'\$server.domain$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:client.domain,negate:!f,params:(query:'\$client.domain$'),type:phrase),query:(match_phrase:(client.domain:'\$client.domain$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.server.l4.port.name,negate:!f,params:(query:'\$flow.server.l4.port.name$'),type:phrase),query:(match_phrase:(flow.server.l4.port.name:'\$flow.server.l4.port.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
+        "url_value": "dashboards#/view/c2da3880-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:server.domain,negate:!f,params:(query:'\$server.domain$'),type:phrase),query:(match_phrase:(server.domain:'\$server.domain$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:client.ip,negate:!f,params:(query:'\$client.ip$'),type:phrase),query:(match_phrase:(client.ip:'\$client.ip$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.server.l4.port.name,negate:!f,params:(query:'\$flow.server.l4.port.name$'),type:phrase),query:(match_phrase:(flow.server.l4.port.name:'\$flow.server.l4.port.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
       },
       {
         "url_name": "Threats",
-        "url_value": "dashboards#/view/f7fbc0b0-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:server.domain,negate:!f,params:(query:'\$server.domain$'),type:phrase),query:(match_phrase:(server.domain:'\$server.domain$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:client.domain,negate:!f,params:(query:'\$client.domain$'),type:phrase),query:(match_phrase:(client.domain:'\$client.domain$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.server.l4.port.name,negate:!f,params:(query:'\$flow.server.l4.port.name$'),type:phrase),query:(match_phrase:(flow.server.l4.port.name:'\$flow.server.l4.port.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
+        "url_value": "dashboards#/view/f7fbc0b0-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:server.domain,negate:!f,params:(query:'\$server.domain$'),type:phrase),query:(match_phrase:(server.domain:'\$server.domain$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:client.ip,negate:!f,params:(query:'\$client.ip$'),type:phrase),query:(match_phrase:(client.ip:'\$client.ip$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.server.l4.port.name,negate:!f,params:(query:'\$flow.server.l4.port.name$'),type:phrase),query:(match_phrase:(flow.server.l4.port.name:'\$flow.server.l4.port.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
       },
       {
         "url_name": "Flow Records",
-        "url_value": "dashboards#/view/abfed250-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:server.domain,negate:!f,params:(query:'\$server.domain$'),type:phrase),query:(match_phrase:(server.domain:'\$server.domain$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:client.domain,negate:!f,params:(query:'\$client.domain$'),type:phrase),query:(match_phrase:(client.domain:'\$client.domain$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.server.l4.port.name,negate:!f,params:(query:'\$flow.server.l4.port.name$'),type:phrase),query:(match_phrase:(flow.server.l4.port.name:'\$flow.server.l4.port.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
+        "url_value": "dashboards#/view/abfed250-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:server.domain,negate:!f,params:(query:'\$server.domain$'),type:phrase),query:(match_phrase:(server.domain:'\$server.domain$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:client.ip,negate:!f,params:(query:'\$client.ip$'),type:phrase),query:(match_phrase:(client.ip:'\$client.ip$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.server.l4.port.name,negate:!f,params:(query:'\$flow.server.l4.port.name$'),type:phrase),query:(match_phrase:(flow.server.l4.port.name:'\$flow.server.l4.port.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
       }
     ]
   },
@@ -120,11 +121,6 @@ DATAFEED=$( cat << EOF
     "bool": {
       "must": [
         {
-          "term": {
-            "tcp.flags.tags": "RST"
-          }
-        },
-        {
           "terms": {
             "server.port": [
               22,
@@ -139,12 +135,17 @@ DATAFEED=$( cat << EOF
         },
         {
           "exists": {
-            "field": "server.domain"
+            "field": "client.ip"
           }
         },
         {
           "exists": {
             "field": "client.port"
+          }
+        },
+        {
+          "exists": {
+            "field": "server.domain"
           }
         }
       ]
