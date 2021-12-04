@@ -58,17 +58,17 @@ DETECTOR=$( cat << EOF
         "detector_description": "Excessive Sentinel SPSS Responders",
         "function": "high_distinct_count",
         "field_name": "flow.src.ip.addr",
-        "partition_field_name": "flow.dst.host.name",
+        "partition_field_name": "flow.dst.ip.addr",
         "detector_index": 0
       }
     ],
     "influencers": [
+      "flow.dst.ip.addr",
       "flow.dst.host.name"
     ]
   },
   "analysis_limits": {
-    "model_memory_limit": "2048mb",
-    "categorization_examples_limit": 4
+    "model_memory_limit": "1024mb"
   },
   "data_description": {
     "time_field": "@timestamp",
@@ -84,11 +84,11 @@ DETECTOR=$( cat << EOF
     "custom_urls": [
       {
         "url_name": "Top Talkers",
-        "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),exists:(field:flow.src.as.asn),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.as.asn,negate:!f,type:exists,value:exists)),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.l4.port.id,negate:!f,params:(query:'5093'),type:phrase),query:(match_phrase:(flow.src.l4.port.id:'5093'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:l4.proto.name,negate:!f,params:(query:'UDP'),type:phrase),query:(match_phrase:(l4.proto.name:'UDP'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.dst.host.name,negate:!f,params:(query:'\$flow.dst.host.name$'),type:phrase),query:(match_phrase:(flow.dst.host.name:'\$flow.dst.host.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
+        "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.as.org,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(flow.src.as.org:'PRIVATE'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.l4.port.id,negate:!f,params:(query:'5093'),type:phrase),query:(match_phrase:(flow.src.l4.port.id:'5093'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:l4.proto.name,negate:!f,params:(query:'UDP'),type:phrase),query:(match_phrase:(l4.proto.name:'UDP'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.dst.ip.addr,negate:!f,params:(query:'\$flow.dst.ip.addr$'),type:phrase),query:(match_phrase:(flow.dst.ip.addr:'\$flow.dst.ip.addr$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
       },
       {
         "url_name": "Flow Records",
-        "url_value": "dashboards#/view/bf9f8a70-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),exists:(field:flow.src.as.asn),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.as.asn,negate:!f,type:exists,value:exists)),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.l4.port.id,negate:!f,params:(query:'5093'),type:phrase),query:(match_phrase:(flow.src.l4.port.id:'5093'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:l4.proto.name,negate:!f,params:(query:'UDP'),type:phrase),query:(match_phrase:(l4.proto.name:'UDP'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.dst.host.name,negate:!f,params:(query:'\$flow.dst.host.name$'),type:phrase),query:(match_phrase:(flow.dst.host.name:'\$flow.dst.host.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
+        "url_value": "dashboards#/view/bf9f8a70-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.as.org,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(flow.src.as.org:'PRIVATE'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.l4.port.id,negate:!f,params:(query:'5093'),type:phrase),query:(match_phrase:(flow.src.l4.port.id:'5093'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:l4.proto.name,negate:!f,params:(query:'UDP'),type:phrase),query:(match_phrase:(l4.proto.name:'UDP'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.dst.ip.addr,negate:!f,params:(query:'\$flow.dst.ip.addr$'),type:phrase),query:(match_phrase:(flow.dst.ip.addr:'\$flow.dst.ip.addr$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
       }
     ]
   },
@@ -108,11 +108,6 @@ DATAFEED=$( cat << EOF
     "bool": {
       "must": [
         {
-          "exists": {
-            "field": "flow.src.as.asn"
-          }
-        },
-        {
           "term": {
             "l4.proto.name": "UDP"
           }
@@ -124,12 +119,25 @@ DATAFEED=$( cat << EOF
         },
         {
           "exists": {
-            "field": "flow.src.host.name"
+            "field": "flow.src.ip.addr"
           }
         },
         {
           "exists": {
-            "field": "flow.dst.host.name"
+            "field": "flow.dst.ip.addr"
+          }
+        }
+      ],
+      "must_not": [
+        {
+          "term": {
+            "flow.src.as.org": "PRIVATE"
+          }
+        },
+        {
+          "terms": {
+            "flow.src.ip.addr": [
+            ]
           }
         }
       ]

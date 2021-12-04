@@ -48,6 +48,7 @@ echo ""; echo "Installing all CODEX-compatible anomaly_detectors and datafeeds .
 ./netsec_brute_force_cli.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_chargen_amplification.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_ddos_generic_tcp.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_ddos_generic_udp_amplification.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_dns_amplification.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_icmp_flood_ddos.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_icmp_flood_direct.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
