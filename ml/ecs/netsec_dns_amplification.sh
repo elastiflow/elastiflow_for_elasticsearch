@@ -58,17 +58,17 @@ DETECTOR=$( cat << EOF
         "detector_description": "Excessive DNS Responders",
         "function": "high_distinct_count",
         "field_name": "source.ip",
-        "partition_field_name": "destination.domain",
+        "partition_field_name": "destination.ip",
         "detector_index": 0
       }
     ],
     "influencers": [
+      "destination.ip",
       "destination.domain"
     ]
   },
   "analysis_limits": {
-    "model_memory_limit": "2048mb",
-    "categorization_examples_limit": 4
+    "model_memory_limit": "1024mb"
   },
   "data_description": {
     "time_field": "@timestamp",
@@ -84,11 +84,11 @@ DETECTOR=$( cat << EOF
     "custom_urls": [
       {
         "url_name": "Top Talkers",
-        "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),exists:(field:source.as.number),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:source.as.number,negate:!f,type:exists,value:exists)),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:source.port,negate:!f,params:(query:'53'),type:phrase),query:(match_phrase:(source.port:'53'))),('\$state':(store:globalState),meta:(alias:'Public%20DNS%20Servers',disabled:!f,index:'elastiflow-flow-ecs-*',key:source.ip,negate:!t,params:!('1.1.1.1','1.0.0.1','8.8.8.8','8.8.4.4','208.67.222.222','208.67.220.220','8.26.56.26','8.20.247.20','9.9.9.9','149.112.112.112','64.6.64.6','64.6.65.6'),type:phrases,value:'1.1.1.1,1.0.0.1,8.8.8.8,8.8.4.4,208.67.222.222,208.67.220.220,8.26.56.26,8.20.247.20,9.9.9.9,149.112.112.112,64.6.64.6,64.6.65.6'),query:(bool:(minimum_should_match:1,should:!((match_phrase:(source.ip:'1.1.1.1')),(match_phrase:(source.ip:'1.0.0.1')),(match_phrase:(source.ip:'8.8.8.8')),(match_phrase:(source.ip:'8.8.4.4')),(match_phrase:(source.ip:'208.67.222.222')),(match_phrase:(source.ip:'208.67.220.220')),(match_phrase:(source.ip:'8.26.56.26')),(match_phrase:(source.ip:'8.20.247.20')),(match_phrase:(source.ip:'9.9.9.9')),(match_phrase:(source.ip:'149.112.112.112')),(match_phrase:(source.ip:'64.6.64.6')),(match_phrase:(source.ip:'64.6.65.6')))))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:destination.domain,negate:!f,params:(query:'\$destination.domain$'),type:phrase),query:(match_phrase:(destination.domain:'\$destination.domain$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
+        "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:source.as.organization.name,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(source.as.organization.name:'PRIVATE'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:source.port,negate:!f,params:(query:'53'),type:phrase),query:(match_phrase:(source.port:'53'))),('\$state':(store:globalState),meta:(alias:'Public%20DNS%20Servers',disabled:!f,index:'elastiflow-flow-ecs-*',key:source.ip,negate:!t,params:!('1.1.1.1','1.0.0.1','8.8.8.8','8.8.4.4','208.67.222.222','208.67.220.220','8.26.56.26','8.20.247.20','9.9.9.9','149.112.112.112','64.6.64.6','64.6.65.6'),type:phrases,value:'1.1.1.1,1.0.0.1,8.8.8.8,8.8.4.4,208.67.222.222,208.67.220.220,8.26.56.26,8.20.247.20,9.9.9.9,149.112.112.112,64.6.64.6,64.6.65.6'),query:(bool:(minimum_should_match:1,should:!((match_phrase:(source.ip:'1.1.1.1')),(match_phrase:(source.ip:'1.0.0.1')),(match_phrase:(source.ip:'8.8.8.8')),(match_phrase:(source.ip:'8.8.4.4')),(match_phrase:(source.ip:'208.67.222.222')),(match_phrase:(source.ip:'208.67.220.220')),(match_phrase:(source.ip:'8.26.56.26')),(match_phrase:(source.ip:'8.20.247.20')),(match_phrase:(source.ip:'9.9.9.9')),(match_phrase:(source.ip:'149.112.112.112')),(match_phrase:(source.ip:'64.6.64.6')),(match_phrase:(source.ip:'64.6.65.6')))))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:destination.ip,negate:!f,params:(query:'\$destination.ip$'),type:phrase),query:(match_phrase:(destination.ip:'\$destination.ip$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
       },
       {
         "url_name": "Flow Records",
-        "url_value": "dashboards#/view/bf9f8a70-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),exists:(field:source.as.number),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:source.as.number,negate:!f,type:exists,value:exists)),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:source.port,negate:!f,params:(query:'53'),type:phrase),query:(match_phrase:(source.port:'53'))),('\$state':(store:globalState),meta:(alias:'Public%20DNS%20Servers',disabled:!f,index:'elastiflow-flow-ecs-*',key:source.ip,negate:!t,params:!('1.1.1.1','1.0.0.1','8.8.8.8','8.8.4.4','208.67.222.222','208.67.220.220','8.26.56.26','8.20.247.20','9.9.9.9','149.112.112.112','64.6.64.6','64.6.65.6'),type:phrases,value:'1.1.1.1,1.0.0.1,8.8.8.8,8.8.4.4,208.67.222.222,208.67.220.220,8.26.56.26,8.20.247.20,9.9.9.9,149.112.112.112,64.6.64.6,64.6.65.6'),query:(bool:(minimum_should_match:1,should:!((match_phrase:(source.ip:'1.1.1.1')),(match_phrase:(source.ip:'1.0.0.1')),(match_phrase:(source.ip:'8.8.8.8')),(match_phrase:(source.ip:'8.8.4.4')),(match_phrase:(source.ip:'208.67.222.222')),(match_phrase:(source.ip:'208.67.220.220')),(match_phrase:(source.ip:'8.26.56.26')),(match_phrase:(source.ip:'8.20.247.20')),(match_phrase:(source.ip:'9.9.9.9')),(match_phrase:(source.ip:'149.112.112.112')),(match_phrase:(source.ip:'64.6.64.6')),(match_phrase:(source.ip:'64.6.65.6')))))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:destination.domain,negate:!f,params:(query:'\$destination.domain$'),type:phrase),query:(match_phrase:(destination.domain:'\$destination.domain$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
+        "url_value": "dashboards#/view/bf9f8a70-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:source.as.organization.name,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(source.as.organization.name:'PRIVATE'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:source.port,negate:!f,params:(query:'53'),type:phrase),query:(match_phrase:(source.port:'53'))),('\$state':(store:globalState),meta:(alias:'Public%20DNS%20Servers',disabled:!f,index:'elastiflow-flow-ecs-*',key:source.ip,negate:!t,params:!('1.1.1.1','1.0.0.1','8.8.8.8','8.8.4.4','208.67.222.222','208.67.220.220','8.26.56.26','8.20.247.20','9.9.9.9','149.112.112.112','64.6.64.6','64.6.65.6'),type:phrases,value:'1.1.1.1,1.0.0.1,8.8.8.8,8.8.4.4,208.67.222.222,208.67.220.220,8.26.56.26,8.20.247.20,9.9.9.9,149.112.112.112,64.6.64.6,64.6.65.6'),query:(bool:(minimum_should_match:1,should:!((match_phrase:(source.ip:'1.1.1.1')),(match_phrase:(source.ip:'1.0.0.1')),(match_phrase:(source.ip:'8.8.8.8')),(match_phrase:(source.ip:'8.8.4.4')),(match_phrase:(source.ip:'208.67.222.222')),(match_phrase:(source.ip:'208.67.220.220')),(match_phrase:(source.ip:'8.26.56.26')),(match_phrase:(source.ip:'8.20.247.20')),(match_phrase:(source.ip:'9.9.9.9')),(match_phrase:(source.ip:'149.112.112.112')),(match_phrase:(source.ip:'64.6.64.6')),(match_phrase:(source.ip:'64.6.65.6')))))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:destination.ip,negate:!f,params:(query:'\$destination.ip$'),type:phrase),query:(match_phrase:(destination.ip:'\$destination.ip$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
       }
     ]
   },
@@ -108,8 +108,8 @@ DATAFEED=$( cat << EOF
     "bool": {
       "must": [
         {
-          "exists": {
-            "field": "source.as.number"
+          "term": {
+            "network.transport": "udp"
           }
         },
         {
@@ -119,16 +119,21 @@ DATAFEED=$( cat << EOF
         },
         {
           "exists": {
-            "field": "source.domain"
+            "field": "source.ip"
           }
         },
         {
           "exists": {
-            "field": "destination.domain"
+            "field": "destination.ip"
           }
         }
       ],
       "must_not": [
+        {
+          "term": {
+            "source.as.organization.name": "PRIVATE"
+          }
+        },
         {
           "terms": {
             "source.ip": [
