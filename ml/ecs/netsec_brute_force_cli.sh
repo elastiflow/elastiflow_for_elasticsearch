@@ -60,20 +60,20 @@ DETECTOR=$( cat << EOF
         "field_name": "client.port",
         "by_field_name": "flow.server.l4.port.name",
         "over_field_name": "client.ip",
-        "partition_field_name": "server.domain",
+        "partition_field_name": "server.ip",
         "detector_index": 0
       }
     ],
     "influencers": [
+      "flow.server.l4.port.name",
+      "server.ip",
       "server.domain",
-      "client.domain",
       "client.ip",
-      "flow.server.l4.port.name"
+      "client.domain"
     ]
   },
   "analysis_limits": {
-    "model_memory_limit": "8192mb",
-    "categorization_examples_limit": 4
+    "model_memory_limit": "4096mb"
   },
   "data_description": {
     "time_field": "@timestamp",
@@ -93,15 +93,15 @@ DETECTOR=$( cat << EOF
       },
       {
         "url_name": "Top Conversations",
-        "url_value": "dashboards#/view/c2da3880-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:server.domain,negate:!f,params:(query:'\$server.domain$'),type:phrase),query:(match_phrase:(server.domain:'\$server.domain$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:client.ip,negate:!f,params:(query:'\$client.ip$'),type:phrase),query:(match_phrase:(client.ip:'\$client.ip$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.server.l4.port.name,negate:!f,params:(query:'\$flow.server.l4.port.name$'),type:phrase),query:(match_phrase:(flow.server.l4.port.name:'\$flow.server.l4.port.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
+        "url_value": "dashboards#/view/c2da3880-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:server.ip,negate:!f,params:(query:'\$server.ip$'),type:phrase),query:(match_phrase:(server.ip:'\$server.ip$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:client.ip,negate:!f,params:(query:'\$client.ip$'),type:phrase),query:(match_phrase:(client.ip:'\$client.ip$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.server.l4.port.name,negate:!f,params:(query:'\$flow.server.l4.port.name$'),type:phrase),query:(match_phrase:(flow.server.l4.port.name:'\$flow.server.l4.port.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
       },
       {
         "url_name": "Threats",
-        "url_value": "dashboards#/view/f7fbc0b0-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:server.domain,negate:!f,params:(query:'\$server.domain$'),type:phrase),query:(match_phrase:(server.domain:'\$server.domain$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:client.ip,negate:!f,params:(query:'\$client.ip$'),type:phrase),query:(match_phrase:(client.ip:'\$client.ip$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.server.l4.port.name,negate:!f,params:(query:'\$flow.server.l4.port.name$'),type:phrase),query:(match_phrase:(flow.server.l4.port.name:'\$flow.server.l4.port.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
+        "url_value": "dashboards#/view/f7fbc0b0-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:server.ip,negate:!f,params:(query:'\$server.ip$'),type:phrase),query:(match_phrase:(server.ip:'\$server.ip$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:client.ip,negate:!f,params:(query:'\$client.ip$'),type:phrase),query:(match_phrase:(client.ip:'\$client.ip$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.server.l4.port.name,negate:!f,params:(query:'\$flow.server.l4.port.name$'),type:phrase),query:(match_phrase:(flow.server.l4.port.name:'\$flow.server.l4.port.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
       },
       {
         "url_name": "Flow Records",
-        "url_value": "dashboards#/view/abfed250-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:server.domain,negate:!f,params:(query:'\$server.domain$'),type:phrase),query:(match_phrase:(server.domain:'\$server.domain$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:client.ip,negate:!f,params:(query:'\$client.ip$'),type:phrase),query:(match_phrase:(client.ip:'\$client.ip$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.server.l4.port.name,negate:!f,params:(query:'\$flow.server.l4.port.name$'),type:phrase),query:(match_phrase:(flow.server.l4.port.name:'\$flow.server.l4.port.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
+        "url_value": "dashboards#/view/abfed250-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:server.ip,negate:!f,params:(query:'\$server.ip$'),type:phrase),query:(match_phrase:(server.ip:'\$server.ip$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:client.ip,negate:!f,params:(query:'\$client.ip$'),type:phrase),query:(match_phrase:(client.ip:'\$client.ip$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.server.l4.port.name,negate:!f,params:(query:'\$flow.server.l4.port.name$'),type:phrase),query:(match_phrase:(flow.server.l4.port.name:'\$flow.server.l4.port.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
       }
     ]
   },
@@ -130,11 +130,6 @@ DATAFEED=$( cat << EOF
         },
         {
           "exists": {
-            "field": "client.domain"
-          }
-        },
-        {
-          "exists": {
             "field": "client.ip"
           }
         },
@@ -145,7 +140,7 @@ DATAFEED=$( cat << EOF
         },
         {
           "exists": {
-            "field": "server.domain"
+            "field": "server.ip"
           }
         }
       ]

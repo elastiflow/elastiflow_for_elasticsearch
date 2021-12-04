@@ -56,21 +56,22 @@ DETECTOR=$( cat << EOF
       {
         "detector_description": "Excessive Unestablished Connections",
         "function": "high_count",
-        "over_field_name": "flow.client.host.name",
+        "over_field_name": "flow.client.ip.addr",
         "by_field_name": "flow.server.l4.port.name",
-        "partition_field_name": "flow.server.host.name",
+        "partition_field_name": "flow.server.ip.addr",
         "detector_index": 0
       }
     ],
     "influencers": [
       "flow.server.l4.port.name",
+      "flow.server.ip.addr",
       "flow.server.host.name",
+      "flow.client.ip.addr",
       "flow.client.host.name"
     ]
   },
   "analysis_limits": {
-    "model_memory_limit": "4096mb",
-    "categorization_examples_limit": 4
+    "model_memory_limit": "4096mb"
   },
   "data_description": {
     "time_field": "@timestamp",
@@ -124,6 +125,13 @@ DATAFEED=$( cat << EOF
           }
         },
         {
+          "term": {
+            "flow.client.as.org": {
+              "value": "PRIVATE"
+            }
+          }
+        },
+        {
           "terms": {
             "flow.export.type": [
               "netflow",
@@ -133,7 +141,12 @@ DATAFEED=$( cat << EOF
         },
         {
           "exists": {
-            "field": "flow.server.as.asn"
+            "field": "flow.client.as.org"
+          }
+        },
+        {
+          "exists": {
+            "field": "flow.server.as.org"
           }
         },
         {
@@ -154,8 +167,18 @@ DATAFEED=$( cat << EOF
       ],
       "must_not": [
         {
-          "exists": {
-            "field": "flow.client.as.asn"
+          "term": {
+            "flow.server.as.org": {
+              "value": "PRIVATE"
+            }
+          }
+        },
+        {
+          "terms": {
+            "flow.client.ip.addr": [
+              "169.254.0.0/16",
+              "fe80::/10"
+            ]
           }
         }
       ]
