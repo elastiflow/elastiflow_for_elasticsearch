@@ -58,19 +58,20 @@ DETECTOR=$( cat << EOF
         "detector_description": "Excessive Client IPs",
         "function": "high_distinct_count",
         "field_name": "client.ip",
-        "by_field_name": "server.domain",
-        "partition_field_name": "flow.server.l4.port.name",
+        "by_field_name": "server.ip",
+        "partition_field_name": "server.port",
         "detector_index": 0
       }
     ],
     "influencers": [
+      "server.ip",
       "server.domain",
+      "server.port",
       "flow.server.l4.port.name"
     ]
   },
   "analysis_limits": {
-    "model_memory_limit": "8192mb",
-    "categorization_examples_limit": 4
+    "model_memory_limit": "8192mb"
   },
   "data_description": {
     "time_field": "@timestamp",
@@ -86,11 +87,11 @@ DETECTOR=$( cat << EOF
     "custom_urls": [
       {
         "url_name": "Top Talkers",
-        "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),exists:(field:client.as.number),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:client.as.number,negate:!f,type:exists,value:exists)),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:network.transport,negate:!f,params:(query:'tcp'),type:phrase),query:(match_phrase:(network.transport:'tcp'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:server.domain,negate:!f,params:(query:'\$server.domain$'),type:phrase),query:(match_phrase:(server.domain:'\$server.domain$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.server.l4.port.name,negate:!f,params:(query:'\$flow.server.l4.port.name$'),type:phrase),query:(match_phrase:(flow.server.l4.port.name:'\$flow.server.l4.port.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
+        "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:client.as.organization.name,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(client.as.organization.name:'PRIVATE'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:network.transport,negate:!f,params:(query:'tcp'),type:phrase),query:(match_phrase:(network.transport:'tcp'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:server.ip,negate:!f,params:(query:'\$server.ip$'),type:phrase),query:(match_phrase:(server.ip:'\$server.ip$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.server.l4.port.name,negate:!f,params:(query:'\$flow.server.l4.port.name$'),type:phrase),query:(match_phrase:(flow.server.l4.port.name:'\$flow.server.l4.port.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
       },
       {
         "url_name": "Flow Records",
-        "url_value": "dashboards#/view/bf9f8a70-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),exists:(field:client.as.number),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:client.as.number,negate:!f,type:exists,value:exists)),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:network.transport,negate:!f,params:(query:'tcp'),type:phrase),query:(match_phrase:(network.transport:'tcp'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:server.domain,negate:!f,params:(query:'\$server.domain$'),type:phrase),query:(match_phrase:(server.domain:'\$server.domain$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.server.l4.port.name,negate:!f,params:(query:'\$flow.server.l4.port.name$'),type:phrase),query:(match_phrase:(flow.server.l4.port.name:'\$flow.server.l4.port.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
+        "url_value": "dashboards#/view/abfed250-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:client.as.organization.name,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(client.as.organization.name:'PRIVATE'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:network.transport,negate:!f,params:(query:'tcp'),type:phrase),query:(match_phrase:(network.transport:'tcp'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:server.ip,negate:!f,params:(query:'\$server.ip$'),type:phrase),query:(match_phrase:(server.ip:'\$server.ip$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.server.l4.port.name,negate:!f,params:(query:'\$flow.server.l4.port.name$'),type:phrase),query:(match_phrase:(flow.server.l4.port.name:'\$flow.server.l4.port.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
       }
     ]
   },
@@ -110,11 +111,6 @@ DATAFEED=$( cat << EOF
     "bool": {
       "must": [
         {
-          "exists": {
-            "field": "client.as.number"
-          }
-        },
-        {
           "term": {
             "network.transport": "tcp"
           }
@@ -126,12 +122,31 @@ DATAFEED=$( cat << EOF
         },
         {
           "exists": {
-            "field": "server.domain"
+            "field": "server.ip"
           }
         },
         {
           "exists": {
-            "field": "flow.server.l4.port.name"
+            "field": "server.port"
+          }
+        }
+      ],
+      "must_not": [
+        {
+          "term": {
+            "client.as.organization.name": "PRIVATE"
+          }
+        },
+        {
+          "terms": {
+            "client.ip": [
+            ]
+          }
+        },
+        {
+          "terms": {
+            "server.ip": [
+            ]
           }
         }
       ]

@@ -58,17 +58,17 @@ DETECTOR=$( cat << EOF
         "detector_description": "Excessive ICMP Sources",
         "function": "high_distinct_count",
         "field_name": "source.ip",
-        "partition_field_name": "destination.domain",
+        "partition_field_name": "destination.ip",
         "detector_index": 0
       }
     ],
     "influencers": [
+      "destination.ip",
       "destination.domain"
     ]
   },
   "analysis_limits": {
-    "model_memory_limit": "4096mb",
-    "categorization_examples_limit": 4
+    "model_memory_limit": "4096mb"
   },
   "data_description": {
     "time_field": "@timestamp",
@@ -84,7 +84,7 @@ DETECTOR=$( cat << EOF
     "custom_urls": [
       {
         "url_name": "Flow Records",
-        "url_value": "dashboards#/view/bf9f8a70-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:event.dataset,negate:!f,params:!(ipfix,netflow),type:phrases,value:'ipfix,%20netflow'),query:(bool:(minimum_should_match:1,should:!((match_phrase:(event.dataset:ipfix)),(match_phrase:(event.dataset:netflow)))))),('\$state':(store:globalState),exists:(field:source.as.number),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:source.as.number,negate:!f,type:exists,value:exists)),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:network.transport,negate:!f,params:(query:'icmp'),type:phrase),query:(match_phrase:(network.transport:'icmp'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:destination.domain,negate:!f,params:(query:'\$destination.domain$'),type:phrase),query:(match_phrase:(destination.domain:'\$destination.domain$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
+        "url_value": "dashboards#/view/bf9f8a70-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:event.dataset,negate:!f,params:!(ipfix,netflow),type:phrases,value:'ipfix,%20netflow'),query:(bool:(minimum_should_match:1,should:!((match_phrase:(event.dataset:ipfix)),(match_phrase:(event.dataset:netflow)))))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:source.as.organization.name,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(source.as.organization.name:'PRIVATE'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:network.transport,negate:!f,params:(query:'icmp'),type:phrase),query:(match_phrase:(network.transport:'icmp'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:destination.ip,negate:!f,params:(query:'\$destination.ip$'),type:phrase),query:(match_phrase:(destination.ip:'\$destination.ip$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
       }
     ]
   },
@@ -103,11 +103,6 @@ DATAFEED=$( cat << EOF
   "query": {
     "bool": {
       "must": [
-        {
-          "exists": {
-            "field": "source.as.number"
-          }
-        },
         {
           "term": {
             "network.transport": "icmp"
@@ -128,7 +123,26 @@ DATAFEED=$( cat << EOF
         },
         {
           "exists": {
-            "field": "destination.domain"
+            "field": "destination.ip"
+          }
+        }
+      ],
+      "must_not": [
+        {
+          "term": {
+            "source.as.organization.name": "PRIVATE"
+          }
+        },
+        {
+          "terms": {
+            "source.ip": [
+            ]
+          }
+        },
+        {
+          "terms": {
+            "destination.ip": [
+            ]
           }
         }
       ]
