@@ -1,0 +1,4356 @@
+[
+  {
+    "job": {
+      "job_id": "elastiflow_codex_avail_tcp_sess_fails_private",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "Top Conversations",
+            "url_value": "dashboards#/view/c2da3880-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.ip.addr,negate:!f,params:(query:'$flow.server.ip.addr$'),type:phrase),query:(match_phrase:(flow.server.ip.addr:'$flow.server.ip.addr$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.client.ip.addr,negate:!f,params:(query:'$flow.client.ip.addr$'),type:phrase),query:(match_phrase:(flow.client.ip.addr:'$flow.client.ip.addr$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.l4.port.name,negate:!f,params:(query:'$flow.server.l4.port.name$'),type:phrase),query:(match_phrase:(flow.server.l4.port.name:'$flow.server.l4.port.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/abfed250-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.ip.addr,negate:!f,params:(query:'$flow.server.ip.addr$'),type:phrase),query:(match_phrase:(flow.server.ip.addr:'$flow.server.ip.addr$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.client.ip.addr,negate:!f,params:(query:'$flow.client.ip.addr$'),type:phrase),query:(match_phrase:(flow.client.ip.addr:'$flow.client.ip.addr$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.l4.port.name,negate:!f,params:(query:'$flow.server.l4.port.name$'),type:phrase),query:(match_phrase:(flow.server.l4.port.name:'$flow.server.l4.port.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "availability"
+      ],
+      "description": "Failed TCP Sessions (private)",
+      "analysis_config": {
+        "bucket_span": "10m",
+        "detectors": [
+          {
+            "detector_description": "Excessive Unestablished Connections",
+            "function": "high_count",
+            "by_field_name": "flow.server.l4.port.name",
+            "over_field_name": "flow.client.ip.addr",
+            "partition_field_name": "flow.server.ip.addr",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "flow.server.l4.port.name",
+          "flow.server.ip.addr",
+          "flow.server.host.name",
+          "flow.client.ip.addr",
+          "flow.client.host.name"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "4096mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": false,
+        "annotations_enabled": true
+      },
+      "model_snapshot_retention_days": 10,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_codex_avail_tcp_sess_fails_private",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_codex_avail_tcp_sess_fails_private",
+      "job_id": "elastiflow_codex_avail_tcp_sess_fails_private",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "term": {
+                "flow.locality": {
+                  "value": "private"
+                }
+              }
+            },
+            {
+              "term": {
+                "l4.proto.name": {
+                  "value": "TCP"
+                }
+              }
+            },
+            {
+              "term": {
+                "l4.session.established": {
+                  "value": "false"
+                }
+              }
+            },
+            {
+              "terms": {
+                "flow.export.type": [
+                  "netflow",
+                  "ipfix"
+                ]
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.client.ip.addr"
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.server.ip.addr"
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.server.l4.port.name"
+              }
+            }
+          ],
+          "must_not": [
+            {
+              "terms": {
+                "flow.client.ip.addr": [
+                  "169.254.0.0/16",
+                  "fe80::/10"
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-codex-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  },
+  {
+    "job": {
+      "job_id": "elastiflow_codex_avail_tcp_sess_fails_public",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "Top Conversations",
+            "url_value": "dashboards#/view/c2da3880-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.host.name,negate:!f,params:(query:'$flow.server.host.name$'),type:phrase),query:(match_phrase:(flow.server.host.name:'$flow.server.host.name$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.client.host.name,negate:!f,params:(query:'$flow.client.host.name$'),type:phrase),query:(match_phrase:(flow.client.host.name:'$flow.client.host.name$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.l4.port.name,negate:!f,params:(query:'$flow.server.l4.port.name$'),type:phrase),query:(match_phrase:(flow.server.l4.port.name:'$flow.server.l4.port.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/abfed250-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.host.name,negate:!f,params:(query:'$flow.server.host.name$'),type:phrase),query:(match_phrase:(flow.server.host.name:'$flow.server.host.name$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.client.host.name,negate:!f,params:(query:'$flow.client.host.name$'),type:phrase),query:(match_phrase:(flow.client.host.name:'$flow.client.host.name$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.l4.port.name,negate:!f,params:(query:'$flow.server.l4.port.name$'),type:phrase),query:(match_phrase:(flow.server.l4.port.name:'$flow.server.l4.port.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "availability"
+      ],
+      "description": "Failed TCP Sessions (public)",
+      "analysis_config": {
+        "bucket_span": "10m",
+        "detectors": [
+          {
+            "detector_description": "Excessive Unestablished Connections",
+            "function": "high_count",
+            "by_field_name": "flow.server.l4.port.name",
+            "over_field_name": "flow.client.ip.addr",
+            "partition_field_name": "flow.server.ip.addr",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "flow.server.l4.port.name",
+          "flow.server.ip.addr",
+          "flow.server.host.name",
+          "flow.client.ip.addr",
+          "flow.client.host.name"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "4096mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": false,
+        "annotations_enabled": true
+      },
+      "model_snapshot_retention_days": 10,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_codex_avail_tcp_sess_fails_public",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_codex_avail_tcp_sess_fails_public",
+      "job_id": "elastiflow_codex_avail_tcp_sess_fails_public",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "term": {
+                "l4.proto.name": {
+                  "value": "TCP"
+                }
+              }
+            },
+            {
+              "term": {
+                "l4.session.established": {
+                  "value": "false"
+                }
+              }
+            },
+            {
+              "term": {
+                "flow.client.as.org": {
+                  "value": "PRIVATE"
+                }
+              }
+            },
+            {
+              "terms": {
+                "flow.export.type": [
+                  "netflow",
+                  "ipfix"
+                ]
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.client.as.org"
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.server.as.org"
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.client.host.name"
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.server.host.name"
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.server.l4.port.name"
+              }
+            }
+          ],
+          "must_not": [
+            {
+              "term": {
+                "flow.server.as.org": {
+                  "value": "PRIVATE"
+                }
+              }
+            },
+            {
+              "terms": {
+                "flow.client.ip.addr": [
+                  "169.254.0.0/16",
+                  "fe80::/10"
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-codex-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  },
+  {
+    "job": {
+      "job_id": "elastiflow_codex_netsec_brute_force_cli",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "RiskIQ PassiveTotal",
+            "url_value": "https://community.riskiq.com/research?query=$flow.client.ip.addr$"
+          },
+          {
+            "url_name": "Top Conversations",
+            "url_value": "dashboards#/view/c2da3880-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.ip.addr,negate:!f,params:(query:'$flow.server.ip.addr$'),type:phrase),query:(match_phrase:(flow.server.ip.addr:'$flow.server.ip.addr$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.client.ip.addr,negate:!f,params:(query:'$flow.client.ip.addr$'),type:phrase),query:(match_phrase:(flow.client.ip.addr:'$flow.client.ip.addr$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.l4.port.name,negate:!f,params:(query:'$flow.server.l4.port.name$'),type:phrase),query:(match_phrase:(flow.server.l4.port.name:'$flow.server.l4.port.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Threats",
+            "url_value": "dashboards#/view/f7fbc0b0-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.ip.addr,negate:!f,params:(query:'$flow.server.ip.addr$'),type:phrase),query:(match_phrase:(flow.server.ip.addr:'$flow.server.ip.addr$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.client.ip.addr,negate:!f,params:(query:'$flow.client.ip.addr$'),type:phrase),query:(match_phrase:(flow.client.ip.addr:'$flow.client.ip.addr$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.l4.port.name,negate:!f,params:(query:'$flow.server.l4.port.name$'),type:phrase),query:(match_phrase:(flow.server.l4.port.name:'$flow.server.l4.port.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/abfed250-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.ip.addr,negate:!f,params:(query:'$flow.server.ip.addr$'),type:phrase),query:(match_phrase:(flow.server.ip.addr:'$flow.server.ip.addr$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.client.ip.addr,negate:!f,params:(query:'$flow.client.ip.addr$'),type:phrase),query:(match_phrase:(flow.client.ip.addr:'$flow.client.ip.addr$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.l4.port.name,negate:!f,params:(query:'$flow.server.l4.port.name$'),type:phrase),query:(match_phrase:(flow.server.l4.port.name:'$flow.server.l4.port.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "security",
+        "access"
+      ],
+      "description": "Brute Force Access Attempt (CLI)",
+      "analysis_config": {
+        "bucket_span": "15m",
+        "detectors": [
+          {
+            "detector_description": "Excessive Access Attempts",
+            "function": "high_distinct_count",
+            "field_name": "flow.client.l4.port.id",
+            "by_field_name": "flow.server.l4.port.name",
+            "over_field_name": "flow.client.ip.addr",
+            "partition_field_name": "flow.server.ip.addr",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "flow.server.l4.port.name",
+          "flow.server.ip.addr",
+          "flow.server.host.name",
+          "flow.client.ip.addr",
+          "flow.client.host.name"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "4096mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": false,
+        "annotations_enabled": true
+      },
+      "model_snapshot_retention_days": 10,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_codex_netsec_brute_force_cli",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_codex_netsec_brute_force_cli",
+      "job_id": "elastiflow_codex_netsec_brute_force_cli",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "terms": {
+                "flow.server.l4.port.id": [
+                  22,
+                  23
+                ]
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.client.ip.addr"
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.client.l4.port.id"
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.server.ip.addr"
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-codex-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  },
+  {
+    "job": {
+      "job_id": "elastiflow_codex_netsec_chargen_amplification",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.as.org,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(flow.src.as.org:'PRIVATE'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.l4.port.id,negate:!f,params:(query:'19'),type:phrase),query:(match_phrase:(flow.src.l4.port.id:'19'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:l4.proto.name,negate:!f,params:(query:'UDP'),type:phrase),query:(match_phrase:(l4.proto.name:'UDP'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.dst.ip.addr,negate:!f,params:(query:'$flow.dst.ip.addr$'),type:phrase),query:(match_phrase:(flow.dst.ip.addr:'$flow.dst.ip.addr$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/bf9f8a70-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.as.org,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(flow.src.as.org:'PRIVATE'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.l4.port.id,negate:!f,params:(query:'19'),type:phrase),query:(match_phrase:(flow.src.l4.port.id:'19'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:l4.proto.name,negate:!f,params:(query:'UDP'),type:phrase),query:(match_phrase:(l4.proto.name:'UDP'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.dst.ip.addr,negate:!f,params:(query:'$flow.dst.ip.addr$'),type:phrase),query:(match_phrase:(flow.dst.ip.addr:'$flow.dst.ip.addr$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "security",
+        "ddos"
+      ],
+      "description": "CHARGEN Amplification Attack",
+      "analysis_config": {
+        "bucket_span": "5m",
+        "detectors": [
+          {
+            "detector_description": "Excessive CHARGEN Responders",
+            "function": "high_distinct_count",
+            "field_name": "flow.src.ip.addr",
+            "partition_field_name": "flow.dst.ip.addr",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "flow.dst.ip.addr",
+          "flow.dst.host.name"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "1024mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": false,
+        "annotations_enabled": true
+      },
+      "model_snapshot_retention_days": 10,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_codex_netsec_chargen_amplification",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_codex_netsec_chargen_amplification",
+      "job_id": "elastiflow_codex_netsec_chargen_amplification",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "term": {
+                "l4.proto.name": "UDP"
+              }
+            },
+            {
+              "term": {
+                "flow.src.l4.port.id": 19
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.src.ip.addr"
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.dst.ip.addr"
+              }
+            }
+          ],
+          "must_not": [
+            {
+              "term": {
+                "flow.src.as.org": "PRIVATE"
+              }
+            },
+            {
+              "terms": {
+                "flow.src.ip.addr": []
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-codex-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  },
+  {
+    "job": {
+      "job_id": "elastiflow_codex_netsec_ddos_generic_tcp",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.client.as.org,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(flow.client.as.org:'PRIVATE'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:l4.proto.name,negate:!f,params:(query:'TCP'),type:phrase),query:(match_phrase:(l4.proto.name:'TCP'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.ip.addr,negate:!f,params:(query:'$flow.server.ip.addr$'),type:phrase),query:(match_phrase:(flow.server.ip.addr:'$flow.server.ip.addr$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.l4.port.name,negate:!f,params:(query:'$flow.server.l4.port.name$'),type:phrase),query:(match_phrase:(flow.server.l4.port.name:'$flow.server.l4.port.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/abfed250-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.client.as.org,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(flow.client.as.org:'PRIVATE'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:l4.proto.name,negate:!f,params:(query:'TCP'),type:phrase),query:(match_phrase:(l4.proto.name:'TCP'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.ip.addr,negate:!f,params:(query:'$flow.server.ip.addr$'),type:phrase),query:(match_phrase:(flow.server.ip.addr:'$flow.server.ip.addr$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.l4.port.name,negate:!f,params:(query:'$flow.server.l4.port.name$'),type:phrase),query:(match_phrase:(flow.server.l4.port.name:'$flow.server.l4.port.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "security",
+        "ddos"
+      ],
+      "description": "Generic DDoS Attack (TCP)",
+      "analysis_config": {
+        "bucket_span": "5m",
+        "detectors": [
+          {
+            "detector_description": "Excessive Client IPs",
+            "function": "high_distinct_count",
+            "field_name": "flow.client.ip.addr",
+            "by_field_name": "flow.server.ip.addr",
+            "partition_field_name": "flow.server.l4.port.id",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "flow.server.ip.addr",
+          "flow.server.host.name",
+          "flow.server.l4.port.id",
+          "flow.server.l4.port.name"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "8192mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": false,
+        "annotations_enabled": true
+      },
+      "model_snapshot_retention_days": 10,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_codex_netsec_ddos_generic_tcp",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_codex_netsec_ddos_generic_tcp",
+      "job_id": "elastiflow_codex_netsec_ddos_generic_tcp",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "term": {
+                "l4.proto.name": "TCP"
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.client.ip.addr"
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.server.ip.addr"
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.server.l4.port.id"
+              }
+            }
+          ],
+          "must_not": [
+            {
+              "term": {
+                "flow.client.as.org": "PRIVATE"
+              }
+            },
+            {
+              "terms": {
+                "flow.client.ip.addr": []
+              }
+            },
+            {
+              "terms": {
+                "flow.server.ip.addr": []
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-codex-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  },
+  {
+    "job": {
+      "job_id": "elastiflow_codex_netsec_ddos_generic_udp_amplification",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.as.org,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(flow.src.as.org:'PRIVATE'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.l4.port.id,negate:!f,params:(query:'$flow.src.l4.port.id$'),type:phrase),query:(match_phrase:(flow.src.l4.port.id:'$flow.src.l4.port.id$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:l4.proto.name,negate:!f,params:(query:'UDP'),type:phrase),query:(match_phrase:(l4.proto.name:'UDP'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.dst.ip.addr,negate:!f,params:(query:'$flow.dst.ip.addr$'),type:phrase),query:(match_phrase:(flow.dst.ip.addr:'$flow.dst.ip.addr$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/bf9f8a70-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.as.org,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(flow.src.as.org:'PRIVATE'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.l4.port.id,negate:!f,params:(query:'$flow.src.l4.port.id$'),type:phrase),query:(match_phrase:(flow.src.l4.port.id:'$flow.src.l4.port.id$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:l4.proto.name,negate:!f,params:(query:'UDP'),type:phrase),query:(match_phrase:(l4.proto.name:'UDP'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.dst.ip.addr,negate:!f,params:(query:'$flow.dst.ip.addr$'),type:phrase),query:(match_phrase:(flow.dst.ip.addr:'$flow.dst.ip.addr$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "security",
+        "ddos"
+      ],
+      "description": "Generic DDoS Attack (UDP Amplification)",
+      "analysis_config": {
+        "bucket_span": "5m",
+        "detectors": [
+          {
+            "detector_description": "Excessive UDP Responders",
+            "function": "high_distinct_count",
+            "field_name": "flow.src.ip.addr",
+            "by_field_name": "flow.dst.ip.addr",
+            "partition_field_name": "flow.src.l4.port.id",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "flow.dst.ip.addr",
+          "flow.dst.host.name",
+          "flow.src.l4.port.id",
+          "flow.src.l4.port.name"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "3072mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": false,
+        "annotations_enabled": true
+      },
+      "model_snapshot_retention_days": 10,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_codex_netsec_ddos_generic_udp_amplification",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_codex_netsec_ddos_generic_udp_amplification",
+      "job_id": "elastiflow_codex_netsec_ddos_generic_udp_amplification",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "term": {
+                "l4.proto.name": "UDP"
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.src.l4.port.id"
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.src.ip.addr"
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.dst.ip.addr"
+              }
+            }
+          ],
+          "must_not": [
+            {
+              "term": {
+                "flow.src.as.org": "PRIVATE"
+              }
+            },
+            {
+              "terms": {
+                "flow.src.l4.port.id": [
+                  80,
+                  443,
+                  8080,
+                  17,
+                  19,
+                  53,
+                  69,
+                  111,
+                  123,
+                  137,
+                  161,
+                  389,
+                  520,
+                  751,
+                  1434,
+                  1645,
+                  1646,
+                  1812,
+                  1813,
+                  1900,
+                  3702,
+                  5093,
+                  5353,
+                  11211,
+                  27015,
+                  27960
+                ]
+              }
+            },
+            {
+              "terms": {
+                "flow.src.ip.addr": []
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-codex-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  },
+  {
+    "job": {
+      "job_id": "elastiflow_codex_netsec_dns_amplification",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.as.org,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(flow.src.as.org:'PRIVATE'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.l4.port.id,negate:!f,params:(query:'53'),type:phrase),query:(match_phrase:(flow.src.l4.port.id:'53'))),('$state':(store:globalState),meta:(alias:'Public%20DNS%20Servers',disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.ip.addr,negate:!t,params:!('1.1.1.1','1.0.0.1','8.8.8.8','8.8.4.4','208.67.222.222','208.67.220.220','8.26.56.26','8.20.247.20','9.9.9.9','149.112.112.112','64.6.64.6','64.6.65.6'),type:phrases,value:'1.1.1.1,1.0.0.1,8.8.8.8,8.8.4.4,208.67.222.222,208.67.220.220,8.26.56.26,8.20.247.20,9.9.9.9,149.112.112.112,64.6.64.6,64.6.65.6'),query:(bool:(minimum_should_match:1,should:!((match_phrase:(flow.src.ip.addr:'1.1.1.1')),(match_phrase:(flow.src.ip.addr:'1.0.0.1')),(match_phrase:(flow.src.ip.addr:'8.8.8.8')),(match_phrase:(flow.src.ip.addr:'8.8.4.4')),(match_phrase:(flow.src.ip.addr:'208.67.222.222')),(match_phrase:(flow.src.ip.addr:'208.67.220.220')),(match_phrase:(flow.src.ip.addr:'8.26.56.26')),(match_phrase:(flow.src.ip.addr:'8.20.247.20')),(match_phrase:(flow.src.ip.addr:'9.9.9.9')),(match_phrase:(flow.src.ip.addr:'149.112.112.112')),(match_phrase:(flow.src.ip.addr:'64.6.64.6')),(match_phrase:(flow.src.ip.addr:'64.6.65.6')))))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.dst.ip.addr,negate:!f,params:(query:'$flow.dst.ip.addr$'),type:phrase),query:(match_phrase:(flow.dst.ip.addr:'$flow.dst.ip.addr$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/bf9f8a70-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.as.org,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(flow.src.as.org:'PRIVATE'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.l4.port.id,negate:!f,params:(query:'53'),type:phrase),query:(match_phrase:(flow.src.l4.port.id:'53'))),('$state':(store:globalState),meta:(alias:'Public%20DNS%20Servers',disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.ip.addr,negate:!t,params:!('1.1.1.1','1.0.0.1','8.8.8.8','8.8.4.4','208.67.222.222','208.67.220.220','8.26.56.26','8.20.247.20','9.9.9.9','149.112.112.112','64.6.64.6','64.6.65.6'),type:phrases,value:'1.1.1.1,1.0.0.1,8.8.8.8,8.8.4.4,208.67.222.222,208.67.220.220,8.26.56.26,8.20.247.20,9.9.9.9,149.112.112.112,64.6.64.6,64.6.65.6'),query:(bool:(minimum_should_match:1,should:!((match_phrase:(flow.src.ip.addr:'1.1.1.1')),(match_phrase:(flow.src.ip.addr:'1.0.0.1')),(match_phrase:(flow.src.ip.addr:'8.8.8.8')),(match_phrase:(flow.src.ip.addr:'8.8.4.4')),(match_phrase:(flow.src.ip.addr:'208.67.222.222')),(match_phrase:(flow.src.ip.addr:'208.67.220.220')),(match_phrase:(flow.src.ip.addr:'8.26.56.26')),(match_phrase:(flow.src.ip.addr:'8.20.247.20')),(match_phrase:(flow.src.ip.addr:'9.9.9.9')),(match_phrase:(flow.src.ip.addr:'149.112.112.112')),(match_phrase:(flow.src.ip.addr:'64.6.64.6')),(match_phrase:(flow.src.ip.addr:'64.6.65.6')))))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.dst.ip.addr,negate:!f,params:(query:'$flow.dst.ip.addr$'),type:phrase),query:(match_phrase:(flow.dst.ip.addr:'$flow.dst.ip.addr$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "security",
+        "ddos"
+      ],
+      "description": "DNS Amplification Attack",
+      "analysis_config": {
+        "bucket_span": "5m",
+        "detectors": [
+          {
+            "detector_description": "Excessive DNS Responders",
+            "function": "high_distinct_count",
+            "field_name": "flow.src.ip.addr",
+            "partition_field_name": "flow.dst.ip.addr",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "flow.dst.ip.addr",
+          "flow.dst.host.name"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "1024mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": false,
+        "annotations_enabled": true
+      },
+      "model_snapshot_retention_days": 10,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_codex_netsec_dns_amplification",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_codex_netsec_dns_amplification",
+      "job_id": "elastiflow_codex_netsec_dns_amplification",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "term": {
+                "l4.proto.name": "UDP"
+              }
+            },
+            {
+              "term": {
+                "flow.src.l4.port.id": "53"
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.src.ip.addr"
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.dst.ip.addr"
+              }
+            }
+          ],
+          "must_not": [
+            {
+              "term": {
+                "flow.src.as.org": "PRIVATE"
+              }
+            },
+            {
+              "terms": {
+                "flow.src.ip.addr": [
+                  "1.1.1.1",
+                  "1.0.0.1",
+                  "8.8.8.8",
+                  "8.8.4.4",
+                  "208.67.222.222",
+                  "208.67.220.220",
+                  "8.26.56.26",
+                  "8.20.247.20",
+                  "9.9.9.9",
+                  "149.112.112.112",
+                  "64.6.64.6",
+                  "64.6.65.6"
+                ]
+              }
+            },
+            {
+              "terms": {
+                "flow.dst.ip.addr": [
+                  "1.1.1.1",
+                  "1.0.0.1",
+                  "8.8.8.8",
+                  "8.8.4.4",
+                  "208.67.222.222",
+                  "208.67.220.220",
+                  "8.26.56.26",
+                  "8.20.247.20",
+                  "9.9.9.9",
+                  "149.112.112.112",
+                  "64.6.64.6",
+                  "64.6.65.6"
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-codex-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  },
+  {
+    "job": {
+      "job_id": "elastiflow_codex_netsec_icmp_flood_ddos",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/bf9f8a70-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.export.type,negate:!f,params:!(ipfix,netflow),type:phrases,value:'ipfix,%20netflow'),query:(bool:(minimum_should_match:1,should:!((match_phrase:(flow.export.type:ipfix)),(match_phrase:(flow.export.type:netflow)))))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.as.org,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(flow.src.as.org:'PRIVATE'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:l4.proto.name,negate:!f,params:(query:'ICMP'),type:phrase),query:(match_phrase:(l4.proto.name:'ICMP'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.dst.ip.addr,negate:!f,params:(query:'$flow.dst.ip.addr$'),type:phrase),query:(match_phrase:(flow.dst.ip.addr:'$flow.dst.ip.addr$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "security",
+        "ddos"
+      ],
+      "description": "ICMP Flood DDoS Attack",
+      "analysis_config": {
+        "bucket_span": "5m",
+        "detectors": [
+          {
+            "detector_description": "Excessive ICMP Sources",
+            "function": "high_distinct_count",
+            "field_name": "flow.src.ip.addr",
+            "partition_field_name": "flow.dst.ip.addr",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "flow.dst.ip.addr",
+          "flow.dst.host.name"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "4096mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": false,
+        "annotations_enabled": true
+      },
+      "model_snapshot_retention_days": 10,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_codex_netsec_icmp_flood_ddos",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_codex_netsec_icmp_flood_ddos",
+      "job_id": "elastiflow_codex_netsec_icmp_flood_ddos",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "term": {
+                "l4.proto.name": "ICMP"
+              }
+            },
+            {
+              "terms": {
+                "flow.export.type": [
+                  "netflow",
+                  "ipfix"
+                ]
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.src.ip.addr"
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.dst.ip.addr"
+              }
+            }
+          ],
+          "must_not": [
+            {
+              "term": {
+                "flow.src.as.org": "PRIVATE"
+              }
+            },
+            {
+              "terms": {
+                "flow.src.ip.addr": []
+              }
+            },
+            {
+              "terms": {
+                "flow.dst.ip.addr": []
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-codex-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  },
+  {
+    "job": {
+      "job_id": "elastiflow_codex_netsec_icmp_flood_direct",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "RiskIQ PassiveTotal",
+            "url_value": "https://community.riskiq.com/research?query=$flow.src.ip.addr$"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/bf9f8a70-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.export.type,negate:!f,params:!(ipfix,netflow),type:phrases,value:'ipfix,%20netflow'),query:(bool:(minimum_should_match:1,should:!((match_phrase:(flow.export.type:ipfix)),(match_phrase:(flow.export.type:netflow)))))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.as.org,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(flow.src.as.org:'PRIVATE'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:l4.proto.name,negate:!f,params:(query:'ICMP'),type:phrase),query:(match_phrase:(l4.proto.name:'ICMP'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.dst.ip.addr,negate:!f,params:(query:'$flow.dst.ip.addr$'),type:phrase),query:(match_phrase:(flow.dst.ip.addr:'$flow.dst.ip.addr$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.ip.addr,negate:!f,params:(query:'$flow.src.ip.addr$'),type:phrase),query:(match_phrase:(flow.src.ip.addr:'$flow.src.ip.addr$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "security",
+        "ddos"
+      ],
+      "description": "ICMP Flood Direct Attack",
+      "analysis_config": {
+        "bucket_span": "5m",
+        "detectors": [
+          {
+            "detector_description": "Excessive ICMP Packets",
+            "function": "high_sum",
+            "field_name": "flow.packets",
+            "over_field_name": "flow.src.ip.addr",
+            "partition_field_name": "flow.dst.ip.addr",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "flow.src.ip.addr",
+          "flow.src.host.name",
+          "flow.dst.ip.addr",
+          "flow.dst.host.name"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "4096mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": false,
+        "annotations_enabled": true
+      },
+      "model_snapshot_retention_days": 10,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_codex_netsec_icmp_flood_direct",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_codex_netsec_icmp_flood_direct",
+      "job_id": "elastiflow_codex_netsec_icmp_flood_direct",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "term": {
+                "l4.proto.name": "ICMP"
+              }
+            },
+            {
+              "terms": {
+                "flow.export.type": [
+                  "netflow",
+                  "ipfix"
+                ]
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.src.ip.addr"
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.dst.ip.addr"
+              }
+            }
+          ],
+          "must_not": [
+            {
+              "term": {
+                "flow.src.as.org": "PRIVATE"
+              }
+            },
+            {
+              "terms": {
+                "flow.src.ip.addr": []
+              }
+            },
+            {
+              "terms": {
+                "flow.dst.ip.addr": []
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-codex-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  },
+  {
+    "job": {
+      "job_id": "elastiflow_codex_netsec_kad_amplification",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.as.org,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(flow.src.as.org:'PRIVATE'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.l4.port.id,negate:!f,params:(query:'751'),type:phrase),query:(match_phrase:(flow.src.l4.port.id:'751'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:l4.proto.name,negate:!f,params:(query:'UDP'),type:phrase),query:(match_phrase:(l4.proto.name:'UDP'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.dst.ip.addr,negate:!f,params:(query:'$flow.dst.ip.addr$'),type:phrase),query:(match_phrase:(flow.dst.ip.addr:'$flow.dst.ip.addr$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/bf9f8a70-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.as.org,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(flow.src.as.org:'PRIVATE'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.l4.port.id,negate:!f,params:(query:'751'),type:phrase),query:(match_phrase:(flow.src.l4.port.id:'751'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:l4.proto.name,negate:!f,params:(query:'UDP'),type:phrase),query:(match_phrase:(l4.proto.name:'UDP'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.dst.ip.addr,negate:!f,params:(query:'$flow.dst.ip.addr$'),type:phrase),query:(match_phrase:(flow.dst.ip.addr:'$flow.dst.ip.addr$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "security",
+        "ddos"
+      ],
+      "description": "Kad Amplification Attack",
+      "analysis_config": {
+        "bucket_span": "5m",
+        "detectors": [
+          {
+            "detector_description": "Excessive Kad Responders",
+            "function": "high_distinct_count",
+            "field_name": "flow.src.ip.addr",
+            "partition_field_name": "flow.dst.ip.addr",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "flow.src.l4.port.id",
+          "flow.dst.ip.addr",
+          "flow.dst.host.name",
+          "l4.proto.name"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "1024mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": false,
+        "annotations_enabled": true
+      },
+      "model_snapshot_retention_days": 10,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_codex_netsec_kad_amplification",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_codex_netsec_kad_amplification",
+      "job_id": "elastiflow_codex_netsec_kad_amplification",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "term": {
+                "l4.proto.name": "UDP"
+              }
+            },
+            {
+              "term": {
+                "flow.src.l4.port.id": 751
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.src.ip.addr"
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.dst.ip.addr"
+              }
+            }
+          ],
+          "must_not": [
+            {
+              "term": {
+                "flow.src.as.org": "PRIVATE"
+              }
+            },
+            {
+              "terms": {
+                "flow.src.ip.addr": []
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-codex-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  },
+  {
+    "job": {
+      "job_id": "elastiflow_codex_netsec_ldap_amplification",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.as.org,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(flow.src.as.org:'PRIVATE'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.l4.port.id,negate:!f,params:(query:'389'),type:phrase),query:(match_phrase:(flow.src.l4.port.id:'389'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:l4.proto.name,negate:!f,params:(query:'UDP'),type:phrase),query:(match_phrase:(l4.proto.name:'UDP'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.dst.ip.addr,negate:!f,params:(query:'$flow.dst.ip.addr$'),type:phrase),query:(match_phrase:(flow.dst.ip.addr:'$flow.dst.ip.addr$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/bf9f8a70-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.as.org,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(flow.src.as.org:'PRIVATE'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.l4.port.id,negate:!f,params:(query:'389'),type:phrase),query:(match_phrase:(flow.src.l4.port.id:'389'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:l4.proto.name,negate:!f,params:(query:'UDP'),type:phrase),query:(match_phrase:(l4.proto.name:'UDP'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.dst.ip.addr,negate:!f,params:(query:'$flow.dst.ip.addr$'),type:phrase),query:(match_phrase:(flow.dst.ip.addr:'$flow.dst.ip.addr$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "security",
+        "ddos"
+      ],
+      "description": "LDAP Amplification Attack",
+      "analysis_config": {
+        "bucket_span": "5m",
+        "detectors": [
+          {
+            "detector_description": "Excessive LDAP Responders",
+            "function": "high_distinct_count",
+            "field_name": "flow.src.ip.addr",
+            "partition_field_name": "flow.dst.ip.addr",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "flow.dst.ip.addr",
+          "flow.dst.host.name"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "1024mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": false,
+        "annotations_enabled": true
+      },
+      "model_snapshot_retention_days": 10,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_codex_netsec_ldap_amplification",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_codex_netsec_ldap_amplification",
+      "job_id": "elastiflow_codex_netsec_ldap_amplification",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "term": {
+                "l4.proto.name": "UDP"
+              }
+            },
+            {
+              "term": {
+                "flow.src.l4.port.id": 389
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.src.ip.addr"
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.dst.ip.addr"
+              }
+            }
+          ],
+          "must_not": [
+            {
+              "term": {
+                "flow.src.as.org": "PRIVATE"
+              }
+            },
+            {
+              "terms": {
+                "flow.src.ip.addr": []
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-codex-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  },
+  {
+    "job": {
+      "job_id": "elastiflow_codex_netsec_mdns_amplification",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.as.org,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(flow.src.as.org:'PRIVATE'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.l4.port.id,negate:!f,params:(query:'5353'),type:phrase),query:(match_phrase:(flow.src.l4.port.id:'5353'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:l4.proto.name,negate:!f,params:(query:'UDP'),type:phrase),query:(match_phrase:(l4.proto.name:'UDP'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.dst.ip.addr,negate:!f,params:(query:'$flow.dst.ip.addr$'),type:phrase),query:(match_phrase:(flow.dst.ip.addr:'$flow.dst.ip.addr$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/bf9f8a70-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.as.org,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(flow.src.as.org:'PRIVATE'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.l4.port.id,negate:!f,params:(query:'5353'),type:phrase),query:(match_phrase:(flow.src.l4.port.id:'5353'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:l4.proto.name,negate:!f,params:(query:'UDP'),type:phrase),query:(match_phrase:(l4.proto.name:'UDP'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.dst.ip.addr,negate:!f,params:(query:'$flow.dst.ip.addr$'),type:phrase),query:(match_phrase:(flow.dst.ip.addr:'$flow.dst.ip.addr$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "security",
+        "ddos"
+      ],
+      "description": "mDNS Amplification Attack",
+      "analysis_config": {
+        "bucket_span": "5m",
+        "detectors": [
+          {
+            "detector_description": "Excessive mDNS Responders",
+            "function": "high_distinct_count",
+            "field_name": "flow.src.ip.addr",
+            "partition_field_name": "flow.dst.ip.addr",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "flow.dst.ip.addr",
+          "flow.dst.host.name"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "1024mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": false,
+        "annotations_enabled": true
+      },
+      "model_snapshot_retention_days": 10,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_codex_netsec_mdns_amplification",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_codex_netsec_mdns_amplification",
+      "job_id": "elastiflow_codex_netsec_mdns_amplification",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "term": {
+                "l4.proto.name": "UDP"
+              }
+            },
+            {
+              "term": {
+                "flow.src.l4.port.id": 5353
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.src.ip.addr"
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.dst.ip.addr"
+              }
+            }
+          ],
+          "must_not": [
+            {
+              "term": {
+                "flow.src.as.org": "PRIVATE"
+              }
+            },
+            {
+              "terms": {
+                "flow.src.ip.addr": []
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-codex-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  },
+  {
+    "job": {
+      "job_id": "elastiflow_codex_netsec_memcached_amplification",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.as.org,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(flow.src.as.org:'PRIVATE'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.l4.port.id,negate:!f,params:(query:'11211'),type:phrase),query:(match_phrase:(flow.src.l4.port.id:'11211'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:l4.proto.name,negate:!f,params:(query:'UDP'),type:phrase),query:(match_phrase:(l4.proto.name:'UDP'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.dst.ip.addr,negate:!f,params:(query:'$flow.dst.ip.addr$'),type:phrase),query:(match_phrase:(flow.dst.ip.addr:'$flow.dst.ip.addr$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/bf9f8a70-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.as.org,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(flow.src.as.org:'PRIVATE'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.l4.port.id,negate:!f,params:(query:'11211'),type:phrase),query:(match_phrase:(flow.src.l4.port.id:'11211'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:l4.proto.name,negate:!f,params:(query:'UDP'),type:phrase),query:(match_phrase:(l4.proto.name:'UDP'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.dst.ip.addr,negate:!f,params:(query:'$flow.dst.ip.addr$'),type:phrase),query:(match_phrase:(flow.dst.ip.addr:'$flow.dst.ip.addr$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "security",
+        "ddos"
+      ],
+      "description": "Memcached Amplification Attack",
+      "analysis_config": {
+        "bucket_span": "5m",
+        "detectors": [
+          {
+            "detector_description": "Excessive Memcached Responders",
+            "function": "high_distinct_count",
+            "field_name": "flow.src.ip.addr",
+            "partition_field_name": "flow.dst.ip.addr",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "flow.dst.ip.addr",
+          "flow.dst.host.name"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "1024mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": false,
+        "annotations_enabled": true
+      },
+      "model_snapshot_retention_days": 10,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_codex_netsec_memcached_amplification",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_codex_netsec_memcached_amplification",
+      "job_id": "elastiflow_codex_netsec_memcached_amplification",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "term": {
+                "l4.proto.name": "UDP"
+              }
+            },
+            {
+              "term": {
+                "flow.src.l4.port.id": 11211
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.src.ip.addr"
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.dst.ip.addr"
+              }
+            }
+          ],
+          "must_not": [
+            {
+              "term": {
+                "flow.src.as.org": "PRIVATE"
+              }
+            },
+            {
+              "terms": {
+                "flow.src.ip.addr": []
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-codex-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  },
+  {
+    "job": {
+      "job_id": "elastiflow_codex_netsec_mssql_amplification",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.as.org,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(flow.src.as.org:'PRIVATE'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.l4.port.id,negate:!f,params:(query:'1434'),type:phrase),query:(match_phrase:(flow.src.l4.port.id:'1434'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:l4.proto.name,negate:!f,params:(query:'UDP'),type:phrase),query:(match_phrase:(l4.proto.name:'UDP'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.dst.ip.addr,negate:!f,params:(query:'$flow.dst.ip.addr$'),type:phrase),query:(match_phrase:(flow.dst.ip.addr:'$flow.dst.ip.addr$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/bf9f8a70-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.as.org,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(flow.src.as.org:'PRIVATE'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.l4.port.id,negate:!f,params:(query:'1434'),type:phrase),query:(match_phrase:(flow.src.l4.port.id:'1434'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:l4.proto.name,negate:!f,params:(query:'UDP'),type:phrase),query:(match_phrase:(l4.proto.name:'UDP'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.dst.ip.addr,negate:!f,params:(query:'$flow.dst.ip.addr$'),type:phrase),query:(match_phrase:(flow.dst.ip.addr:'$flow.dst.ip.addr$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "security",
+        "ddos"
+      ],
+      "description": "MSSQL Amplification Attack",
+      "analysis_config": {
+        "bucket_span": "5m",
+        "detectors": [
+          {
+            "detector_description": "Excessive MSSQL Responders",
+            "function": "high_distinct_count",
+            "field_name": "flow.src.ip.addr",
+            "partition_field_name": "flow.dst.ip.addr",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "flow.dst.ip.addr",
+          "flow.dst.host.name"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "1024mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": false,
+        "annotations_enabled": true
+      },
+      "model_snapshot_retention_days": 10,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_codex_netsec_mssql_amplification",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_codex_netsec_mssql_amplification",
+      "job_id": "elastiflow_codex_netsec_mssql_amplification",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "term": {
+                "l4.proto.name": "UDP"
+              }
+            },
+            {
+              "term": {
+                "flow.src.l4.port.id": 1434
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.src.ip.addr"
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.dst.ip.addr"
+              }
+            }
+          ],
+          "must_not": [
+            {
+              "term": {
+                "flow.src.as.org": "PRIVATE"
+              }
+            },
+            {
+              "terms": {
+                "flow.src.ip.addr": []
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-codex-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  },
+  {
+    "job": {
+      "job_id": "elastiflow_codex_netsec_netbios_amplification",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.as.org,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(flow.src.as.org:'PRIVATE'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.l4.port.id,negate:!f,params:(query:'137'),type:phrase),query:(match_phrase:(flow.src.l4.port.id:'137'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:l4.proto.name,negate:!f,params:(query:'UDP'),type:phrase),query:(match_phrase:(l4.proto.name:'UDP'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.dst.ip.addr,negate:!f,params:(query:'$flow.dst.ip.addr$'),type:phrase),query:(match_phrase:(flow.dst.ip.addr:'$flow.dst.ip.addr$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/bf9f8a70-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.as.org,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(flow.src.as.org:'PRIVATE'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.l4.port.id,negate:!f,params:(query:'137'),type:phrase),query:(match_phrase:(flow.src.l4.port.id:'137'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:l4.proto.name,negate:!f,params:(query:'UDP'),type:phrase),query:(match_phrase:(l4.proto.name:'UDP'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.dst.ip.addr,negate:!f,params:(query:'$flow.dst.ip.addr$'),type:phrase),query:(match_phrase:(flow.dst.ip.addr:'$flow.dst.ip.addr$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "security",
+        "ddos"
+      ],
+      "description": "NETBIOS Amplification Attack",
+      "analysis_config": {
+        "bucket_span": "5m",
+        "detectors": [
+          {
+            "detector_description": "Excessive NETBIOS Responders",
+            "function": "high_distinct_count",
+            "field_name": "flow.src.ip.addr",
+            "partition_field_name": "flow.dst.ip.addr",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "flow.dst.ip.addr",
+          "flow.dst.host.name"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "1024mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": false,
+        "annotations_enabled": true
+      },
+      "model_snapshot_retention_days": 10,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_codex_netsec_netbios_amplification",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_codex_netsec_netbios_amplification",
+      "job_id": "elastiflow_codex_netsec_netbios_amplification",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "term": {
+                "l4.proto.name": "UDP"
+              }
+            },
+            {
+              "term": {
+                "flow.src.l4.port.id": 137
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.src.ip.addr"
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.dst.ip.addr"
+              }
+            }
+          ],
+          "must_not": [
+            {
+              "term": {
+                "flow.src.as.org": "PRIVATE"
+              }
+            },
+            {
+              "terms": {
+                "flow.src.ip.addr": []
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-codex-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  },
+  {
+    "job": {
+      "job_id": "elastiflow_codex_netsec_ntp_amplification",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.as.org,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(flow.src.as.org:'PRIVATE'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.l4.port.id,negate:!f,params:(query:'123'),type:phrase),query:(match_phrase:(flow.src.l4.port.id:'123'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:l4.proto.name,negate:!f,params:(query:'UDP'),type:phrase),query:(match_phrase:(l4.proto.name:'UDP'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.dst.ip.addr,negate:!f,params:(query:'$flow.dst.ip.addr$'),type:phrase),query:(match_phrase:(flow.dst.ip.addr:'$flow.dst.ip.addr$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/bf9f8a70-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.as.org,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(flow.src.as.org:'PRIVATE'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.l4.port.id,negate:!f,params:(query:'123'),type:phrase),query:(match_phrase:(flow.src.l4.port.id:'123'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:l4.proto.name,negate:!f,params:(query:'UDP'),type:phrase),query:(match_phrase:(l4.proto.name:'UDP'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.dst.ip.addr,negate:!f,params:(query:'$flow.dst.ip.addr$'),type:phrase),query:(match_phrase:(flow.dst.ip.addr:'$flow.dst.ip.addr$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "security",
+        "ddos"
+      ],
+      "description": "NTP Amplification Attack",
+      "analysis_config": {
+        "bucket_span": "5m",
+        "detectors": [
+          {
+            "detector_description": "Excessive NTP Responders",
+            "function": "high_distinct_count",
+            "field_name": "flow.src.ip.addr",
+            "partition_field_name": "flow.dst.ip.addr",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "flow.dst.ip.addr",
+          "flow.dst.host.name"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "1024mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": false,
+        "annotations_enabled": true
+      },
+      "model_snapshot_retention_days": 10,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_codex_netsec_ntp_amplification",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_codex_netsec_ntp_amplification",
+      "job_id": "elastiflow_codex_netsec_ntp_amplification",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "term": {
+                "l4.proto.name": "UDP"
+              }
+            },
+            {
+              "term": {
+                "flow.src.l4.port.id": 123
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.src.ip.addr"
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.dst.ip.addr"
+              }
+            }
+          ],
+          "must_not": [
+            {
+              "term": {
+                "flow.src.as.org": "PRIVATE"
+              }
+            },
+            {
+              "terms": {
+                "flow.src.ip.addr": []
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-codex-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  },
+  {
+    "job": {
+      "job_id": "elastiflow_codex_netsec_port_scan_fast",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "RiskIQ PassiveTotal",
+            "url_value": "https://community.riskiq.com/research?query=$flow.client.ip.addr$"
+          },
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.client.as.org,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(flow.client.as.org:'PRIVATE'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.ip.addr,negate:!f,params:(query:'$flow.server.ip.addr$'),type:phrase),query:(match_phrase:(flow.server.ip.addr:'$flow.server.ip.addr$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.client.ip.addr,negate:!f,params:(query:'$flow.client.ip.addr$'),type:phrase),query:(match_phrase:(flow.client.ip.addr:'$flow.client.ip.addr$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Threats",
+            "url_value": "dashboards#/view/f7fbc0b0-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.client.as.org,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(flow.client.as.org:'PRIVATE'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.ip.addr,negate:!f,params:(query:'$flow.server.ip.addr$'),type:phrase),query:(match_phrase:(flow.server.ip.addr:'$flow.server.ip.addr$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.client.ip.addr,negate:!f,params:(query:'$flow.client.ip.addr$'),type:phrase),query:(match_phrase:(flow.client.ip.addr:'$flow.client.ip.addr$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/abfed250-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.client.as.org,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(flow.client.as.org:'PRIVATE'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.ip.addr,negate:!f,params:(query:'$flow.server.ip.addr$'),type:phrase),query:(match_phrase:(flow.server.ip.addr:'$flow.server.ip.addr$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.client.ip.addr,negate:!f,params:(query:'$flow.client.ip.addr$'),type:phrase),query:(match_phrase:(flow.client.ip.addr:'$flow.client.ip.addr$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "security",
+        "reconnaissance"
+      ],
+      "description": "Port Scan (fast)",
+      "analysis_config": {
+        "bucket_span": "15m",
+        "detectors": [
+          {
+            "detector_description": "Abnormally High Unique Ports Attempted",
+            "function": "high_distinct_count",
+            "field_name": "flow.server.l4.port.id",
+            "over_field_name": "flow.client.ip.addr",
+            "partition_field_name": "flow.server.ip.addr",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "flow.client.ip.addr",
+          "flow.client.host.name",
+          "flow.server.ip.addr",
+          "flow.server.host.name"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "8192mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": false,
+        "annotations_enabled": true
+      },
+      "model_snapshot_retention_days": 10,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_codex_netsec_port_scan_fast",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_codex_netsec_port_scan_fast",
+      "job_id": "elastiflow_codex_netsec_port_scan_fast",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "exists": {
+                "field": "flow.client.ip.addr"
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.server.ip.addr"
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.server.l4.port.id"
+              }
+            }
+          ],
+          "must_not": [
+            {
+              "term": {
+                "flow.client.as.org": "PRIVATE"
+              }
+            },
+            {
+              "terms": {
+                "flow.client.ip.addr": []
+              }
+            },
+            {
+              "terms": {
+                "flow.server.ip.addr": []
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-codex-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  },
+  {
+    "job": {
+      "job_id": "elastiflow_codex_netsec_port_scan_slow",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "RiskIQ PassiveTotal",
+            "url_value": "https://community.riskiq.com/research?query=$flow.client.ip.addr$"
+          },
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.client.as.org,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(flow.client.as.org:'PRIVATE'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.ip.addr,negate:!f,params:(query:'$flow.server.ip.addr$'),type:phrase),query:(match_phrase:(flow.server.ip.addr:'$flow.server.ip.addr$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.client.ip.addr,negate:!f,params:(query:'$flow.client.ip.addr$'),type:phrase),query:(match_phrase:(flow.client.ip.addr:'$flow.client.ip.addr$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Threats",
+            "url_value": "dashboards#/view/f7fbc0b0-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.client.as.org,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(flow.client.as.org:'PRIVATE'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.ip.addr,negate:!f,params:(query:'$flow.server.ip.addr$'),type:phrase),query:(match_phrase:(flow.server.ip.addr:'$flow.server.ip.addr$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.client.ip.addr,negate:!f,params:(query:'$flow.client.ip.addr$'),type:phrase),query:(match_phrase:(flow.client.ip.addr:'$flow.client.ip.addr$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/abfed250-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.client.as.org,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(flow.client.as.org:'PRIVATE'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.ip.addr,negate:!f,params:(query:'$flow.server.ip.addr$'),type:phrase),query:(match_phrase:(flow.server.ip.addr:'$flow.server.ip.addr$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.client.ip.addr,negate:!f,params:(query:'$flow.client.ip.addr$'),type:phrase),query:(match_phrase:(flow.client.ip.addr:'$flow.client.ip.addr$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "security",
+        "reconnaissance"
+      ],
+      "description": "Port Scan (slow)",
+      "analysis_config": {
+        "bucket_span": "360m",
+        "detectors": [
+          {
+            "detector_description": "Abnormally High Unique Ports Attempted",
+            "function": "high_distinct_count",
+            "field_name": "flow.server.l4.port.id",
+            "over_field_name": "flow.client.ip.addr",
+            "partition_field_name": "flow.server.ip.addr",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "flow.client.ip.addr",
+          "flow.client.host.name",
+          "flow.server.ip.addr",
+          "flow.server.host.name"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "8192mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": false,
+        "annotations_enabled": true
+      },
+      "model_snapshot_retention_days": 10,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_codex_netsec_port_scan_slow",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_codex_netsec_port_scan_slow",
+      "job_id": "elastiflow_codex_netsec_port_scan_slow",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "exists": {
+                "field": "flow.client.ip.addr"
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.server.ip.addr"
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.server.l4.port.id"
+              }
+            }
+          ],
+          "must_not": [
+            {
+              "term": {
+                "flow.client.as.org": "PRIVATE"
+              }
+            },
+            {
+              "terms": {
+                "flow.client.ip.addr": []
+              }
+            },
+            {
+              "terms": {
+                "flow.server.ip.addr": []
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-codex-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  },
+  {
+    "job": {
+      "job_id": "elastiflow_codex_netsec_qotd_amplification",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.as.org,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(flow.src.as.org:'PRIVATE'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.l4.port.id,negate:!f,params:(query:'17'),type:phrase),query:(match_phrase:(flow.src.l4.port.id:'17'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:l4.proto.name,negate:!f,params:(query:'UDP'),type:phrase),query:(match_phrase:(l4.proto.name:'UDP'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.dst.ip.addr,negate:!f,params:(query:'$flow.dst.ip.addr$'),type:phrase),query:(match_phrase:(flow.dst.ip.addr:'$flow.dst.ip.addr$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/bf9f8a70-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.as.org,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(flow.src.as.org:'PRIVATE'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.l4.port.id,negate:!f,params:(query:'17'),type:phrase),query:(match_phrase:(flow.src.l4.port.id:'17'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:l4.proto.name,negate:!f,params:(query:'UDP'),type:phrase),query:(match_phrase:(l4.proto.name:'UDP'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.dst.ip.addr,negate:!f,params:(query:'$flow.dst.ip.addr$'),type:phrase),query:(match_phrase:(flow.dst.ip.addr:'$flow.dst.ip.addr$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "security",
+        "ddos"
+      ],
+      "description": "QOTD Amplification Attack",
+      "analysis_config": {
+        "bucket_span": "5m",
+        "detectors": [
+          {
+            "detector_description": "Excessive QOTD Responders",
+            "function": "high_distinct_count",
+            "field_name": "flow.src.ip.addr",
+            "partition_field_name": "flow.dst.ip.addr",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "flow.dst.ip.addr",
+          "flow.dst.host.name"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "1024mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": false,
+        "annotations_enabled": true
+      },
+      "model_snapshot_retention_days": 10,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_codex_netsec_qotd_amplification",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_codex_netsec_qotd_amplification",
+      "job_id": "elastiflow_codex_netsec_qotd_amplification",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "term": {
+                "l4.proto.name": "UDP"
+              }
+            },
+            {
+              "term": {
+                "flow.src.l4.port.id": 17
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.src.ip.addr"
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.dst.ip.addr"
+              }
+            }
+          ],
+          "must_not": [
+            {
+              "term": {
+                "flow.src.as.org": "PRIVATE"
+              }
+            },
+            {
+              "terms": {
+                "flow.src.ip.addr": []
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-codex-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  },
+  {
+    "job": {
+      "job_id": "elastiflow_codex_netsec_quake_amplification",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.as.org,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(flow.src.as.org:'PRIVATE'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.l4.port.id,negate:!f,params:(query:'27960'),type:phrase),query:(match_phrase:(flow.src.l4.port.id:'27960'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:l4.proto.name,negate:!f,params:(query:'UDP'),type:phrase),query:(match_phrase:(l4.proto.name:'UDP'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.dst.ip.addr,negate:!f,params:(query:'$flow.dst.ip.addr$'),type:phrase),query:(match_phrase:(flow.dst.ip.addr:'$flow.dst.ip.addr$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/bf9f8a70-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.as.org,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(flow.src.as.org:'PRIVATE'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.l4.port.id,negate:!f,params:(query:'27960'),type:phrase),query:(match_phrase:(flow.src.l4.port.id:'27960'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:l4.proto.name,negate:!f,params:(query:'UDP'),type:phrase),query:(match_phrase:(l4.proto.name:'UDP'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.dst.ip.addr,negate:!f,params:(query:'$flow.dst.ip.addr$'),type:phrase),query:(match_phrase:(flow.dst.ip.addr:'$flow.dst.ip.addr$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "security",
+        "ddos"
+      ],
+      "description": "Quake Amplification Attack",
+      "analysis_config": {
+        "bucket_span": "5m",
+        "detectors": [
+          {
+            "detector_description": "Excessive Quake Responders",
+            "function": "high_distinct_count",
+            "field_name": "flow.src.ip.addr",
+            "partition_field_name": "flow.dst.ip.addr",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "flow.dst.ip.addr",
+          "flow.dst.host.name"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "1024mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": false,
+        "annotations_enabled": true
+      },
+      "model_snapshot_retention_days": 10,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_codex_netsec_quake_amplification",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_codex_netsec_quake_amplification",
+      "job_id": "elastiflow_codex_netsec_quake_amplification",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "term": {
+                "l4.proto.name": "UDP"
+              }
+            },
+            {
+              "term": {
+                "flow.src.l4.port.id": 27960
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.src.ip.addr"
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.dst.ip.addr"
+              }
+            }
+          ],
+          "must_not": [
+            {
+              "term": {
+                "flow.src.as.org": "PRIVATE"
+              }
+            },
+            {
+              "terms": {
+                "flow.src.ip.addr": []
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-codex-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  },
+  {
+    "job": {
+      "job_id": "elastiflow_codex_netsec_radius_amplification",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.as.org,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(flow.src.as.org:'PRIVATE'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.l4.port.id,negate:!f,params:(query:'$flow.src.l4.port.id$'),type:phrase),query:(match_phrase:(flow.src.l4.port.id:'$flow.src.l4.port.id$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:l4.proto.name,negate:!f,params:(query:'UDP'),type:phrase),query:(match_phrase:(l4.proto.name:'UDP'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.dst.ip.addr,negate:!f,params:(query:'$flow.dst.ip.addr$'),type:phrase),query:(match_phrase:(flow.dst.ip.addr:'$flow.dst.ip.addr$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/bf9f8a70-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.as.org,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(flow.src.as.org:'PRIVATE'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.l4.port.id,negate:!f,params:(query:'$flow.src.l4.port.id$'),type:phrase),query:(match_phrase:(flow.src.l4.port.id:'$flow.src.l4.port.id$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:l4.proto.name,negate:!f,params:(query:'UDP'),type:phrase),query:(match_phrase:(l4.proto.name:'UDP'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.dst.ip.addr,negate:!f,params:(query:'$flow.dst.ip.addr$'),type:phrase),query:(match_phrase:(flow.dst.ip.addr:'$flow.dst.ip.addr$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "security",
+        "ddos"
+      ],
+      "description": "RADIUS Amplification Attack",
+      "analysis_config": {
+        "bucket_span": "5m",
+        "detectors": [
+          {
+            "detector_description": "Excessive RADIUS Responders",
+            "function": "high_distinct_count",
+            "field_name": "flow.src.ip.addr",
+            "by_field_name": "flow.dst.ip.addr",
+            "partition_field_name": "flow.src.l4.port.id",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "flow.dst.ip.addr",
+          "flow.dst.host.name",
+          "flow.src.l4.port.id",
+          "flow.src.l4.port.name"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "1024mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": false,
+        "annotations_enabled": true
+      },
+      "model_snapshot_retention_days": 10,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_codex_netsec_radius_amplification",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_codex_netsec_radius_amplification",
+      "job_id": "elastiflow_codex_netsec_radius_amplification",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "term": {
+                "l4.proto.name": "UDP"
+              }
+            },
+            {
+              "terms": {
+                "flow.src.l4.port.id": [
+                  1645,
+                  1646,
+                  1812,
+                  1813
+                ]
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.src.ip.addr"
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.dst.ip.addr"
+              }
+            }
+          ],
+          "must_not": [
+            {
+              "term": {
+                "flow.src.as.org": "PRIVATE"
+              }
+            },
+            {
+              "terms": {
+                "flow.src.ip.addr": []
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-codex-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  },
+  {
+    "job": {
+      "job_id": "elastiflow_codex_netsec_rare_asn_client",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.client.as.label,negate:!f,params:(query:'$flow.client.as.label$'),type:phrase),query:(match_phrase:(flow.client.as.label:'$flow.client.as.label$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Threats",
+            "url_value": "dashboards#/view/f7fbc0b0-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.client.as.label,negate:!f,params:(query:'$flow.client.as.label$'),type:phrase),query:(match_phrase:(flow.client.as.label:'$flow.client.as.label$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/abfed250-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.client.as.label,negate:!f,params:(query:'$flow.client.as.label$'),type:phrase),query:(match_phrase:(flow.client.as.label:'$flow.client.as.label$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "security",
+        "activity"
+      ],
+      "description": "Rare Client-Side Autonomous System",
+      "analysis_config": {
+        "bucket_span": "15m",
+        "detectors": [
+          {
+            "detector_description": "Rare ASN",
+            "function": "rare",
+            "by_field_name": "flow.client.as.label",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "flow.client.as.label"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "2048mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": false,
+        "annotations_enabled": true
+      },
+      "model_snapshot_retention_days": 10,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_codex_netsec_rare_asn_client",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_codex_netsec_rare_asn_client",
+      "job_id": "elastiflow_codex_netsec_rare_asn_client",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "exists": {
+                "field": "flow.client.as.label"
+              }
+            },
+            {
+              "term": {
+                "l4.session.established": {
+                  "value": "true"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-codex-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  },
+  {
+    "job": {
+      "job_id": "elastiflow_codex_netsec_rare_asn_server",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.as.label,negate:!f,params:(query:'$flow.server.as.label$'),type:phrase),query:(match_phrase:(flow.server.as.label:'$flow.server.as.label$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Threats",
+            "url_value": "dashboards#/view/f7fbc0b0-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.as.label,negate:!f,params:(query:'$flow.server.as.label$'),type:phrase),query:(match_phrase:(flow.server.as.label:'$flow.server.as.label$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/abfed250-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.as.label,negate:!f,params:(query:'$flow.server.as.label$'),type:phrase),query:(match_phrase:(flow.server.as.label:'$flow.server.as.label$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "security",
+        "activity"
+      ],
+      "description": "Rare Server-Side Autonomous System",
+      "analysis_config": {
+        "bucket_span": "15m",
+        "detectors": [
+          {
+            "detector_description": "Rare ASN",
+            "function": "rare",
+            "by_field_name": "flow.server.as.label",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "flow.server.as.label"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "2048mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": false,
+        "annotations_enabled": true
+      },
+      "model_snapshot_retention_days": 10,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_codex_netsec_rare_asn_server",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_codex_netsec_rare_asn_server",
+      "job_id": "elastiflow_codex_netsec_rare_asn_server",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "exists": {
+                "field": "flow.server.as.label"
+              }
+            },
+            {
+              "term": {
+                "l4.session.established": {
+                  "value": "true"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-codex-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  },
+  {
+    "job": {
+      "job_id": "elastiflow_codex_netsec_rare_conversation_inbound",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "RiskIQ PassiveTotal",
+            "url_value": "https://community.riskiq.com/research?query=$flow.client.ip.addr$"
+          },
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.conversation.id,negate:!f,params:(query:'$flow.conversation.id$'),type:phrase),query:(match_phrase:(flow.conversation.id:'$flow.conversation.id$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Threats",
+            "url_value": "dashboards#/view/f7fbc0b0-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.conversation.id,negate:!f,params:(query:'$flow.conversation.id$'),type:phrase),query:(match_phrase:(flow.conversation.id:'$flow.conversation.id$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/abfed250-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.conversation.id,negate:!f,params:(query:'$flow.conversation.id$'),type:phrase),query:(match_phrase:(flow.conversation.id:'$flow.conversation.id$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "security",
+        "activity"
+      ],
+      "description": "Rare Conversation (inbound)",
+      "analysis_config": {
+        "bucket_span": "15m",
+        "detectors": [
+          {
+            "detector_description": "Rare Conversation",
+            "function": "rare",
+            "by_field_name": "flow.conversation.id",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "flow.conversation.id",
+          "flow.client.ip.addr",
+          "flow.client.host.name",
+          "flow.server.ip.addr",
+          "flow.server.host.name",
+          "flow.server.l4.port.name"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "8192mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": false,
+        "annotations_enabled": true
+      },
+      "model_snapshot_retention_days": 10,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_codex_netsec_rare_conversation_inbound",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_codex_netsec_rare_conversation_inbound",
+      "job_id": "elastiflow_codex_netsec_rare_conversation_inbound",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "exists": {
+                "field": "flow.conversation.id"
+              }
+            },
+            {
+              "term": {
+                "l4.session.established": "true"
+              }
+            },
+            {
+              "term": {
+                "flow.server.as.org": "PRIVATE"
+              }
+            }
+          ],
+          "must_not": [
+            {
+              "term": {
+                "flow.client.as.org": "PRIVATE"
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-codex-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  },
+  {
+    "job": {
+      "job_id": "elastiflow_codex_netsec_rare_conversation_outbound",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "RiskIQ PassiveTotal",
+            "url_value": "https://community.riskiq.com/research?query=$flow.server.ip.addr$"
+          },
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.conversation.id,negate:!f,params:(query:'$flow.conversation.id$'),type:phrase),query:(match_phrase:(flow.conversation.id:'$flow.conversation.id$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Threats",
+            "url_value": "dashboards#/view/f7fbc0b0-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.conversation.id,negate:!f,params:(query:'$flow.conversation.id$'),type:phrase),query:(match_phrase:(flow.conversation.id:'$flow.conversation.id$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/abfed250-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.conversation.id,negate:!f,params:(query:'$flow.conversation.id$'),type:phrase),query:(match_phrase:(flow.conversation.id:'$flow.conversation.id$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "security",
+        "activity"
+      ],
+      "description": "Rare Conversation (outbound)",
+      "analysis_config": {
+        "bucket_span": "15m",
+        "detectors": [
+          {
+            "detector_description": "Rare Conversation",
+            "function": "rare",
+            "by_field_name": "flow.conversation.id",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "flow.conversation.id",
+          "flow.client.ip.addr",
+          "flow.client.host.name",
+          "flow.server.ip.addr",
+          "flow.server.host.name",
+          "flow.server.l4.port.name"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "8192mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": false,
+        "annotations_enabled": true
+      },
+      "model_snapshot_retention_days": 10,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_codex_netsec_rare_conversation_outbound",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_codex_netsec_rare_conversation_outbound",
+      "job_id": "elastiflow_codex_netsec_rare_conversation_outbound",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "exists": {
+                "field": "flow.conversation.id"
+              }
+            },
+            {
+              "term": {
+                "l4.session.established": "true"
+              }
+            },
+            {
+              "term": {
+                "flow.client.as.org": "PRIVATE"
+              }
+            }
+          ],
+          "must_not": [
+            {
+              "term": {
+                "flow.server.as.org": "PRIVATE"
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-codex-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  },
+  {
+    "job": {
+      "job_id": "elastiflow_codex_netsec_rare_conversation_private",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.conversation.id,negate:!f,params:(query:'$flow.conversation.id$'),type:phrase),query:(match_phrase:(flow.conversation.id:'$flow.conversation.id$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Threats",
+            "url_value": "dashboards#/view/f7fbc0b0-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.conversation.id,negate:!f,params:(query:'$flow.conversation.id$'),type:phrase),query:(match_phrase:(flow.conversation.id:'$flow.conversation.id$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/abfed250-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.conversation.id,negate:!f,params:(query:'$flow.conversation.id$'),type:phrase),query:(match_phrase:(flow.conversation.id:'$flow.conversation.id$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "security",
+        "activity"
+      ],
+      "description": "Rare Conversation (private)",
+      "analysis_config": {
+        "bucket_span": "15m",
+        "detectors": [
+          {
+            "detector_description": "Rare Conversation",
+            "function": "rare",
+            "by_field_name": "flow.conversation.id",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "flow.conversation.id",
+          "flow.client.ip.addr",
+          "flow.client.host.name",
+          "flow.server.ip.addr",
+          "flow.server.host.name",
+          "flow.server.l4.port.name"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "8192mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": false,
+        "annotations_enabled": true
+      },
+      "model_snapshot_retention_days": 10,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_codex_netsec_rare_conversation_private",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_codex_netsec_rare_conversation_private",
+      "job_id": "elastiflow_codex_netsec_rare_conversation_private",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "exists": {
+                "field": "flow.conversation.id"
+              }
+            },
+            {
+              "term": {
+                "l4.session.established": {
+                  "value": "true"
+                }
+              }
+            },
+            {
+              "term": {
+                "flow.locality": {
+                  "value": "private"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-codex-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  },
+  {
+    "job": {
+      "job_id": "elastiflow_codex_netsec_rip_amplification",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.as.org,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(flow.src.as.org:'PRIVATE'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.l4.port.id,negate:!f,params:(query:'520'),type:phrase),query:(match_phrase:(flow.src.l4.port.id:'520'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:l4.proto.name,negate:!f,params:(query:'UDP'),type:phrase),query:(match_phrase:(l4.proto.name:'UDP'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.dst.ip.addr,negate:!f,params:(query:'$flow.dst.ip.addr$'),type:phrase),query:(match_phrase:(flow.dst.ip.addr:'$flow.dst.ip.addr$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/bf9f8a70-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.as.org,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(flow.src.as.org:'PRIVATE'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.l4.port.id,negate:!f,params:(query:'520'),type:phrase),query:(match_phrase:(flow.src.l4.port.id:'520'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:l4.proto.name,negate:!f,params:(query:'UDP'),type:phrase),query:(match_phrase:(l4.proto.name:'UDP'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.dst.ip.addr,negate:!f,params:(query:'$flow.dst.ip.addr$'),type:phrase),query:(match_phrase:(flow.dst.ip.addr:'$flow.dst.ip.addr$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "security",
+        "ddos"
+      ],
+      "description": "RIP Amplification Attack",
+      "analysis_config": {
+        "bucket_span": "5m",
+        "detectors": [
+          {
+            "detector_description": "Excessive RIP Responders",
+            "function": "high_distinct_count",
+            "field_name": "flow.src.ip.addr",
+            "partition_field_name": "flow.dst.ip.addr",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "flow.dst.ip.addr",
+          "flow.dst.host.name"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "1024mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": false,
+        "annotations_enabled": true
+      },
+      "model_snapshot_retention_days": 10,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_codex_netsec_rip_amplification",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_codex_netsec_rip_amplification",
+      "job_id": "elastiflow_codex_netsec_rip_amplification",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "term": {
+                "l4.proto.name": "UDP"
+              }
+            },
+            {
+              "term": {
+                "flow.src.l4.port.id": 520
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.src.ip.addr"
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.dst.ip.addr"
+              }
+            }
+          ],
+          "must_not": [
+            {
+              "term": {
+                "flow.src.as.org": "PRIVATE"
+              }
+            },
+            {
+              "terms": {
+                "flow.src.ip.addr": []
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-codex-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  },
+  {
+    "job": {
+      "job_id": "elastiflow_codex_netsec_rpc_amplification",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.as.org,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(flow.src.as.org:'PRIVATE'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.l4.port.id,negate:!f,params:(query:'111'),type:phrase),query:(match_phrase:(flow.src.l4.port.id:'111'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:l4.proto.name,negate:!f,params:(query:'UDP'),type:phrase),query:(match_phrase:(l4.proto.name:'UDP'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.dst.ip.addr,negate:!f,params:(query:'$flow.dst.ip.addr$'),type:phrase),query:(match_phrase:(flow.dst.ip.addr:'$flow.dst.ip.addr$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/bf9f8a70-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.as.org,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(flow.src.as.org:'PRIVATE'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.l4.port.id,negate:!f,params:(query:'111'),type:phrase),query:(match_phrase:(flow.src.l4.port.id:'111'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:l4.proto.name,negate:!f,params:(query:'UDP'),type:phrase),query:(match_phrase:(l4.proto.name:'UDP'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.dst.ip.addr,negate:!f,params:(query:'$flow.dst.ip.addr$'),type:phrase),query:(match_phrase:(flow.dst.ip.addr:'$flow.dst.ip.addr$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "security",
+        "ddos"
+      ],
+      "description": "RPC Amplification Attack",
+      "analysis_config": {
+        "bucket_span": "5m",
+        "detectors": [
+          {
+            "detector_description": "Excessive RPC Responders",
+            "function": "high_distinct_count",
+            "field_name": "flow.src.ip.addr",
+            "partition_field_name": "flow.dst.ip.addr",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "flow.dst.ip.addr",
+          "flow.dst.host.name"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "1024mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": false,
+        "annotations_enabled": true
+      },
+      "model_snapshot_retention_days": 10,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_codex_netsec_rpc_amplification",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_codex_netsec_rpc_amplification",
+      "job_id": "elastiflow_codex_netsec_rpc_amplification",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "term": {
+                "l4.proto.name": "UDP"
+              }
+            },
+            {
+              "term": {
+                "flow.src.l4.port.id": 111
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.src.ip.addr"
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.dst.ip.addr"
+              }
+            }
+          ],
+          "must_not": [
+            {
+              "term": {
+                "flow.src.as.org": "PRIVATE"
+              }
+            },
+            {
+              "terms": {
+                "flow.src.ip.addr": []
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-codex-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  },
+  {
+    "job": {
+      "job_id": "elastiflow_codex_netsec_sentinel_spss_amplification",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.as.org,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(flow.src.as.org:'PRIVATE'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.l4.port.id,negate:!f,params:(query:'5093'),type:phrase),query:(match_phrase:(flow.src.l4.port.id:'5093'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:l4.proto.name,negate:!f,params:(query:'UDP'),type:phrase),query:(match_phrase:(l4.proto.name:'UDP'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.dst.ip.addr,negate:!f,params:(query:'$flow.dst.ip.addr$'),type:phrase),query:(match_phrase:(flow.dst.ip.addr:'$flow.dst.ip.addr$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/bf9f8a70-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.as.org,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(flow.src.as.org:'PRIVATE'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.l4.port.id,negate:!f,params:(query:'5093'),type:phrase),query:(match_phrase:(flow.src.l4.port.id:'5093'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:l4.proto.name,negate:!f,params:(query:'UDP'),type:phrase),query:(match_phrase:(l4.proto.name:'UDP'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.dst.ip.addr,negate:!f,params:(query:'$flow.dst.ip.addr$'),type:phrase),query:(match_phrase:(flow.dst.ip.addr:'$flow.dst.ip.addr$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "security",
+        "ddos"
+      ],
+      "description": "Sentinel SPSS Amplification Attack",
+      "analysis_config": {
+        "bucket_span": "5m",
+        "detectors": [
+          {
+            "detector_description": "Excessive Sentinel SPSS Responders",
+            "function": "high_distinct_count",
+            "field_name": "flow.src.ip.addr",
+            "partition_field_name": "flow.dst.ip.addr",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "flow.dst.ip.addr",
+          "flow.dst.host.name"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "1024mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": false,
+        "annotations_enabled": true
+      },
+      "model_snapshot_retention_days": 10,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_codex_netsec_sentinel_spss_amplification",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_codex_netsec_sentinel_spss_amplification",
+      "job_id": "elastiflow_codex_netsec_sentinel_spss_amplification",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "term": {
+                "l4.proto.name": "UDP"
+              }
+            },
+            {
+              "term": {
+                "flow.src.l4.port.id": 5093
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.src.ip.addr"
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.dst.ip.addr"
+              }
+            }
+          ],
+          "must_not": [
+            {
+              "term": {
+                "flow.src.as.org": "PRIVATE"
+              }
+            },
+            {
+              "terms": {
+                "flow.src.ip.addr": []
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-codex-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  },
+  {
+    "job": {
+      "job_id": "elastiflow_codex_netsec_snmp_amplification",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.as.org,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(flow.src.as.org:'PRIVATE'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.l4.port.id,negate:!f,params:(query:'161'),type:phrase),query:(match_phrase:(flow.src.l4.port.id:'161'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:l4.proto.name,negate:!f,params:(query:'UDP'),type:phrase),query:(match_phrase:(l4.proto.name:'UDP'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.dst.ip.addr,negate:!f,params:(query:'$flow.dst.ip.addr$'),type:phrase),query:(match_phrase:(flow.dst.ip.addr:'$flow.dst.ip.addr$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/bf9f8a70-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.as.org,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(flow.src.as.org:'PRIVATE'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.l4.port.id,negate:!f,params:(query:'161'),type:phrase),query:(match_phrase:(flow.src.l4.port.id:'161'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:l4.proto.name,negate:!f,params:(query:'UDP'),type:phrase),query:(match_phrase:(l4.proto.name:'UDP'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.dst.ip.addr,negate:!f,params:(query:'$flow.dst.ip.addr$'),type:phrase),query:(match_phrase:(flow.dst.ip.addr:'$flow.dst.ip.addr$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "security",
+        "ddos"
+      ],
+      "description": "SNMP Amplification Attack",
+      "analysis_config": {
+        "bucket_span": "5m",
+        "detectors": [
+          {
+            "detector_description": "Excessive SNMP Responders",
+            "function": "high_distinct_count",
+            "field_name": "flow.src.ip.addr",
+            "partition_field_name": "flow.dst.ip.addr",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "flow.dst.ip.addr",
+          "flow.dst.host.name"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "1024mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": false,
+        "annotations_enabled": true
+      },
+      "model_snapshot_retention_days": 10,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_codex_netsec_snmp_amplification",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_codex_netsec_snmp_amplification",
+      "job_id": "elastiflow_codex_netsec_snmp_amplification",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "term": {
+                "l4.proto.name": "UDP"
+              }
+            },
+            {
+              "term": {
+                "flow.src.l4.port.id": 161
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.src.ip.addr"
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.dst.ip.addr"
+              }
+            }
+          ],
+          "must_not": [
+            {
+              "term": {
+                "flow.src.as.org": "PRIVATE"
+              }
+            },
+            {
+              "terms": {
+                "flow.src.ip.addr": []
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-codex-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  },
+  {
+    "job": {
+      "job_id": "elastiflow_codex_netsec_ssdp_amplification",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.as.org,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(flow.src.as.org:'PRIVATE'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.l4.port.id,negate:!f,params:(query:'1900'),type:phrase),query:(match_phrase:(flow.src.l4.port.id:'1900'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:l4.proto.name,negate:!f,params:(query:'UDP'),type:phrase),query:(match_phrase:(l4.proto.name:'UDP'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.dst.ip.addr,negate:!f,params:(query:'$flow.dst.ip.addr$'),type:phrase),query:(match_phrase:(flow.dst.ip.addr:'$flow.dst.ip.addr$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/bf9f8a70-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.as.org,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(flow.src.as.org:'PRIVATE'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.l4.port.id,negate:!f,params:(query:'1900'),type:phrase),query:(match_phrase:(flow.src.l4.port.id:'1900'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:l4.proto.name,negate:!f,params:(query:'UDP'),type:phrase),query:(match_phrase:(l4.proto.name:'UDP'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.dst.ip.addr,negate:!f,params:(query:'$flow.dst.ip.addr$'),type:phrase),query:(match_phrase:(flow.dst.ip.addr:'$flow.dst.ip.addr$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "security",
+        "ddos"
+      ],
+      "description": "SSDP Amplification Attack",
+      "analysis_config": {
+        "bucket_span": "5m",
+        "detectors": [
+          {
+            "detector_description": "Excessive SSDP Responders",
+            "function": "high_distinct_count",
+            "field_name": "flow.src.ip.addr",
+            "partition_field_name": "flow.dst.ip.addr",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "flow.dst.ip.addr",
+          "flow.dst.host.name"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "1024mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": false,
+        "annotations_enabled": true
+      },
+      "model_snapshot_retention_days": 10,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_codex_netsec_ssdp_amplification",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_codex_netsec_ssdp_amplification",
+      "job_id": "elastiflow_codex_netsec_ssdp_amplification",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "term": {
+                "l4.proto.name": "UDP"
+              }
+            },
+            {
+              "term": {
+                "flow.src.l4.port.id": 1900
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.src.ip.addr"
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.dst.ip.addr"
+              }
+            }
+          ],
+          "must_not": [
+            {
+              "term": {
+                "flow.src.as.org": "PRIVATE"
+              }
+            },
+            {
+              "terms": {
+                "flow.src.ip.addr": []
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-codex-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  },
+  {
+    "job": {
+      "job_id": "elastiflow_codex_netsec_steam_amplification",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.as.org,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(flow.src.as.org:'PRIVATE'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.l4.port.id,negate:!f,params:(query:'27015'),type:phrase),query:(match_phrase:(flow.src.l4.port.id:'27015'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:l4.proto.name,negate:!f,params:(query:'UDP'),type:phrase),query:(match_phrase:(l4.proto.name:'UDP'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.dst.ip.addr,negate:!f,params:(query:'$flow.dst.ip.addr$'),type:phrase),query:(match_phrase:(flow.dst.ip.addr:'$flow.dst.ip.addr$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/bf9f8a70-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.as.org,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(flow.src.as.org:'PRIVATE'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.l4.port.id,negate:!f,params:(query:'27015'),type:phrase),query:(match_phrase:(flow.src.l4.port.id:'27015'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:l4.proto.name,negate:!f,params:(query:'UDP'),type:phrase),query:(match_phrase:(l4.proto.name:'UDP'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.dst.ip.addr,negate:!f,params:(query:'$flow.dst.ip.addr$'),type:phrase),query:(match_phrase:(flow.dst.ip.addr:'$flow.dst.ip.addr$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "security",
+        "ddos"
+      ],
+      "description": "Steam Amplification Attack",
+      "analysis_config": {
+        "bucket_span": "5m",
+        "detectors": [
+          {
+            "detector_description": "Excessive Steam Responders",
+            "function": "high_distinct_count",
+            "field_name": "flow.src.ip.addr",
+            "partition_field_name": "flow.dst.ip.addr",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "flow.dst.ip.addr",
+          "flow.dst.host.name"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "1024mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": false,
+        "annotations_enabled": true
+      },
+      "model_snapshot_retention_days": 10,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_codex_netsec_steam_amplification",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_codex_netsec_steam_amplification",
+      "job_id": "elastiflow_codex_netsec_steam_amplification",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "term": {
+                "l4.proto.name": "UDP"
+              }
+            },
+            {
+              "term": {
+                "flow.src.l4.port.id": 27015
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.src.ip.addr"
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.dst.ip.addr"
+              }
+            }
+          ],
+          "must_not": [
+            {
+              "term": {
+                "flow.src.as.org": "PRIVATE"
+              }
+            },
+            {
+              "terms": {
+                "flow.src.ip.addr": []
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-codex-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  },
+  {
+    "job": {
+      "job_id": "elastiflow_codex_netsec_syn_flood_ddos",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.export.type,negate:!f,params:!(ipfix,netflow),type:phrases,value:'ipfix,%20netflow'),query:(bool:(minimum_should_match:1,should:!((match_phrase:(flow.export.type:ipfix)),(match_phrase:(flow.export.type:netflow)))))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:tcp.flags.bits,negate:!f,params:(query:'2'),type:phrase),query:(match_phrase:(tcp.flags.bits:'2'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.client.as.org,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(flow.client.as.org:'PRIVATE'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.ip.addr,negate:!f,params:(query:'$flow.server.ip.addr$'),type:phrase),query:(match_phrase:(flow.server.ip.addr:'$flow.server.ip.addr$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.l4.port.id,negate:!f,params:(query:'$flow.server.l4.port.id$'),type:phrase),query:(match_phrase:(flow.server.l4.port.id:'$flow.server.l4.port.id$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Threats",
+            "url_value": "dashboards#/view/f7fbc0b0-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.export.type,negate:!f,params:!(ipfix,netflow),type:phrases,value:'ipfix,%20netflow'),query:(bool:(minimum_should_match:1,should:!((match_phrase:(flow.export.type:ipfix)),(match_phrase:(flow.export.type:netflow)))))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:tcp.flags.bits,negate:!f,params:(query:'2'),type:phrase),query:(match_phrase:(tcp.flags.bits:'2'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.client.as.org,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(flow.client.as.org:'PRIVATE'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.ip.addr,negate:!f,params:(query:'$flow.server.ip.addr$'),type:phrase),query:(match_phrase:(flow.server.ip.addr:'$flow.server.ip.addr$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.l4.port.id,negate:!f,params:(query:'$flow.server.l4.port.id$'),type:phrase),query:(match_phrase:(flow.server.l4.port.id:'$flow.server.l4.port.id$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/abfed250-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.export.type,negate:!f,params:!(ipfix,netflow),type:phrases,value:'ipfix,%20netflow'),query:(bool:(minimum_should_match:1,should:!((match_phrase:(flow.export.type:ipfix)),(match_phrase:(flow.export.type:netflow)))))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:tcp.flags.bits,negate:!f,params:(query:'2'),type:phrase),query:(match_phrase:(tcp.flags.bits:'2'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.client.as.org,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(flow.client.as.org:'PRIVATE'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.ip.addr,negate:!f,params:(query:'$flow.server.ip.addr$'),type:phrase),query:(match_phrase:(flow.server.ip.addr:'$flow.server.ip.addr$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.l4.port.id,negate:!f,params:(query:'$flow.server.l4.port.id$'),type:phrase),query:(match_phrase:(flow.server.l4.port.id:'$flow.server.l4.port.id$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "security",
+        "ddos"
+      ],
+      "description": "SYN Flood DDoS Attack",
+      "analysis_config": {
+        "bucket_span": "5m",
+        "detectors": [
+          {
+            "detector_description": "Excessive SYN Senders",
+            "function": "high_distinct_count",
+            "field_name": "flow.client.ip.addr",
+            "by_field_name": "flow.server.ip.addr",
+            "partition_field_name": "flow.server.l4.port.id",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "flow.server.ip.addr",
+          "flow.server.host.name",
+          "flow.server.l4.port.id",
+          "flow.server.l4.port.name"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "4096mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": false,
+        "annotations_enabled": true
+      },
+      "model_snapshot_retention_days": 10,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_codex_netsec_syn_flood_ddos",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_codex_netsec_syn_flood_ddos",
+      "job_id": "elastiflow_codex_netsec_syn_flood_ddos",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "term": {
+                "tcp.flags.bits": 2
+              }
+            },
+            {
+              "terms": {
+                "flow.export.type": [
+                  "netflow",
+                  "ipfix"
+                ]
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.client.ip.addr"
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.server.ip.addr"
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.server.l4.port.id"
+              }
+            }
+          ],
+          "must_not": [
+            {
+              "term": {
+                "flow.client.as.org": "PRIVATE"
+              }
+            },
+            {
+              "terms": {
+                "flow.client.ip.addr": []
+              }
+            },
+            {
+              "terms": {
+                "flow.server.ip.addr": []
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-codex-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  },
+  {
+    "job": {
+      "job_id": "elastiflow_codex_netsec_syn_flood_direct",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "RiskIQ PassiveTotal",
+            "url_value": "https://community.riskiq.com/research?query=$flow.client.ip.addr$"
+          },
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.export.type,negate:!f,params:!(ipfix,netflow),type:phrases,value:'ipfix,%20netflow'),query:(bool:(minimum_should_match:1,should:!((match_phrase:(flow.export.type:ipfix)),(match_phrase:(flow.export.type:netflow)))))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:tcp.flags.bits,negate:!f,params:(query:'2'),type:phrase),query:(match_phrase:(tcp.flags.bits:'2'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.client.as.org,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(flow.client.as.org:'PRIVATE'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.ip.addr,negate:!f,params:(query:'$flow.server.ip.addr$'),type:phrase),query:(match_phrase:(flow.server.ip.addr:'$flow.server.ip.addr$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.client.ip.addr,negate:!f,params:(query:'$flow.client.ip.addr$'),type:phrase),query:(match_phrase:(flow.client.ip.addr:'$flow.client.ip.addr$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.l4.port.id,negate:!f,params:(query:'$flow.server.l4.port.id$'),type:phrase),query:(match_phrase:(flow.server.l4.port.id:'$flow.server.l4.port.id$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Threats",
+            "url_value": "dashboards#/view/f7fbc0b0-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.export.type,negate:!f,params:!(ipfix,netflow),type:phrases,value:'ipfix,%20netflow'),query:(bool:(minimum_should_match:1,should:!((match_phrase:(flow.export.type:ipfix)),(match_phrase:(flow.export.type:netflow)))))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:tcp.flags.bits,negate:!f,params:(query:'2'),type:phrase),query:(match_phrase:(tcp.flags.bits:'2'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.client.as.org,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(flow.client.as.org:'PRIVATE'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.ip.addr,negate:!f,params:(query:'$flow.server.ip.addr$'),type:phrase),query:(match_phrase:(flow.server.ip.addr:'$flow.server.ip.addr$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.client.ip.addr,negate:!f,params:(query:'$flow.client.ip.addr$'),type:phrase),query:(match_phrase:(flow.client.ip.addr:'$flow.client.ip.addr$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.l4.port.id,negate:!f,params:(query:'$flow.server.l4.port.id$'),type:phrase),query:(match_phrase:(flow.server.l4.port.id:'$flow.server.l4.port.id$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/abfed250-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.export.type,negate:!f,params:!(ipfix,netflow),type:phrases,value:'ipfix,%20netflow'),query:(bool:(minimum_should_match:1,should:!((match_phrase:(flow.export.type:ipfix)),(match_phrase:(flow.export.type:netflow)))))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:tcp.flags.bits,negate:!f,params:(query:'2'),type:phrase),query:(match_phrase:(tcp.flags.bits:'2'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.client.as.org,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(flow.client.as.org:'PRIVATE'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.ip.addr,negate:!f,params:(query:'$flow.server.ip.addr$'),type:phrase),query:(match_phrase:(flow.server.ip.addr:'$flow.server.ip.addr$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.client.ip.addr,negate:!f,params:(query:'$flow.client.ip.addr$'),type:phrase),query:(match_phrase:(flow.client.ip.addr:'$flow.client.ip.addr$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.l4.port.id,negate:!f,params:(query:'$flow.server.l4.port.id$'),type:phrase),query:(match_phrase:(flow.server.l4.port.id:'$flow.server.l4.port.id$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "security",
+        "ddos"
+      ],
+      "description": "SYN Flood Direct Attack",
+      "analysis_config": {
+        "bucket_span": "5m",
+        "detectors": [
+          {
+            "detector_description": "Excessive SYN Packets",
+            "function": "sum",
+            "field_name": "flow.packets",
+            "by_field_name": "flow.server.ip.addr",
+            "over_field_name": "flow.client.ip.addr",
+            "partition_field_name": "flow.server.l4.port.id",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "flow.client.ip.addr",
+          "flow.client.host.name",
+          "flow.server.ip.addr",
+          "flow.server.host.name",
+          "flow.server.l4.port.id"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "4096mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": false,
+        "annotations_enabled": true
+      },
+      "model_snapshot_retention_days": 10,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_codex_netsec_syn_flood_direct",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_codex_netsec_syn_flood_direct",
+      "job_id": "elastiflow_codex_netsec_syn_flood_direct",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "term": {
+                "tcp.flags.bits": 2
+              }
+            },
+            {
+              "terms": {
+                "flow.export.type": [
+                  "netflow",
+                  "ipfix"
+                ]
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.client.ip.addr"
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.server.ip.addr"
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.server.l4.port.id"
+              }
+            }
+          ],
+          "must_not": [
+            {
+              "term": {
+                "flow.client.as.org": "PRIVATE"
+              }
+            },
+            {
+              "terms": {
+                "flow.client.ip.addr": []
+              }
+            },
+            {
+              "terms": {
+                "flow.server.ip.addr": []
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-codex-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  },
+  {
+    "job": {
+      "job_id": "elastiflow_codex_netsec_tftp_amplification",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.as.org,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(flow.src.as.org:'PRIVATE'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.l4.port.id,negate:!f,params:(query:'69'),type:phrase),query:(match_phrase:(flow.src.l4.port.id:'69'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:l4.proto.name,negate:!f,params:(query:'UDP'),type:phrase),query:(match_phrase:(l4.proto.name:'UDP'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.dst.ip.addr,negate:!f,params:(query:'$flow.dst.ip.addr$'),type:phrase),query:(match_phrase:(flow.dst.ip.addr:'$flow.dst.ip.addr$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/bf9f8a70-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.as.org,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(flow.src.as.org:'PRIVATE'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.l4.port.id,negate:!f,params:(query:'69'),type:phrase),query:(match_phrase:(flow.src.l4.port.id:'69'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:l4.proto.name,negate:!f,params:(query:'UDP'),type:phrase),query:(match_phrase:(l4.proto.name:'UDP'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.dst.ip.addr,negate:!f,params:(query:'$flow.dst.ip.addr$'),type:phrase),query:(match_phrase:(flow.dst.ip.addr:'$flow.dst.ip.addr$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "security",
+        "ddos"
+      ],
+      "description": "TFTP Amplification Attack",
+      "analysis_config": {
+        "bucket_span": "5m",
+        "detectors": [
+          {
+            "detector_description": "Excessive TFTP Responders",
+            "function": "high_distinct_count",
+            "field_name": "flow.src.ip.addr",
+            "partition_field_name": "flow.dst.ip.addr",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "flow.dst.ip.addr",
+          "flow.dst.host.name"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "1024mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": false,
+        "annotations_enabled": true
+      },
+      "model_snapshot_retention_days": 10,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_codex_netsec_tftp_amplification",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_codex_netsec_tftp_amplification",
+      "job_id": "elastiflow_codex_netsec_tftp_amplification",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "term": {
+                "l4.proto.name": "UDP"
+              }
+            },
+            {
+              "term": {
+                "flow.src.l4.port.id": 69
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.src.ip.addr"
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.dst.ip.addr"
+              }
+            }
+          ],
+          "must_not": [
+            {
+              "term": {
+                "flow.src.as.org": "PRIVATE"
+              }
+            },
+            {
+              "terms": {
+                "flow.src.ip.addr": []
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-codex-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  },
+  {
+    "job": {
+      "job_id": "elastiflow_codex_netsec_wsd_amplification",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.as.org,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(flow.src.as.org:'PRIVATE'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.l4.port.id,negate:!f,params:(query:'3702'),type:phrase),query:(match_phrase:(flow.src.l4.port.id:'3702'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:l4.proto.name,negate:!f,params:(query:'UDP'),type:phrase),query:(match_phrase:(l4.proto.name:'UDP'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.dst.ip.addr,negate:!f,params:(query:'$flow.dst.ip.addr$'),type:phrase),query:(match_phrase:(flow.dst.ip.addr:'$flow.dst.ip.addr$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/bf9f8a70-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.as.org,negate:!t,params:(query:'PRIVATE'),type:phrase),query:(match_phrase:(flow.src.as.org:'PRIVATE'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.l4.port.id,negate:!f,params:(query:'3702'),type:phrase),query:(match_phrase:(flow.src.l4.port.id:'3702'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:l4.proto.name,negate:!f,params:(query:'UDP'),type:phrase),query:(match_phrase:(l4.proto.name:'UDP'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.dst.ip.addr,negate:!f,params:(query:'$flow.dst.ip.addr$'),type:phrase),query:(match_phrase:(flow.dst.ip.addr:'$flow.dst.ip.addr$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "security",
+        "ddos"
+      ],
+      "description": "WSD Amplification Attack",
+      "analysis_config": {
+        "bucket_span": "5m",
+        "detectors": [
+          {
+            "detector_description": "Excessive WSD Responders",
+            "function": "high_distinct_count",
+            "field_name": "flow.src.ip.addr",
+            "partition_field_name": "flow.dst.ip.addr",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "flow.dst.ip.addr",
+          "flow.dst.host.name"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "1024mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": false,
+        "annotations_enabled": true
+      },
+      "model_snapshot_retention_days": 10,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_codex_netsec_wsd_amplification",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_codex_netsec_wsd_amplification",
+      "job_id": "elastiflow_codex_netsec_wsd_amplification",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "term": {
+                "l4.proto.name": "UDP"
+              }
+            },
+            {
+              "term": {
+                "flow.src.l4.port.id": 3702
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.src.ip.addr"
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.dst.ip.addr"
+              }
+            }
+          ],
+          "must_not": [
+            {
+              "term": {
+                "flow.src.as.org": "PRIVATE"
+              }
+            },
+            {
+              "terms": {
+                "flow.src.ip.addr": []
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-codex-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  },
+  {
+    "job": {
+      "job_id": "elastiflow_codex_perf_asn_dst_throughput",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.export.host.name,negate:!f,params:(query:'$flow.export.host.name$'),type:phrase),query:(match_phrase:(flow.export.host.name:'$flow.export.host.name$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.dst.as.label,negate:!f,params:(query:'$flow.dst.as.label$'),type:phrase),query:(match_phrase:(flow.dst.as.label:'$flow.dst.as.label$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Threats",
+            "url_value": "dashboards#/view/f7fbc0b0-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.export.host.name,negate:!f,params:(query:'$flow.export.host.name$'),type:phrase),query:(match_phrase:(flow.export.host.name:'$flow.export.host.name$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.dst.as.label,negate:!f,params:(query:'$flow.dst.as.label$'),type:phrase),query:(match_phrase:(flow.dst.as.label:'$flow.dst.as.label$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/abfed250-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.export.host.name,negate:!f,params:(query:'$flow.export.host.name$'),type:phrase),query:(match_phrase:(flow.export.host.name:'$flow.export.host.name$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.dst.as.label,negate:!f,params:(query:'$flow.dst.as.label$'),type:phrase),query:(match_phrase:(flow.dst.as.label:'$flow.dst.as.label$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "performance"
+      ],
+      "description": "Unusual Destination ASN Traffic Volume",
+      "analysis_config": {
+        "bucket_span": "15m",
+        "detectors": [
+          {
+            "detector_description": "Unusual Destination ASN Bytes",
+            "function": "sum",
+            "field_name": "flow.bytes",
+            "by_field_name": "flow.dst.as.label",
+            "partition_field_name": "flow.export.host.name",
+            "detector_index": 0
+          },
+          {
+            "detector_description": "Unusual Destination ASN Packets",
+            "function": "sum",
+            "field_name": "flow.packets",
+            "by_field_name": "flow.dst.as.label",
+            "partition_field_name": "flow.export.host.name",
+            "detector_index": 1
+          },
+          {
+            "detector_description": "Unusual Destination ASN Flows",
+            "function": "count",
+            "by_field_name": "flow.dst.as.label",
+            "partition_field_name": "flow.export.host.name",
+            "detector_index": 2
+          }
+        ],
+        "influencers": [
+          "flow.dst.as.label",
+          "flow.export.host.name"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "4096mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": true,
+        "annotations_enabled": true
+      },
+      "model_snapshot_retention_days": 10,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_codex_perf_asn_dst_throughput",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_codex_perf_asn_dst_throughput",
+      "job_id": "elastiflow_codex_perf_asn_dst_throughput",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "exists": {
+                "field": "flow.dst.as.label"
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.export.host.name"
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-codex-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  },
+  {
+    "job": {
+      "job_id": "elastiflow_codex_perf_asn_src_throughput",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.export.host.name,negate:!f,params:(query:'$flow.export.host.name$'),type:phrase),query:(match_phrase:(flow.export.host.name:'$flow.export.host.name$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.as.label,negate:!f,params:(query:'$flow.src.as.label$'),type:phrase),query:(match_phrase:(flow.src.as.label:'$flow.src.as.label$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Threats",
+            "url_value": "dashboards#/view/f7fbc0b0-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.export.host.name,negate:!f,params:(query:'$flow.export.host.name$'),type:phrase),query:(match_phrase:(flow.export.host.name:'$flow.export.host.name$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.as.label,negate:!f,params:(query:'$flow.src.as.label$'),type:phrase),query:(match_phrase:(flow.src.as.label:'$flow.src.as.label$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/abfed250-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.export.host.name,negate:!f,params:(query:'$flow.export.host.name$'),type:phrase),query:(match_phrase:(flow.export.host.name:'$flow.export.host.name$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.as.label,negate:!f,params:(query:'$flow.src.as.label$'),type:phrase),query:(match_phrase:(flow.src.as.label:'$flow.src.as.label$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "performance"
+      ],
+      "description": "Unusual Source ASN Traffic Volume",
+      "analysis_config": {
+        "bucket_span": "15m",
+        "detectors": [
+          {
+            "detector_description": "Unusual Source ASN Bytes",
+            "function": "sum",
+            "field_name": "flow.bytes",
+            "by_field_name": "flow.src.as.label",
+            "partition_field_name": "flow.export.host.name",
+            "detector_index": 0
+          },
+          {
+            "detector_description": "Unusual Source ASN Packets",
+            "function": "sum",
+            "field_name": "flow.packets",
+            "by_field_name": "flow.src.as.label",
+            "partition_field_name": "flow.export.host.name",
+            "detector_index": 1
+          },
+          {
+            "detector_description": "Unusual Source ASN Flows",
+            "function": "count",
+            "by_field_name": "flow.src.as.label",
+            "partition_field_name": "flow.export.host.name",
+            "detector_index": 2
+          }
+        ],
+        "influencers": [
+          "flow.src.as.label",
+          "flow.export.host.name"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "4096mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": true,
+        "annotations_enabled": true
+      },
+      "model_snapshot_retention_days": 10,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_codex_perf_asn_src_throughput",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_codex_perf_asn_src_throughput",
+      "job_id": "elastiflow_codex_perf_asn_src_throughput",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "exists": {
+                "field": "flow.src.as.label"
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.export.host.name"
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-codex-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  },
+  {
+    "job": {
+      "job_id": "elastiflow_codex_perf_netif_egress_throughput",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.export.host.name,negate:!f,params:(query:'$flow.export.host.name$'),type:phrase),query:(match_phrase:(flow.export.host.name:'$flow.export.host.name$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.out.netif.name,negate:!f,params:(query:'$flow.out.netif.name$'),type:phrase),query:(match_phrase:(flow.out.netif.name:'$flow.out.netif.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Exporters (traffic)",
+            "url_value": "dashboards#/view/6fa91cc0-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.export.host.name,negate:!f,params:(query:'$flow.export.host.name$'),type:phrase),query:(match_phrase:(flow.export.host.name:'$flow.export.host.name$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.out.netif.name,negate:!f,params:(query:'$flow.out.netif.name$'),type:phrase),query:(match_phrase:(flow.out.netif.name:'$flow.out.netif.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Threats",
+            "url_value": "dashboards#/view/f7fbc0b0-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.export.host.name,negate:!f,params:(query:'$flow.export.host.name$'),type:phrase),query:(match_phrase:(flow.export.host.name:'$flow.export.host.name$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.out.netif.name,negate:!f,params:(query:'$flow.out.netif.name$'),type:phrase),query:(match_phrase:(flow.out.netif.name:'$flow.out.netif.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/abfed250-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.export.host.name,negate:!f,params:(query:'$flow.export.host.name$'),type:phrase),query:(match_phrase:(flow.export.host.name:'$flow.export.host.name$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.out.netif.name,negate:!f,params:(query:'$flow.out.netif.name$'),type:phrase),query:(match_phrase:(flow.out.netif.name:'$flow.out.netif.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "performance"
+      ],
+      "description": "Unusual Egress Traffic Volume",
+      "analysis_config": {
+        "bucket_span": "15m",
+        "detectors": [
+          {
+            "detector_description": "Unusual Egress Bytes",
+            "function": "sum",
+            "field_name": "flow.bytes",
+            "by_field_name": "flow.out.netif.name",
+            "partition_field_name": "flow.export.host.name",
+            "detector_index": 0
+          },
+          {
+            "detector_description": "Unusual Egress Packets",
+            "function": "sum",
+            "field_name": "flow.packets",
+            "by_field_name": "flow.out.netif.name",
+            "partition_field_name": "flow.export.host.name",
+            "detector_index": 1
+          },
+          {
+            "detector_description": "Unusual Egress Flows",
+            "function": "count",
+            "by_field_name": "flow.out.netif.name",
+            "partition_field_name": "flow.export.host.name",
+            "detector_index": 2
+          }
+        ],
+        "influencers": [
+          "flow.export.host.name",
+          "flow.out.netif.name"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "8192mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": true,
+        "annotations_enabled": true
+      },
+      "model_snapshot_retention_days": 10,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_codex_perf_netif_egress_throughput",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_codex_perf_netif_egress_throughput",
+      "job_id": "elastiflow_codex_perf_netif_egress_throughput",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "exists": {
+                "field": "flow.out.netif.name"
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.export.host.name"
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-codex-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  },
+  {
+    "job": {
+      "job_id": "elastiflow_codex_perf_netif_ingress_throughput",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.export.host.name,negate:!f,params:(query:'$flow.export.host.name$'),type:phrase),query:(match_phrase:(flow.export.host.name:'$flow.export.host.name$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.in.netif.name,negate:!f,params:(query:'$flow.in.netif.name$'),type:phrase),query:(match_phrase:(flow.in.netif.name:'$flow.in.netif.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Exporters (traffic)",
+            "url_value": "dashboards#/view/6fa91cc0-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.export.host.name,negate:!f,params:(query:'$flow.export.host.name$'),type:phrase),query:(match_phrase:(flow.export.host.name:'$flow.export.host.name$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.in.netif.name,negate:!f,params:(query:'$flow.in.netif.name$'),type:phrase),query:(match_phrase:(flow.in.netif.name:'$flow.in.netif.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Threats",
+            "url_value": "dashboards#/view/f7fbc0b0-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.export.host.name,negate:!f,params:(query:'$flow.export.host.name$'),type:phrase),query:(match_phrase:(flow.export.host.name:'$flow.export.host.name$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.in.netif.name,negate:!f,params:(query:'$flow.in.netif.name$'),type:phrase),query:(match_phrase:(flow.in.netif.name:'$flow.in.netif.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/abfed250-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.export.host.name,negate:!f,params:(query:'$flow.export.host.name$'),type:phrase),query:(match_phrase:(flow.export.host.name:'$flow.export.host.name$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.in.netif.name,negate:!f,params:(query:'$flow.in.netif.name$'),type:phrase),query:(match_phrase:(flow.in.netif.name:'$flow.in.netif.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "performance"
+      ],
+      "description": "Unusual Ingress Traffic Volume",
+      "analysis_config": {
+        "bucket_span": "15m",
+        "detectors": [
+          {
+            "detector_description": "Unusual Ingress Bytes",
+            "function": "sum",
+            "field_name": "flow.bytes",
+            "by_field_name": "flow.in.netif.name",
+            "partition_field_name": "flow.export.host.name",
+            "detector_index": 0
+          },
+          {
+            "detector_description": "Unusual Ingress Packets",
+            "function": "sum",
+            "field_name": "flow.packets",
+            "by_field_name": "flow.in.netif.name",
+            "partition_field_name": "flow.export.host.name",
+            "detector_index": 1
+          },
+          {
+            "detector_description": "Unusual Ingress Flows",
+            "function": "count",
+            "by_field_name": "flow.in.netif.name",
+            "partition_field_name": "flow.export.host.name",
+            "detector_index": 2
+          }
+        ],
+        "influencers": [
+          "flow.export.host.name",
+          "flow.in.netif.name"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "8192mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": true,
+        "annotations_enabled": true
+      },
+      "model_snapshot_retention_days": 10,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_codex_perf_netif_ingress_throughput",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_codex_perf_netif_ingress_throughput",
+      "job_id": "elastiflow_codex_perf_netif_ingress_throughput",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "exists": {
+                "field": "flow.in.netif.name"
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.export.host.name"
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-codex-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  }
+]

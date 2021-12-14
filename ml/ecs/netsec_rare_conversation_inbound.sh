@@ -45,7 +45,7 @@ fi
 DETECTOR=$( cat << EOF
 {
   "job_type": "anomaly_detector",
-  "description": "Rare Conversation (public)",
+  "description": "Rare Conversation (inbound)",
   "groups": [
     "elastiflow",
     "security",
@@ -63,8 +63,10 @@ DETECTOR=$( cat << EOF
     ],
     "influencers": [
       "flow.conversation.id",
-      "flow.server.host.name",
-      "flow.client.host.name",
+      "client.ip",
+      "client.domain",
+      "server.ip",
+      "server.domain",
       "flow.server.l4.port.name"
     ]
   },
@@ -85,23 +87,23 @@ DETECTOR=$( cat << EOF
     "custom_urls": [
       {
         "url_name": "RiskIQ PassiveTotal",
-        "url_value": "https://community.riskiq.com/research?query=\$flow.client.host.name$"
+        "url_value": "https://community.riskiq.com/research?query=\$client.ip$"
       },
       {
         "url_name": "Top Talkers",
-        "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.conversation.id,negate:!f,params:(query:'\$flow.conversation.id$'),type:phrase),query:(match_phrase:(flow.conversation.id:'\$flow.conversation.id$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
+        "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.conversation.id,negate:!f,params:(query:'\$flow.conversation.id$'),type:phrase),query:(match_phrase:(flow.conversation.id:'\$flow.conversation.id$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
       },
       {
         "url_name": "Threats",
-        "url_value": "dashboards#/view/f7fbc0b0-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.conversation.id,negate:!f,params:(query:'\$flow.conversation.id$'),type:phrase),query:(match_phrase:(flow.conversation.id:'\$flow.conversation.id$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
+        "url_value": "dashboards#/view/f7fbc0b0-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.conversation.id,negate:!f,params:(query:'\$flow.conversation.id$'),type:phrase),query:(match_phrase:(flow.conversation.id:'\$flow.conversation.id$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
       },
       {
         "url_name": "Flow Records",
-        "url_value": "dashboards#/view/abfed250-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.conversation.id,negate:!f,params:(query:'\$flow.conversation.id$'),type:phrase),query:(match_phrase:(flow.conversation.id:'\$flow.conversation.id$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
+        "url_value": "dashboards#/view/abfed250-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.conversation.id,negate:!f,params:(query:'\$flow.conversation.id$'),type:phrase),query:(match_phrase:(flow.conversation.id:'\$flow.conversation.id$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
       }
     ]
   },
-  "results_index_name": "custom-elastiflow_codex_netsec_rare_conversation_public",
+  "results_index_name": "custom-elastiflow_ecs_netsec_rare_conversation_inbound",
   "allow_lazy_open": false
 }
 EOF
@@ -109,9 +111,9 @@ EOF
 
 DATAFEED=$( cat << EOF
 {
-  "job_id": "elastiflow_codex_netsec_rare_conversation_public",
+  "job_id": "elastiflow_ecs_netsec_rare_conversation_inbound",
   "indices": [
-    "elastiflow-flow-codex-*"
+    "elastiflow-flow-ecs-*"
   ],
   "query": {
     "bool": {
@@ -123,16 +125,19 @@ DATAFEED=$( cat << EOF
         },
         {
           "term": {
-            "l4.session.established": {
-              "value": "true"
-            }
+            "l4.session.established": "true"
           }
         },
         {
           "term": {
-            "flow.locality": {
-              "value": "public"
-            }
+            "server.as.organization.name": "PRIVATE"
+          }
+        }
+      ],
+      "must_not": [
+        {
+          "term": {
+            "client.as.organization.name": "PRIVATE"
           }
         }
       ]
@@ -157,7 +162,7 @@ DATAFEED=$( cat << EOF
 EOF
 )
 
-echo ""; echo "Installing anomaly_detector elastiflow_codex_netsec_rare_conversation_public ..."
-curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/anomaly_detectors/elastiflow_codex_netsec_rare_conversation_public?pretty -H "Content-Type: application/json" -d "${DETECTOR}"
-echo ""; echo "Installing datafeed elastiflow_codex_netsec_rare_conversation_public ..."
-curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/datafeeds/datafeed-elastiflow_codex_netsec_rare_conversation_public?pretty -H "Content-Type: application/json" -d "${DATAFEED}"
+echo ""; echo "Installing anomaly_detector elastiflow_ecs_netsec_rare_conversation_inbound ..."
+curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/anomaly_detectors/elastiflow_ecs_netsec_rare_conversation_inbound?pretty -H "Content-Type: application/json" -d "${DETECTOR}"
+echo ""; echo "Installing datafeed elastiflow_ecs_netsec_rare_conversation_inbound ..."
+curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/datafeeds/datafeed-elastiflow_ecs_netsec_rare_conversation_inbound?pretty -H "Content-Type: application/json" -d "${DATAFEED}"

@@ -45,7 +45,7 @@ fi
 DETECTOR=$( cat << EOF
 {
   "job_type": "anomaly_detector",
-  "description": "Rare Conversation (public)",
+  "description": "Rare Conversation (outbound)",
   "groups": [
     "elastiflow",
     "security",
@@ -63,8 +63,10 @@ DETECTOR=$( cat << EOF
     ],
     "influencers": [
       "flow.conversation.id",
-      "server.domain",
+      "client.ip",
       "client.domain",
+      "server.ip",
+      "server.domain",
       "flow.server.l4.port.name"
     ]
   },
@@ -85,7 +87,7 @@ DETECTOR=$( cat << EOF
     "custom_urls": [
       {
         "url_name": "RiskIQ PassiveTotal",
-        "url_value": "https://community.riskiq.com/research?query=\$client.domain$"
+        "url_value": "https://community.riskiq.com/research?query=\$server.ip$"
       },
       {
         "url_name": "Top Talkers",
@@ -101,7 +103,7 @@ DETECTOR=$( cat << EOF
       }
     ]
   },
-  "results_index_name": "custom-elastiflow_ecs_netsec_rare_conversation_public",
+  "results_index_name": "custom-elastiflow_ecs_netsec_rare_conversation_outbound",
   "allow_lazy_open": false
 }
 EOF
@@ -109,7 +111,7 @@ EOF
 
 DATAFEED=$( cat << EOF
 {
-  "job_id": "elastiflow_ecs_netsec_rare_conversation_public",
+  "job_id": "elastiflow_ecs_netsec_rare_conversation_outbound",
   "indices": [
     "elastiflow-flow-ecs-*"
   ],
@@ -123,16 +125,19 @@ DATAFEED=$( cat << EOF
         },
         {
           "term": {
-            "l4.session.established": {
-              "value": "true"
-            }
+            "l4.session.established": "true"
           }
         },
         {
           "term": {
-            "flow.locality": {
-              "value": "public"
-            }
+            "client.as.organization.name": "PRIVATE"
+          }
+        }
+      ],
+      "must_not": [
+        {
+          "term": {
+            "server.as.organization.name": "PRIVATE"
           }
         }
       ]
@@ -157,7 +162,7 @@ DATAFEED=$( cat << EOF
 EOF
 )
 
-echo ""; echo "Installing anomaly_detector elastiflow_ecs_netsec_rare_conversation_public ..."
-curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/anomaly_detectors/elastiflow_ecs_netsec_rare_conversation_public?pretty -H "Content-Type: application/json" -d "${DETECTOR}"
-echo ""; echo "Installing datafeed elastiflow_ecs_netsec_rare_conversation_public ..."
-curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/datafeeds/datafeed-elastiflow_ecs_netsec_rare_conversation_public?pretty -H "Content-Type: application/json" -d "${DATAFEED}"
+echo ""; echo "Installing anomaly_detector elastiflow_ecs_netsec_rare_conversation_outbound ..."
+curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/anomaly_detectors/elastiflow_ecs_netsec_rare_conversation_outbound?pretty -H "Content-Type: application/json" -d "${DETECTOR}"
+echo ""; echo "Installing datafeed elastiflow_ecs_netsec_rare_conversation_outbound ..."
+curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/datafeeds/datafeed-elastiflow_ecs_netsec_rare_conversation_outbound?pretty -H "Content-Type: application/json" -d "${DATAFEED}"

@@ -63,8 +63,10 @@ DETECTOR=$( cat << EOF
     ],
     "influencers": [
       "flow.conversation.id",
-      "flow.server.host.name",
+      "flow.client.ip.addr",
       "flow.client.host.name",
+      "flow.server.ip.addr",
+      "flow.server.host.name",
       "flow.server.l4.port.name"
     ]
   },
@@ -83,10 +85,6 @@ DETECTOR=$( cat << EOF
   "daily_model_snapshot_retention_after_days": 1,
   "custom_settings": {
     "custom_urls": [
-      {
-        "url_name": "RiskIQ PassiveTotal",
-        "url_value": "https://community.riskiq.com/research?query=\$flow.client.host.name$"
-      },
       {
         "url_name": "Top Talkers",
         "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.conversation.id,negate:!f,params:(query:'\$flow.conversation.id$'),type:phrase),query:(match_phrase:(flow.conversation.id:'\$flow.conversation.id$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"

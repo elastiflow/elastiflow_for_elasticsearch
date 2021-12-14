@@ -66,8 +66,9 @@ echo ""; echo "Installing all CODEX-compatible anomaly_detectors and datafeeds .
 ./netsec_radius_amplification.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_rare_asn_client.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_rare_asn_server.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_rare_conversation_inbound.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_rare_conversation_outbound.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_rare_conversation_private.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_rare_conversation_public.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_rip_amplification.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_rpc_amplification.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_sentinel_spss_amplification.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
