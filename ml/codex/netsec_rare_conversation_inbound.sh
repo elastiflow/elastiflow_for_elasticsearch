@@ -52,7 +52,7 @@ DETECTOR=$( cat << EOF
     "activity"
   ],
   "analysis_config": {
-    "bucket_span": "15m",
+    "bucket_span": "60m",
     "detectors": [
       {
         "detector_description": "Rare Conversation",

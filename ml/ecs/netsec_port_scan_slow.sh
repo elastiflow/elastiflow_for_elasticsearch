@@ -52,7 +52,7 @@ DETECTOR=$( cat << EOF
     "reconnaissance"
   ],
   "analysis_config": {
-    "bucket_span": "360m",
+    "bucket_span": "240m",
     "detectors": [
       {
         "detector_description": "Abnormally High Unique Ports Attempted",
