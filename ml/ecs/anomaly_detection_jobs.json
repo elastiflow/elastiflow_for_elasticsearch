@@ -1848,7 +1848,7 @@
       ],
       "description": "Port Scan (fast)",
       "analysis_config": {
-        "bucket_span": "15m",
+        "bucket_span": "10m",
         "detectors": [
           {
             "detector_description": "Abnormally High Unique Ports Attempted",
@@ -1963,7 +1963,7 @@
       ],
       "description": "Port Scan (slow)",
       "analysis_config": {
-        "bucket_span": "360m",
+        "bucket_span": "240m",
         "detectors": [
           {
             "detector_description": "Abnormally High Unique Ports Attempted",
@@ -2570,7 +2570,7 @@
       ],
       "description": "Rare Conversation (inbound)",
       "analysis_config": {
-        "bucket_span": "15m",
+        "bucket_span": "60m",
         "detectors": [
           {
             "detector_description": "Rare Conversation",
@@ -2675,7 +2675,7 @@
       ],
       "description": "Rare Conversation (outbound)",
       "analysis_config": {
-        "bucket_span": "15m",
+        "bucket_span": "60m",
         "detectors": [
           {
             "detector_description": "Rare Conversation",
@@ -2776,7 +2776,7 @@
       ],
       "description": "Rare Conversation (private)",
       "analysis_config": {
-        "bucket_span": "15m",
+        "bucket_span": "60m",
         "detectors": [
           {
             "detector_description": "Rare Conversation",
