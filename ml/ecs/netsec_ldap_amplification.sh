@@ -163,6 +163,6 @@ EOF
 )
 
 echo ""; echo "Installing anomaly_detector elastiflow_ecs_netsec_ldap_amplification ..."
-curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/anomaly_detectors/elastiflow_ecs_netsec_ldap_amplification?pretty -H "Content-Type: application/json" -d "${DETECTOR}"
+curl -XPUT -o /dev/null -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/anomaly_detectors/elastiflow_ecs_netsec_ldap_amplification?pretty -H "Content-Type: application/json" -d "${DETECTOR}"
 echo ""; echo "Installing datafeed elastiflow_ecs_netsec_ldap_amplification ..."
-curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/datafeeds/datafeed-elastiflow_ecs_netsec_ldap_amplification?pretty -H "Content-Type: application/json" -d "${DATAFEED}"
+curl -XPUT -o /dev/null -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/datafeeds/datafeed-elastiflow_ecs_netsec_ldap_amplification?pretty -H "Content-Type: application/json" -d "${DATAFEED}"

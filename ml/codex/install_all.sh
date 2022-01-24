@@ -45,7 +45,6 @@ fi
 echo ""; echo "Installing all CODEX-compatible anomaly_detectors and datafeeds ..."; echo ""
 ./avail_tcp_sess_fails_private.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./avail_tcp_sess_fails_public.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_brute_force_cli.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_chargen_amplification.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_ddos_generic_tcp.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_ddos_generic_udp_amplification.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
@@ -83,3 +82,46 @@ echo ""; echo "Installing all CODEX-compatible anomaly_detectors and datafeeds .
 ./perf_asn_src_throughput.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./perf_netif_egress_throughput.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./perf_netif_ingress_throughput.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+
+./netsec_brute_force_direct_cli_all_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_brute_force_direct_cli_all_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_brute_force_direct_cli_inbound_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_brute_force_direct_cli_inbound_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_brute_force_direct_cli_outbound_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_brute_force_direct_cli_outbound_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_brute_force_direct_cli_private_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_brute_force_direct_cli_private_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_brute_force_distrib_cli_all_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_brute_force_distrib_cli_all_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_brute_force_distrib_cli_inbound_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_brute_force_distrib_cli_inbound_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_brute_force_distrib_cli_outbound_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_brute_force_distrib_cli_outbound_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_brute_force_distrib_cli_private_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_brute_force_distrib_cli_private_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+
+./netsec_port_scan_direct_all_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_port_scan_direct_all_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_port_scan_direct_inbound_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_port_scan_direct_inbound_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_port_scan_direct_outbound_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_port_scan_direct_outbound_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_port_scan_direct_private_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_port_scan_direct_private_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_port_scan_distrib_all_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_port_scan_distrib_all_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_port_scan_distrib_inbound_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_port_scan_distrib_inbound_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_port_scan_distrib_outbound_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_port_scan_distrib_outbound_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_port_scan_distrib_private_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_port_scan_distrib_private_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+
+./netsec_icmp_scan_direct_all_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_icmp_scan_direct_all_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_icmp_scan_direct_inbound_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_icmp_scan_direct_inbound_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_icmp_scan_direct_outbound_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_icmp_scan_direct_outbound_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_icmp_scan_direct_private_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_icmp_scan_direct_private_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}

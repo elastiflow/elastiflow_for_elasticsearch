@@ -45,14 +45,14 @@ fi
 DETECTOR=$( cat << EOF
 {
   "job_type": "anomaly_detector",
-  "description": "Brute Force Access Attempt (CLI)",
+  "description": "Brute Force Direct CLI Access - outbound (fast)",
   "groups": [
     "elastiflow",
     "security",
     "access"
   ],
   "analysis_config": {
-    "bucket_span": "15m",
+    "bucket_span": "10m",
     "detectors": [
       {
         "detector_description": "Excessive Access Attempts",
@@ -73,7 +73,7 @@ DETECTOR=$( cat << EOF
     ]
   },
   "analysis_limits": {
-    "model_memory_limit": "4096mb"
+    "model_memory_limit": "512mb"
   },
   "data_description": {
     "time_field": "@timestamp",
@@ -88,10 +88,6 @@ DETECTOR=$( cat << EOF
   "custom_settings": {
     "custom_urls": [
       {
-        "url_name": "RiskIQ PassiveTotal",
-        "url_value": "https://community.riskiq.com/research?query=\$client.ip$"
-      },
-      {
         "url_name": "Top Conversations",
         "url_value": "dashboards#/view/c2da3880-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:server.ip,negate:!f,params:(query:'\$server.ip$'),type:phrase),query:(match_phrase:(server.ip:'\$server.ip$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:client.ip,negate:!f,params:(query:'\$client.ip$'),type:phrase),query:(match_phrase:(client.ip:'\$client.ip$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.server.l4.port.name,negate:!f,params:(query:'\$flow.server.l4.port.name$'),type:phrase),query:(match_phrase:(flow.server.l4.port.name:'\$flow.server.l4.port.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
       },
@@ -105,7 +101,7 @@ DETECTOR=$( cat << EOF
       }
     ]
   },
-  "results_index_name": "custom-elastiflow_ecs_netsec_brute_force_cli",
+  "results_index_name": "custom-elastiflow_ecs_netsec_brute_force_direct_cli_outbound_fast",
   "allow_lazy_open": false
 }
 EOF
@@ -113,7 +109,7 @@ EOF
 
 DATAFEED=$( cat << EOF
 {
-  "job_id": "elastiflow_ecs_netsec_brute_force_cli",
+  "job_id": "elastiflow_ecs_netsec_brute_force_direct_cli_outbound_fast",
   "indices": [
     "elastiflow-flow-ecs-*"
   ],
@@ -142,6 +138,30 @@ DATAFEED=$( cat << EOF
           "exists": {
             "field": "server.ip"
           }
+        },
+        {
+          "term": {
+            "client.as.organization.name": "PRIVATE"
+          }
+        }
+      ],
+      "must_not": [
+        {
+          "term": {
+            "server.as.organization.name": "PRIVATE"
+          }
+        },
+        {
+          "terms": {
+            "flow.client.ip.addr": [
+            ]
+          }
+        },
+        {
+          "terms": {
+            "flow.server.ip.addr": [
+            ]
+          }
         }
       ]
     }
@@ -165,7 +185,7 @@ DATAFEED=$( cat << EOF
 EOF
 )
 
-echo ""; echo "Installing anomaly_detector elastiflow_ecs_netsec_brute_force_cli ..."
-curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/anomaly_detectors/elastiflow_ecs_netsec_brute_force_cli?pretty -H "Content-Type: application/json" -d "${DETECTOR}"
-echo ""; echo "Installing datafeed elastiflow_ecs_netsec_brute_force_cli ..."
-curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/datafeeds/datafeed-elastiflow_ecs_netsec_brute_force_cli?pretty -H "Content-Type: application/json" -d "${DATAFEED}"
+echo ""; echo "Installing anomaly_detector elastiflow_ecs_netsec_brute_force_direct_cli_outbound_fast ..."
+curl -XPUT -o /dev/null -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/anomaly_detectors/elastiflow_ecs_netsec_brute_force_direct_cli_outbound_fast?pretty -H "Content-Type: application/json" -d "${DETECTOR}"
+echo ""; echo "Installing datafeed elastiflow_ecs_netsec_brute_force_direct_cli_outbound_fast ..."
+curl -XPUT -o /dev/null -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/datafeeds/datafeed-elastiflow_ecs_netsec_brute_force_direct_cli_outbound_fast?pretty -H "Content-Type: application/json" -d "${DATAFEED}"
