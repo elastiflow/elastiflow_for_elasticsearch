@@ -1,5 +1,5 @@
 ###################################################################################################
-# (C)Copyright 2021 ElastiFlow Inc.
+# (C)Copyright 2022 ElastiFlow Inc.
 # All Rights Reserved
 # 
 # RESTRICTED RIGHTS
@@ -42,12 +42,7 @@ if [[ "$PASSWORD" = "" ]]; then
   PASSWORD=changeme
 fi
 
-echo ""; echo "Installing all ECS-compatible anomaly_detectors and datafeeds ..."; echo ""
-./netsec_icmp_scan_direct_all_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_icmp_scan_direct_all_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_icmp_scan_direct_inbound_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_icmp_scan_direct_inbound_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_icmp_scan_direct_outbound_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_icmp_scan_direct_outbound_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_icmp_scan_direct_private_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_icmp_scan_direct_private_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+echo ""; echo "Installing all CODEX-compatible anomaly_detectors and datafeeds ..."; echo ""
+./avail_tcp_sess_fails_inbound.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./avail_tcp_sess_fails_outbound.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./avail_tcp_sess_fails_private.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}

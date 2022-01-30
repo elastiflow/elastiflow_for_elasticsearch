@@ -1,5 +1,5 @@
 ###################################################################################################
-# (C)Copyright 2021 ElastiFlow Inc.
+# (C)Copyright 2022 ElastiFlow Inc.
 # All Rights Reserved
 # 
 # RESTRICTED RIGHTS
@@ -45,29 +45,29 @@ fi
 DETECTOR=$( cat << EOF
 {
   "job_type": "anomaly_detector",
-  "description": "Failed TCP Sessions (private)",
+  "description": "Failed TCP Sessions - private",
   "groups": [
     "elastiflow",
     "availability"
   ],
   "analysis_config": {
-    "bucket_span": "10m",
+    "bucket_span": "15m",
     "detectors": [
       {
         "detector_description": "Excessive Unestablished Connections",
         "function": "high_count",
-        "over_field_name": "client.ip",
+        "over_field_name": "flow.client.ip.addr",
         "by_field_name": "flow.server.l4.port.name",
-        "partition_field_name": "server.ip",
+        "partition_field_name": "flow.server.ip.addr",
         "detector_index": 0
       }
     ],
     "influencers": [
       "flow.server.l4.port.name",
-      "server.ip",
-      "server.domain",
-      "client.ip",
-      "client.domain"
+      "flow.server.ip.addr",
+      "flow.server.host.name",
+      "flow.client.ip.addr",
+      "flow.client.host.name"
     ]
   },
   "analysis_limits": {
@@ -87,15 +87,15 @@ DETECTOR=$( cat << EOF
     "custom_urls": [
       {
         "url_name": "Top Conversations",
-        "url_value": "dashboards#/view/c2da3880-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:server.ip,negate:!f,params:(query:'\$server.ip$'),type:phrase),query:(match_phrase:(server.ip:'\$server.ip$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:client.ip,negate:!f,params:(query:'\$client.ip$'),type:phrase),query:(match_phrase:(client.ip:'\$client.ip$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.server.l4.port.name,negate:!f,params:(query:'\$flow.server.l4.port.name$'),type:phrase),query:(match_phrase:(flow.server.l4.port.name:'\$flow.server.l4.port.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
+        "url_value": "dashboards#/view/c2da3880-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.ip.addr,negate:!f,params:(query:'\$flow.server.ip.addr$'),type:phrase),query:(match_phrase:(flow.server.ip.addr:'\$flow.server.ip.addr$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.client.ip.addr,negate:!f,params:(query:'\$flow.client.ip.addr$'),type:phrase),query:(match_phrase:(flow.client.ip.addr:'\$flow.client.ip.addr$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.l4.port.name,negate:!f,params:(query:'\$flow.server.l4.port.name$'),type:phrase),query:(match_phrase:(flow.server.l4.port.name:'\$flow.server.l4.port.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
       },
       {
         "url_name": "Flow Records",
-        "url_value": "dashboards#/view/abfed250-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:server.ip,negate:!f,params:(query:'\$server.ip$'),type:phrase),query:(match_phrase:(server.ip:'\$server.ip$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:client.ip,negate:!f,params:(query:'\$client.ip$'),type:phrase),query:(match_phrase:(client.ip:'\$client.ip$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.server.l4.port.name,negate:!f,params:(query:'\$flow.server.l4.port.name$'),type:phrase),query:(match_phrase:(flow.server.l4.port.name:'\$flow.server.l4.port.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
+        "url_value": "dashboards#/view/abfed250-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.ip.addr,negate:!f,params:(query:'\$flow.server.ip.addr$'),type:phrase),query:(match_phrase:(flow.server.ip.addr:'\$flow.server.ip.addr$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.client.ip.addr,negate:!f,params:(query:'\$flow.client.ip.addr$'),type:phrase),query:(match_phrase:(flow.client.ip.addr:'\$flow.client.ip.addr$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.l4.port.name,negate:!f,params:(query:'\$flow.server.l4.port.name$'),type:phrase),query:(match_phrase:(flow.server.l4.port.name:'\$flow.server.l4.port.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
       }
     ]
   },
-  "results_index_name": "custom-elastiflow_ecs_avail_tcp_sess_fails_private",
+  "results_index_name": "custom-elastiflow_codex_avail_tcp_sess_fails_private",
   "allow_lazy_open": false
 }
 EOF
@@ -103,24 +103,17 @@ EOF
 
 DATAFEED=$( cat << EOF
 {
-  "job_id": "elastiflow_ecs_avail_tcp_sess_fails_private",
+  "job_id": "elastiflow_codex_avail_tcp_sess_fails_private",
   "indices": [
-    "elastiflow-flow-ecs-*"
+    "elastiflow-flow-codex-*"
   ],
   "query": {
     "bool": {
       "must": [
         {
           "term": {
-            "flow.locality": {
-              "value": "private"
-            }
-          }
-        },
-        {
-          "term": {
-            "network.transport": {
-              "value": "tcp"
+            "l4.proto.name": {
+              "value": "TCP"
             }
           }
         },
@@ -133,7 +126,7 @@ DATAFEED=$( cat << EOF
         },
         {
           "terms": {
-            "event.dataset": [
+            "flow.export.type": [
               "netflow",
               "ipfix"
             ]
@@ -141,26 +134,39 @@ DATAFEED=$( cat << EOF
         },
         {
           "exists": {
-            "field": "client.ip"
+            "field": "flow.client.ip.addr"
           }
         },
         {
           "exists": {
-            "field": "server.ip"
+            "field": "flow.server.ip.addr"
           }
         },
         {
           "exists": {
             "field": "flow.server.l4.port.name"
           }
+        },
+        {
+          "term": {
+            "flow.locality": {
+              "value": "private"
+            }
+          }
         }
       ],
       "must_not": [
         {
           "terms": {
-            "client.ip": [
+            "flow.client.ip.addr": [
               "169.254.0.0/16",
               "fe80::/10"
+            ]
+          }
+        },
+        {
+          "terms": {
+            "flow.server.ip.addr": [
             ]
           }
         }
@@ -186,7 +192,7 @@ DATAFEED=$( cat << EOF
 EOF
 )
 
-echo ""; echo "Installing anomaly_detector elastiflow_ecs_avail_tcp_sess_fails_private ..."
-curl -XPUT -o /dev/null -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/anomaly_detectors/elastiflow_ecs_avail_tcp_sess_fails_private?pretty -H "Content-Type: application/json" -d "${DETECTOR}"
-echo ""; echo "Installing datafeed elastiflow_ecs_avail_tcp_sess_fails_private ..."
-curl -XPUT -o /dev/null -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/datafeeds/datafeed-elastiflow_ecs_avail_tcp_sess_fails_private?pretty -H "Content-Type: application/json" -d "${DATAFEED}"
+echo ""; echo "Installing anomaly_detector elastiflow_codex_avail_tcp_sess_fails_private ..."
+curl -XPUT -o /dev/null -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/anomaly_detectors/elastiflow_codex_avail_tcp_sess_fails_private?pretty -H "Content-Type: application/json" -d "${DETECTOR}"
+echo ""; echo "Installing datafeed elastiflow_codex_avail_tcp_sess_fails_private ..."
+curl -XPUT -o /dev/null -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/datafeeds/datafeed-elastiflow_codex_avail_tcp_sess_fails_private?pretty -H "Content-Type: application/json" -d "${DATAFEED}"

@@ -1,5 +1,5 @@
 ###################################################################################################
-# (C)Copyright 2021 ElastiFlow Inc.
+# (C)Copyright 2022 ElastiFlow Inc.
 # All Rights Reserved
 # 
 # RESTRICTED RIGHTS
@@ -52,7 +52,7 @@ DETECTOR=$( cat << EOF
     "activity"
   ],
   "analysis_config": {
-    "bucket_span": "60m",
+    "bucket_span": "30m",
     "detectors": [
       {
         "detector_description": "Rare Conversation",
@@ -88,10 +88,6 @@ DETECTOR=$( cat << EOF
       {
         "url_name": "Top Talkers",
         "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.conversation.id,negate:!f,params:(query:'\$flow.conversation.id$'),type:phrase),query:(match_phrase:(flow.conversation.id:'\$flow.conversation.id$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
-      },
-      {
-        "url_name": "Threats",
-        "url_value": "dashboards#/view/f7fbc0b0-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.conversation.id,negate:!f,params:(query:'\$flow.conversation.id$'),type:phrase),query:(match_phrase:(flow.conversation.id:'\$flow.conversation.id$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
       },
       {
         "url_name": "Flow Records",

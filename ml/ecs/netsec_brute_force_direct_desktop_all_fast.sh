@@ -1,5 +1,5 @@
 ###################################################################################################
-# (C)Copyright 2021 ElastiFlow Inc.
+# (C)Copyright 2022 ElastiFlow Inc.
 # All Rights Reserved
 # 
 # RESTRICTED RIGHTS
@@ -45,19 +45,21 @@ fi
 DETECTOR=$( cat << EOF
 {
   "job_type": "anomaly_detector",
-  "description": "Failed TCP Sessions (public)",
+  "description": "Brute Force Direct Remote Desktop Access - all (fast)",
   "groups": [
     "elastiflow",
-    "availability"
+    "security",
+    "access"
   ],
   "analysis_config": {
     "bucket_span": "10m",
     "detectors": [
       {
-        "detector_description": "Excessive Unestablished Connections",
-        "function": "high_count",
-        "over_field_name": "client.ip",
+        "detector_description": "Excessive Access Attempts",
+        "function": "high_distinct_count",
+        "field_name": "client.port",
         "by_field_name": "flow.server.l4.port.name",
+        "over_field_name": "client.ip",
         "partition_field_name": "server.ip",
         "detector_index": 0
       }
@@ -71,7 +73,7 @@ DETECTOR=$( cat << EOF
     ]
   },
   "analysis_limits": {
-    "model_memory_limit": "4096mb"
+    "model_memory_limit": "1024mb"
   },
   "data_description": {
     "time_field": "@timestamp",
@@ -86,8 +88,16 @@ DETECTOR=$( cat << EOF
   "custom_settings": {
     "custom_urls": [
       {
+        "url_name": "RiskIQ PassiveTotal",
+        "url_value": "https://community.riskiq.com/research?query=\$client.ip$"
+      },
+      {
         "url_name": "Top Conversations",
         "url_value": "dashboards#/view/c2da3880-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:server.ip,negate:!f,params:(query:'\$server.ip$'),type:phrase),query:(match_phrase:(server.ip:'\$server.ip$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:client.ip,negate:!f,params:(query:'\$client.ip$'),type:phrase),query:(match_phrase:(client.ip:'\$client.ip$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.server.l4.port.name,negate:!f,params:(query:'\$flow.server.l4.port.name$'),type:phrase),query:(match_phrase:(flow.server.l4.port.name:'\$flow.server.l4.port.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
+      },
+      {
+        "url_name": "Threats",
+        "url_value": "dashboards#/view/f7fbc0b0-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:server.ip,negate:!f,params:(query:'\$server.ip$'),type:phrase),query:(match_phrase:(server.ip:'\$server.ip$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:client.ip,negate:!f,params:(query:'\$client.ip$'),type:phrase),query:(match_phrase:(client.ip:'\$client.ip$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.server.l4.port.name,negate:!f,params:(query:'\$flow.server.l4.port.name$'),type:phrase),query:(match_phrase:(flow.server.l4.port.name:'\$flow.server.l4.port.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
       },
       {
         "url_name": "Flow Records",
@@ -95,7 +105,7 @@ DETECTOR=$( cat << EOF
       }
     ]
   },
-  "results_index_name": "custom-elastiflow_ecs_avail_tcp_sess_fails_public",
+  "results_index_name": "custom-elastiflow_ecs_netsec_brute_force_direct_desktop_all_fast",
   "allow_lazy_open": false
 }
 EOF
@@ -103,7 +113,7 @@ EOF
 
 DATAFEED=$( cat << EOF
 {
-  "job_id": "elastiflow_ecs_avail_tcp_sess_fails_public",
+  "job_id": "elastiflow_ecs_netsec_brute_force_direct_desktop_all_fast",
   "indices": [
     "elastiflow-flow-ecs-*"
   ],
@@ -111,37 +121,34 @@ DATAFEED=$( cat << EOF
     "bool": {
       "must": [
         {
-          "term": {
-            "network.transport": {
-              "value": "tcp"
-            }
-          }
-        },
-        {
-          "term": {
-            "l4.session.established": {
-              "value": "false"
-            }
-          }
-        },
-        {
-          "term": {
-            "client.as.organization.name": {
-              "value": "PRIVATE"
-            }
-          }
-        },
-        {
-          "terms": {
-            "event.dataset": [
-              "netflow",
-              "ipfix"
-            ]
-          }
-        },
-        {
-          "exists": {
-            "field": "server.as.organization.name"
+          "bool": {
+            "should": [
+              {
+                "terms": {
+                  "server.port": [
+                    1494,
+                    3389
+                  ]
+                }
+              },
+              {
+                "range": {
+                  "server.port": {
+                    "gte": "5900",
+                    "lte": "5904"
+                  }
+                }
+              },
+              {
+                "range": {
+                  "server.port": {
+                    "gte": "6000",
+                    "lte": "6063"
+                  }
+                }
+              }
+            ],
+            "minimum_should_match": 1
           }
         },
         {
@@ -151,28 +158,25 @@ DATAFEED=$( cat << EOF
         },
         {
           "exists": {
-            "field": "server.ip"
+            "field": "client.port"
           }
         },
         {
           "exists": {
-            "field": "flow.server.l4.port.name"
+            "field": "server.ip"
           }
         }
       ],
       "must_not": [
         {
-          "term": {
-            "server.as.organization.name": {
-              "value": "PRIVATE"
-            }
+          "terms": {
+            "client.ip": [
+            ]
           }
         },
         {
           "terms": {
-            "client.ip": [
-              "169.254.0.0/16",
-              "fe80::/10"
+            "server.ip": [
             ]
           }
         }
@@ -198,7 +202,7 @@ DATAFEED=$( cat << EOF
 EOF
 )
 
-echo ""; echo "Installing anomaly_detector elastiflow_ecs_avail_tcp_sess_fails_public ..."
-curl -XPUT -o /dev/null -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/anomaly_detectors/elastiflow_ecs_avail_tcp_sess_fails_public?pretty -H "Content-Type: application/json" -d "${DETECTOR}"
-echo ""; echo "Installing datafeed elastiflow_ecs_avail_tcp_sess_fails_public ..."
-curl -XPUT -o /dev/null -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/datafeeds/datafeed-elastiflow_ecs_avail_tcp_sess_fails_public?pretty -H "Content-Type: application/json" -d "${DATAFEED}"
+echo ""; echo "Installing anomaly_detector elastiflow_ecs_netsec_brute_force_direct_desktop_all_fast ..."
+curl -XPUT -o /dev/null -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/anomaly_detectors/elastiflow_ecs_netsec_brute_force_direct_desktop_all_fast?pretty -H "Content-Type: application/json" -d "${DETECTOR}"
+echo ""; echo "Installing datafeed elastiflow_ecs_netsec_brute_force_direct_desktop_all_fast ..."
+curl -XPUT -o /dev/null -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/datafeeds/datafeed-elastiflow_ecs_netsec_brute_force_direct_desktop_all_fast?pretty -H "Content-Type: application/json" -d "${DATAFEED}"

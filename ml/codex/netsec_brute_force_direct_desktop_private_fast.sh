@@ -1,5 +1,5 @@
 ###################################################################################################
-# (C)Copyright 2021 ElastiFlow Inc.
+# (C)Copyright 2022 ElastiFlow Inc.
 # All Rights Reserved
 # 
 # RESTRICTED RIGHTS
@@ -45,19 +45,21 @@ fi
 DETECTOR=$( cat << EOF
 {
   "job_type": "anomaly_detector",
-  "description": "Failed TCP Sessions (private)",
+  "description": "Brute Force Direct Remote Desktop Access - private (fast)",
   "groups": [
     "elastiflow",
-    "availability"
+    "security",
+    "access"
   ],
   "analysis_config": {
     "bucket_span": "10m",
     "detectors": [
       {
-        "detector_description": "Excessive Unestablished Connections",
-        "function": "high_count",
-        "over_field_name": "flow.client.ip.addr",
+        "detector_description": "Excessive Access Attempts",
+        "function": "high_distinct_count",
+        "field_name": "flow.client.l4.port.id",
         "by_field_name": "flow.server.l4.port.name",
+        "over_field_name": "flow.client.ip.addr",
         "partition_field_name": "flow.server.ip.addr",
         "detector_index": 0
       }
@@ -71,7 +73,7 @@ DETECTOR=$( cat << EOF
     ]
   },
   "analysis_limits": {
-    "model_memory_limit": "4096mb"
+    "model_memory_limit": "512mb"
   },
   "data_description": {
     "time_field": "@timestamp",
@@ -95,7 +97,7 @@ DETECTOR=$( cat << EOF
       }
     ]
   },
-  "results_index_name": "custom-elastiflow_codex_avail_tcp_sess_fails_private",
+  "results_index_name": "custom-elastiflow_codex_netsec_brute_force_direct_desktop_private_fast",
   "allow_lazy_open": false
 }
 EOF
@@ -103,7 +105,7 @@ EOF
 
 DATAFEED=$( cat << EOF
 {
-  "job_id": "elastiflow_codex_avail_tcp_sess_fails_private",
+  "job_id": "elastiflow_codex_netsec_brute_force_direct_desktop_private_fast",
   "indices": [
     "elastiflow-flow-codex-*"
   ],
@@ -111,32 +113,34 @@ DATAFEED=$( cat << EOF
     "bool": {
       "must": [
         {
-          "term": {
-            "flow.locality": {
-              "value": "private"
-            }
-          }
-        },
-        {
-          "term": {
-            "l4.proto.name": {
-              "value": "TCP"
-            }
-          }
-        },
-        {
-          "term": {
-            "l4.session.established": {
-              "value": "false"
-            }
-          }
-        },
-        {
-          "terms": {
-            "flow.export.type": [
-              "netflow",
-              "ipfix"
-            ]
+          "bool": {
+            "should": [
+              {
+                "terms": {
+                  "flow.server.l4.port.id": [
+                    1494,
+                    3389
+                  ]
+                }
+              },
+              {
+                "range": {
+                  "flow.server.l4.port.id": {
+                    "gte": "5900",
+                    "lte": "5904"
+                  }
+                }
+              },
+              {
+                "range": {
+                  "flow.server.l4.port.id": {
+                    "gte": "6000",
+                    "lte": "6063"
+                  }
+                }
+              }
+            ],
+            "minimum_should_match": 1
           }
         },
         {
@@ -146,12 +150,17 @@ DATAFEED=$( cat << EOF
         },
         {
           "exists": {
-            "field": "flow.server.ip.addr"
+            "field": "flow.client.l4.port.id"
           }
         },
         {
           "exists": {
-            "field": "flow.server.l4.port.name"
+            "field": "flow.server.ip.addr"
+          }
+        },
+        {
+          "term": {
+            "flow.locality": "private"
           }
         }
       ],
@@ -159,8 +168,13 @@ DATAFEED=$( cat << EOF
         {
           "terms": {
             "flow.client.ip.addr": [
-              "169.254.0.0/16",
-              "fe80::/10"
+            ]
+          }
+        },
+        {
+          "terms": {
+            "flow.server.ip.addr": [
+              "255.255.255.255"
             ]
           }
         }
@@ -186,7 +200,7 @@ DATAFEED=$( cat << EOF
 EOF
 )
 
-echo ""; echo "Installing anomaly_detector elastiflow_codex_avail_tcp_sess_fails_private ..."
-curl -XPUT -o /dev/null -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/anomaly_detectors/elastiflow_codex_avail_tcp_sess_fails_private?pretty -H "Content-Type: application/json" -d "${DETECTOR}"
-echo ""; echo "Installing datafeed elastiflow_codex_avail_tcp_sess_fails_private ..."
-curl -XPUT -o /dev/null -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/datafeeds/datafeed-elastiflow_codex_avail_tcp_sess_fails_private?pretty -H "Content-Type: application/json" -d "${DATAFEED}"
+echo ""; echo "Installing anomaly_detector elastiflow_codex_netsec_brute_force_direct_desktop_private_fast ..."
+curl -XPUT -o /dev/null -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/anomaly_detectors/elastiflow_codex_netsec_brute_force_direct_desktop_private_fast?pretty -H "Content-Type: application/json" -d "${DETECTOR}"
+echo ""; echo "Installing datafeed elastiflow_codex_netsec_brute_force_direct_desktop_private_fast ..."
+curl -XPUT -o /dev/null -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/datafeeds/datafeed-elastiflow_codex_netsec_brute_force_direct_desktop_private_fast?pretty -H "Content-Type: application/json" -d "${DATAFEED}"

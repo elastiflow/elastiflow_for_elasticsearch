@@ -1,5 +1,5 @@
 ###################################################################################################
-# (C)Copyright 2021 ElastiFlow Inc.
+# (C)Copyright 2022 ElastiFlow Inc.
 # All Rights Reserved
 # 
 # RESTRICTED RIGHTS
@@ -82,10 +82,6 @@ DETECTOR=$( cat << EOF
   "daily_model_snapshot_retention_after_days": 1,
   "custom_settings": {
     "custom_urls": [
-      {
-        "url_name": "RiskIQ PassiveTotal",
-        "url_value": "https://community.riskiq.com/research?query=\$flow.src.ip.addr$"
-      },
       {
         "url_name": "Flow Records",
         "url_value": "dashboards#/view/bf9f8a70-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.ip.addr,negate:!f,params:(query:'\$flow.src.ip.addr$'),type:phrase),query:(match_phrase:(flow.src.ip.addr:'\$flow.src.ip.addr$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:l4.proto.name,negate:!f,params:!(ICMP,IPv6-ICMP),type:phrases),query:(bool:(minimum_should_match:1,should:!((match_phrase:(l4.proto.name:'ICMP')),(match_phrase:(l4.proto.name:'IPv6-ICMP')))))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:icmp.type.name,negate:!f,params:(query:'Echo'),type:phrase),query:(match_phrase:(icmp.type.name:'Echo'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.locality,negate:!f,params:(query:'private'),type:phrase),query:(match_phrase:(flow.locality:'private')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"

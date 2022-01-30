@@ -1,5 +1,5 @@
 ###################################################################################################
-# (C)Copyright 2021 ElastiFlow Inc.
+# (C)Copyright 2022 ElastiFlow Inc.
 # All Rights Reserved
 # 
 # RESTRICTED RIGHTS
@@ -43,45 +43,9 @@ if [[ "$PASSWORD" = "" ]]; then
 fi
 
 echo ""; echo "Installing all ECS-compatible anomaly_detectors and datafeeds ..."; echo ""
+./avail_tcp_sess_fails_inbound.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./avail_tcp_sess_fails_outbound.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./avail_tcp_sess_fails_private.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./avail_tcp_sess_fails_public.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_chargen_amplification.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_ddos_generic_tcp.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_ddos_generic_udp_amplification.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_dns_amplification.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_icmp_flood_ddos.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_icmp_flood_direct.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_kad_amplification.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_ldap_amplification.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_mdns_amplification.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_memcached_amplification.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_mssql_amplification.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_netbios_amplification.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_ntp_amplification.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_port_scan_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_port_scan_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_qotd_amplification.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_quake_amplification.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_radius_amplification.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_rare_asn_client.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_rare_asn_server.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_rare_conversation_inbound.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_rare_conversation_outbound.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_rare_conversation_private.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_rip_amplification.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_rpc_amplification.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_sentinel_spss_amplification.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_snmp_amplification.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_ssdp_amplification.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_steam_amplification.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_syn_flood_ddos.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_syn_flood_direct.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_tftp_amplification.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_wsd_amplification.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./perf_asn_dst_throughput.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./perf_asn_src_throughput.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./perf_netif_egress_throughput.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./perf_netif_ingress_throughput.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 
 ./netsec_brute_force_direct_cli_all_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_brute_force_direct_cli_all_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
@@ -100,6 +64,63 @@ echo ""; echo "Installing all ECS-compatible anomaly_detectors and datafeeds ...
 ./netsec_brute_force_distrib_cli_private_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_brute_force_distrib_cli_private_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 
+./netsec_brute_force_direct_desktop_all_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_brute_force_direct_desktop_all_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_brute_force_direct_desktop_inbound_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_brute_force_direct_desktop_inbound_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_brute_force_direct_desktop_outbound_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_brute_force_direct_desktop_outbound_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_brute_force_direct_desktop_private_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_brute_force_direct_desktop_private_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_brute_force_distrib_desktop_all_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_brute_force_distrib_desktop_all_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_brute_force_distrib_desktop_inbound_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_brute_force_distrib_desktop_inbound_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_brute_force_distrib_desktop_outbound_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_brute_force_distrib_desktop_outbound_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_brute_force_distrib_desktop_private_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_brute_force_distrib_desktop_private_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+
+./netsec_ddos_generic_tcp.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_ddos_generic_udp_amplification.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+
+./netsec_icmp_flood_ddos_inbound.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_icmp_flood_ddos_outbound.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_icmp_flood_ddos_private.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_icmp_flood_direct_inbound.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_icmp_flood_direct_outbound.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_icmp_flood_direct_private.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+
+./netsec_icmp_scan_direct_all_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_icmp_scan_direct_all_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_icmp_scan_direct_inbound_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_icmp_scan_direct_inbound_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_icmp_scan_direct_outbound_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_icmp_scan_direct_outbound_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_icmp_scan_direct_private_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_icmp_scan_direct_private_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+
+./netsec_chargen_amplification.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_dns_amplification.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_kad_amplification.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_ldap_amplification.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_mdns_amplification.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_memcached_amplification.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_mssql_amplification.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_netbios_amplification.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_ntp_amplification.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_qotd_amplification.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_quake_amplification.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_radius_amplification.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_rip_amplification.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_rpc_amplification.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_sentinel_spss_amplification.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_snmp_amplification.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_ssdp_amplification.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_steam_amplification.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_tftp_amplification.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_wsd_amplification.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+
 ./netsec_port_scan_direct_all_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_port_scan_direct_all_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_port_scan_direct_inbound_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
@@ -117,11 +138,23 @@ echo ""; echo "Installing all ECS-compatible anomaly_detectors and datafeeds ...
 ./netsec_port_scan_distrib_private_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_port_scan_distrib_private_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 
-./netsec_icmp_scan_direct_all_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_icmp_scan_direct_all_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_icmp_scan_direct_inbound_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_icmp_scan_direct_inbound_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_icmp_scan_direct_outbound_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_icmp_scan_direct_outbound_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_icmp_scan_direct_private_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_icmp_scan_direct_private_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_rare_asn_client.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_rare_asn_server.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_rare_conversation_inbound.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_rare_conversation_outbound.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_rare_conversation_private.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_rare_geo_country_inbound.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_rare_geo_country_outbound.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_rare_geo_country_private.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+
+./netsec_syn_flood_ddos_inbound.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_syn_flood_ddos_outbound.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_syn_flood_ddos_private.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_syn_flood_direct_inbound.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_syn_flood_direct_outbound.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_syn_flood_direct_private.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+
+./perf_asn_dst_throughput.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./perf_asn_src_throughput.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./perf_netif_egress_throughput.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./perf_netif_ingress_throughput.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}

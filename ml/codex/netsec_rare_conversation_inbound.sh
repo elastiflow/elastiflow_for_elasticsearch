@@ -1,5 +1,5 @@
 ###################################################################################################
-# (C)Copyright 2021 ElastiFlow Inc.
+# (C)Copyright 2022 ElastiFlow Inc.
 # All Rights Reserved
 # 
 # RESTRICTED RIGHTS
@@ -52,7 +52,7 @@ DETECTOR=$( cat << EOF
     "activity"
   ],
   "analysis_config": {
-    "bucket_span": "60m",
+    "bucket_span": "30m",
     "detectors": [
       {
         "detector_description": "Rare Conversation",
