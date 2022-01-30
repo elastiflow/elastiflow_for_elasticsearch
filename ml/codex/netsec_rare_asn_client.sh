@@ -144,6 +144,6 @@ EOF
 )
 
 echo ""; echo "Installing anomaly_detector elastiflow_codex_netsec_rare_asn_client ..."
-curl -XPUT -o /dev/null -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/anomaly_detectors/elastiflow_codex_netsec_rare_asn_client?pretty -H "Content-Type: application/json" -d "${DETECTOR}"
+curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/anomaly_detectors/elastiflow_codex_netsec_rare_asn_client?pretty -H "Content-Type: application/json" -d "${DETECTOR}"
 echo ""; echo "Installing datafeed elastiflow_codex_netsec_rare_asn_client ..."
-curl -XPUT -o /dev/null -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/datafeeds/datafeed-elastiflow_codex_netsec_rare_asn_client?pretty -H "Content-Type: application/json" -d "${DATAFEED}"
+curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/datafeeds/datafeed-elastiflow_codex_netsec_rare_asn_client?pretty -H "Content-Type: application/json" -d "${DATAFEED}"
