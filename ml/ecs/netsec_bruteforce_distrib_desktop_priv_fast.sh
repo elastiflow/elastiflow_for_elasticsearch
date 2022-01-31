@@ -159,13 +159,13 @@ DATAFEED=$( cat << EOF
       "must_not": [
         {
           "terms": {
-            "flow.client.ip.addr": [
+            "client.ip: [
             ]
           }
         },
         {
           "terms": {
-            "flow.server.ip.addr": [
+            "server.ip": [
               "255.255.255.255"
             ]
           }

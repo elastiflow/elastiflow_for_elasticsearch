@@ -168,13 +168,13 @@ DATAFEED=$( cat << EOF
         },
         {
           "terms": {
-            "flow.client.ip.addr": [
+            "client.ip": [
             ]
           }
         },
         {
           "terms": {
-            "flow.server.ip.addr": [
+            "server.ip": [
             ]
           }
         }
