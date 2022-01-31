@@ -88,7 +88,7 @@ DETECTOR=$( cat << EOF
       }
     ]
   },
-  "results_index_name": "custom-elastiflow_ecs_netsec_icmp_scan_direct_priv_slow",
+  "results_index_name": "custom-elastiflow_codex_netsec_icmp_scan_direct_priv_slow",
   "allow_lazy_open": false
 }
 EOF
@@ -96,7 +96,7 @@ EOF
 
 DATAFEED=$( cat << EOF
 {
-  "job_id": "elastiflow_ecs_netsec_icmp_scan_direct_priv_slow",
+  "job_id": "elastiflow_codex_netsec_icmp_scan_direct_priv_slow",
   "indices": [
     "elastiflow-flow-codex-*"
   ],
@@ -167,7 +167,7 @@ DATAFEED=$( cat << EOF
 EOF
 )
 
-echo ""; echo "Installing anomaly_detector elastiflow_ecs_netsec_icmp_scan_direct_priv_slow ..."
-curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/anomaly_detectors/elastiflow_ecs_netsec_icmp_scan_direct_priv_slow?pretty -H "Content-Type: application/json" -d "${DETECTOR}"
-echo ""; echo "Installing datafeed elastiflow_ecs_netsec_icmp_scan_direct_priv_slow ..."
-curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/datafeeds/datafeed-elastiflow_ecs_netsec_icmp_scan_direct_priv_slow?pretty -H "Content-Type: application/json" -d "${DATAFEED}"
+echo ""; echo "Installing anomaly_detector elastiflow_codex_netsec_icmp_scan_direct_priv_slow ..."
+curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/anomaly_detectors/elastiflow_codex_netsec_icmp_scan_direct_priv_slow?pretty -H "Content-Type: application/json" -d "${DETECTOR}"
+echo ""; echo "Installing datafeed elastiflow_codex_netsec_icmp_scan_direct_priv_slow ..."
+curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/datafeeds/datafeed-elastiflow_codex_netsec_icmp_scan_direct_priv_slow?pretty -H "Content-Type: application/json" -d "${DATAFEED}"

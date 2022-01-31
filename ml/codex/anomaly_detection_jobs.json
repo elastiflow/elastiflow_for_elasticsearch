@@ -11360,7 +11360,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_icmp_scan_direct_all_fast",
+      "job_id": "elastiflow_codex_netsec_icmp_scan_direct_all_fast",
       "custom_settings": {
         "custom_urls": [
           {
@@ -11409,12 +11409,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_icmp_scan_direct_all_fast",
+      "results_index_name": "custom-elastiflow_codex_netsec_icmp_scan_direct_all_fast",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_icmp_scan_direct_all_fast",
-      "job_id": "elastiflow_ecs_netsec_icmp_scan_direct_all_fast",
+      "datafeed_id": "datafeed-elastiflow_codex_netsec_icmp_scan_direct_all_fast",
+      "job_id": "elastiflow_codex_netsec_icmp_scan_direct_all_fast",
       "query": {
         "bool": {
           "must": [
@@ -11467,7 +11467,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_icmp_scan_direct_all_slow",
+      "job_id": "elastiflow_codex_netsec_icmp_scan_direct_all_slow",
       "custom_settings": {
         "custom_urls": [
           {
@@ -11516,12 +11516,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_icmp_scan_direct_all_slow",
+      "results_index_name": "custom-elastiflow_codex_netsec_icmp_scan_direct_all_slow",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_icmp_scan_direct_all_slow",
-      "job_id": "elastiflow_ecs_netsec_icmp_scan_direct_all_slow",
+      "datafeed_id": "datafeed-elastiflow_codex_netsec_icmp_scan_direct_all_slow",
+      "job_id": "elastiflow_codex_netsec_icmp_scan_direct_all_slow",
       "query": {
         "bool": {
           "must": [
@@ -11574,7 +11574,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_icmp_scan_direct_in_fast",
+      "job_id": "elastiflow_codex_netsec_icmp_scan_direct_in_fast",
       "custom_settings": {
         "custom_urls": [
           {
@@ -11623,12 +11623,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_icmp_scan_direct_in_fast",
+      "results_index_name": "custom-elastiflow_codex_netsec_icmp_scan_direct_in_fast",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_icmp_scan_direct_in_fast",
-      "job_id": "elastiflow_ecs_netsec_icmp_scan_direct_in_fast",
+      "datafeed_id": "datafeed-elastiflow_codex_netsec_icmp_scan_direct_in_fast",
+      "job_id": "elastiflow_codex_netsec_icmp_scan_direct_in_fast",
       "query": {
         "bool": {
           "must": [
@@ -11691,7 +11691,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_icmp_scan_direct_in_slow",
+      "job_id": "elastiflow_codex_netsec_icmp_scan_direct_in_slow",
       "custom_settings": {
         "custom_urls": [
           {
@@ -11740,12 +11740,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_icmp_scan_direct_in_slow",
+      "results_index_name": "custom-elastiflow_codex_netsec_icmp_scan_direct_in_slow",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_icmp_scan_direct_in_slow",
-      "job_id": "elastiflow_ecs_netsec_icmp_scan_direct_in_slow",
+      "datafeed_id": "datafeed-elastiflow_codex_netsec_icmp_scan_direct_in_slow",
+      "job_id": "elastiflow_codex_netsec_icmp_scan_direct_in_slow",
       "query": {
         "bool": {
           "must": [
@@ -11808,7 +11808,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_icmp_scan_direct_out_fast",
+      "job_id": "elastiflow_codex_netsec_icmp_scan_direct_out_fast",
       "custom_settings": {
         "custom_urls": [
           {
@@ -11857,12 +11857,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_icmp_scan_direct_out_fast",
+      "results_index_name": "custom-elastiflow_codex_netsec_icmp_scan_direct_out_fast",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_icmp_scan_direct_out_fast",
-      "job_id": "elastiflow_ecs_netsec_icmp_scan_direct_out_fast",
+      "datafeed_id": "datafeed-elastiflow_codex_netsec_icmp_scan_direct_out_fast",
+      "job_id": "elastiflow_codex_netsec_icmp_scan_direct_out_fast",
       "query": {
         "bool": {
           "must": [
@@ -11925,7 +11925,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_icmp_scan_direct_out_slow",
+      "job_id": "elastiflow_codex_netsec_icmp_scan_direct_out_slow",
       "custom_settings": {
         "custom_urls": [
           {
@@ -11974,12 +11974,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_icmp_scan_direct_out_slow",
+      "results_index_name": "custom-elastiflow_codex_netsec_icmp_scan_direct_out_slow",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_icmp_scan_direct_out_slow",
-      "job_id": "elastiflow_ecs_netsec_icmp_scan_direct_out_slow",
+      "datafeed_id": "datafeed-elastiflow_codex_netsec_icmp_scan_direct_out_slow",
+      "job_id": "elastiflow_codex_netsec_icmp_scan_direct_out_slow",
       "query": {
         "bool": {
           "must": [
@@ -12042,7 +12042,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_icmp_scan_direct_priv_fast",
+      "job_id": "elastiflow_codex_netsec_icmp_scan_direct_priv_fast",
       "custom_settings": {
         "custom_urls": [
           {
@@ -12087,12 +12087,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_icmp_scan_direct_priv_fast",
+      "results_index_name": "custom-elastiflow_codex_netsec_icmp_scan_direct_priv_fast",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_icmp_scan_direct_priv_fast",
-      "job_id": "elastiflow_ecs_netsec_icmp_scan_direct_priv_fast",
+      "datafeed_id": "datafeed-elastiflow_codex_netsec_icmp_scan_direct_priv_fast",
+      "job_id": "elastiflow_codex_netsec_icmp_scan_direct_priv_fast",
       "query": {
         "bool": {
           "must": [
@@ -12150,7 +12150,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_icmp_scan_direct_priv_slow",
+      "job_id": "elastiflow_codex_netsec_icmp_scan_direct_priv_slow",
       "custom_settings": {
         "custom_urls": [
           {
@@ -12195,12 +12195,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_icmp_scan_direct_priv_slow",
+      "results_index_name": "custom-elastiflow_codex_netsec_icmp_scan_direct_priv_slow",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_icmp_scan_direct_priv_slow",
-      "job_id": "elastiflow_ecs_netsec_icmp_scan_direct_priv_slow",
+      "datafeed_id": "datafeed-elastiflow_codex_netsec_icmp_scan_direct_priv_slow",
+      "job_id": "elastiflow_codex_netsec_icmp_scan_direct_priv_slow",
       "query": {
         "bool": {
           "must": [
