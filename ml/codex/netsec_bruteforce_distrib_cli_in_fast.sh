@@ -49,7 +49,8 @@ DETECTOR=$( cat << EOF
   "groups": [
     "elastiflow",
     "security",
-    "access"
+    "access",
+    "bruteforce"
   ],
   "analysis_config": {
     "bucket_span": "10m",

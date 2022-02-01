@@ -4585,7 +4585,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_chargen_amplify_edge",
+      "job_id": "elastiflow_ecs_netsec_amplify_chargen_edge",
       "custom_settings": {
         "custom_urls": [
           {
@@ -4634,12 +4634,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_chargen_amplify_edge",
+      "results_index_name": "custom-elastiflow_ecs_netsec_amplify_chargen_edge",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_chargen_amplify_edge",
-      "job_id": "elastiflow_ecs_netsec_chargen_amplify_edge",
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_amplify_chargen_edge",
+      "job_id": "elastiflow_ecs_netsec_amplify_chargen_edge",
       "query": {
         "bool": {
           "must": [
@@ -4801,7 +4801,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_ddos_generic_udp_amplify_edge",
+      "job_id": "elastiflow_ecs_netsec_amplify_generic_udp_edge",
       "custom_settings": {
         "custom_urls": [
           {
@@ -4819,7 +4819,7 @@
         "security",
         "ddos"
       ],
-      "description": "Generic DDoS Attack (UDP Amplification) - edge",
+      "description": "Generic UDP Amplification Attack - edge",
       "analysis_config": {
         "bucket_span": "5m",
         "detectors": [
@@ -4853,12 +4853,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_ddos_generic_udp_amplify_edge",
+      "results_index_name": "custom-elastiflow_ecs_netsec_amplify_generic_udp_edge",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_ddos_generic_udp_amplify_edge",
-      "job_id": "elastiflow_ecs_netsec_ddos_generic_udp_amplify_edge",
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_amplify_generic_udp_edge",
+      "job_id": "elastiflow_ecs_netsec_amplify_generic_udp_edge",
       "query": {
         "bool": {
           "must": [
@@ -4940,7 +4940,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_dns_amplify_edge",
+      "job_id": "elastiflow_ecs_netsec_amplify_dns_edge",
       "custom_settings": {
         "custom_urls": [
           {
@@ -4989,12 +4989,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_dns_amplify_edge",
+      "results_index_name": "custom-elastiflow_ecs_netsec_amplify_dns_edge",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_dns_amplify_edge",
-      "job_id": "elastiflow_ecs_netsec_dns_amplify_edge",
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_amplify_dns_edge",
+      "job_id": "elastiflow_ecs_netsec_amplify_dns_edge",
       "query": {
         "bool": {
           "must": [
@@ -6660,7 +6660,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_kad_amplify_edge",
+      "job_id": "elastiflow_ecs_netsec_amplify_kad_edge",
       "custom_settings": {
         "custom_urls": [
           {
@@ -6709,12 +6709,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_kad_amplify_edge",
+      "results_index_name": "custom-elastiflow_ecs_netsec_amplify_kad_edge",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_kad_amplify_edge",
-      "job_id": "elastiflow_ecs_netsec_kad_amplify_edge",
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_amplify_kad_edge",
+      "job_id": "elastiflow_ecs_netsec_amplify_kad_edge",
       "query": {
         "bool": {
           "must": [
@@ -6764,7 +6764,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_ldap_amplify_edge",
+      "job_id": "elastiflow_ecs_netsec_amplify_ldap_edge",
       "custom_settings": {
         "custom_urls": [
           {
@@ -6813,12 +6813,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_ldap_amplify_edge",
+      "results_index_name": "custom-elastiflow_ecs_netsec_amplify_ldap_edge",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_ldap_amplify_edge",
-      "job_id": "elastiflow_ecs_netsec_ldap_amplify_edge",
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_amplify_ldap_edge",
+      "job_id": "elastiflow_ecs_netsec_amplify_ldap_edge",
       "query": {
         "bool": {
           "must": [
@@ -6868,7 +6868,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_mdns_amplify_edge",
+      "job_id": "elastiflow_ecs_netsec_amplify_mdns_edge",
       "custom_settings": {
         "custom_urls": [
           {
@@ -6917,12 +6917,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_mdns_amplify_edge",
+      "results_index_name": "custom-elastiflow_ecs_netsec_amplify_mdns_edge",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_mdns_amplify_edge",
-      "job_id": "elastiflow_ecs_netsec_mdns_amplify_edge",
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_amplify_mdns_edge",
+      "job_id": "elastiflow_ecs_netsec_amplify_mdns_edge",
       "query": {
         "bool": {
           "must": [
@@ -6972,7 +6972,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_memcached_amplify_edge",
+      "job_id": "elastiflow_ecs_netsec_amplify_memcached_edge",
       "custom_settings": {
         "custom_urls": [
           {
@@ -7021,12 +7021,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_memcached_amplify_edge",
+      "results_index_name": "custom-elastiflow_ecs_netsec_amplify_memcached_edge",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_memcached_amplify_edge",
-      "job_id": "elastiflow_ecs_netsec_memcached_amplify_edge",
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_amplify_memcached_edge",
+      "job_id": "elastiflow_ecs_netsec_amplify_memcached_edge",
       "query": {
         "bool": {
           "must": [
@@ -7076,7 +7076,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_mssql_amplify_edge",
+      "job_id": "elastiflow_ecs_netsec_amplify_mssql_edge",
       "custom_settings": {
         "custom_urls": [
           {
@@ -7125,12 +7125,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_mssql_amplify_edge",
+      "results_index_name": "custom-elastiflow_ecs_netsec_amplify_mssql_edge",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_mssql_amplify_edge",
-      "job_id": "elastiflow_ecs_netsec_mssql_amplify_edge",
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_amplify_mssql_edge",
+      "job_id": "elastiflow_ecs_netsec_amplify_mssql_edge",
       "query": {
         "bool": {
           "must": [
@@ -7180,7 +7180,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_netbios_amplify_edge",
+      "job_id": "elastiflow_ecs_netsec_amplify_netbios_edge",
       "custom_settings": {
         "custom_urls": [
           {
@@ -7229,12 +7229,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_netbios_amplify_edge",
+      "results_index_name": "custom-elastiflow_ecs_netsec_amplify_netbios_edge",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_netbios_amplify_edge",
-      "job_id": "elastiflow_ecs_netsec_netbios_amplify_edge",
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_amplify_netbios_edge",
+      "job_id": "elastiflow_ecs_netsec_amplify_netbios_edge",
       "query": {
         "bool": {
           "must": [
@@ -7284,7 +7284,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_ntp_amplify_edge",
+      "job_id": "elastiflow_ecs_netsec_amplify_ntp_edge",
       "custom_settings": {
         "custom_urls": [
           {
@@ -7333,12 +7333,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_ntp_amplify_edge",
+      "results_index_name": "custom-elastiflow_ecs_netsec_amplify_ntp_edge",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_ntp_amplify_edge",
-      "job_id": "elastiflow_ecs_netsec_ntp_amplify_edge",
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_amplify_ntp_edge",
+      "job_id": "elastiflow_ecs_netsec_amplify_ntp_edge",
       "query": {
         "bool": {
           "must": [
@@ -9168,7 +9168,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_qotd_amplify_edge",
+      "job_id": "elastiflow_ecs_netsec_amplify_qotd_edge",
       "custom_settings": {
         "custom_urls": [
           {
@@ -9217,12 +9217,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_qotd_amplify_edge",
+      "results_index_name": "custom-elastiflow_ecs_netsec_amplify_qotd_edge",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_qotd_amplify_edge",
-      "job_id": "elastiflow_ecs_netsec_qotd_amplify_edge",
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_amplify_qotd_edge",
+      "job_id": "elastiflow_ecs_netsec_amplify_qotd_edge",
       "query": {
         "bool": {
           "must": [
@@ -9272,7 +9272,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_quake_amplify_edge",
+      "job_id": "elastiflow_ecs_netsec_amplify_quake_edge",
       "custom_settings": {
         "custom_urls": [
           {
@@ -9321,12 +9321,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_quake_amplify_edge",
+      "results_index_name": "custom-elastiflow_ecs_netsec_amplify_quake_edge",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_quake_amplify_edge",
-      "job_id": "elastiflow_ecs_netsec_quake_amplify_edge",
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_amplify_quake_edge",
+      "job_id": "elastiflow_ecs_netsec_amplify_quake_edge",
       "query": {
         "bool": {
           "must": [
@@ -9376,7 +9376,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_radius_amplify_edge",
+      "job_id": "elastiflow_ecs_netsec_amplify_radius_edge",
       "custom_settings": {
         "custom_urls": [
           {
@@ -9428,12 +9428,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_radius_amplify_edge",
+      "results_index_name": "custom-elastiflow_ecs_netsec_amplify_radius_edge",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_radius_amplify_edge",
-      "job_id": "elastiflow_ecs_netsec_radius_amplify_edge",
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_amplify_radius_edge",
+      "job_id": "elastiflow_ecs_netsec_amplify_radius_edge",
       "query": {
         "bool": {
           "must": [
@@ -10275,7 +10275,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_rip_amplify_edge",
+      "job_id": "elastiflow_ecs_netsec_amplify_rip_edge",
       "custom_settings": {
         "custom_urls": [
           {
@@ -10324,12 +10324,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_rip_amplify_edge",
+      "results_index_name": "custom-elastiflow_ecs_netsec_amplify_rip_edge",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_rip_amplify_edge",
-      "job_id": "elastiflow_ecs_netsec_rip_amplify_edge",
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_amplify_rip_edge",
+      "job_id": "elastiflow_ecs_netsec_amplify_rip_edge",
       "query": {
         "bool": {
           "must": [
@@ -10379,7 +10379,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_rpc_amplify_edge",
+      "job_id": "elastiflow_ecs_netsec_amplify_rpc_edge",
       "custom_settings": {
         "custom_urls": [
           {
@@ -10428,12 +10428,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_rpc_amplify_edge",
+      "results_index_name": "custom-elastiflow_ecs_netsec_amplify_rpc_edge",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_rpc_amplify_edge",
-      "job_id": "elastiflow_ecs_netsec_rpc_amplify_edge",
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_amplify_rpc_edge",
+      "job_id": "elastiflow_ecs_netsec_amplify_rpc_edge",
       "query": {
         "bool": {
           "must": [
@@ -10483,7 +10483,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_sentinel_spss_amplify_edge",
+      "job_id": "elastiflow_ecs_netsec_amplify_sentinel_spss_edge",
       "custom_settings": {
         "custom_urls": [
           {
@@ -10532,12 +10532,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_sentinel_spss_amplify_edge",
+      "results_index_name": "custom-elastiflow_ecs_netsec_amplify_sentinel_spss_edge",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_sentinel_spss_amplify_edge",
-      "job_id": "elastiflow_ecs_netsec_sentinel_spss_amplify_edge",
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_amplify_sentinel_spss_edge",
+      "job_id": "elastiflow_ecs_netsec_amplify_sentinel_spss_edge",
       "query": {
         "bool": {
           "must": [
@@ -10587,7 +10587,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_snmp_amplify_edge",
+      "job_id": "elastiflow_ecs_netsec_amplify_snmp_edge",
       "custom_settings": {
         "custom_urls": [
           {
@@ -10636,12 +10636,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_snmp_amplify_edge",
+      "results_index_name": "custom-elastiflow_ecs_netsec_amplify_snmp_edge",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_snmp_amplify_edge",
-      "job_id": "elastiflow_ecs_netsec_snmp_amplify_edge",
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_amplify_snmp_edge",
+      "job_id": "elastiflow_ecs_netsec_amplify_snmp_edge",
       "query": {
         "bool": {
           "must": [
@@ -10691,7 +10691,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_ssdp_amplify_edge",
+      "job_id": "elastiflow_ecs_netsec_amplify_ssdp_edge",
       "custom_settings": {
         "custom_urls": [
           {
@@ -10740,12 +10740,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_ssdp_amplify_edge",
+      "results_index_name": "custom-elastiflow_ecs_netsec_amplify_ssdp_edge",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_ssdp_amplify_edge",
-      "job_id": "elastiflow_ecs_netsec_ssdp_amplify_edge",
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_amplify_ssdp_edge",
+      "job_id": "elastiflow_ecs_netsec_amplify_ssdp_edge",
       "query": {
         "bool": {
           "must": [
@@ -10795,7 +10795,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_steam_amplify_edge",
+      "job_id": "elastiflow_ecs_netsec_amplify_steam_edge",
       "custom_settings": {
         "custom_urls": [
           {
@@ -10844,12 +10844,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_steam_amplify_edge",
+      "results_index_name": "custom-elastiflow_ecs_netsec_amplify_steam_edge",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_steam_amplify_edge",
-      "job_id": "elastiflow_ecs_netsec_steam_amplify_edge",
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_amplify_steam_edge",
+      "job_id": "elastiflow_ecs_netsec_amplify_steam_edge",
       "query": {
         "bool": {
           "must": [
@@ -11632,7 +11632,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_tftp_amplify_edge",
+      "job_id": "elastiflow_ecs_netsec_amplify_tftp_edge",
       "custom_settings": {
         "custom_urls": [
           {
@@ -11681,12 +11681,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_tftp_amplify_edge",
+      "results_index_name": "custom-elastiflow_ecs_netsec_amplify_tftp_edge",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_tftp_amplify_edge",
-      "job_id": "elastiflow_ecs_netsec_tftp_amplify_edge",
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_amplify_tftp_edge",
+      "job_id": "elastiflow_ecs_netsec_amplify_tftp_edge",
       "query": {
         "bool": {
           "must": [
@@ -11736,7 +11736,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_wsd_amplify_edge",
+      "job_id": "elastiflow_ecs_netsec_amplify_wsd_edge",
       "custom_settings": {
         "custom_urls": [
           {
@@ -11785,12 +11785,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_wsd_amplify_edge",
+      "results_index_name": "custom-elastiflow_ecs_netsec_amplify_wsd_edge",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_wsd_amplify_edge",
-      "job_id": "elastiflow_ecs_netsec_wsd_amplify_edge",
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_amplify_wsd_edge",
+      "job_id": "elastiflow_ecs_netsec_amplify_wsd_edge",
       "query": {
         "bool": {
           "must": [
