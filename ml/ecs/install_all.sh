@@ -47,16 +47,16 @@ echo ""; echo "Installing all ECS-compatible anomaly_detectors and datafeeds ...
 ./avail_tcp_sess_fails_out.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./avail_tcp_sess_fails_priv.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 
-./netsec_bruteforce_direct_cli_all_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_bruteforce_direct_cli_all_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_bruteforce_direct_cli_edge_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_bruteforce_direct_cli_edge_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_bruteforce_direct_cli_in_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_bruteforce_direct_cli_in_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_bruteforce_direct_cli_out_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_bruteforce_direct_cli_out_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_bruteforce_direct_cli_priv_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_bruteforce_direct_cli_priv_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_bruteforce_distrib_cli_all_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_bruteforce_distrib_cli_all_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_bruteforce_distrib_cli_edge_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_bruteforce_distrib_cli_edge_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_bruteforce_distrib_cli_in_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_bruteforce_distrib_cli_in_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_bruteforce_distrib_cli_out_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
@@ -64,16 +64,16 @@ echo ""; echo "Installing all ECS-compatible anomaly_detectors and datafeeds ...
 ./netsec_bruteforce_distrib_cli_priv_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_bruteforce_distrib_cli_priv_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 
-./netsec_bruteforce_direct_desktop_all_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_bruteforce_direct_desktop_all_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_bruteforce_direct_desktop_edge_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_bruteforce_direct_desktop_edge_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_bruteforce_direct_desktop_in_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_bruteforce_direct_desktop_in_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_bruteforce_direct_desktop_out_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_bruteforce_direct_desktop_out_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_bruteforce_direct_desktop_priv_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_bruteforce_direct_desktop_priv_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_bruteforce_distrib_desktop_all_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_bruteforce_distrib_desktop_all_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_bruteforce_distrib_desktop_edge_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_bruteforce_distrib_desktop_edge_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_bruteforce_distrib_desktop_in_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_bruteforce_distrib_desktop_in_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_bruteforce_distrib_desktop_out_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
@@ -91,8 +91,8 @@ echo ""; echo "Installing all ECS-compatible anomaly_detectors and datafeeds ...
 ./netsec_icmp_flood_direct_out.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_icmp_flood_direct_priv.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 
-./netsec_icmp_scan_direct_all_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_icmp_scan_direct_all_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_icmp_scan_direct_edge_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_icmp_scan_direct_edge_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_icmp_scan_direct_in_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_icmp_scan_direct_in_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_icmp_scan_direct_out_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
@@ -121,16 +121,16 @@ echo ""; echo "Installing all ECS-compatible anomaly_detectors and datafeeds ...
 ./netsec_tftp_amplify.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_wsd_amplify.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 
-./netsec_port_scan_direct_all_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_port_scan_direct_all_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_port_scan_direct_edge_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_port_scan_direct_edge_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_port_scan_direct_in_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_port_scan_direct_in_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_port_scan_direct_out_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_port_scan_direct_out_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_port_scan_direct_priv_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_port_scan_direct_priv_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_port_scan_distrib_all_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_port_scan_distrib_all_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_port_scan_distrib_edge_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_port_scan_distrib_edge_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_port_scan_distrib_in_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_port_scan_distrib_in_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_port_scan_distrib_out_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}

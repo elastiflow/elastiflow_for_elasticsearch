@@ -45,7 +45,7 @@ fi
 DETECTOR=$( cat << EOF
 {
   "job_type": "anomaly_detector",
-  "description": "Brute Force Distributed Remote Desktop Access - all (fast)",
+  "description": "Brute Force Distributed CLI Access - edge (fast)",
   "groups": [
     "elastiflow",
     "security",
@@ -98,7 +98,7 @@ DETECTOR=$( cat << EOF
       }
     ]
   },
-  "results_index_name": "custom-elastiflow_ecs_netsec_bruteforce_distrib_desktop_all_fast",
+  "results_index_name": "custom-elastiflow_ecs_netsec_bruteforce_distrib_cli_edge_fast",
   "allow_lazy_open": false
 }
 EOF
@@ -106,7 +106,7 @@ EOF
 
 DATAFEED=$( cat << EOF
 {
-  "job_id": "elastiflow_ecs_netsec_bruteforce_distrib_desktop_all_fast",
+  "job_id": "elastiflow_ecs_netsec_bruteforce_distrib_cli_edge_fast",
   "indices": [
     "elastiflow-flow-ecs-*"
   ],
@@ -114,34 +114,11 @@ DATAFEED=$( cat << EOF
     "bool": {
       "must": [
         {
-          "bool": {
-            "should": [
-              {
-                "terms": {
-                  "server.port": [
-                    1494,
-                    3389
-                  ]
-                }
-              },
-              {
-                "range": {
-                  "server.port": {
-                    "gte": "5900",
-                    "lte": "5904"
-                  }
-                }
-              },
-              {
-                "range": {
-                  "server.port": {
-                    "gte": "6000",
-                    "lte": "6063"
-                  }
-                }
-              }
-            ],
-            "minimum_should_match": 1
+          "terms": {
+            "server.port": [
+              22,
+              23
+            ]
           }
         },
         {
@@ -156,6 +133,16 @@ DATAFEED=$( cat << EOF
         }
       ],
       "must_not": [
+        {
+          "term": {
+            "client.as.organization.name": "PRIVATE"
+          }
+        },
+        {
+          "term": {
+            "server.as.organization.name": "PRIVATE"
+          }
+        },
         {
           "terms": {
             "client.ip": [
@@ -190,7 +177,7 @@ DATAFEED=$( cat << EOF
 EOF
 )
 
-echo ""; echo "Installing anomaly_detector elastiflow_ecs_netsec_bruteforce_distrib_desktop_all_fast ..."
-curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/anomaly_detectors/elastiflow_ecs_netsec_bruteforce_distrib_desktop_all_fast?pretty -H "Content-Type: application/json" -d "${DETECTOR}"
-echo ""; echo "Installing datafeed elastiflow_ecs_netsec_bruteforce_distrib_desktop_all_fast ..."
-curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/datafeeds/datafeed-elastiflow_ecs_netsec_bruteforce_distrib_desktop_all_fast?pretty -H "Content-Type: application/json" -d "${DATAFEED}"
+echo ""; echo "Installing anomaly_detector elastiflow_ecs_netsec_bruteforce_distrib_cli_edge_fast ..."
+curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/anomaly_detectors/elastiflow_ecs_netsec_bruteforce_distrib_cli_edge_fast?pretty -H "Content-Type: application/json" -d "${DETECTOR}"
+echo ""; echo "Installing datafeed elastiflow_ecs_netsec_bruteforce_distrib_cli_edge_fast ..."
+curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/datafeeds/datafeed-elastiflow_ecs_netsec_bruteforce_distrib_cli_edge_fast?pretty -H "Content-Type: application/json" -d "${DATAFEED}"

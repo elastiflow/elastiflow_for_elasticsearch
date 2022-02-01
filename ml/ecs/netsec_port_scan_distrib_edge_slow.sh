@@ -45,7 +45,7 @@ fi
 DETECTOR=$( cat << EOF
 {
   "job_type": "anomaly_detector",
-  "description": "ICMP Scan Direct - all (slow)",
+  "description": "Port Scan Distributed - edge (slow)",
   "groups": [
     "elastiflow",
     "security",
@@ -55,20 +55,20 @@ DETECTOR=$( cat << EOF
     "bucket_span": "240m",
     "detectors": [
       {
-        "detector_description": "High Unique Destination IPs",
+        "detector_description": "High Unique Ports Attempted",
         "function": "high_distinct_count",
-        "field_name": "destination.ip",
-        "over_field_name": "source.ip",
+        "field_name": "server.port",
+        "partition_field_name": "server.ip",
         "detector_index": 0
       }
     ],
     "influencers": [
-      "source.ip",
-      "source.domain"
+      "server.ip",
+      "server.domain"
     ]
   },
   "analysis_limits": {
-    "model_memory_limit": "2048mb"
+    "model_memory_limit": "8192mb"
   },
   "data_description": {
     "time_field": "@timestamp",
@@ -83,16 +83,20 @@ DETECTOR=$( cat << EOF
   "custom_settings": {
     "custom_urls": [
       {
-        "url_name": "RiskIQ PassiveTotal",
-        "url_value": "https://community.riskiq.com/research?query=\$source.ip$"
+        "url_name": "Top Talkers",
+        "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:server.ip,negate:!f,params:(query:'\$server.ip$'),type:phrase),query:(match_phrase:(server.ip:'\$server.ip$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
+      },
+      {
+        "url_name": "Threats",
+        "url_value": "dashboards#/view/f7fbc0b0-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:server.ip,negate:!f,params:(query:'\$server.ip$'),type:phrase),query:(match_phrase:(server.ip:'\$server.ip$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
       },
       {
         "url_name": "Flow Records",
-        "url_value": "dashboards#/view/bf9f8a70-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:source.ip,negate:!f,params:(query:'\$source.ip$'),type:phrase),query:(match_phrase:(source.ip:'\$source.ip$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:network.transport,negate:!f,params:!(icmp,ipv6-icmp),type:phrases),query:(bool:(minimum_should_match:1,should:!((match_phrase:(network.transport:'icmp')),(match_phrase:(network.transport:'ipv6-icmp')))))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:icmp.type.name,negate:!f,params:(query:'Echo'),type:phrase),query:(match_phrase:(icmp.type.name:'Echo')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
+        "url_value": "dashboards#/view/abfed250-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:server.ip,negate:!f,params:(query:'\$server.ip$'),type:phrase),query:(match_phrase:(server.ip:'\$server.ip$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
       }
     ]
   },
-  "results_index_name": "custom-elastiflow_ecs_netsec_icmp_scan_direct_all_slow",
+  "results_index_name": "custom-elastiflow_ecs_netsec_port_scan_distrib_edge_slow",
   "allow_lazy_open": false
 }
 EOF
@@ -100,7 +104,7 @@ EOF
 
 DATAFEED=$( cat << EOF
 {
-  "job_id": "elastiflow_ecs_netsec_icmp_scan_direct_all_slow",
+  "job_id": "elastiflow_ecs_netsec_port_scan_distrib_edge_slow",
   "indices": [
     "elastiflow-flow-ecs-*"
   ],
@@ -109,38 +113,40 @@ DATAFEED=$( cat << EOF
       "must": [
         {
           "exists": {
-            "field": "source.ip"
+            "field": "client.ip"
           }
         },
         {
           "exists": {
-            "field": "destination.ip"
+            "field": "server.ip"
           }
         },
         {
-          "terms": {
-            "network.transport": [
-              "icmp",
-              "ipv6-icmp"
-            ]
-          }
-        },
-        {
-          "term": {
-            "icmp.type.name": "Echo"
+          "exists": {
+            "field": "server.port"
           }
         }
       ],
       "must_not": [
         {
+          "term": {
+            "client.as.organization.name": "PRIVATE"
+          }
+        },
+        {
+          "term": {
+            "server.as.organization.name": "PRIVATE"
+          }
+        },
+        {
           "terms": {
-            "source.ip": [
+            "client.ip": [
             ]
           }
         },
         {
           "terms": {
-            "destination.ip": [
+            "server.ip": [
             ]
           }
         }
@@ -166,7 +172,7 @@ DATAFEED=$( cat << EOF
 EOF
 )
 
-echo ""; echo "Installing anomaly_detector elastiflow_ecs_netsec_icmp_scan_direct_all_slow ..."
-curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/anomaly_detectors/elastiflow_ecs_netsec_icmp_scan_direct_all_slow?pretty -H "Content-Type: application/json" -d "${DETECTOR}"
-echo ""; echo "Installing datafeed elastiflow_ecs_netsec_icmp_scan_direct_all_slow ..."
-curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/datafeeds/datafeed-elastiflow_ecs_netsec_icmp_scan_direct_all_slow?pretty -H "Content-Type: application/json" -d "${DATAFEED}"
+echo ""; echo "Installing anomaly_detector elastiflow_ecs_netsec_port_scan_distrib_edge_slow ..."
+curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/anomaly_detectors/elastiflow_ecs_netsec_port_scan_distrib_edge_slow?pretty -H "Content-Type: application/json" -d "${DETECTOR}"
+echo ""; echo "Installing datafeed elastiflow_ecs_netsec_port_scan_distrib_edge_slow ..."
+curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/datafeeds/datafeed-elastiflow_ecs_netsec_port_scan_distrib_edge_slow?pretty -H "Content-Type: application/json" -d "${DATAFEED}"

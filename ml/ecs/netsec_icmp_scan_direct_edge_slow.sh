@@ -45,7 +45,7 @@ fi
 DETECTOR=$( cat << EOF
 {
   "job_type": "anomaly_detector",
-  "description": "ICMP Scan Direct - all (slow)",
+  "description": "ICMP Scan Direct - edge (slow)",
   "groups": [
     "elastiflow",
     "security",
@@ -57,14 +57,14 @@ DETECTOR=$( cat << EOF
       {
         "detector_description": "High Unique Destination IPs",
         "function": "high_distinct_count",
-        "field_name": "flow.dst.ip.addr",
-        "over_field_name": "flow.src.ip.addr",
+        "field_name": "destination.ip",
+        "over_field_name": "source.ip",
         "detector_index": 0
       }
     ],
     "influencers": [
-      "flow.src.ip.addr",
-      "flow.src.host.name"
+      "source.ip",
+      "source.domain"
     ]
   },
   "analysis_limits": {
@@ -84,15 +84,15 @@ DETECTOR=$( cat << EOF
     "custom_urls": [
       {
         "url_name": "RiskIQ PassiveTotal",
-        "url_value": "https://community.riskiq.com/research?query=\$flow.src.ip.addr$"
+        "url_value": "https://community.riskiq.com/research?query=\$source.ip$"
       },
       {
         "url_name": "Flow Records",
-        "url_value": "dashboards#/view/bf9f8a70-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.ip.addr,negate:!f,params:(query:'\$flow.src.ip.addr$'),type:phrase),query:(match_phrase:(flow.src.ip.addr:'\$flow.src.ip.addr$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:l4.proto.name,negate:!f,params:!(ICMP,IPv6-ICMP),type:phrases),query:(bool:(minimum_should_match:1,should:!((match_phrase:(l4.proto.name:'ICMP')),(match_phrase:(l4.proto.name:'IPv6-ICMP')))))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:icmp.type.name,negate:!f,params:(query:'Echo'),type:phrase),query:(match_phrase:(icmp.type.name:'Echo')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
+        "url_value": "dashboards#/view/bf9f8a70-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:source.ip,negate:!f,params:(query:'\$source.ip$'),type:phrase),query:(match_phrase:(source.ip:'\$source.ip$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:network.transport,negate:!f,params:!(icmp,ipv6-icmp),type:phrases),query:(bool:(minimum_should_match:1,should:!((match_phrase:(network.transport:'icmp')),(match_phrase:(network.transport:'ipv6-icmp')))))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:icmp.type.name,negate:!f,params:(query:'Echo'),type:phrase),query:(match_phrase:(icmp.type.name:'Echo')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
       }
     ]
   },
-  "results_index_name": "custom-elastiflow_codex_netsec_icmp_scan_direct_all_slow",
+  "results_index_name": "custom-elastiflow_ecs_netsec_icmp_scan_direct_edge_slow",
   "allow_lazy_open": false
 }
 EOF
@@ -100,28 +100,28 @@ EOF
 
 DATAFEED=$( cat << EOF
 {
-  "job_id": "elastiflow_codex_netsec_icmp_scan_direct_all_slow",
+  "job_id": "elastiflow_ecs_netsec_icmp_scan_direct_edge_slow",
   "indices": [
-    "elastiflow-flow-codex-*"
+    "elastiflow-flow-ecs-*"
   ],
   "query": {
     "bool": {
       "must": [
         {
           "exists": {
-            "field": "flow.src.ip.addr"
+            "field": "source.ip"
           }
         },
         {
           "exists": {
-            "field": "flow.dst.ip.addr"
+            "field": "destination.ip"
           }
         },
         {
           "terms": {
-            "l4.proto.name": [
-              "ICMP",
-              "IPv6-ICMP"
+            "network.transport": [
+              "icmp",
+              "ipv6-icmp"
             ]
           }
         },
@@ -133,14 +133,24 @@ DATAFEED=$( cat << EOF
       ],
       "must_not": [
         {
+          "term": {
+            "source.as.organization.name": "PRIVATE"
+          }
+        },
+        {
+          "term": {
+            "destination.as.organization.name": "PRIVATE"
+          }
+        },
+        {
           "terms": {
-            "flow.src.ip.addr": [
+            "source.ip": [
             ]
           }
         },
         {
           "terms": {
-            "flow.dst.ip.addr": [
+            "destination.ip": [
             ]
           }
         }
@@ -166,7 +176,7 @@ DATAFEED=$( cat << EOF
 EOF
 )
 
-echo ""; echo "Installing anomaly_detector elastiflow_codex_netsec_icmp_scan_direct_all_slow ..."
-curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/anomaly_detectors/elastiflow_codex_netsec_icmp_scan_direct_all_slow?pretty -H "Content-Type: application/json" -d "${DETECTOR}"
-echo ""; echo "Installing datafeed elastiflow_codex_netsec_icmp_scan_direct_all_slow ..."
-curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/datafeeds/datafeed-elastiflow_codex_netsec_icmp_scan_direct_all_slow?pretty -H "Content-Type: application/json" -d "${DATAFEED}"
+echo ""; echo "Installing anomaly_detector elastiflow_ecs_netsec_icmp_scan_direct_edge_slow ..."
+curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/anomaly_detectors/elastiflow_ecs_netsec_icmp_scan_direct_edge_slow?pretty -H "Content-Type: application/json" -d "${DETECTOR}"
+echo ""; echo "Installing datafeed elastiflow_ecs_netsec_icmp_scan_direct_edge_slow ..."
+curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/datafeeds/datafeed-elastiflow_ecs_netsec_icmp_scan_direct_edge_slow?pretty -H "Content-Type: application/json" -d "${DATAFEED}"

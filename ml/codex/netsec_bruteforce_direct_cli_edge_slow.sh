@@ -45,7 +45,7 @@ fi
 DETECTOR=$( cat << EOF
 {
   "job_type": "anomaly_detector",
-  "description": "Brute Force Direct Remote Desktop Access - all (slow)",
+  "description": "Brute Force Direct CLI Access - edge (slow)",
   "groups": [
     "elastiflow",
     "security",
@@ -105,7 +105,7 @@ DETECTOR=$( cat << EOF
       }
     ]
   },
-  "results_index_name": "custom-elastiflow_codex_netsec_bruteforce_direct_desktop_all_slow",
+  "results_index_name": "custom-elastiflow_codex_netsec_bruteforce_direct_cli_edge_slow",
   "allow_lazy_open": false
 }
 EOF
@@ -113,7 +113,7 @@ EOF
 
 DATAFEED=$( cat << EOF
 {
-  "job_id": "elastiflow_codex_netsec_bruteforce_direct_desktop_all_slow",
+  "job_id": "elastiflow_codex_netsec_bruteforce_direct_cli_edge_slow",
   "indices": [
     "elastiflow-flow-codex-*"
   ],
@@ -121,34 +121,11 @@ DATAFEED=$( cat << EOF
     "bool": {
       "must": [
         {
-          "bool": {
-            "should": [
-              {
-                "terms": {
-                  "flow.server.l4.port.id": [
-                    1494,
-                    3389
-                  ]
-                }
-              },
-              {
-                "range": {
-                  "flow.server.l4.port.id": {
-                    "gte": "5900",
-                    "lte": "5904"
-                  }
-                }
-              },
-              {
-                "range": {
-                  "flow.server.l4.port.id": {
-                    "gte": "6000",
-                    "lte": "6063"
-                  }
-                }
-              }
-            ],
-            "minimum_should_match": 1
+          "terms": {
+            "flow.server.l4.port.id": [
+              22,
+              23
+            ]
           }
         },
         {
@@ -168,6 +145,16 @@ DATAFEED=$( cat << EOF
         }
       ],
       "must_not": [
+        {
+          "term": {
+            "flow.client.as.org": "PRIVATE"
+          }
+        },
+        {
+          "term": {
+            "flow.server.as.org": "PRIVATE"
+          }
+        },
         {
           "terms": {
             "flow.client.ip.addr": [
@@ -202,7 +189,7 @@ DATAFEED=$( cat << EOF
 EOF
 )
 
-echo ""; echo "Installing anomaly_detector elastiflow_codex_netsec_bruteforce_direct_desktop_all_slow ..."
-curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/anomaly_detectors/elastiflow_codex_netsec_bruteforce_direct_desktop_all_slow?pretty -H "Content-Type: application/json" -d "${DETECTOR}"
-echo ""; echo "Installing datafeed elastiflow_codex_netsec_bruteforce_direct_desktop_all_slow ..."
-curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/datafeeds/datafeed-elastiflow_codex_netsec_bruteforce_direct_desktop_all_slow?pretty -H "Content-Type: application/json" -d "${DATAFEED}"
+echo ""; echo "Installing anomaly_detector elastiflow_codex_netsec_bruteforce_direct_cli_edge_slow ..."
+curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/anomaly_detectors/elastiflow_codex_netsec_bruteforce_direct_cli_edge_slow?pretty -H "Content-Type: application/json" -d "${DETECTOR}"
+echo ""; echo "Installing datafeed elastiflow_codex_netsec_bruteforce_direct_cli_edge_slow ..."
+curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/datafeeds/datafeed-elastiflow_codex_netsec_bruteforce_direct_cli_edge_slow?pretty -H "Content-Type: application/json" -d "${DATAFEED}"

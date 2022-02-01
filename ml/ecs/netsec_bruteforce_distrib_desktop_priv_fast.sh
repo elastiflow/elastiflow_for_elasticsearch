@@ -159,7 +159,7 @@ DATAFEED=$( cat << EOF
       "must_not": [
         {
           "terms": {
-            "client.ip: [
+            "client.ip": [
             ]
           }
         },

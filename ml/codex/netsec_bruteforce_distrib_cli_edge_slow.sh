@@ -45,7 +45,7 @@ fi
 DETECTOR=$( cat << EOF
 {
   "job_type": "anomaly_detector",
-  "description": "Brute Force Distributed CLI Access - all (slow)",
+  "description": "Brute Force Distributed CLI Access - edge (slow)",
   "groups": [
     "elastiflow",
     "security",
@@ -98,7 +98,7 @@ DETECTOR=$( cat << EOF
       }
     ]
   },
-  "results_index_name": "custom-elastiflow_codex_netsec_bruteforce_distrib_cli_all_slow",
+  "results_index_name": "custom-elastiflow_codex_netsec_bruteforce_distrib_cli_edge_slow",
   "allow_lazy_open": false
 }
 EOF
@@ -106,7 +106,7 @@ EOF
 
 DATAFEED=$( cat << EOF
 {
-  "job_id": "elastiflow_codex_netsec_bruteforce_distrib_cli_all_slow",
+  "job_id": "elastiflow_codex_netsec_bruteforce_distrib_cli_edge_slow",
   "indices": [
     "elastiflow-flow-codex-*"
   ],
@@ -133,6 +133,16 @@ DATAFEED=$( cat << EOF
         }
       ],
       "must_not": [
+        {
+          "term": {
+            "flow.client.as.org": "PRIVATE"
+          }
+        },
+        {
+          "term": {
+            "flow.server.as.org": "PRIVATE"
+          }
+        },
         {
           "terms": {
             "flow.client.ip.addr": [
@@ -167,7 +177,7 @@ DATAFEED=$( cat << EOF
 EOF
 )
 
-echo ""; echo "Installing anomaly_detector elastiflow_codex_netsec_bruteforce_distrib_cli_all_slow ..."
-curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/anomaly_detectors/elastiflow_codex_netsec_bruteforce_distrib_cli_all_slow?pretty -H "Content-Type: application/json" -d "${DETECTOR}"
-echo ""; echo "Installing datafeed elastiflow_codex_netsec_bruteforce_distrib_cli_all_slow ..."
-curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/datafeeds/datafeed-elastiflow_codex_netsec_bruteforce_distrib_cli_all_slow?pretty -H "Content-Type: application/json" -d "${DATAFEED}"
+echo ""; echo "Installing anomaly_detector elastiflow_codex_netsec_bruteforce_distrib_cli_edge_slow ..."
+curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/anomaly_detectors/elastiflow_codex_netsec_bruteforce_distrib_cli_edge_slow?pretty -H "Content-Type: application/json" -d "${DETECTOR}"
+echo ""; echo "Installing datafeed elastiflow_codex_netsec_bruteforce_distrib_cli_edge_slow ..."
+curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/datafeeds/datafeed-elastiflow_codex_netsec_bruteforce_distrib_cli_edge_slow?pretty -H "Content-Type: application/json" -d "${DATAFEED}"

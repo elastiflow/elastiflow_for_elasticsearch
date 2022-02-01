@@ -45,7 +45,7 @@ fi
 DETECTOR=$( cat << EOF
 {
   "job_type": "anomaly_detector",
-  "description": "Brute Force Distributed Remote Desktop Access - all (slow)",
+  "description": "Brute Force Distributed Remote Desktop Access - edge (slow)",
   "groups": [
     "elastiflow",
     "security",
@@ -57,16 +57,16 @@ DETECTOR=$( cat << EOF
       {
         "detector_description": "Excessive Clients",
         "function": "high_distinct_count",
-        "field_name": "client.ip",
+        "field_name": "flow.client.ip.addr",
         "by_field_name": "flow.server.l4.port.name",
-        "partition_field_name": "server.ip",
+        "partition_field_name": "flow.server.ip.addr",
         "detector_index": 0
       }
     ],
     "influencers": [
       "flow.server.l4.port.name",
-      "server.ip",
-      "server.domain"
+      "flow.server.ip.addr",
+      "flow.server.host.name"
     ]
   },
   "analysis_limits": {
@@ -86,19 +86,19 @@ DETECTOR=$( cat << EOF
     "custom_urls": [
       {
         "url_name": "Top Conversations",
-        "url_value": "dashboards#/view/c2da3880-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:server.ip,negate:!f,params:(query:'\$server.ip$'),type:phrase),query:(match_phrase:(server.ip:'\$server.ip$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.server.l4.port.name,negate:!f,params:(query:'\$flow.server.l4.port.name$'),type:phrase),query:(match_phrase:(flow.server.l4.port.name:'\$flow.server.l4.port.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
+        "url_value": "dashboards#/view/c2da3880-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.ip.addr,negate:!f,params:(query:'\$flow.server.ip.addr$'),type:phrase),query:(match_phrase:(flow.server.ip.addr:'\$flow.server.ip.addr$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.l4.port.name,negate:!f,params:(query:'\$flow.server.l4.port.name$'),type:phrase),query:(match_phrase:(flow.server.l4.port.name:'\$flow.server.l4.port.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
       },
       {
         "url_name": "Threats",
-        "url_value": "dashboards#/view/f7fbc0b0-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:server.ip,negate:!f,params:(query:'\$server.ip$'),type:phrase),query:(match_phrase:(server.ip:'\$server.ip$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.server.l4.port.name,negate:!f,params:(query:'\$flow.server.l4.port.name$'),type:phrase),query:(match_phrase:(flow.server.l4.port.name:'\$flow.server.l4.port.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
+        "url_value": "dashboards#/view/f7fbc0b0-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.ip.addr,negate:!f,params:(query:'\$flow.server.ip.addr$'),type:phrase),query:(match_phrase:(flow.server.ip.addr:'\$flow.server.ip.addr$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.l4.port.name,negate:!f,params:(query:'\$flow.server.l4.port.name$'),type:phrase),query:(match_phrase:(flow.server.l4.port.name:'\$flow.server.l4.port.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
       },
       {
         "url_name": "Flow Records",
-        "url_value": "dashboards#/view/abfed250-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:server.ip,negate:!f,params:(query:'\$server.ip$'),type:phrase),query:(match_phrase:(server.ip:'\$server.ip$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.server.l4.port.name,negate:!f,params:(query:'\$flow.server.l4.port.name$'),type:phrase),query:(match_phrase:(flow.server.l4.port.name:'\$flow.server.l4.port.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
+        "url_value": "dashboards#/view/abfed250-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.ip.addr,negate:!f,params:(query:'\$flow.server.ip.addr$'),type:phrase),query:(match_phrase:(flow.server.ip.addr:'\$flow.server.ip.addr$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.l4.port.name,negate:!f,params:(query:'\$flow.server.l4.port.name$'),type:phrase),query:(match_phrase:(flow.server.l4.port.name:'\$flow.server.l4.port.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
       }
     ]
   },
-  "results_index_name": "custom-elastiflow_ecs_netsec_bruteforce_distrib_desktop_all_slow",
+  "results_index_name": "custom-elastiflow_codex_netsec_bruteforce_distrib_desktop_edge_slow",
   "allow_lazy_open": false
 }
 EOF
@@ -106,9 +106,9 @@ EOF
 
 DATAFEED=$( cat << EOF
 {
-  "job_id": "elastiflow_ecs_netsec_bruteforce_distrib_desktop_all_slow",
+  "job_id": "elastiflow_codex_netsec_bruteforce_distrib_desktop_edge_slow",
   "indices": [
-    "elastiflow-flow-ecs-*"
+    "elastiflow-flow-codex-*"
   ],
   "query": {
     "bool": {
@@ -118,7 +118,7 @@ DATAFEED=$( cat << EOF
             "should": [
               {
                 "terms": {
-                  "server.port": [
+                  "flow.server.l4.port.id": [
                     1494,
                     3389
                   ]
@@ -126,7 +126,7 @@ DATAFEED=$( cat << EOF
               },
               {
                 "range": {
-                  "server.port": {
+                  "flow.server.l4.port.id": {
                     "gte": "5900",
                     "lte": "5904"
                   }
@@ -134,7 +134,7 @@ DATAFEED=$( cat << EOF
               },
               {
                 "range": {
-                  "server.port": {
+                  "flow.server.l4.port.id": {
                     "gte": "6000",
                     "lte": "6063"
                   }
@@ -146,25 +146,35 @@ DATAFEED=$( cat << EOF
         },
         {
           "exists": {
-            "field": "client.ip"
+            "field": "flow.client.ip.addr"
           }
         },
         {
           "exists": {
-            "field": "server.ip"
+            "field": "flow.server.ip.addr"
           }
         }
       ],
       "must_not": [
         {
+          "term": {
+            "flow.client.as.org": "PRIVATE"
+          }
+        },
+        {
+          "term": {
+            "flow.server.as.org": "PRIVATE"
+          }
+        },
+        {
           "terms": {
-            "client.ip": [
+            "flow.client.ip.addr": [
             ]
           }
         },
         {
           "terms": {
-            "server.ip": [
+            "flow.server.ip.addr": [
             ]
           }
         }
@@ -190,7 +200,7 @@ DATAFEED=$( cat << EOF
 EOF
 )
 
-echo ""; echo "Installing anomaly_detector elastiflow_ecs_netsec_bruteforce_distrib_desktop_all_slow ..."
-curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/anomaly_detectors/elastiflow_ecs_netsec_bruteforce_distrib_desktop_all_slow?pretty -H "Content-Type: application/json" -d "${DETECTOR}"
-echo ""; echo "Installing datafeed elastiflow_ecs_netsec_bruteforce_distrib_desktop_all_slow ..."
-curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/datafeeds/datafeed-elastiflow_ecs_netsec_bruteforce_distrib_desktop_all_slow?pretty -H "Content-Type: application/json" -d "${DATAFEED}"
+echo ""; echo "Installing anomaly_detector elastiflow_codex_netsec_bruteforce_distrib_desktop_edge_slow ..."
+curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/anomaly_detectors/elastiflow_codex_netsec_bruteforce_distrib_desktop_edge_slow?pretty -H "Content-Type: application/json" -d "${DETECTOR}"
+echo ""; echo "Installing datafeed elastiflow_codex_netsec_bruteforce_distrib_desktop_edge_slow ..."
+curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/datafeeds/datafeed-elastiflow_codex_netsec_bruteforce_distrib_desktop_edge_slow?pretty -H "Content-Type: application/json" -d "${DATAFEED}"

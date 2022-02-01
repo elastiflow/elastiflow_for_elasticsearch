@@ -417,7 +417,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_bruteforce_direct_cli_all_fast",
+      "job_id": "elastiflow_ecs_netsec_bruteforce_direct_cli_edge_fast",
       "custom_settings": {
         "custom_urls": [
           {
@@ -443,7 +443,7 @@
         "security",
         "access"
       ],
-      "description": "Brute Force Direct CLI Access - all (fast)",
+      "description": "Brute Force Direct CLI Access - edge (fast)",
       "analysis_config": {
         "bucket_span": "10m",
         "detectors": [
@@ -479,12 +479,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_bruteforce_direct_cli_all_fast",
+      "results_index_name": "custom-elastiflow_ecs_netsec_bruteforce_direct_cli_edge_fast",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_bruteforce_direct_cli_all_fast",
-      "job_id": "elastiflow_ecs_netsec_bruteforce_direct_cli_all_fast",
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_bruteforce_direct_cli_edge_fast",
+      "job_id": "elastiflow_ecs_netsec_bruteforce_direct_cli_edge_fast",
       "query": {
         "bool": {
           "must": [
@@ -537,7 +537,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_bruteforce_direct_cli_all_slow",
+      "job_id": "elastiflow_ecs_netsec_bruteforce_direct_cli_edge_slow",
       "custom_settings": {
         "custom_urls": [
           {
@@ -563,7 +563,7 @@
         "security",
         "access"
       ],
-      "description": "Brute Force Direct CLI Access - all (slow)",
+      "description": "Brute Force Direct CLI Access - edge (slow)",
       "analysis_config": {
         "bucket_span": "240m",
         "detectors": [
@@ -599,12 +599,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_bruteforce_direct_cli_all_slow",
+      "results_index_name": "custom-elastiflow_ecs_netsec_bruteforce_direct_cli_edge_slow",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_bruteforce_direct_cli_all_slow",
-      "job_id": "elastiflow_ecs_netsec_bruteforce_direct_cli_all_slow",
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_bruteforce_direct_cli_edge_slow",
+      "job_id": "elastiflow_ecs_netsec_bruteforce_direct_cli_edge_slow",
       "query": {
         "bool": {
           "must": [
@@ -1407,7 +1407,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_bruteforce_direct_desktop_all_fast",
+      "job_id": "elastiflow_ecs_netsec_bruteforce_direct_desktop_edge_fast",
       "custom_settings": {
         "custom_urls": [
           {
@@ -1433,7 +1433,7 @@
         "security",
         "access"
       ],
-      "description": "Brute Force Direct Remote Desktop Access - all (fast)",
+      "description": "Brute Force Direct Remote Desktop Access - edge (fast)",
       "analysis_config": {
         "bucket_span": "10m",
         "detectors": [
@@ -1469,12 +1469,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_bruteforce_direct_desktop_all_fast",
+      "results_index_name": "custom-elastiflow_ecs_netsec_bruteforce_direct_desktop_edge_fast",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_bruteforce_direct_desktop_all_fast",
-      "job_id": "elastiflow_ecs_netsec_bruteforce_direct_desktop_all_fast",
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_bruteforce_direct_desktop_edge_fast",
+      "job_id": "elastiflow_ecs_netsec_bruteforce_direct_desktop_edge_fast",
       "query": {
         "bool": {
           "must": [
@@ -1550,7 +1550,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_bruteforce_direct_desktop_all_slow",
+      "job_id": "elastiflow_ecs_netsec_bruteforce_direct_desktop_edge_slow",
       "custom_settings": {
         "custom_urls": [
           {
@@ -1576,7 +1576,7 @@
         "security",
         "access"
       ],
-      "description": "Brute Force Direct Remote Desktop Access - all (slow)",
+      "description": "Brute Force Direct Remote Desktop Access - edge (slow)",
       "analysis_config": {
         "bucket_span": "240m",
         "detectors": [
@@ -1612,12 +1612,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_bruteforce_direct_desktop_all_slow",
+      "results_index_name": "custom-elastiflow_ecs_netsec_bruteforce_direct_desktop_edge_slow",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_bruteforce_direct_desktop_all_slow",
-      "job_id": "elastiflow_ecs_netsec_bruteforce_direct_desktop_all_slow",
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_bruteforce_direct_desktop_edge_slow",
+      "job_id": "elastiflow_ecs_netsec_bruteforce_direct_desktop_edge_slow",
       "query": {
         "bool": {
           "must": [
@@ -2581,7 +2581,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_bruteforce_distrib_cli_all_fast",
+      "job_id": "elastiflow_ecs_netsec_bruteforce_distrib_cli_edge_fast",
       "custom_settings": {
         "custom_urls": [
           {
@@ -2603,7 +2603,7 @@
         "security",
         "access"
       ],
-      "description": "Brute Force Distributed CLI Access - all (fast)",
+      "description": "Brute Force Distributed CLI Access - edge (fast)",
       "analysis_config": {
         "bucket_span": "10m",
         "detectors": [
@@ -2636,12 +2636,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_bruteforce_distrib_cli_all_fast",
+      "results_index_name": "custom-elastiflow_ecs_netsec_bruteforce_distrib_cli_edge_fast",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_bruteforce_distrib_cli_all_fast",
-      "job_id": "elastiflow_ecs_netsec_bruteforce_distrib_cli_all_fast",
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_bruteforce_distrib_cli_edge_fast",
+      "job_id": "elastiflow_ecs_netsec_bruteforce_distrib_cli_edge_fast",
       "query": {
         "bool": {
           "must": [
@@ -2689,7 +2689,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_bruteforce_distrib_cli_all_slow",
+      "job_id": "elastiflow_ecs_netsec_bruteforce_distrib_cli_edge_slow",
       "custom_settings": {
         "custom_urls": [
           {
@@ -2711,7 +2711,7 @@
         "security",
         "access"
       ],
-      "description": "Brute Force Distributed CLI Access - all (slow)",
+      "description": "Brute Force Distributed CLI Access - edge (slow)",
       "analysis_config": {
         "bucket_span": "240m",
         "detectors": [
@@ -2744,12 +2744,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_bruteforce_distrib_cli_all_slow",
+      "results_index_name": "custom-elastiflow_ecs_netsec_bruteforce_distrib_cli_edge_slow",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_bruteforce_distrib_cli_all_slow",
-      "job_id": "elastiflow_ecs_netsec_bruteforce_distrib_cli_all_slow",
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_bruteforce_distrib_cli_edge_slow",
+      "job_id": "elastiflow_ecs_netsec_bruteforce_distrib_cli_edge_slow",
       "query": {
         "bool": {
           "must": [
@@ -3491,7 +3491,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_bruteforce_distrib_desktop_all_fast",
+      "job_id": "elastiflow_ecs_netsec_bruteforce_distrib_desktop_edge_fast",
       "custom_settings": {
         "custom_urls": [
           {
@@ -3513,7 +3513,7 @@
         "security",
         "access"
       ],
-      "description": "Brute Force Distributed Remote Desktop Access - all (fast)",
+      "description": "Brute Force Distributed Remote Desktop Access - edge (fast)",
       "analysis_config": {
         "bucket_span": "10m",
         "detectors": [
@@ -3546,12 +3546,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_bruteforce_distrib_desktop_all_fast",
+      "results_index_name": "custom-elastiflow_ecs_netsec_bruteforce_distrib_desktop_edge_fast",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_bruteforce_distrib_desktop_all_fast",
-      "job_id": "elastiflow_ecs_netsec_bruteforce_distrib_desktop_all_fast",
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_bruteforce_distrib_desktop_edge_fast",
+      "job_id": "elastiflow_ecs_netsec_bruteforce_distrib_desktop_edge_fast",
       "query": {
         "bool": {
           "must": [
@@ -3622,7 +3622,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_bruteforce_distrib_desktop_all_slow",
+      "job_id": "elastiflow_ecs_netsec_bruteforce_distrib_desktop_edge_slow",
       "custom_settings": {
         "custom_urls": [
           {
@@ -3644,7 +3644,7 @@
         "security",
         "access"
       ],
-      "description": "Brute Force Distributed Remote Desktop Access - all (slow)",
+      "description": "Brute Force Distributed Remote Desktop Access - edge (slow)",
       "analysis_config": {
         "bucket_span": "240m",
         "detectors": [
@@ -3677,12 +3677,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_bruteforce_distrib_desktop_all_slow",
+      "results_index_name": "custom-elastiflow_ecs_netsec_bruteforce_distrib_desktop_edge_slow",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_bruteforce_distrib_desktop_all_slow",
-      "job_id": "elastiflow_ecs_netsec_bruteforce_distrib_desktop_all_slow",
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_bruteforce_distrib_desktop_edge_slow",
+      "job_id": "elastiflow_ecs_netsec_bruteforce_distrib_desktop_edge_slow",
       "query": {
         "bool": {
           "must": [
@@ -5762,7 +5762,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_icmp_scan_direct_all_fast",
+      "job_id": "elastiflow_ecs_netsec_icmp_scan_direct_edge_fast",
       "custom_settings": {
         "custom_urls": [
           {
@@ -5780,7 +5780,7 @@
         "security",
         "reconnaissance"
       ],
-      "description": "ICMP Scan Direct - all (fast)",
+      "description": "ICMP Scan Direct - edge (fast)",
       "analysis_config": {
         "bucket_span": "10m",
         "detectors": [
@@ -5811,12 +5811,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_icmp_scan_direct_all_fast",
+      "results_index_name": "custom-elastiflow_ecs_netsec_icmp_scan_direct_edge_fast",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_icmp_scan_direct_all_fast",
-      "job_id": "elastiflow_ecs_netsec_icmp_scan_direct_all_fast",
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_icmp_scan_direct_edge_fast",
+      "job_id": "elastiflow_ecs_netsec_icmp_scan_direct_edge_fast",
       "query": {
         "bool": {
           "must": [
@@ -5869,7 +5869,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_icmp_scan_direct_all_slow",
+      "job_id": "elastiflow_ecs_netsec_icmp_scan_direct_edge_slow",
       "custom_settings": {
         "custom_urls": [
           {
@@ -5887,7 +5887,7 @@
         "security",
         "reconnaissance"
       ],
-      "description": "ICMP Scan Direct - all (slow)",
+      "description": "ICMP Scan Direct - edge (slow)",
       "analysis_config": {
         "bucket_span": "240m",
         "detectors": [
@@ -5918,12 +5918,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_icmp_scan_direct_all_slow",
+      "results_index_name": "custom-elastiflow_ecs_netsec_icmp_scan_direct_edge_slow",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_icmp_scan_direct_all_slow",
-      "job_id": "elastiflow_ecs_netsec_icmp_scan_direct_all_slow",
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_icmp_scan_direct_edge_slow",
+      "job_id": "elastiflow_ecs_netsec_icmp_scan_direct_edge_slow",
       "query": {
         "bool": {
           "must": [
@@ -7388,7 +7388,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_port_scan_direct_all_fast",
+      "job_id": "elastiflow_ecs_netsec_port_scan_direct_edge_fast",
       "custom_settings": {
         "custom_urls": [
           {
@@ -7414,7 +7414,7 @@
         "security",
         "reconnaissance"
       ],
-      "description": "Port Scan Direct - all (fast)",
+      "description": "Port Scan Direct - edge (fast)",
       "analysis_config": {
         "bucket_span": "10m",
         "detectors": [
@@ -7448,12 +7448,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_port_scan_direct_all_fast",
+      "results_index_name": "custom-elastiflow_ecs_netsec_port_scan_direct_edge_fast",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_port_scan_direct_all_fast",
-      "job_id": "elastiflow_ecs_netsec_port_scan_direct_all_fast",
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_port_scan_direct_edge_fast",
+      "job_id": "elastiflow_ecs_netsec_port_scan_direct_edge_fast",
       "query": {
         "bool": {
           "must": [
@@ -7498,7 +7498,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_port_scan_direct_all_slow",
+      "job_id": "elastiflow_ecs_netsec_port_scan_direct_edge_slow",
       "custom_settings": {
         "custom_urls": [
           {
@@ -7524,7 +7524,7 @@
         "security",
         "reconnaissance"
       ],
-      "description": "Port Scan Direct - all (slow)",
+      "description": "Port Scan Direct - edge (slow)",
       "analysis_config": {
         "bucket_span": "240m",
         "detectors": [
@@ -7558,12 +7558,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_port_scan_direct_all_slow",
+      "results_index_name": "custom-elastiflow_ecs_netsec_port_scan_direct_edge_slow",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_port_scan_direct_all_slow",
-      "job_id": "elastiflow_ecs_netsec_port_scan_direct_all_slow",
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_port_scan_direct_edge_slow",
+      "job_id": "elastiflow_ecs_netsec_port_scan_direct_edge_slow",
       "query": {
         "bool": {
           "must": [
@@ -8298,7 +8298,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_port_scan_distrib_all_fast",
+      "job_id": "elastiflow_ecs_netsec_port_scan_distrib_edge_fast",
       "custom_settings": {
         "custom_urls": [
           {
@@ -8320,7 +8320,7 @@
         "security",
         "reconnaissance"
       ],
-      "description": "Port Scan Distributed - all (fast)",
+      "description": "Port Scan Distributed - edge (fast)",
       "analysis_config": {
         "bucket_span": "10m",
         "detectors": [
@@ -8351,12 +8351,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_port_scan_distrib_all_fast",
+      "results_index_name": "custom-elastiflow_ecs_netsec_port_scan_distrib_edge_fast",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_port_scan_distrib_all_fast",
-      "job_id": "elastiflow_ecs_netsec_port_scan_distrib_all_fast",
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_port_scan_distrib_edge_fast",
+      "job_id": "elastiflow_ecs_netsec_port_scan_distrib_edge_fast",
       "query": {
         "bool": {
           "must": [
@@ -8401,7 +8401,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_port_scan_distrib_all_slow",
+      "job_id": "elastiflow_ecs_netsec_port_scan_distrib_edge_slow",
       "custom_settings": {
         "custom_urls": [
           {
@@ -8423,7 +8423,7 @@
         "security",
         "reconnaissance"
       ],
-      "description": "Port Scan Distributed - all (slow)",
+      "description": "Port Scan Distributed - edge (slow)",
       "analysis_config": {
         "bucket_span": "240m",
         "detectors": [
@@ -8454,12 +8454,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_port_scan_distrib_all_slow",
+      "results_index_name": "custom-elastiflow_ecs_netsec_port_scan_distrib_edge_slow",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_port_scan_distrib_all_slow",
-      "job_id": "elastiflow_ecs_netsec_port_scan_distrib_all_slow",
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_port_scan_distrib_edge_slow",
+      "job_id": "elastiflow_ecs_netsec_port_scan_distrib_edge_slow",
       "query": {
         "bool": {
           "must": [
