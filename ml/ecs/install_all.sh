@@ -43,6 +43,8 @@ if [[ "$PASSWORD" = "" ]]; then
 fi
 
 echo ""; echo "Installing all ECS-compatible anomaly_detectors and datafeeds ..."; echo ""
+./avail_dhcp_resp_low.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./avail_dns_resp_low.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./avail_tcp_sess_fails_edge.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./avail_tcp_sess_fails_in.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./avail_tcp_sess_fails_out.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
