@@ -43,6 +43,7 @@ if [[ "$PASSWORD" = "" ]]; then
 fi
 
 echo ""; echo "Installing all CODEX-compatible anomaly_detectors and datafeeds ..."; echo ""
+./avail_tcp_sess_fails_edge.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./avail_tcp_sess_fails_in.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./avail_tcp_sess_fails_out.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./avail_tcp_sess_fails_priv.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
@@ -84,9 +85,11 @@ echo ""; echo "Installing all CODEX-compatible anomaly_detectors and datafeeds .
 ./netsec_ddos_generic_tcp.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_amplify_generic_udp_edge.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 
+./netsec_icmp_flood_ddos_edge.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_icmp_flood_ddos_in.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_icmp_flood_ddos_out.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_icmp_flood_ddos_priv.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_icmp_flood_direct_edge.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_icmp_flood_direct_in.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_icmp_flood_direct_out.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_icmp_flood_direct_priv.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
@@ -147,9 +150,11 @@ echo ""; echo "Installing all CODEX-compatible anomaly_detectors and datafeeds .
 ./netsec_rare_geo_country_out.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_rare_geo_country_priv.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 
+./netsec_syn_flood_ddos_edge.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_syn_flood_ddos_in.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_syn_flood_ddos_out.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_syn_flood_ddos_priv.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_syn_flood_direct_edge.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_syn_flood_direct_in.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_syn_flood_direct_out.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_syn_flood_direct_priv.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}

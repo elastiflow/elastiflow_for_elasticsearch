@@ -137,6 +137,11 @@ DATAFEED=$( cat << EOF
           "exists": {
             "field": "destination.ip"
           }
+        },
+        {
+          "term": {
+            "destination.as.organization.name": "PRIVATE"
+          }
         }
       ],
       "must_not": [

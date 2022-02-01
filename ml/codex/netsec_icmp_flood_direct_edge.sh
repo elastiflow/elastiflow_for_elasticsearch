@@ -45,7 +45,7 @@ fi
 DETECTOR=$( cat << EOF
 {
   "job_type": "anomaly_detector",
-  "description": "ICMP Flood Direct Attack - inbound",
+  "description": "ICMP Flood Direct Attack - edge",
   "groups": [
     "elastiflow",
     "security",
@@ -100,7 +100,7 @@ DETECTOR=$( cat << EOF
       }
     ]
   },
-  "results_index_name": "custom-elastiflow_codex_netsec_icmp_flood_direct_in",
+  "results_index_name": "custom-elastiflow_codex_netsec_icmp_flood_direct_edge",
   "allow_lazy_open": false
 }
 EOF
@@ -108,7 +108,7 @@ EOF
 
 DATAFEED=$( cat << EOF
 {
-  "job_id": "elastiflow_codex_netsec_icmp_flood_direct_in",
+  "job_id": "elastiflow_codex_netsec_icmp_flood_direct_edge",
   "indices": [
     "elastiflow-flow-codex-*"
   ],
@@ -137,17 +137,17 @@ DATAFEED=$( cat << EOF
           "exists": {
             "field": "flow.dst.ip.addr"
           }
-        },
-        {
-          "term": {
-            "flow.dst.as.org": "PRIVATE"
-          }
         }
       ],
       "must_not": [
         {
           "term": {
             "flow.src.as.org": "PRIVATE"
+          }
+        },
+        {
+          "term": {
+            "flow.dst.as.org": "PRIVATE"
           }
         },
         {
@@ -184,7 +184,7 @@ DATAFEED=$( cat << EOF
 EOF
 )
 
-echo ""; echo "Installing anomaly_detector elastiflow_codex_netsec_icmp_flood_direct_in ..."
-curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/anomaly_detectors/elastiflow_codex_netsec_icmp_flood_direct_in?pretty -H "Content-Type: application/json" -d "${DETECTOR}"
-echo ""; echo "Installing datafeed elastiflow_codex_netsec_icmp_flood_direct_in ..."
-curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/datafeeds/datafeed-elastiflow_codex_netsec_icmp_flood_direct_in?pretty -H "Content-Type: application/json" -d "${DATAFEED}"
+echo ""; echo "Installing anomaly_detector elastiflow_codex_netsec_icmp_flood_direct_edge ..."
+curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/anomaly_detectors/elastiflow_codex_netsec_icmp_flood_direct_edge?pretty -H "Content-Type: application/json" -d "${DETECTOR}"
+echo ""; echo "Installing datafeed elastiflow_codex_netsec_icmp_flood_direct_edge ..."
+curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/datafeeds/datafeed-elastiflow_codex_netsec_icmp_flood_direct_edge?pretty -H "Content-Type: application/json" -d "${DATAFEED}"
