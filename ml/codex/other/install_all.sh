@@ -43,4 +43,4 @@ if [[ "$PASSWORD" = "" ]]; then
 fi
 
 echo ""; echo "Installing all CODEX-compatible anomaly_detectors and datafeeds ..."; echo ""
-./netsec_udp_amplify.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_udp_amplify_edge.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}

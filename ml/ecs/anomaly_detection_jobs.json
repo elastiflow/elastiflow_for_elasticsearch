@@ -4585,7 +4585,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_chargen_amplify",
+      "job_id": "elastiflow_ecs_netsec_chargen_amplify_edge",
       "custom_settings": {
         "custom_urls": [
           {
@@ -4603,7 +4603,7 @@
         "security",
         "ddos"
       ],
-      "description": "CHARGEN Amplification Attack",
+      "description": "CHARGEN Amplification Attack - edge",
       "analysis_config": {
         "bucket_span": "5m",
         "detectors": [
@@ -4634,12 +4634,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_chargen_amplify",
+      "results_index_name": "custom-elastiflow_ecs_netsec_chargen_amplify_edge",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_chargen_amplify",
-      "job_id": "elastiflow_ecs_netsec_chargen_amplify",
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_chargen_amplify_edge",
+      "job_id": "elastiflow_ecs_netsec_chargen_amplify_edge",
       "query": {
         "bool": {
           "must": [
@@ -4801,7 +4801,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_ddos_generic_udp_amplify",
+      "job_id": "elastiflow_ecs_netsec_ddos_generic_udp_amplify_edge",
       "custom_settings": {
         "custom_urls": [
           {
@@ -4819,7 +4819,7 @@
         "security",
         "ddos"
       ],
-      "description": "Generic DDoS Attack (UDP Amplification)",
+      "description": "Generic DDoS Attack (UDP Amplification) - edge",
       "analysis_config": {
         "bucket_span": "5m",
         "detectors": [
@@ -4853,12 +4853,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_ddos_generic_udp_amplify",
+      "results_index_name": "custom-elastiflow_ecs_netsec_ddos_generic_udp_amplify_edge",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_ddos_generic_udp_amplify",
-      "job_id": "elastiflow_ecs_netsec_ddos_generic_udp_amplify",
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_ddos_generic_udp_amplify_edge",
+      "job_id": "elastiflow_ecs_netsec_ddos_generic_udp_amplify_edge",
       "query": {
         "bool": {
           "must": [
@@ -4940,7 +4940,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_dns_amplify",
+      "job_id": "elastiflow_ecs_netsec_dns_amplify_edge",
       "custom_settings": {
         "custom_urls": [
           {
@@ -4958,7 +4958,7 @@
         "security",
         "ddos"
       ],
-      "description": "DNS Amplification Attack",
+      "description": "DNS Amplification Attack - edge",
       "analysis_config": {
         "bucket_span": "5m",
         "detectors": [
@@ -4989,12 +4989,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_dns_amplify",
+      "results_index_name": "custom-elastiflow_ecs_netsec_dns_amplify_edge",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_dns_amplify",
-      "job_id": "elastiflow_ecs_netsec_dns_amplify",
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_dns_amplify_edge",
+      "job_id": "elastiflow_ecs_netsec_dns_amplify_edge",
       "query": {
         "bool": {
           "must": [
@@ -6660,7 +6660,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_kad_amplify",
+      "job_id": "elastiflow_ecs_netsec_kad_amplify_edge",
       "custom_settings": {
         "custom_urls": [
           {
@@ -6678,7 +6678,7 @@
         "security",
         "ddos"
       ],
-      "description": "Kad Amplification Attack",
+      "description": "Kad Amplification Attack - edge",
       "analysis_config": {
         "bucket_span": "5m",
         "detectors": [
@@ -6709,12 +6709,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_kad_amplify",
+      "results_index_name": "custom-elastiflow_ecs_netsec_kad_amplify_edge",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_kad_amplify",
-      "job_id": "elastiflow_ecs_netsec_kad_amplify",
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_kad_amplify_edge",
+      "job_id": "elastiflow_ecs_netsec_kad_amplify_edge",
       "query": {
         "bool": {
           "must": [
@@ -6764,7 +6764,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_ldap_amplify",
+      "job_id": "elastiflow_ecs_netsec_ldap_amplify_edge",
       "custom_settings": {
         "custom_urls": [
           {
@@ -6782,7 +6782,7 @@
         "security",
         "ddos"
       ],
-      "description": "LDAP Amplification Attack",
+      "description": "LDAP Amplification Attack - edge",
       "analysis_config": {
         "bucket_span": "5m",
         "detectors": [
@@ -6813,12 +6813,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_ldap_amplify",
+      "results_index_name": "custom-elastiflow_ecs_netsec_ldap_amplify_edge",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_ldap_amplify",
-      "job_id": "elastiflow_ecs_netsec_ldap_amplify",
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_ldap_amplify_edge",
+      "job_id": "elastiflow_ecs_netsec_ldap_amplify_edge",
       "query": {
         "bool": {
           "must": [
@@ -6868,7 +6868,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_mdns_amplify",
+      "job_id": "elastiflow_ecs_netsec_mdns_amplify_edge",
       "custom_settings": {
         "custom_urls": [
           {
@@ -6886,7 +6886,7 @@
         "security",
         "ddos"
       ],
-      "description": "mDNS Amplification Attack",
+      "description": "mDNS Amplification Attack - edge",
       "analysis_config": {
         "bucket_span": "5m",
         "detectors": [
@@ -6917,12 +6917,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_mdns_amplify",
+      "results_index_name": "custom-elastiflow_ecs_netsec_mdns_amplify_edge",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_mdns_amplify",
-      "job_id": "elastiflow_ecs_netsec_mdns_amplify",
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_mdns_amplify_edge",
+      "job_id": "elastiflow_ecs_netsec_mdns_amplify_edge",
       "query": {
         "bool": {
           "must": [
@@ -6972,7 +6972,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_memcached_amplify",
+      "job_id": "elastiflow_ecs_netsec_memcached_amplify_edge",
       "custom_settings": {
         "custom_urls": [
           {
@@ -6990,7 +6990,7 @@
         "security",
         "ddos"
       ],
-      "description": "Memcached Amplification Attack",
+      "description": "Memcached Amplification Attack - edge",
       "analysis_config": {
         "bucket_span": "5m",
         "detectors": [
@@ -7021,12 +7021,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_memcached_amplify",
+      "results_index_name": "custom-elastiflow_ecs_netsec_memcached_amplify_edge",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_memcached_amplify",
-      "job_id": "elastiflow_ecs_netsec_memcached_amplify",
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_memcached_amplify_edge",
+      "job_id": "elastiflow_ecs_netsec_memcached_amplify_edge",
       "query": {
         "bool": {
           "must": [
@@ -7076,7 +7076,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_mssql_amplify",
+      "job_id": "elastiflow_ecs_netsec_mssql_amplify_edge",
       "custom_settings": {
         "custom_urls": [
           {
@@ -7094,7 +7094,7 @@
         "security",
         "ddos"
       ],
-      "description": "MSSQL Amplification Attack",
+      "description": "MSSQL Amplification Attack - edge",
       "analysis_config": {
         "bucket_span": "5m",
         "detectors": [
@@ -7125,12 +7125,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_mssql_amplify",
+      "results_index_name": "custom-elastiflow_ecs_netsec_mssql_amplify_edge",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_mssql_amplify",
-      "job_id": "elastiflow_ecs_netsec_mssql_amplify",
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_mssql_amplify_edge",
+      "job_id": "elastiflow_ecs_netsec_mssql_amplify_edge",
       "query": {
         "bool": {
           "must": [
@@ -7180,7 +7180,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_netbios_amplify",
+      "job_id": "elastiflow_ecs_netsec_netbios_amplify_edge",
       "custom_settings": {
         "custom_urls": [
           {
@@ -7198,7 +7198,7 @@
         "security",
         "ddos"
       ],
-      "description": "NETBIOS Amplification Attack",
+      "description": "NETBIOS Amplification Attack - edge",
       "analysis_config": {
         "bucket_span": "5m",
         "detectors": [
@@ -7229,12 +7229,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_netbios_amplify",
+      "results_index_name": "custom-elastiflow_ecs_netsec_netbios_amplify_edge",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_netbios_amplify",
-      "job_id": "elastiflow_ecs_netsec_netbios_amplify",
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_netbios_amplify_edge",
+      "job_id": "elastiflow_ecs_netsec_netbios_amplify_edge",
       "query": {
         "bool": {
           "must": [
@@ -7284,7 +7284,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_ntp_amplify",
+      "job_id": "elastiflow_ecs_netsec_ntp_amplify_edge",
       "custom_settings": {
         "custom_urls": [
           {
@@ -7302,7 +7302,7 @@
         "security",
         "ddos"
       ],
-      "description": "NTP Amplification Attack",
+      "description": "NTP Amplification Attack - edge",
       "analysis_config": {
         "bucket_span": "5m",
         "detectors": [
@@ -7333,12 +7333,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_ntp_amplify",
+      "results_index_name": "custom-elastiflow_ecs_netsec_ntp_amplify_edge",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_ntp_amplify",
-      "job_id": "elastiflow_ecs_netsec_ntp_amplify",
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_ntp_amplify_edge",
+      "job_id": "elastiflow_ecs_netsec_ntp_amplify_edge",
       "query": {
         "bool": {
           "must": [
@@ -9168,7 +9168,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_qotd_amplify",
+      "job_id": "elastiflow_ecs_netsec_qotd_amplify_edge",
       "custom_settings": {
         "custom_urls": [
           {
@@ -9186,7 +9186,7 @@
         "security",
         "ddos"
       ],
-      "description": "QOTD Amplification Attack",
+      "description": "QOTD Amplification Attack - edge",
       "analysis_config": {
         "bucket_span": "5m",
         "detectors": [
@@ -9217,12 +9217,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_qotd_amplify",
+      "results_index_name": "custom-elastiflow_ecs_netsec_qotd_amplify_edge",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_qotd_amplify",
-      "job_id": "elastiflow_ecs_netsec_qotd_amplify",
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_qotd_amplify_edge",
+      "job_id": "elastiflow_ecs_netsec_qotd_amplify_edge",
       "query": {
         "bool": {
           "must": [
@@ -9272,7 +9272,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_quake_amplify",
+      "job_id": "elastiflow_ecs_netsec_quake_amplify_edge",
       "custom_settings": {
         "custom_urls": [
           {
@@ -9290,7 +9290,7 @@
         "security",
         "ddos"
       ],
-      "description": "Quake Amplification Attack",
+      "description": "Quake Amplification Attack - edge",
       "analysis_config": {
         "bucket_span": "5m",
         "detectors": [
@@ -9321,12 +9321,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_quake_amplify",
+      "results_index_name": "custom-elastiflow_ecs_netsec_quake_amplify_edge",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_quake_amplify",
-      "job_id": "elastiflow_ecs_netsec_quake_amplify",
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_quake_amplify_edge",
+      "job_id": "elastiflow_ecs_netsec_quake_amplify_edge",
       "query": {
         "bool": {
           "must": [
@@ -9376,7 +9376,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_radius_amplify",
+      "job_id": "elastiflow_ecs_netsec_radius_amplify_edge",
       "custom_settings": {
         "custom_urls": [
           {
@@ -9394,7 +9394,7 @@
         "security",
         "ddos"
       ],
-      "description": "RADIUS Amplification Attack",
+      "description": "RADIUS Amplification Attack - edge",
       "analysis_config": {
         "bucket_span": "5m",
         "detectors": [
@@ -9428,12 +9428,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_radius_amplify",
+      "results_index_name": "custom-elastiflow_ecs_netsec_radius_amplify_edge",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_radius_amplify",
-      "job_id": "elastiflow_ecs_netsec_radius_amplify",
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_radius_amplify_edge",
+      "job_id": "elastiflow_ecs_netsec_radius_amplify_edge",
       "query": {
         "bool": {
           "must": [
@@ -10275,7 +10275,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_rip_amplify",
+      "job_id": "elastiflow_ecs_netsec_rip_amplify_edge",
       "custom_settings": {
         "custom_urls": [
           {
@@ -10293,7 +10293,7 @@
         "security",
         "ddos"
       ],
-      "description": "RIP Amplification Attack",
+      "description": "RIP Amplification Attack - edge",
       "analysis_config": {
         "bucket_span": "5m",
         "detectors": [
@@ -10324,12 +10324,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_rip_amplify",
+      "results_index_name": "custom-elastiflow_ecs_netsec_rip_amplify_edge",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_rip_amplify",
-      "job_id": "elastiflow_ecs_netsec_rip_amplify",
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_rip_amplify_edge",
+      "job_id": "elastiflow_ecs_netsec_rip_amplify_edge",
       "query": {
         "bool": {
           "must": [
@@ -10379,7 +10379,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_rpc_amplify",
+      "job_id": "elastiflow_ecs_netsec_rpc_amplify_edge",
       "custom_settings": {
         "custom_urls": [
           {
@@ -10397,7 +10397,7 @@
         "security",
         "ddos"
       ],
-      "description": "RPC Amplification Attack",
+      "description": "RPC Amplification Attack - edge",
       "analysis_config": {
         "bucket_span": "5m",
         "detectors": [
@@ -10428,12 +10428,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_rpc_amplify",
+      "results_index_name": "custom-elastiflow_ecs_netsec_rpc_amplify_edge",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_rpc_amplify",
-      "job_id": "elastiflow_ecs_netsec_rpc_amplify",
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_rpc_amplify_edge",
+      "job_id": "elastiflow_ecs_netsec_rpc_amplify_edge",
       "query": {
         "bool": {
           "must": [
@@ -10483,7 +10483,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_sentinel_spss_amplify",
+      "job_id": "elastiflow_ecs_netsec_sentinel_spss_amplify_edge",
       "custom_settings": {
         "custom_urls": [
           {
@@ -10501,7 +10501,7 @@
         "security",
         "ddos"
       ],
-      "description": "Sentinel SPSS Amplification Attack",
+      "description": "Sentinel SPSS Amplification Attack - edge",
       "analysis_config": {
         "bucket_span": "5m",
         "detectors": [
@@ -10532,12 +10532,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_sentinel_spss_amplify",
+      "results_index_name": "custom-elastiflow_ecs_netsec_sentinel_spss_amplify_edge",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_sentinel_spss_amplify",
-      "job_id": "elastiflow_ecs_netsec_sentinel_spss_amplify",
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_sentinel_spss_amplify_edge",
+      "job_id": "elastiflow_ecs_netsec_sentinel_spss_amplify_edge",
       "query": {
         "bool": {
           "must": [
@@ -10587,7 +10587,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_snmp_amplify",
+      "job_id": "elastiflow_ecs_netsec_snmp_amplify_edge",
       "custom_settings": {
         "custom_urls": [
           {
@@ -10605,7 +10605,7 @@
         "security",
         "ddos"
       ],
-      "description": "SNMP Amplification Attack",
+      "description": "SNMP Amplification Attack - edge",
       "analysis_config": {
         "bucket_span": "5m",
         "detectors": [
@@ -10636,12 +10636,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_snmp_amplify",
+      "results_index_name": "custom-elastiflow_ecs_netsec_snmp_amplify_edge",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_snmp_amplify",
-      "job_id": "elastiflow_ecs_netsec_snmp_amplify",
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_snmp_amplify_edge",
+      "job_id": "elastiflow_ecs_netsec_snmp_amplify_edge",
       "query": {
         "bool": {
           "must": [
@@ -10691,7 +10691,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_ssdp_amplify",
+      "job_id": "elastiflow_ecs_netsec_ssdp_amplify_edge",
       "custom_settings": {
         "custom_urls": [
           {
@@ -10709,7 +10709,7 @@
         "security",
         "ddos"
       ],
-      "description": "SSDP Amplification Attack",
+      "description": "SSDP Amplification Attack - edge",
       "analysis_config": {
         "bucket_span": "5m",
         "detectors": [
@@ -10740,12 +10740,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_ssdp_amplify",
+      "results_index_name": "custom-elastiflow_ecs_netsec_ssdp_amplify_edge",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_ssdp_amplify",
-      "job_id": "elastiflow_ecs_netsec_ssdp_amplify",
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_ssdp_amplify_edge",
+      "job_id": "elastiflow_ecs_netsec_ssdp_amplify_edge",
       "query": {
         "bool": {
           "must": [
@@ -10795,7 +10795,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_steam_amplify",
+      "job_id": "elastiflow_ecs_netsec_steam_amplify_edge",
       "custom_settings": {
         "custom_urls": [
           {
@@ -10813,7 +10813,7 @@
         "security",
         "ddos"
       ],
-      "description": "Steam Amplification Attack",
+      "description": "Steam Amplification Attack - edge",
       "analysis_config": {
         "bucket_span": "5m",
         "detectors": [
@@ -10844,12 +10844,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_steam_amplify",
+      "results_index_name": "custom-elastiflow_ecs_netsec_steam_amplify_edge",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_steam_amplify",
-      "job_id": "elastiflow_ecs_netsec_steam_amplify",
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_steam_amplify_edge",
+      "job_id": "elastiflow_ecs_netsec_steam_amplify_edge",
       "query": {
         "bool": {
           "must": [
@@ -11632,7 +11632,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_tftp_amplify",
+      "job_id": "elastiflow_ecs_netsec_tftp_amplify_edge",
       "custom_settings": {
         "custom_urls": [
           {
@@ -11650,7 +11650,7 @@
         "security",
         "ddos"
       ],
-      "description": "TFTP Amplification Attack",
+      "description": "TFTP Amplification Attack - edge",
       "analysis_config": {
         "bucket_span": "5m",
         "detectors": [
@@ -11681,12 +11681,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_tftp_amplify",
+      "results_index_name": "custom-elastiflow_ecs_netsec_tftp_amplify_edge",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_tftp_amplify",
-      "job_id": "elastiflow_ecs_netsec_tftp_amplify",
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_tftp_amplify_edge",
+      "job_id": "elastiflow_ecs_netsec_tftp_amplify_edge",
       "query": {
         "bool": {
           "must": [
@@ -11736,7 +11736,7 @@
   },
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_wsd_amplify",
+      "job_id": "elastiflow_ecs_netsec_wsd_amplify_edge",
       "custom_settings": {
         "custom_urls": [
           {
@@ -11754,7 +11754,7 @@
         "security",
         "ddos"
       ],
-      "description": "WSD Amplification Attack",
+      "description": "WSD Amplification Attack - edge",
       "analysis_config": {
         "bucket_span": "5m",
         "detectors": [
@@ -11785,12 +11785,12 @@
       },
       "model_snapshot_retention_days": 10,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_wsd_amplify",
+      "results_index_name": "custom-elastiflow_ecs_netsec_wsd_amplify_edge",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_wsd_amplify",
-      "job_id": "elastiflow_ecs_netsec_wsd_amplify",
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_wsd_amplify_edge",
+      "job_id": "elastiflow_ecs_netsec_wsd_amplify_edge",
       "query": {
         "bool": {
           "must": [

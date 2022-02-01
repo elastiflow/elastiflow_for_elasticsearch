@@ -82,7 +82,7 @@ echo ""; echo "Installing all CODEX-compatible anomaly_detectors and datafeeds .
 ./netsec_bruteforce_distrib_desktop_priv_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 
 ./netsec_ddos_generic_tcp.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_ddos_generic_udp_amplify.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_ddos_generic_udp_amplify_edge.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 
 ./netsec_icmp_flood_ddos_in.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_icmp_flood_ddos_out.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
@@ -100,26 +100,26 @@ echo ""; echo "Installing all CODEX-compatible anomaly_detectors and datafeeds .
 ./netsec_icmp_scan_direct_priv_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_icmp_scan_direct_priv_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 
-./netsec_chargen_amplify.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_dns_amplify.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_kad_amplify.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_ldap_amplify.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_mdns_amplify.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_memcached_amplify.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_mssql_amplify.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_netbios_amplify.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_ntp_amplify.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_qotd_amplify.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_quake_amplify.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_radius_amplify.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_rip_amplify.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_rpc_amplify.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_sentinel_spss_amplify.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_snmp_amplify.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_ssdp_amplify.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_steam_amplify.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_tftp_amplify.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_wsd_amplify.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_chargen_amplify_edge.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_dns_amplify_edge.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_kad_amplify_edge.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_ldap_amplify_edge.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_mdns_amplify_edge.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_memcached_amplify_edge.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_mssql_amplify_edge.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_netbios_amplify_edge.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_ntp_amplify_edge.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_qotd_amplify_edge.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_quake_amplify_edge.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_radius_amplify_edge.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_rip_amplify_edge.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_rpc_amplify_edge.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_sentinel_spss_amplify_edge.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_snmp_amplify_edge.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_ssdp_amplify_edge.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_steam_amplify_edge.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_tftp_amplify_edge.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_wsd_amplify_edge.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 
 ./netsec_port_scan_direct_edge_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_port_scan_direct_edge_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}

@@ -45,7 +45,7 @@ fi
 DETECTOR=$( cat << EOF
 {
   "job_type": "anomaly_detector",
-  "description": "DNS Amplification Attack",
+  "description": "DNS Amplification Attack - edge",
   "groups": [
     "elastiflow",
     "security",
@@ -92,7 +92,7 @@ DETECTOR=$( cat << EOF
       }
     ]
   },
-  "results_index_name": "custom-elastiflow_ecs_netsec_dns_amplify",
+  "results_index_name": "custom-elastiflow_ecs_netsec_dns_amplify_edge",
   "allow_lazy_open": false
 }
 EOF
@@ -100,7 +100,7 @@ EOF
 
 DATAFEED=$( cat << EOF
 {
-  "job_id": "elastiflow_ecs_netsec_dns_amplify",
+  "job_id": "elastiflow_ecs_netsec_dns_amplify_edge",
   "indices": [
     "elastiflow-flow-ecs-*"
   ],
@@ -132,6 +132,11 @@ DATAFEED=$( cat << EOF
         {
           "term": {
             "source.as.organization.name": "PRIVATE"
+          }
+        },
+        {
+          "term": {
+            "destination.as.organization.name": "PRIVATE"
           }
         },
         {
@@ -192,7 +197,7 @@ DATAFEED=$( cat << EOF
 EOF
 )
 
-echo ""; echo "Installing anomaly_detector elastiflow_ecs_netsec_dns_amplify ..."
-curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/anomaly_detectors/elastiflow_ecs_netsec_dns_amplify?pretty -H "Content-Type: application/json" -d "${DETECTOR}"
-echo ""; echo "Installing datafeed elastiflow_ecs_netsec_dns_amplify ..."
-curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/datafeeds/datafeed-elastiflow_ecs_netsec_dns_amplify?pretty -H "Content-Type: application/json" -d "${DATAFEED}"
+echo ""; echo "Installing anomaly_detector elastiflow_ecs_netsec_dns_amplify_edge ..."
+curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/anomaly_detectors/elastiflow_ecs_netsec_dns_amplify_edge?pretty -H "Content-Type: application/json" -d "${DETECTOR}"
+echo ""; echo "Installing datafeed elastiflow_ecs_netsec_dns_amplify_edge ..."
+curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/datafeeds/datafeed-elastiflow_ecs_netsec_dns_amplify_edge?pretty -H "Content-Type: application/json" -d "${DATAFEED}"

@@ -45,7 +45,7 @@ fi
 DETECTOR=$( cat << EOF
 {
   "job_type": "anomaly_detector",
-  "description": "RADIUS Amplification Attack",
+  "description": "RADIUS Amplification Attack - edge",
   "groups": [
     "elastiflow",
     "security",
@@ -95,7 +95,7 @@ DETECTOR=$( cat << EOF
       }
     ]
   },
-  "results_index_name": "custom-elastiflow_codex_netsec_radius_amplify",
+  "results_index_name": "custom-elastiflow_codex_netsec_radius_amplify_edge",
   "allow_lazy_open": false
 }
 EOF
@@ -103,7 +103,7 @@ EOF
 
 DATAFEED=$( cat << EOF
 {
-  "job_id": "elastiflow_codex_netsec_radius_amplify",
+  "job_id": "elastiflow_codex_netsec_radius_amplify_edge",
   "indices": [
     "elastiflow-flow-codex-*"
   ],
@@ -143,8 +143,19 @@ DATAFEED=$( cat << EOF
           }
         },
         {
+          "term": {
+            "flow.dst.as.org": "PRIVATE"
+          }
+        },
+        {
           "terms": {
             "flow.src.ip.addr": [
+            ]
+          }
+        },
+        {
+          "terms": {
+            "flow.dst.ip.addr": [
             ]
           }
         }
@@ -170,7 +181,7 @@ DATAFEED=$( cat << EOF
 EOF
 )
 
-echo ""; echo "Installing anomaly_detector elastiflow_codex_netsec_radius_amplify ..."
-curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/anomaly_detectors/elastiflow_codex_netsec_radius_amplify?pretty -H "Content-Type: application/json" -d "${DETECTOR}"
-echo ""; echo "Installing datafeed elastiflow_codex_netsec_radius_amplify ..."
-curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/datafeeds/datafeed-elastiflow_codex_netsec_radius_amplify?pretty -H "Content-Type: application/json" -d "${DATAFEED}"
+echo ""; echo "Installing anomaly_detector elastiflow_codex_netsec_radius_amplify_edge ..."
+curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/anomaly_detectors/elastiflow_codex_netsec_radius_amplify_edge?pretty -H "Content-Type: application/json" -d "${DETECTOR}"
+echo ""; echo "Installing datafeed elastiflow_codex_netsec_radius_amplify_edge ..."
+curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/datafeeds/datafeed-elastiflow_codex_netsec_radius_amplify_edge?pretty -H "Content-Type: application/json" -d "${DATAFEED}"
