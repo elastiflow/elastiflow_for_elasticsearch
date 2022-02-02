@@ -161,7 +161,15 @@ echo ""; echo "Installing all CODEX-compatible anomaly_detectors and datafeeds .
 ./netsec_syn_flood_direct_out.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_syn_flood_direct_priv.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 
-./perf_asn_dst_thruput.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./perf_asn_src_thruput.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./perf_netif_egress_thruput.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./perf_netif_ingress_thruput.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./perf_asn_dst_thruput_bytes.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./perf_asn_dst_thruput_flows.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./perf_asn_dst_thruput_packets.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./perf_asn_src_thruput_bytes.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./perf_asn_src_thruput_flows.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./perf_asn_src_thruput_packets.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./perf_netif_egress_thruput_bytes.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./perf_netif_egress_thruput_flows.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./perf_netif_egress_thruput_packets.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./perf_netif_ingress_thruput_bytes.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./perf_netif_ingress_thruput_flows.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./perf_netif_ingress_thruput_packets.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}

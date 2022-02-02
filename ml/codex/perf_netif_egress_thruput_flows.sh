@@ -54,22 +54,6 @@ DETECTOR=$( cat << EOF
     "bucket_span": "15m",
     "detectors": [
       {
-        "detector_description": "Unusual Egress Bytes",
-        "function": "sum",
-        "field_name": "flow.bytes",
-        "by_field_name": "flow.out.netif.name",
-        "partition_field_name": "flow.export.host.name",
-        "detector_index": 0
-      },
-      {
-        "detector_description": "Unusual Egress Packets",
-        "function": "sum",
-        "field_name": "flow.packets",
-        "by_field_name": "flow.out.netif.name",
-        "partition_field_name": "flow.export.host.name",
-        "detector_index": 1
-      },
-      {
         "detector_description": "Unusual Egress Flows",
         "function": "count",
         "by_field_name": "flow.out.netif.name",
@@ -83,7 +67,7 @@ DETECTOR=$( cat << EOF
     ]
   },
   "analysis_limits": {
-    "model_memory_limit": "8192mb"
+    "model_memory_limit": "2048mb"
   },
   "data_description": {
     "time_field": "@timestamp",
@@ -115,7 +99,7 @@ DETECTOR=$( cat << EOF
       }
     ]
   },
-  "results_index_name": "custom-elastiflow_codex_perf_netif_egress_thruput",
+  "results_index_name": "custom-elastiflow_codex_perf_netif_egress_thruput_flows",
   "allow_lazy_open": false
 }
 EOF
@@ -123,7 +107,7 @@ EOF
 
 DATAFEED=$( cat << EOF
 {
-  "job_id": "elastiflow_codex_perf_netif_egress_thruput",
+  "job_id": "elastiflow_codex_perf_netif_egress_thruput_flows",
   "indices": [
     "elastiflow-flow-codex-*"
   ],
@@ -162,7 +146,7 @@ DATAFEED=$( cat << EOF
 EOF
 )
 
-echo ""; echo "Installing anomaly_detector elastiflow_codex_perf_netif_egress_thruput ..."
-curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/anomaly_detectors/elastiflow_codex_perf_netif_egress_thruput?pretty -H "Content-Type: application/json" -d "${DETECTOR}"
-echo ""; echo "Installing datafeed elastiflow_codex_perf_netif_egress_thruput ..."
-curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/datafeeds/datafeed-elastiflow_codex_perf_netif_egress_thruput?pretty -H "Content-Type: application/json" -d "${DATAFEED}"
+echo ""; echo "Installing anomaly_detector elastiflow_codex_perf_netif_egress_thruput_flows ..."
+curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/anomaly_detectors/elastiflow_codex_perf_netif_egress_thruput_flows?pretty -H "Content-Type: application/json" -d "${DETECTOR}"
+echo ""; echo "Installing datafeed elastiflow_codex_perf_netif_egress_thruput_flows ..."
+curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/datafeeds/datafeed-elastiflow_codex_perf_netif_egress_thruput_flows?pretty -H "Content-Type: application/json" -d "${DATAFEED}"

@@ -60,21 +60,6 @@ DETECTOR=$( cat << EOF
         "by_field_name": "observer.ingress.interface.name",
         "partition_field_name": "host.name",
         "detector_index": 0
-      },
-      {
-        "detector_description": "Unusual Ingress Packets",
-        "function": "sum",
-        "field_name": "network.packets",
-        "by_field_name": "observer.ingress.interface.name",
-        "partition_field_name": "host.name",
-        "detector_index": 1
-      },
-      {
-        "detector_description": "Unusual Ingress Flows",
-        "function": "count",
-        "by_field_name": "observer.ingress.interface.name",
-        "partition_field_name": "host.name",
-        "detector_index": 2
       }
     ],
     "influencers": [
@@ -83,7 +68,7 @@ DETECTOR=$( cat << EOF
     ]
   },
   "analysis_limits": {
-    "model_memory_limit": "8192mb"
+    "model_memory_limit": "2048mb"
   },
   "data_description": {
     "time_field": "@timestamp",
@@ -115,7 +100,7 @@ DETECTOR=$( cat << EOF
       }
     ]
   },
-  "results_index_name": "custom-elastiflow_ecs_perf_netif_ingress_thruput",
+  "results_index_name": "custom-elastiflow_ecs_perf_netif_ingress_thruput_bytes",
   "allow_lazy_open": false
 }
 EOF
@@ -123,7 +108,7 @@ EOF
 
 DATAFEED=$( cat << EOF
 {
-  "job_id": "elastiflow_ecs_perf_netif_ingress_thruput",
+  "job_id": "elastiflow_ecs_perf_netif_ingress_thruput_bytes",
   "indices": [
     "elastiflow-flow-ecs-*"
   ],
@@ -162,7 +147,7 @@ DATAFEED=$( cat << EOF
 EOF
 )
 
-echo ""; echo "Installing anomaly_detector elastiflow_ecs_perf_netif_ingress_thruput ..."
-curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/anomaly_detectors/elastiflow_ecs_perf_netif_ingress_thruput?pretty -H "Content-Type: application/json" -d "${DETECTOR}"
-echo ""; echo "Installing datafeed elastiflow_ecs_perf_netif_ingress_thruput ..."
-curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/datafeeds/datafeed-elastiflow_ecs_perf_netif_ingress_thruput?pretty -H "Content-Type: application/json" -d "${DATAFEED}"
+echo ""; echo "Installing anomaly_detector elastiflow_ecs_perf_netif_ingress_thruput_bytes ..."
+curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/anomaly_detectors/elastiflow_ecs_perf_netif_ingress_thruput_bytes?pretty -H "Content-Type: application/json" -d "${DETECTOR}"
+echo ""; echo "Installing datafeed elastiflow_ecs_perf_netif_ingress_thruput_bytes ..."
+curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/datafeeds/datafeed-elastiflow_ecs_perf_netif_ingress_thruput_bytes?pretty -H "Content-Type: application/json" -d "${DATAFEED}"

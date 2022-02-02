@@ -54,27 +54,12 @@ DETECTOR=$( cat << EOF
     "bucket_span": "15m",
     "detectors": [
       {
-        "detector_description": "Unusual Destination ASN Bytes",
-        "function": "sum",
-        "field_name": "flow.bytes",
-        "by_field_name": "flow.dst.as.label",
-        "partition_field_name": "flow.export.host.name",
-        "detector_index": 0
-      },
-      {
         "detector_description": "Unusual Destination ASN Packets",
         "function": "sum",
         "field_name": "flow.packets",
         "by_field_name": "flow.dst.as.label",
         "partition_field_name": "flow.export.host.name",
         "detector_index": 1
-      },
-      {
-        "detector_description": "Unusual Destination ASN Flows",
-        "function": "count",
-        "by_field_name": "flow.dst.as.label",
-        "partition_field_name": "flow.export.host.name",
-        "detector_index": 2
       }
     ],
     "influencers": [
@@ -83,7 +68,7 @@ DETECTOR=$( cat << EOF
     ]
   },
   "analysis_limits": {
-    "model_memory_limit": "4096mb"
+    "model_memory_limit": "1024mb"
   },
   "data_description": {
     "time_field": "@timestamp",
@@ -111,7 +96,7 @@ DETECTOR=$( cat << EOF
       }
     ]
   },
-  "results_index_name": "custom-elastiflow_codex_perf_asn_dst_thruput",
+  "results_index_name": "custom-elastiflow_codex_perf_asn_dst_thruput_packets",
   "allow_lazy_open": false
 }
 EOF
@@ -119,7 +104,7 @@ EOF
 
 DATAFEED=$( cat << EOF
 {
-  "job_id": "elastiflow_codex_perf_asn_dst_thruput",
+  "job_id": "elastiflow_codex_perf_asn_dst_thruput_packets",
   "indices": [
     "elastiflow-flow-codex-*"
   ],
@@ -158,7 +143,7 @@ DATAFEED=$( cat << EOF
 EOF
 )
 
-echo ""; echo "Installing anomaly_detector elastiflow_codex_perf_asn_dst_thruput ..."
-curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/anomaly_detectors/elastiflow_codex_perf_asn_dst_thruput?pretty -H "Content-Type: application/json" -d "${DETECTOR}"
-echo ""; echo "Installing datafeed elastiflow_codex_perf_asn_dst_thruput ..."
-curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/datafeeds/datafeed-elastiflow_codex_perf_asn_dst_thruput?pretty -H "Content-Type: application/json" -d "${DATAFEED}"
+echo ""; echo "Installing anomaly_detector elastiflow_codex_perf_asn_dst_thruput_packets ..."
+curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/anomaly_detectors/elastiflow_codex_perf_asn_dst_thruput_packets?pretty -H "Content-Type: application/json" -d "${DETECTOR}"
+echo ""; echo "Installing datafeed elastiflow_codex_perf_asn_dst_thruput_packets ..."
+curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/datafeeds/datafeed-elastiflow_codex_perf_asn_dst_thruput_packets?pretty -H "Content-Type: application/json" -d "${DATAFEED}"
