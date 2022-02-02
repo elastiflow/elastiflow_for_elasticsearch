@@ -117,16 +117,12 @@ DATAFEED=$( cat << EOF
         },
         {
           "term": {
-            "l4.session.established": {
-              "value": "true"
-            }
+            "l4.session.established": "true"
           }
         },
         {
           "term": {
-            "flow.locality": {
-              "value": "private"
-            }
+            "flow.locality": "private"
           }
         }
       ]

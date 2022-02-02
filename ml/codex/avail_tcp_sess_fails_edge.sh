@@ -112,16 +112,12 @@ DATAFEED=$( cat << EOF
       "must": [
         {
           "term": {
-            "l4.proto.name": {
-              "value": "TCP"
-            }
+            "l4.proto.name": "TCP"
           }
         },
         {
           "term": {
-            "l4.session.established": {
-              "value": "false"
-            }
+            "l4.session.established": "false"
           }
         },
         {
@@ -151,16 +147,12 @@ DATAFEED=$( cat << EOF
       "must_not": [
         {
           "term": {
-            "flow.client.as.org": {
-              "value": "PRIVATE"
-            }
+            "flow.client.as.org": "PRIVATE"
           }
         },
         {
           "term": {
-            "flow.server.as.org": {
-              "value": "PRIVATE"
-            }
+            "flow.server.as.org": "PRIVATE"
           }
         },
         {

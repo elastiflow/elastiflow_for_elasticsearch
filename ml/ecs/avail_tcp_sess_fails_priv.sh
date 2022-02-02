@@ -112,16 +112,12 @@ DATAFEED=$( cat << EOF
       "must": [
         {
           "term": {
-            "network.transport": {
-              "value": "tcp"
-            }
+            "network.transport": "tcp"
           }
         },
         {
           "term": {
-            "l4.session.established": {
-              "value": "false"
-            }
+            "l4.session.established": "false"
           }
         },
         {
@@ -149,9 +145,7 @@ DATAFEED=$( cat << EOF
         },
         {
           "term": {
-            "flow.locality": {
-              "value": "private"
-            }
+            "flow.locality": "private"
           }
         }
       ],
