@@ -58,12 +58,18 @@ DETECTOR=$( cat << EOF
         "function": "count",
         "by_field_name": "observer.ingress.interface.name",
         "partition_field_name": "host.name",
-        "detector_index": 2
+        "detector_index": 0
       }
     ],
     "influencers": [
       "host.name",
-      "observer.ingress.interface.name"
+      "observer.ingress.interface.name",
+      "source.ip",
+      "source.domain",
+      "flow.src.l4.port.name",
+      "destination.ip",
+      "destination.domain",
+      "flow.dst.l4.port.name"
     ]
   },
   "analysis_limits": {
@@ -77,7 +83,7 @@ DETECTOR=$( cat << EOF
     "enabled": true,
     "annotations_enabled": true
   },
-  "model_snapshot_retention_days": 10,
+  "model_snapshot_retention_days": 7,
   "daily_model_snapshot_retention_after_days": 1,
   "custom_settings": {
     "custom_urls": [

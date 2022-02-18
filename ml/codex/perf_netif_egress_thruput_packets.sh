@@ -59,12 +59,18 @@ DETECTOR=$( cat << EOF
         "field_name": "flow.packets",
         "by_field_name": "flow.out.netif.name",
         "partition_field_name": "flow.export.host.name",
-        "detector_index": 1
+        "detector_index": 0
       }
     ],
     "influencers": [
       "flow.export.host.name",
-      "flow.out.netif.name"
+      "flow.out.netif.name",
+      "flow.src.ip.addr",
+      "flow.src.host.name"
+      "flow.src.l4.port.name",
+      "flow.dst.ip.addr",
+      "flow.dst.host.name",
+      "flow.dst.l4.port.name"
     ]
   },
   "analysis_limits": {
@@ -78,7 +84,7 @@ DETECTOR=$( cat << EOF
     "enabled": true,
     "annotations_enabled": true
   },
-  "model_snapshot_retention_days": 10,
+  "model_snapshot_retention_days": 7,
   "daily_model_snapshot_retention_after_days": 1,
   "custom_settings": {
     "custom_urls": [

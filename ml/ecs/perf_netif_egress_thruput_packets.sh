@@ -59,12 +59,18 @@ DETECTOR=$( cat << EOF
         "field_name": "network.packets",
         "by_field_name": "observer.egress.interface.name",
         "partition_field_name": "host.name",
-        "detector_index": 1
+        "detector_index": 0
       }
     ],
     "influencers": [
       "host.name",
-      "observer.egress.interface.name"
+      "observer.egress.interface.name",
+      "source.ip",
+      "source.domain",
+      "flow.src.l4.port.name",
+      "destination.ip",
+      "destination.domain",
+      "flow.dst.l4.port.name"
     ]
   },
   "analysis_limits": {
@@ -78,7 +84,7 @@ DETECTOR=$( cat << EOF
     "enabled": true,
     "annotations_enabled": true
   },
-  "model_snapshot_retention_days": 10,
+  "model_snapshot_retention_days": 7,
   "daily_model_snapshot_retention_after_days": 1,
   "custom_settings": {
     "custom_urls": [

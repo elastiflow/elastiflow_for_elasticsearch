@@ -79,10 +79,10 @@ DETECTOR=$( cat << EOF
     "time_format": "epoch_ms"
   },
   "model_plot_config": {
-    "enabled": false,
+    "enabled": true,
     "annotations_enabled": true
   },
-  "model_snapshot_retention_days": 10,
+  "model_snapshot_retention_days": 7,
   "daily_model_snapshot_retention_after_days": 1,
   "custom_settings": {
     "custom_urls": [

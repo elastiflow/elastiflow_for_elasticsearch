@@ -56,14 +56,18 @@ DETECTOR=$( cat << EOF
       {
         "detector_description": "Unusual Source ASN Flows",
         "function": "count",
-        "by_field_name": "flow.src.as.label",
-        "partition_field_name": "flow.export.host.name",
-        "detector_index": 2
+        "partition_field_name": "flow.src.as.label",
+        "detector_index": 0
       }
     ],
     "influencers": [
       "flow.src.as.label",
-      "flow.export.host.name"
+      "flow.src.ip.addr",
+      "flow.src.host.name"
+      "flow.src.l4.port.name",
+      "flow.dst.ip.addr",
+      "flow.dst.host.name",
+      "flow.dst.l4.port.name"
     ]
   },
   "analysis_limits": {
@@ -77,21 +81,21 @@ DETECTOR=$( cat << EOF
     "enabled": true,
     "annotations_enabled": true
   },
-  "model_snapshot_retention_days": 10,
+  "model_snapshot_retention_days": 7,
   "daily_model_snapshot_retention_after_days": 1,
   "custom_settings": {
     "custom_urls": [
       {
         "url_name": "Top Talkers",
-        "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.export.host.name,negate:!f,params:(query:'\$flow.export.host.name$'),type:phrase),query:(match_phrase:(flow.export.host.name:'\$flow.export.host.name$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.as.label,negate:!f,params:(query:'\$flow.src.as.label$'),type:phrase),query:(match_phrase:(flow.src.as.label:'\$flow.src.as.label$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
+        "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.as.label,negate:!f,params:(query:'\$flow.src.as.label$'),type:phrase),query:(match_phrase:(flow.src.as.label:'\$flow.src.as.label$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
       },
       {
         "url_name": "Threats",
-        "url_value": "dashboards#/view/f7fbc0b0-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.export.host.name,negate:!f,params:(query:'\$flow.export.host.name$'),type:phrase),query:(match_phrase:(flow.export.host.name:'\$flow.export.host.name$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.as.label,negate:!f,params:(query:'\$flow.src.as.label$'),type:phrase),query:(match_phrase:(flow.src.as.label:'\$flow.src.as.label$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
+        "url_value": "dashboards#/view/f7fbc0b0-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.as.label,negate:!f,params:(query:'\$flow.src.as.label$'),type:phrase),query:(match_phrase:(flow.src.as.label:'\$flow.src.as.label$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
       },
       {
         "url_name": "Flow Records",
-        "url_value": "dashboards#/view/abfed250-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.export.host.name,negate:!f,params:(query:'\$flow.export.host.name$'),type:phrase),query:(match_phrase:(flow.export.host.name:'\$flow.export.host.name$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.as.label,negate:!f,params:(query:'\$flow.src.as.label$'),type:phrase),query:(match_phrase:(flow.src.as.label:'\$flow.src.as.label$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
+        "url_value": "dashboards#/view/abfed250-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.as.label,negate:!f,params:(query:'\$flow.src.as.label$'),type:phrase),query:(match_phrase:(flow.src.as.label:'\$flow.src.as.label$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
       }
     ]
   },
@@ -113,11 +117,6 @@ DATAFEED=$( cat << EOF
         {
           "exists": {
             "field": "flow.src.as.label"
-          }
-        },
-        {
-          "exists": {
-            "field": "flow.export.host.name"
           }
         }
       ]

@@ -57,12 +57,13 @@ DETECTOR=$( cat << EOF
       {
         "detector_description": "Low DHCP Responses",
         "function": "low_count",
-        "partition_field_name": "host.name",
+        "partition_field_name": "flow.export.host.name",
         "detector_index": 0
       }
     ],
     "influencers": [
-      "host.name"
+      "flow.src.ip.addr",
+      "flow.export.host.name"
     ]
   },
   "analysis_limits": {
@@ -73,20 +74,20 @@ DETECTOR=$( cat << EOF
     "time_format": "epoch_ms"
   },
   "model_plot_config": {
-    "enabled": false,
+    "enabled": true,
     "annotations_enabled": true
   },
-  "model_snapshot_retention_days": 10,
+  "model_snapshot_retention_days": 7,
   "daily_model_snapshot_retention_after_days": 1,
   "custom_settings": {
     "custom_urls": [
       {
         "url_name": "Top Talkers",
-        "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:host.name,negate:!f,params:(query:'\$host.name$'),type:phrase),query:(match_phrase:(host.name:'\$host.name$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:network.transport,negate:!f,params:(query:'udp'),type:phrase),query:(match_phrase:(network.transport:'udp'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:source.port,negate:!f,params:(query:67),type:phrase),query:(match_phrase:(source.port:67)))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
+        "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.export.host.name,negate:!f,params:(query:'\$flow.export.host.name$'),type:phrase),query:(match_phrase:(flow.export.host.name:'\$flow.export.host.name$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:l4.proto.name,negate:!f,params:(query:'UDP'),type:phrase),query:(match_phrase:(l4.proto.name:'UDP'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.l4.port.id,negate:!f,params:(query:67),type:phrase),query:(match_phrase:(flow.src.l4.port.id:67)))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
       },
       {
         "url_name": "Flow Records",
-        "url_value": "dashboards#/view/abfed250-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:host.name,negate:!f,params:(query:'\$host.name$'),type:phrase),query:(match_phrase:(host.name:'\$host.name$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:network.transport,negate:!f,params:(query:'udp'),type:phrase),query:(match_phrase:(network.transport:'udp'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:source.port,negate:!f,params:(query:67),type:phrase),query:(match_phrase:(source.port:67)))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
+        "url_value": "dashboards#/view/abfed250-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.export.host.name,negate:!f,params:(query:'\$flow.export.host.name$'),type:phrase),query:(match_phrase:(flow.export.host.name:'\$flow.export.host.name$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:l4.proto.name,negate:!f,params:(query:'UDP'),type:phrase),query:(match_phrase:(l4.proto.name:'UDP'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.l4.port.id,negate:!f,params:(query:67),type:phrase),query:(match_phrase:(flow.src.l4.port.id:67)))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
       }
     ]
   },
@@ -107,45 +108,35 @@ DATAFEED=$( cat << EOF
       "must": [
         {
           "term": {
-            "network.transport": "udp"
+            "l4.proto.name": "UDP"
           }
         },
         {
           "term": {
-            "source.port": 67
+            "flow.src.l4.port.id": 67
           }
         },
         {
           "exists": {
-            "field": "host.name"
+            "field": "flow.export.host.name"
           }
         },
         {
           "exists": {
-            "field": "source.ip"
-          }
-        },
-        {
-          "exists": {
-            "field": "destination.ip"
-          }
-        },
-        {
-          "exists": {
-            "field": "source.port"
+            "field": "flow.src.ip.addr"
           }
         }
       ],
       "must_not": [
         {
           "terms": {
-            "source.ip": [
+            "flow.src.ip.addr": [
             ]
           }
         },
         {
           "terms": {
-            "destination.ip": [
+            "flow.dst.ip.addr": [
             ]
           }
         }

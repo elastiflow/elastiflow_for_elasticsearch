@@ -57,14 +57,18 @@ DETECTOR=$( cat << EOF
         "detector_description": "Unusual Destination ASN Bytes",
         "function": "sum",
         "field_name": "network.bytes",
-        "by_field_name": "flow.dst.as.label",
-        "partition_field_name": "host.name",
+        "partition_field_name": "flow.dst.as.label",
         "detector_index": 0
       }
     ],
     "influencers": [
       "flow.dst.as.label",
-      "host.name"
+      "source.ip",
+      "source.domain",
+      "flow.src.l4.port.name",
+      "destination.ip",
+      "destination.domain",
+      "flow.dst.l4.port.name"
     ]
   },
   "analysis_limits": {
@@ -78,21 +82,21 @@ DETECTOR=$( cat << EOF
     "enabled": true,
     "annotations_enabled": true
   },
-  "model_snapshot_retention_days": 10,
+  "model_snapshot_retention_days": 7,
   "daily_model_snapshot_retention_after_days": 1,
   "custom_settings": {
     "custom_urls": [
       {
         "url_name": "Top Talkers",
-        "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:host.name,negate:!f,params:(query:'\$host.name$'),type:phrase),query:(match_phrase:(host.name:'\$host.name$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.dst.as.label,negate:!f,params:(query:'\$flow.dst.as.label$'),type:phrase),query:(match_phrase:(flow.dst.as.label:'\$flow.dst.as.label$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
+        "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.dst.as.label,negate:!f,params:(query:'\$flow.dst.as.label$'),type:phrase),query:(match_phrase:(flow.dst.as.label:'\$flow.dst.as.label$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
       },
       {
         "url_name": "Threats",
-        "url_value": "dashboards#/view/f7fbc0b0-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:host.name,negate:!f,params:(query:'\$host.name$'),type:phrase),query:(match_phrase:(host.name:'\$host.name$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.dst.as.label,negate:!f,params:(query:'\$flow.dst.as.label$'),type:phrase),query:(match_phrase:(flow.dst.as.label:'\$flow.dst.as.label$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
+        "url_value": "dashboards#/view/f7fbc0b0-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.dst.as.label,negate:!f,params:(query:'\$flow.dst.as.label$'),type:phrase),query:(match_phrase:(flow.dst.as.label:'\$flow.dst.as.label$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
       },
       {
         "url_name": "Flow Records",
-        "url_value": "dashboards#/view/abfed250-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:host.name,negate:!f,params:(query:'\$host.name$'),type:phrase),query:(match_phrase:(host.name:'\$host.name$'))),('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.dst.as.label,negate:!f,params:(query:'\$flow.dst.as.label$'),type:phrase),query:(match_phrase:(flow.dst.as.label:'\$flow.dst.as.label$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
+        "url_value": "dashboards#/view/abfed250-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('\$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.dst.as.label,negate:!f,params:(query:'\$flow.dst.as.label$'),type:phrase),query:(match_phrase:(flow.dst.as.label:'\$flow.dst.as.label$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'\$earliest$',to:'\$latest$'))"
       }
     ]
   },
@@ -114,11 +118,6 @@ DATAFEED=$( cat << EOF
         {
           "exists": {
             "field": "flow.dst.as.label"
-          }
-        },
-        {
-          "exists": {
-            "field": "host.name"
           }
         }
       ]
