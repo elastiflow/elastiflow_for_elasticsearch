@@ -66,7 +66,7 @@ DETECTOR=$( cat << EOF
       "flow.export.host.name",
       "flow.in.netif.name",
       "flow.src.ip.addr",
-      "flow.src.host.name"
+      "flow.src.host.name",
       "flow.src.l4.port.name",
       "flow.dst.ip.addr",
       "flow.dst.host.name",

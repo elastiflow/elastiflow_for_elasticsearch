@@ -63,7 +63,7 @@ DETECTOR=$( cat << EOF
     "influencers": [
       "flow.src.as.label",
       "flow.src.ip.addr",
-      "flow.src.host.name"
+      "flow.src.host.name",
       "flow.src.l4.port.name",
       "flow.dst.ip.addr",
       "flow.dst.host.name",
