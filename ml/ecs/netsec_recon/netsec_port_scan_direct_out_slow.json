@@ -1,0 +1,118 @@
+[
+  {
+    "job": {
+      "job_id": "elastiflow_ecs_netsec_port_scan_direct_out_slow",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:server.ip,negate:!f,params:(query:'$server.ip$'),type:phrase),query:(match_phrase:(server.ip:'$server.ip$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:client.ip,negate:!f,params:(query:'$client.ip$'),type:phrase),query:(match_phrase:(client.ip:'$client.ip$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Threats",
+            "url_value": "dashboards#/view/f7fbc0b0-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:server.ip,negate:!f,params:(query:'$server.ip$'),type:phrase),query:(match_phrase:(server.ip:'$server.ip$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:client.ip,negate:!f,params:(query:'$client.ip$'),type:phrase),query:(match_phrase:(client.ip:'$client.ip$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/abfed250-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:server.ip,negate:!f,params:(query:'$server.ip$'),type:phrase),query:(match_phrase:(server.ip:'$server.ip$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:client.ip,negate:!f,params:(query:'$client.ip$'),type:phrase),query:(match_phrase:(client.ip:'$client.ip$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "security",
+        "reconnaissance"
+      ],
+      "description": "Port Scan Direct - outbound (slow)",
+      "analysis_config": {
+        "bucket_span": "240m",
+        "detectors": [
+          {
+            "detector_description": "High Unique Ports Attempted",
+            "function": "high_distinct_count",
+            "field_name": "server.port",
+            "over_field_name": "client.ip",
+            "partition_field_name": "server.ip",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "client.ip",
+          "client.domain",
+          "server.ip",
+          "server.domain"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "2048mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": true,
+        "annotations_enabled": true
+      },
+      "model_snapshot_retention_days": 7,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_ecs_netsec_port_scan_direct_out_slow",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_port_scan_direct_out_slow",
+      "job_id": "elastiflow_ecs_netsec_port_scan_direct_out_slow",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "exists": {
+                "field": "client.ip"
+              }
+            },
+            {
+              "exists": {
+                "field": "server.ip"
+              }
+            },
+            {
+              "exists": {
+                "field": "server.port"
+              }
+            },
+            {
+              "term": {
+                "client.as.organization.name": "PRIVATE"
+              }
+            }
+          ],
+          "must_not": [
+            {
+              "term": {
+                "server.as.organization.name": "PRIVATE"
+              }
+            },
+            {
+              "terms": {
+                "client.ip": []
+              }
+            },
+            {
+              "terms": {
+                "server.ip": []
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-ecs-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  }
+]

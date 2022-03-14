@@ -1,0 +1,127 @@
+[
+  {
+    "job": {
+      "job_id": "elastiflow_ecs_netsec_icmp_flood_direct_in",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "RiskIQ PassiveTotal",
+            "url_value": "https://community.riskiq.com/research?query=$source.ip$"
+          },
+          {
+            "url_name": "Threats",
+            "url_value": "dashboards#/view/f7fbc0b0-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:event.dataset,negate:!f,params:!(ipfix,netflow),type:phrases,value:'ipfix,%20netflow'),query:(bool:(minimum_should_match:1,should:!((match_phrase:(event.dataset:ipfix)),(match_phrase:(event.dataset:netflow)))))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:network.transport,negate:!f,params:(query:'icmp'),type:phrase),query:(match_phrase:(network.transport:'icmp'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:destination.ip,negate:!f,params:(query:'$destination.ip$'),type:phrase),query:(match_phrase:(destination.ip:'$destination.ip$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:source.ip,negate:!f,params:(query:'$source.ip$'),type:phrase),query:(match_phrase:(source.ip:'$source.ip$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/bf9f8a70-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:event.dataset,negate:!f,params:!(ipfix,netflow),type:phrases,value:'ipfix,%20netflow'),query:(bool:(minimum_should_match:1,should:!((match_phrase:(event.dataset:ipfix)),(match_phrase:(event.dataset:netflow)))))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:network.transport,negate:!f,params:(query:'icmp'),type:phrase),query:(match_phrase:(network.transport:'icmp'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:destination.ip,negate:!f,params:(query:'$destination.ip$'),type:phrase),query:(match_phrase:(destination.ip:'$destination.ip$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:source.ip,negate:!f,params:(query:'$source.ip$'),type:phrase),query:(match_phrase:(source.ip:'$source.ip$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "security",
+        "ddos",
+        "flood"
+      ],
+      "description": "ICMP Flood Direct Attack - inbound",
+      "analysis_config": {
+        "bucket_span": "5m",
+        "detectors": [
+          {
+            "detector_description": "Excessive ICMP Packets",
+            "function": "high_sum",
+            "field_name": "network.packets",
+            "over_field_name": "source.ip",
+            "partition_field_name": "destination.ip",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "source.ip",
+          "source.domain",
+          "destination.ip",
+          "destination.domain"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "1024mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": true,
+        "annotations_enabled": true
+      },
+      "model_snapshot_retention_days": 7,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_ecs_netsec_icmp_flood_direct_in",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_icmp_flood_direct_in",
+      "job_id": "elastiflow_ecs_netsec_icmp_flood_direct_in",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "term": {
+                "network.transport": "icmp"
+              }
+            },
+            {
+              "terms": {
+                "event.dataset": [
+                  "netflow",
+                  "ipfix"
+                ]
+              }
+            },
+            {
+              "exists": {
+                "field": "source.ip"
+              }
+            },
+            {
+              "exists": {
+                "field": "destination.ip"
+              }
+            },
+            {
+              "term": {
+                "destination.as.organization.name": "PRIVATE"
+              }
+            }
+          ],
+          "must_not": [
+            {
+              "term": {
+                "source.as.organization.name": "PRIVATE"
+              }
+            },
+            {
+              "terms": {
+                "source.ip": []
+              }
+            },
+            {
+              "terms": {
+                "destination.ip": []
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-ecs-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  }
+]
