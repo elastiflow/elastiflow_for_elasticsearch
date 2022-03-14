@@ -45,7 +45,7 @@ fi
 DETECTOR=$( cat << EOF
 {
   "job_type": "anomaly_detector",
-  "description": "Generic DDoS Attack (TCP)",
+  "description": "TCP DDoS Attack - inbound",
   "groups": [
     "elastiflow",
     "security",
@@ -96,7 +96,7 @@ DETECTOR=$( cat << EOF
       }
     ]
   },
-  "results_index_name": "custom-elastiflow_codex_netsec_ddos_generic_tcp",
+  "results_index_name": "custom-elastiflow_codex_netsec_ddos_tcp_in",
   "allow_lazy_open": false
 }
 EOF
@@ -104,7 +104,7 @@ EOF
 
 DATAFEED=$( cat << EOF
 {
-  "job_id": "elastiflow_codex_netsec_ddos_generic_tcp",
+  "job_id": "elastiflow_codex_netsec_ddos_tcp_in",
   "indices": [
     "elastiflow-flow-codex-*"
   ],
@@ -129,6 +129,11 @@ DATAFEED=$( cat << EOF
         {
           "exists": {
             "field": "flow.server.l4.port.id"
+          }
+        },
+        {
+          "term": {
+            "flow.server.as.org": "PRIVATE"
           }
         }
       ],
@@ -172,7 +177,7 @@ DATAFEED=$( cat << EOF
 EOF
 )
 
-echo ""; echo "Installing anomaly_detector elastiflow_codex_netsec_ddos_generic_tcp ..."
-curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/anomaly_detectors/elastiflow_codex_netsec_ddos_generic_tcp?pretty -H "Content-Type: application/json" -d "${DETECTOR}"
-echo ""; echo "Installing datafeed elastiflow_codex_netsec_ddos_generic_tcp ..."
-curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/datafeeds/datafeed-elastiflow_codex_netsec_ddos_generic_tcp?pretty -H "Content-Type: application/json" -d "${DATAFEED}"
+echo ""; echo "Installing anomaly_detector elastiflow_codex_netsec_ddos_tcp_in ..."
+curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/anomaly_detectors/elastiflow_codex_netsec_ddos_tcp_in?pretty -H "Content-Type: application/json" -d "${DETECTOR}"
+echo ""; echo "Installing datafeed elastiflow_codex_netsec_ddos_tcp_in ..."
+curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/datafeeds/datafeed-elastiflow_codex_netsec_ddos_tcp_in?pretty -H "Content-Type: application/json" -d "${DATAFEED}"

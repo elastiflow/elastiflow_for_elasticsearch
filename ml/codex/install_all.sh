@@ -56,27 +56,6 @@ echo ""; echo "Installing all CODEX-compatible anomaly_detectors and datafeeds .
 ./avail_tcp_sess_fails_out.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./avail_tcp_sess_fails_priv.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 
-./netsec_amplify_chargen_edge.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_amplify_dns_edge.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_amplify_kad_edge.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_amplify_ldap_edge.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_amplify_mdns_edge.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_amplify_memcached_edge.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_amplify_mssql_edge.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_amplify_netbios_edge.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_amplify_ntp_edge.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_amplify_qotd_edge.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_amplify_quake_edge.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_amplify_radius_edge.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_amplify_rip_edge.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_amplify_rpc_edge.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_amplify_sentinel_spss_edge.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_amplify_snmp_edge.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_amplify_ssdp_edge.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_amplify_steam_edge.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_amplify_tftp_edge.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_amplify_wsd_edge.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-
 ./netsec_bruteforce_direct_cli_edge_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_bruteforce_direct_cli_edge_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_bruteforce_direct_cli_in_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
@@ -111,8 +90,10 @@ echo ""; echo "Installing all CODEX-compatible anomaly_detectors and datafeeds .
 ./netsec_bruteforce_distrib_desktop_priv_fast.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_bruteforce_distrib_desktop_priv_slow.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 
-./netsec_ddos_generic_tcp.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
-./netsec_amplify_generic_udp_edge.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_ddos_tcp_edge.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_ddos_tcp_in.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_ddos_udp_amplify_edge.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
+./netsec_ddos_udp_amplify_in.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 
 ./netsec_icmp_flood_ddos_edge.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}
 ./netsec_icmp_flood_ddos_in.sh -h ${ES_HOST} -u ${USERNAME} -p ${PASSWORD}

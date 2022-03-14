@@ -45,7 +45,7 @@ fi
 DETECTOR=$( cat << EOF
 {
   "job_type": "anomaly_detector",
-  "description": "RADIUS Amplification Attack - edge",
+  "description": "UDP Amplification Attack - inbound",
   "groups": [
     "elastiflow",
     "security",
@@ -56,7 +56,7 @@ DETECTOR=$( cat << EOF
     "bucket_span": "5m",
     "detectors": [
       {
-        "detector_description": "Excessive RADIUS Responders",
+        "detector_description": "Excessive UDP Responders",
         "function": "high_distinct_count",
         "field_name": "flow.src.ip.addr",
         "by_field_name": "flow.dst.ip.addr",
@@ -72,7 +72,7 @@ DETECTOR=$( cat << EOF
     ]
   },
   "analysis_limits": {
-    "model_memory_limit": "1024mb"
+    "model_memory_limit": "3072mb"
   },
   "data_description": {
     "time_field": "@timestamp",
@@ -96,7 +96,7 @@ DETECTOR=$( cat << EOF
       }
     ]
   },
-  "results_index_name": "custom-elastiflow_codex_netsec_amplify_radius_edge",
+  "results_index_name": "custom-elastiflow_codex_netsec_ddos_udp_amplify_in",
   "allow_lazy_open": false
 }
 EOF
@@ -104,7 +104,7 @@ EOF
 
 DATAFEED=$( cat << EOF
 {
-  "job_id": "elastiflow_codex_netsec_amplify_radius_edge",
+  "job_id": "elastiflow_codex_netsec_ddos_udp_amplify_in",
   "indices": [
     "elastiflow-flow-codex-*"
   ],
@@ -117,13 +117,8 @@ DATAFEED=$( cat << EOF
           }
         },
         {
-          "terms": {
-            "flow.src.l4.port.id": [
-              1645,
-              1646,
-              1812,
-              1813
-            ]
+          "exists": {
+            "field": "flow.src.l4.port.id"
           }
         },
         {
@@ -135,17 +130,46 @@ DATAFEED=$( cat << EOF
           "exists": {
             "field": "flow.dst.ip.addr"
           }
+        },
+        {
+          "terms": {
+            "flow.src.l4.port.id": [
+              17,
+              19,
+              53,
+              69,
+              111,
+              123,
+              137,
+              161,
+              389,
+              520,
+              751,
+              1434,
+              1645,
+              1646,
+              1812,
+              1813,
+              1900,
+              3702,
+              5093,
+              5353,
+              11211,
+              27015,
+              27960
+            ]
+          }
+        },
+        {
+          "term": {
+            "flow.dst.as.org": "PRIVATE"
+          }
         }
       ],
       "must_not": [
         {
           "term": {
             "flow.src.as.org": "PRIVATE"
-          }
-        },
-        {
-          "term": {
-            "flow.dst.as.org": "PRIVATE"
           }
         },
         {
@@ -182,7 +206,7 @@ DATAFEED=$( cat << EOF
 EOF
 )
 
-echo ""; echo "Installing anomaly_detector elastiflow_codex_netsec_amplify_radius_edge ..."
-curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/anomaly_detectors/elastiflow_codex_netsec_amplify_radius_edge?pretty -H "Content-Type: application/json" -d "${DETECTOR}"
-echo ""; echo "Installing datafeed elastiflow_codex_netsec_amplify_radius_edge ..."
-curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/datafeeds/datafeed-elastiflow_codex_netsec_amplify_radius_edge?pretty -H "Content-Type: application/json" -d "${DATAFEED}"
+echo ""; echo "Installing anomaly_detector elastiflow_codex_netsec_ddos_udp_amplify_in ..."
+curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/anomaly_detectors/elastiflow_codex_netsec_ddos_udp_amplify_in?pretty -H "Content-Type: application/json" -d "${DETECTOR}"
+echo ""; echo "Installing datafeed elastiflow_codex_netsec_ddos_udp_amplify_in ..."
+curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/datafeeds/datafeed-elastiflow_codex_netsec_ddos_udp_amplify_in?pretty -H "Content-Type: application/json" -d "${DATAFEED}"

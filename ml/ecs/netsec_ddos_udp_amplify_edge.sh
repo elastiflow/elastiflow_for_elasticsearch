@@ -49,7 +49,8 @@ DETECTOR=$( cat << EOF
   "groups": [
     "elastiflow",
     "security",
-    "ddos"
+    "ddos",
+    "amplification"
   ],
   "analysis_config": {
     "bucket_span": "5m",
@@ -71,7 +72,7 @@ DETECTOR=$( cat << EOF
     ]
   },
   "analysis_limits": {
-    "model_memory_limit": "4096mb"
+    "model_memory_limit": "3072mb"
   },
   "data_description": {
     "time_field": "@timestamp",
@@ -95,7 +96,7 @@ DETECTOR=$( cat << EOF
       }
     ]
   },
-  "results_index_name": "custom-elastiflow_ecs_netsec_udp_amplify_edge",
+  "results_index_name": "custom-elastiflow_ecs_netsec_ddos_udp_amplify_edge",
   "allow_lazy_open": false
 }
 EOF
@@ -103,7 +104,7 @@ EOF
 
 DATAFEED=$( cat << EOF
 {
-  "job_id": "elastiflow_ecs_netsec_udp_amplify_edge",
+  "job_id": "elastiflow_ecs_netsec_ddos_udp_amplify_edge",
   "indices": [
     "elastiflow-flow-ecs-*"
   ],
@@ -116,10 +117,26 @@ DATAFEED=$( cat << EOF
           }
         },
         {
+          "exists": {
+            "field": "source.port"
+          }
+        },
+        {
+          "exists": {
+            "field": "source.ip"
+          }
+        },
+        {
+          "exists": {
+            "field": "destination.ip"
+          }
+        },
+        {
           "terms": {
             "source.port": [
               17,
               19,
+              53,
               69,
               111,
               123,
@@ -142,16 +159,6 @@ DATAFEED=$( cat << EOF
               27960
             ]
           }
-        },
-        {
-          "exists": {
-            "field": "source.ip"
-          }
-        },
-        {
-          "exists": {
-            "field": "destination.ip"
-          }
         }
       ],
       "must_not": [
@@ -161,8 +168,19 @@ DATAFEED=$( cat << EOF
           }
         },
         {
+          "term": {
+            "destination.as.organization.name": "PRIVATE"
+          }
+        },
+        {
           "terms": {
             "source.ip": [
+            ]
+          }
+        },
+        {
+          "terms": {
+            "destination.ip": [
             ]
           }
         }
@@ -188,7 +206,7 @@ DATAFEED=$( cat << EOF
 EOF
 )
 
-echo ""; echo "Installing anomaly_detector elastiflow_ecs_netsec_udp_amplify_edge ..."
-curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/anomaly_detectors/elastiflow_ecs_netsec_udp_amplify_edge?pretty -H "Content-Type: application/json" -d "${DETECTOR}"
-echo ""; echo "Installing datafeed elastiflow_ecs_netsec_udp_amplify_edge ..."
-curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/datafeeds/datafeed-elastiflow_ecs_netsec_udp_amplify_edge?pretty -H "Content-Type: application/json" -d "${DATAFEED}"
+echo ""; echo "Installing anomaly_detector elastiflow_ecs_netsec_ddos_udp_amplify_edge ..."
+curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/anomaly_detectors/elastiflow_ecs_netsec_ddos_udp_amplify_edge?pretty -H "Content-Type: application/json" -d "${DETECTOR}"
+echo ""; echo "Installing datafeed elastiflow_ecs_netsec_ddos_udp_amplify_edge ..."
+curl -XPUT -u ${USERNAME}:${PASSWORD} -k ${ES_HOST}/_ml/datafeeds/datafeed-elastiflow_ecs_netsec_ddos_udp_amplify_edge?pretty -H "Content-Type: application/json" -d "${DATAFEED}"
