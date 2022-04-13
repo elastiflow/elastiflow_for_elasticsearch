@@ -19,7 +19,7 @@
         "security",
         "activity"
       ],
-      "description": "Rare Conversation (private)",
+      "description": "Rare Conversation - private",
       "analysis_config": {
         "bucket_span": "30m",
         "detectors": [

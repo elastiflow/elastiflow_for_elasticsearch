@@ -27,7 +27,7 @@
         "security",
         "activity"
       ],
-      "description": "Rare Conversation (outbound)",
+      "description": "Rare Conversation - outbound",
       "analysis_config": {
         "bucket_span": "30m",
         "detectors": [

@@ -27,7 +27,7 @@
         "security",
         "activity"
       ],
-      "description": "Rare Conversation (inbound)",
+      "description": "Rare Conversation - inbound",
       "analysis_config": {
         "bucket_span": "30m",
         "detectors": [
