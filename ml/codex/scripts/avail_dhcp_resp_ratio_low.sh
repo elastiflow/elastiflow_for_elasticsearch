@@ -216,6 +216,7 @@ DATAFEED=$( cat << EOF
         {
           "terms": {
             "flow.server.ip.addr": [
+              "255.255.255.255"
             ]
           }
         }

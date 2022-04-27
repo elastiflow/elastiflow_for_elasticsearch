@@ -216,6 +216,7 @@ DATAFEED=$( cat << EOF
         {
           "terms": {
             "server.ip": [
+              "255.255.255.255"
             ]
           }
         }
