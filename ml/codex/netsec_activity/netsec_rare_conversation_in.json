@@ -1,0 +1,107 @@
+[
+  {
+    "job": {
+      "job_id": "elastiflow_codex_netsec_rare_conversation_in",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "RiskIQ PassiveTotal",
+            "url_value": "https://community.riskiq.com/research?query=$flow.client.ip.addr$"
+          },
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.conversation.id,negate:!f,params:(query:'$flow.conversation.id$'),type:phrase),query:(match_phrase:(flow.conversation.id:'$flow.conversation.id$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Threats",
+            "url_value": "dashboards#/view/f7fbc0b0-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.conversation.id,negate:!f,params:(query:'$flow.conversation.id$'),type:phrase),query:(match_phrase:(flow.conversation.id:'$flow.conversation.id$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/abfed250-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.conversation.id,negate:!f,params:(query:'$flow.conversation.id$'),type:phrase),query:(match_phrase:(flow.conversation.id:'$flow.conversation.id$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "security",
+        "activity"
+      ],
+      "description": "Rare Conversation - inbound",
+      "analysis_config": {
+        "bucket_span": "30m",
+        "detectors": [
+          {
+            "detector_description": "Rare Conversation",
+            "function": "rare",
+            "by_field_name": "flow.conversation.id",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "flow.conversation.id",
+          "flow.client.ip.addr",
+          "flow.client.host.name",
+          "flow.server.ip.addr",
+          "flow.server.host.name",
+          "flow.server.l4.port.name"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "8192mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": true,
+        "annotations_enabled": true
+      },
+      "model_snapshot_retention_days": 7,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_codex_netsec_rare_conversation_in",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_codex_netsec_rare_conversation_in",
+      "job_id": "elastiflow_codex_netsec_rare_conversation_in",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "exists": {
+                "field": "flow.conversation.id"
+              }
+            },
+            {
+              "term": {
+                "l4.session.established": "true"
+              }
+            },
+            {
+              "term": {
+                "flow.server.as.org": "PRIVATE"
+              }
+            }
+          ],
+          "must_not": [
+            {
+              "term": {
+                "flow.client.as.org": "PRIVATE"
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-codex-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  }
+]

@@ -1,0 +1,110 @@
+[
+  {
+    "job": {
+      "job_id": "elastiflow_codex_netsec_icmp_scan_direct_priv_fast",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/bf9f8a70-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.src.ip.addr,negate:!f,params:(query:'$flow.src.ip.addr$'),type:phrase),query:(match_phrase:(flow.src.ip.addr:'$flow.src.ip.addr$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:l4.proto.name,negate:!f,params:!(ICMP,IPv6-ICMP),type:phrases),query:(bool:(minimum_should_match:1,should:!((match_phrase:(l4.proto.name:'ICMP')),(match_phrase:(l4.proto.name:'IPv6-ICMP')))))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:icmp.type.name,negate:!f,params:(query:'Echo'),type:phrase),query:(match_phrase:(icmp.type.name:'Echo'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.locality,negate:!f,params:(query:'private'),type:phrase),query:(match_phrase:(flow.locality:'private')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "security",
+        "reconnaissance"
+      ],
+      "description": "ICMP Scan Direct - private (fast)",
+      "analysis_config": {
+        "bucket_span": "10m",
+        "detectors": [
+          {
+            "detector_description": "High Unique Destination IPs",
+            "function": "high_distinct_count",
+            "field_name": "flow.dst.ip.addr",
+            "over_field_name": "flow.src.ip.addr",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "flow.src.ip.addr",
+          "flow.src.host.name"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "512mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": true,
+        "annotations_enabled": true
+      },
+      "model_snapshot_retention_days": 7,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_codex_netsec_icmp_scan_direct_priv_fast",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_codex_netsec_icmp_scan_direct_priv_fast",
+      "job_id": "elastiflow_codex_netsec_icmp_scan_direct_priv_fast",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "exists": {
+                "field": "flow.src.ip.addr"
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.dst.ip.addr"
+              }
+            },
+            {
+              "terms": {
+                "l4.proto.name": [
+                  "ICMP",
+                  "IPv6-ICMP"
+                ]
+              }
+            },
+            {
+              "term": {
+                "icmp.type.name": "Echo"
+              }
+            },
+            {
+              "term": {
+                "flow.locality": "private"
+              }
+            }
+          ],
+          "must_not": [
+            {
+              "terms": {
+                "flow.src.ip.addr": []
+              }
+            },
+            {
+              "terms": {
+                "flow.dst.ip.addr": []
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-codex-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  }
+]

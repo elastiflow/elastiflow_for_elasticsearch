@@ -1,0 +1,1084 @@
+[
+  {
+    "job": {
+      "job_id": "elastiflow_ecs_perf_asn_dst_thruput_bytes",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.dst.as.label,negate:!f,params:(query:'$flow.dst.as.label$'),type:phrase),query:(match_phrase:(flow.dst.as.label:'$flow.dst.as.label$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Threats",
+            "url_value": "dashboards#/view/f7fbc0b0-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.dst.as.label,negate:!f,params:(query:'$flow.dst.as.label$'),type:phrase),query:(match_phrase:(flow.dst.as.label:'$flow.dst.as.label$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/abfed250-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.dst.as.label,negate:!f,params:(query:'$flow.dst.as.label$'),type:phrase),query:(match_phrase:(flow.dst.as.label:'$flow.dst.as.label$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "performance"
+      ],
+      "description": "Unusual Destination ASN Traffic Volume",
+      "analysis_config": {
+        "bucket_span": "15m",
+        "detectors": [
+          {
+            "detector_description": "Unusual Destination ASN Bytes",
+            "function": "sum",
+            "field_name": "network.bytes",
+            "partition_field_name": "flow.dst.as.label",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "flow.dst.as.label",
+          "source.ip",
+          "source.domain",
+          "flow.src.l4.port.name",
+          "destination.ip",
+          "destination.domain",
+          "flow.dst.l4.port.name"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "1024mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": true,
+        "annotations_enabled": true
+      },
+      "model_snapshot_retention_days": 7,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_ecs_perf_asn_dst_thruput_bytes",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_ecs_perf_asn_dst_thruput_bytes",
+      "job_id": "elastiflow_ecs_perf_asn_dst_thruput_bytes",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "exists": {
+                "field": "flow.dst.as.label"
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-ecs-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  },
+  {
+    "job": {
+      "job_id": "elastiflow_ecs_perf_asn_dst_thruput_flows",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.dst.as.label,negate:!f,params:(query:'$flow.dst.as.label$'),type:phrase),query:(match_phrase:(flow.dst.as.label:'$flow.dst.as.label$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Threats",
+            "url_value": "dashboards#/view/f7fbc0b0-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.dst.as.label,negate:!f,params:(query:'$flow.dst.as.label$'),type:phrase),query:(match_phrase:(flow.dst.as.label:'$flow.dst.as.label$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/abfed250-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.dst.as.label,negate:!f,params:(query:'$flow.dst.as.label$'),type:phrase),query:(match_phrase:(flow.dst.as.label:'$flow.dst.as.label$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "performance"
+      ],
+      "description": "Unusual Destination ASN Traffic Volume",
+      "analysis_config": {
+        "bucket_span": "15m",
+        "detectors": [
+          {
+            "detector_description": "Unusual Destination ASN Flows",
+            "function": "count",
+            "partition_field_name": "flow.dst.as.label",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "flow.dst.as.label",
+          "source.ip",
+          "source.domain",
+          "flow.src.l4.port.name",
+          "destination.ip",
+          "destination.domain",
+          "flow.dst.l4.port.name"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "1024mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": true,
+        "annotations_enabled": true
+      },
+      "model_snapshot_retention_days": 7,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_ecs_perf_asn_dst_thruput_flows",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_ecs_perf_asn_dst_thruput_flows",
+      "job_id": "elastiflow_ecs_perf_asn_dst_thruput_flows",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "exists": {
+                "field": "flow.dst.as.label"
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-ecs-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  },
+  {
+    "job": {
+      "job_id": "elastiflow_ecs_perf_asn_dst_thruput_packets",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.dst.as.label,negate:!f,params:(query:'$flow.dst.as.label$'),type:phrase),query:(match_phrase:(flow.dst.as.label:'$flow.dst.as.label$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Threats",
+            "url_value": "dashboards#/view/f7fbc0b0-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.dst.as.label,negate:!f,params:(query:'$flow.dst.as.label$'),type:phrase),query:(match_phrase:(flow.dst.as.label:'$flow.dst.as.label$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/abfed250-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.dst.as.label,negate:!f,params:(query:'$flow.dst.as.label$'),type:phrase),query:(match_phrase:(flow.dst.as.label:'$flow.dst.as.label$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "performance"
+      ],
+      "description": "Unusual Destination ASN Traffic Volume",
+      "analysis_config": {
+        "bucket_span": "15m",
+        "detectors": [
+          {
+            "detector_description": "Unusual Destination ASN Packets",
+            "function": "sum",
+            "field_name": "network.packets",
+            "partition_field_name": "flow.dst.as.label",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "flow.dst.as.label",
+          "source.ip",
+          "source.domain",
+          "flow.src.l4.port.name",
+          "destination.ip",
+          "destination.domain",
+          "flow.dst.l4.port.name"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "1024mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": true,
+        "annotations_enabled": true
+      },
+      "model_snapshot_retention_days": 7,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_ecs_perf_asn_dst_thruput_packets",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_ecs_perf_asn_dst_thruput_packets",
+      "job_id": "elastiflow_ecs_perf_asn_dst_thruput_packets",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "exists": {
+                "field": "flow.dst.as.label"
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-ecs-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  },
+  {
+    "job": {
+      "job_id": "elastiflow_ecs_perf_asn_src_thruput_bytes",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.src.as.label,negate:!f,params:(query:'$flow.src.as.label$'),type:phrase),query:(match_phrase:(flow.src.as.label:'$flow.src.as.label$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Threats",
+            "url_value": "dashboards#/view/f7fbc0b0-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.src.as.label,negate:!f,params:(query:'$flow.src.as.label$'),type:phrase),query:(match_phrase:(flow.src.as.label:'$flow.src.as.label$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/abfed250-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.src.as.label,negate:!f,params:(query:'$flow.src.as.label$'),type:phrase),query:(match_phrase:(flow.src.as.label:'$flow.src.as.label$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "performance"
+      ],
+      "description": "Unusual Source ASN Traffic Volume",
+      "analysis_config": {
+        "bucket_span": "15m",
+        "detectors": [
+          {
+            "detector_description": "Unusual Source ASN Bytes",
+            "function": "sum",
+            "field_name": "network.bytes",
+            "partition_field_name": "flow.src.as.label",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "flow.src.as.label",
+          "source.ip",
+          "source.domain",
+          "flow.src.l4.port.name",
+          "destination.ip",
+          "destination.domain",
+          "flow.dst.l4.port.name"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "1024mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": true,
+        "annotations_enabled": true
+      },
+      "model_snapshot_retention_days": 7,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_ecs_perf_asn_src_thruput_bytes",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_ecs_perf_asn_src_thruput_bytes",
+      "job_id": "elastiflow_ecs_perf_asn_src_thruput_bytes",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "exists": {
+                "field": "flow.src.as.label"
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-ecs-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  },
+  {
+    "job": {
+      "job_id": "elastiflow_ecs_perf_asn_src_thruput_flows",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.src.as.label,negate:!f,params:(query:'$flow.src.as.label$'),type:phrase),query:(match_phrase:(flow.src.as.label:'$flow.src.as.label$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Threats",
+            "url_value": "dashboards#/view/f7fbc0b0-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.src.as.label,negate:!f,params:(query:'$flow.src.as.label$'),type:phrase),query:(match_phrase:(flow.src.as.label:'$flow.src.as.label$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/abfed250-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.src.as.label,negate:!f,params:(query:'$flow.src.as.label$'),type:phrase),query:(match_phrase:(flow.src.as.label:'$flow.src.as.label$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "performance"
+      ],
+      "description": "Unusual Source ASN Traffic Volume",
+      "analysis_config": {
+        "bucket_span": "15m",
+        "detectors": [
+          {
+            "detector_description": "Unusual Source ASN Flows",
+            "function": "count",
+            "partition_field_name": "flow.src.as.label",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "flow.src.as.label",
+          "source.ip",
+          "source.domain",
+          "flow.src.l4.port.name",
+          "destination.ip",
+          "destination.domain",
+          "flow.dst.l4.port.name"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "1024mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": true,
+        "annotations_enabled": true
+      },
+      "model_snapshot_retention_days": 7,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_ecs_perf_asn_src_thruput_flows",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_ecs_perf_asn_src_thruput_flows",
+      "job_id": "elastiflow_ecs_perf_asn_src_thruput_flows",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "exists": {
+                "field": "flow.src.as.label"
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-ecs-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  },
+  {
+    "job": {
+      "job_id": "elastiflow_ecs_perf_asn_src_thruput_packets",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.src.as.label,negate:!f,params:(query:'$flow.src.as.label$'),type:phrase),query:(match_phrase:(flow.src.as.label:'$flow.src.as.label$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Threats",
+            "url_value": "dashboards#/view/f7fbc0b0-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.src.as.label,negate:!f,params:(query:'$flow.src.as.label$'),type:phrase),query:(match_phrase:(flow.src.as.label:'$flow.src.as.label$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/abfed250-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.src.as.label,negate:!f,params:(query:'$flow.src.as.label$'),type:phrase),query:(match_phrase:(flow.src.as.label:'$flow.src.as.label$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "performance"
+      ],
+      "description": "Unusual Source ASN Traffic Volume",
+      "analysis_config": {
+        "bucket_span": "15m",
+        "detectors": [
+          {
+            "detector_description": "Unusual Source ASN Packets",
+            "function": "sum",
+            "field_name": "network.packets",
+            "partition_field_name": "flow.src.as.label",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "flow.src.as.label",
+          "source.ip",
+          "source.domain",
+          "flow.src.l4.port.name",
+          "destination.ip",
+          "destination.domain",
+          "flow.dst.l4.port.name"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "1024mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": true,
+        "annotations_enabled": true
+      },
+      "model_snapshot_retention_days": 7,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_ecs_perf_asn_src_thruput_packets",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_ecs_perf_asn_src_thruput_packets",
+      "job_id": "elastiflow_ecs_perf_asn_src_thruput_packets",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "exists": {
+                "field": "flow.src.as.label"
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-ecs-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  },
+  {
+    "job": {
+      "job_id": "elastiflow_ecs_perf_netif_egress_thruput_bytes",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:host.name,negate:!f,params:(query:'$host.name$'),type:phrase),query:(match_phrase:(host.name:'$host.name$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:observer.egress.interface.name,negate:!f,params:(query:'$observer.egress.interface.name$'),type:phrase),query:(match_phrase:(observer.egress.interface.name:'$observer.egress.interface.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Exporters (traffic)",
+            "url_value": "dashboards#/view/6fa91cc0-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:host.name,negate:!f,params:(query:'$host.name$'),type:phrase),query:(match_phrase:(host.name:'$host.name$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:observer.egress.interface.name,negate:!f,params:(query:'$observer.egress.interface.name$'),type:phrase),query:(match_phrase:(observer.egress.interface.name:'$observer.egress.interface.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Threats",
+            "url_value": "dashboards#/view/f7fbc0b0-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:host.name,negate:!f,params:(query:'$host.name$'),type:phrase),query:(match_phrase:(host.name:'$host.name$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:observer.egress.interface.name,negate:!f,params:(query:'$observer.egress.interface.name$'),type:phrase),query:(match_phrase:(observer.egress.interface.name:'$observer.egress.interface.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/abfed250-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:host.name,negate:!f,params:(query:'$host.name$'),type:phrase),query:(match_phrase:(host.name:'$host.name$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:observer.egress.interface.name,negate:!f,params:(query:'$observer.egress.interface.name$'),type:phrase),query:(match_phrase:(observer.egress.interface.name:'$observer.egress.interface.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "performance"
+      ],
+      "description": "Unusual Egress Traffic Volume",
+      "analysis_config": {
+        "bucket_span": "15m",
+        "detectors": [
+          {
+            "detector_description": "Unusual Egress Bytes",
+            "function": "sum",
+            "field_name": "network.bytes",
+            "by_field_name": "observer.egress.interface.name",
+            "partition_field_name": "host.name",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "host.name",
+          "observer.egress.interface.name",
+          "source.ip",
+          "source.domain",
+          "flow.src.l4.port.name",
+          "destination.ip",
+          "destination.domain",
+          "flow.dst.l4.port.name"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "2048mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": true,
+        "annotations_enabled": true
+      },
+      "model_snapshot_retention_days": 7,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_ecs_perf_netif_egress_thruput_bytes",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_ecs_perf_netif_egress_thruput_bytes",
+      "job_id": "elastiflow_ecs_perf_netif_egress_thruput_bytes",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "exists": {
+                "field": "observer.egress.interface.name"
+              }
+            },
+            {
+              "exists": {
+                "field": "host.name"
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-ecs-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  },
+  {
+    "job": {
+      "job_id": "elastiflow_ecs_perf_netif_egress_thruput_flows",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:host.name,negate:!f,params:(query:'$host.name$'),type:phrase),query:(match_phrase:(host.name:'$host.name$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:observer.egress.interface.name,negate:!f,params:(query:'$observer.egress.interface.name$'),type:phrase),query:(match_phrase:(observer.egress.interface.name:'$observer.egress.interface.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Exporters (traffic)",
+            "url_value": "dashboards#/view/6fa91cc0-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:host.name,negate:!f,params:(query:'$host.name$'),type:phrase),query:(match_phrase:(host.name:'$host.name$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:observer.egress.interface.name,negate:!f,params:(query:'$observer.egress.interface.name$'),type:phrase),query:(match_phrase:(observer.egress.interface.name:'$observer.egress.interface.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Threats",
+            "url_value": "dashboards#/view/f7fbc0b0-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:host.name,negate:!f,params:(query:'$host.name$'),type:phrase),query:(match_phrase:(host.name:'$host.name$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:observer.egress.interface.name,negate:!f,params:(query:'$observer.egress.interface.name$'),type:phrase),query:(match_phrase:(observer.egress.interface.name:'$observer.egress.interface.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/abfed250-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:host.name,negate:!f,params:(query:'$host.name$'),type:phrase),query:(match_phrase:(host.name:'$host.name$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:observer.egress.interface.name,negate:!f,params:(query:'$observer.egress.interface.name$'),type:phrase),query:(match_phrase:(observer.egress.interface.name:'$observer.egress.interface.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "performance"
+      ],
+      "description": "Unusual Egress Traffic Volume",
+      "analysis_config": {
+        "bucket_span": "15m",
+        "detectors": [
+          {
+            "detector_description": "Unusual Egress Flows",
+            "function": "count",
+            "by_field_name": "observer.egress.interface.name",
+            "partition_field_name": "host.name",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "host.name",
+          "observer.egress.interface.name",
+          "source.ip",
+          "source.domain",
+          "flow.src.l4.port.name",
+          "destination.ip",
+          "destination.domain",
+          "flow.dst.l4.port.name"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "2048mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": true,
+        "annotations_enabled": true
+      },
+      "model_snapshot_retention_days": 7,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_ecs_perf_netif_egress_thruput_flows",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_ecs_perf_netif_egress_thruput_flows",
+      "job_id": "elastiflow_ecs_perf_netif_egress_thruput_flows",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "exists": {
+                "field": "observer.egress.interface.name"
+              }
+            },
+            {
+              "exists": {
+                "field": "host.name"
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-ecs-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  },
+  {
+    "job": {
+      "job_id": "elastiflow_ecs_perf_netif_egress_thruput_packets",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:host.name,negate:!f,params:(query:'$host.name$'),type:phrase),query:(match_phrase:(host.name:'$host.name$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:observer.egress.interface.name,negate:!f,params:(query:'$observer.egress.interface.name$'),type:phrase),query:(match_phrase:(observer.egress.interface.name:'$observer.egress.interface.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Exporters (traffic)",
+            "url_value": "dashboards#/view/6fa91cc0-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:host.name,negate:!f,params:(query:'$host.name$'),type:phrase),query:(match_phrase:(host.name:'$host.name$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:observer.egress.interface.name,negate:!f,params:(query:'$observer.egress.interface.name$'),type:phrase),query:(match_phrase:(observer.egress.interface.name:'$observer.egress.interface.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Threats",
+            "url_value": "dashboards#/view/f7fbc0b0-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:host.name,negate:!f,params:(query:'$host.name$'),type:phrase),query:(match_phrase:(host.name:'$host.name$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:observer.egress.interface.name,negate:!f,params:(query:'$observer.egress.interface.name$'),type:phrase),query:(match_phrase:(observer.egress.interface.name:'$observer.egress.interface.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/abfed250-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:host.name,negate:!f,params:(query:'$host.name$'),type:phrase),query:(match_phrase:(host.name:'$host.name$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:observer.egress.interface.name,negate:!f,params:(query:'$observer.egress.interface.name$'),type:phrase),query:(match_phrase:(observer.egress.interface.name:'$observer.egress.interface.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "performance"
+      ],
+      "description": "Unusual Egress Traffic Volume",
+      "analysis_config": {
+        "bucket_span": "15m",
+        "detectors": [
+          {
+            "detector_description": "Unusual Egress Packets",
+            "function": "sum",
+            "field_name": "network.packets",
+            "by_field_name": "observer.egress.interface.name",
+            "partition_field_name": "host.name",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "host.name",
+          "observer.egress.interface.name",
+          "source.ip",
+          "source.domain",
+          "flow.src.l4.port.name",
+          "destination.ip",
+          "destination.domain",
+          "flow.dst.l4.port.name"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "2048mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": true,
+        "annotations_enabled": true
+      },
+      "model_snapshot_retention_days": 7,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_ecs_perf_netif_egress_thruput_packets",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_ecs_perf_netif_egress_thruput_packets",
+      "job_id": "elastiflow_ecs_perf_netif_egress_thruput_packets",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "exists": {
+                "field": "observer.egress.interface.name"
+              }
+            },
+            {
+              "exists": {
+                "field": "host.name"
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-ecs-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  },
+  {
+    "job": {
+      "job_id": "elastiflow_ecs_perf_netif_ingress_thruput_bytes",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:host.name,negate:!f,params:(query:'$host.name$'),type:phrase),query:(match_phrase:(host.name:'$host.name$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:observer.ingress.interface.name,negate:!f,params:(query:'$observer.ingress.interface.name$'),type:phrase),query:(match_phrase:(observer.ingress.interface.name:'$observer.ingress.interface.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Exporters (traffic)",
+            "url_value": "dashboards#/view/6fa91cc0-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:host.name,negate:!f,params:(query:'$host.name$'),type:phrase),query:(match_phrase:(host.name:'$host.name$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:observer.ingress.interface.name,negate:!f,params:(query:'$observer.ingress.interface.name$'),type:phrase),query:(match_phrase:(observer.ingress.interface.name:'$observer.ingress.interface.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Threats",
+            "url_value": "dashboards#/view/f7fbc0b0-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:host.name,negate:!f,params:(query:'$host.name$'),type:phrase),query:(match_phrase:(host.name:'$host.name$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:observer.ingress.interface.name,negate:!f,params:(query:'$observer.ingress.interface.name$'),type:phrase),query:(match_phrase:(observer.ingress.interface.name:'$observer.ingress.interface.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/abfed250-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:host.name,negate:!f,params:(query:'$host.name$'),type:phrase),query:(match_phrase:(host.name:'$host.name$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:observer.ingress.interface.name,negate:!f,params:(query:'$observer.ingress.interface.name$'),type:phrase),query:(match_phrase:(observer.ingress.interface.name:'$observer.ingress.interface.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "performance"
+      ],
+      "description": "Unusual Ingress Traffic Volume",
+      "analysis_config": {
+        "bucket_span": "15m",
+        "detectors": [
+          {
+            "detector_description": "Unusual Ingress Bytes",
+            "function": "sum",
+            "field_name": "network.bytes",
+            "by_field_name": "observer.ingress.interface.name",
+            "partition_field_name": "host.name",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "host.name",
+          "observer.ingress.interface.name",
+          "source.ip",
+          "source.domain",
+          "flow.src.l4.port.name",
+          "destination.ip",
+          "destination.domain",
+          "flow.dst.l4.port.name"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "2048mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": true,
+        "annotations_enabled": true
+      },
+      "model_snapshot_retention_days": 7,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_ecs_perf_netif_ingress_thruput_bytes",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_ecs_perf_netif_ingress_thruput_bytes",
+      "job_id": "elastiflow_ecs_perf_netif_ingress_thruput_bytes",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "exists": {
+                "field": "observer.ingress.interface.name"
+              }
+            },
+            {
+              "exists": {
+                "field": "host.name"
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-ecs-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  },
+  {
+    "job": {
+      "job_id": "elastiflow_ecs_perf_netif_ingress_thruput_flows",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:host.name,negate:!f,params:(query:'$host.name$'),type:phrase),query:(match_phrase:(host.name:'$host.name$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:observer.ingress.interface.name,negate:!f,params:(query:'$observer.ingress.interface.name$'),type:phrase),query:(match_phrase:(observer.ingress.interface.name:'$observer.ingress.interface.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Exporters (traffic)",
+            "url_value": "dashboards#/view/6fa91cc0-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:host.name,negate:!f,params:(query:'$host.name$'),type:phrase),query:(match_phrase:(host.name:'$host.name$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:observer.ingress.interface.name,negate:!f,params:(query:'$observer.ingress.interface.name$'),type:phrase),query:(match_phrase:(observer.ingress.interface.name:'$observer.ingress.interface.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Threats",
+            "url_value": "dashboards#/view/f7fbc0b0-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:host.name,negate:!f,params:(query:'$host.name$'),type:phrase),query:(match_phrase:(host.name:'$host.name$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:observer.ingress.interface.name,negate:!f,params:(query:'$observer.ingress.interface.name$'),type:phrase),query:(match_phrase:(observer.ingress.interface.name:'$observer.ingress.interface.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/abfed250-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:host.name,negate:!f,params:(query:'$host.name$'),type:phrase),query:(match_phrase:(host.name:'$host.name$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:observer.ingress.interface.name,negate:!f,params:(query:'$observer.ingress.interface.name$'),type:phrase),query:(match_phrase:(observer.ingress.interface.name:'$observer.ingress.interface.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "performance"
+      ],
+      "description": "Unusual Ingress Traffic Volume",
+      "analysis_config": {
+        "bucket_span": "15m",
+        "detectors": [
+          {
+            "detector_description": "Unusual Ingress Flows",
+            "function": "count",
+            "by_field_name": "observer.ingress.interface.name",
+            "partition_field_name": "host.name",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "host.name",
+          "observer.ingress.interface.name",
+          "source.ip",
+          "source.domain",
+          "flow.src.l4.port.name",
+          "destination.ip",
+          "destination.domain",
+          "flow.dst.l4.port.name"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "2048mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": true,
+        "annotations_enabled": true
+      },
+      "model_snapshot_retention_days": 7,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_ecs_perf_netif_ingress_thruput_flows",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_ecs_perf_netif_ingress_thruput_flows",
+      "job_id": "elastiflow_ecs_perf_netif_ingress_thruput_flows",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "exists": {
+                "field": "observer.ingress.interface.name"
+              }
+            },
+            {
+              "exists": {
+                "field": "host.name"
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-ecs-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  },
+  {
+    "job": {
+      "job_id": "elastiflow_ecs_perf_netif_ingress_thruput_packets",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:host.name,negate:!f,params:(query:'$host.name$'),type:phrase),query:(match_phrase:(host.name:'$host.name$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:observer.ingress.interface.name,negate:!f,params:(query:'$observer.ingress.interface.name$'),type:phrase),query:(match_phrase:(observer.ingress.interface.name:'$observer.ingress.interface.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Exporters (traffic)",
+            "url_value": "dashboards#/view/6fa91cc0-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:host.name,negate:!f,params:(query:'$host.name$'),type:phrase),query:(match_phrase:(host.name:'$host.name$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:observer.ingress.interface.name,negate:!f,params:(query:'$observer.ingress.interface.name$'),type:phrase),query:(match_phrase:(observer.ingress.interface.name:'$observer.ingress.interface.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Threats",
+            "url_value": "dashboards#/view/f7fbc0b0-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:host.name,negate:!f,params:(query:'$host.name$'),type:phrase),query:(match_phrase:(host.name:'$host.name$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:observer.ingress.interface.name,negate:!f,params:(query:'$observer.ingress.interface.name$'),type:phrase),query:(match_phrase:(observer.ingress.interface.name:'$observer.ingress.interface.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/abfed250-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:host.name,negate:!f,params:(query:'$host.name$'),type:phrase),query:(match_phrase:(host.name:'$host.name$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:observer.ingress.interface.name,negate:!f,params:(query:'$observer.ingress.interface.name$'),type:phrase),query:(match_phrase:(observer.ingress.interface.name:'$observer.ingress.interface.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "performance"
+      ],
+      "description": "Unusual Ingress Traffic Volume",
+      "analysis_config": {
+        "bucket_span": "15m",
+        "detectors": [
+          {
+            "detector_description": "Unusual Ingress Packets",
+            "function": "sum",
+            "field_name": "network.packets",
+            "by_field_name": "observer.ingress.interface.name",
+            "partition_field_name": "host.name",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "host.name",
+          "observer.ingress.interface.name",
+          "source.ip",
+          "source.domain",
+          "flow.src.l4.port.name",
+          "destination.ip",
+          "destination.domain",
+          "flow.dst.l4.port.name"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "2048mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": true,
+        "annotations_enabled": true
+      },
+      "model_snapshot_retention_days": 7,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_ecs_perf_netif_ingress_thruput_packets",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_ecs_perf_netif_ingress_thruput_packets",
+      "job_id": "elastiflow_ecs_perf_netif_ingress_thruput_packets",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "exists": {
+                "field": "observer.ingress.interface.name"
+              }
+            },
+            {
+              "exists": {
+                "field": "host.name"
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-ecs-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  }
+]
