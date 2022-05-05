@@ -350,9 +350,7 @@
             },
             {
               "terms": {
-                "flow.server.ip.addr": [
-                  "255.255.255.255"
-                ]
+                "flow.server.ip.addr": []
               }
             }
           ]
@@ -1325,6 +1323,195 @@
       "indices": [
         "elastiflow-flow-codex-*"
       ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  },
+  {
+    "job": {
+      "job_id": "elastiflow_codex_avail_radius_auth_resp_ratio_low",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "Core Services (RADIUS)",
+            "url_value": "dashboards#/view/c47f5d40-aad5-11ec-a53b-a13fb63fe954?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.ip.addr,negate:!f,params:(query:'$flow.server.ip.addr$'),type:phrase),query:(match_phrase:(flow.server.ip.addr:'$flow.server.ip.addr$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.l4.port.id,negate:!f,params:!('1812','1645'),type:phrases),query:(bool:(minimum_should_match:1,should:!((match_phrase:(flow.server.l4.port.id:'1812')),(match_phrase:(flow.server.l4.port.id:'1645')))))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:l4.proto.name,negate:!f,params:(query:'udp'),type:phrase),query:(match_phrase:(l4.proto.name:'udp')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.ip.addr,negate:!f,params:(query:'$flow.server.ip.addr$'),type:phrase),query:(match_phrase:(flow.server.ip.addr:'$flow.server.ip.addr$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.l4.port.id,negate:!f,params:!('1812','1645'),type:phrases),query:(bool:(minimum_should_match:1,should:!((match_phrase:(flow.server.l4.port.id:'1812')),(match_phrase:(flow.server.l4.port.id:'1645')))))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:l4.proto.name,negate:!f,params:(query:'udp'),type:phrase),query:(match_phrase:(l4.proto.name:'udp')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/bf9f8a70-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.ip.addr,negate:!f,params:(query:'$flow.server.ip.addr$'),type:phrase),query:(match_phrase:(flow.server.ip.addr:'$flow.server.ip.addr$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.l4.port.id,negate:!f,params:!('1812','1645'),type:phrases),query:(bool:(minimum_should_match:1,should:!((match_phrase:(flow.server.l4.port.id:'1812')),(match_phrase:(flow.server.l4.port.id:'1645')))))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:l4.proto.name,negate:!f,params:(query:'udp'),type:phrase),query:(match_phrase:(l4.proto.name:'udp')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "availability",
+        "network_services"
+      ],
+      "description": "Low RADIUS AUTH Request/Response Ratio",
+      "analysis_config": {
+        "bucket_span": "20m",
+        "summary_count_field_name": "doc_count",
+        "detectors": [
+          {
+            "detector_description": "Low RADIUS AUTH Request/Response Ratio",
+            "function": "low_mean",
+            "field_name": "ratio",
+            "partition_field_name": "flow.server.ip.addr",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "flow.server.ip.addr"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "256mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": true,
+        "annotations_enabled": true
+      },
+      "model_snapshot_retention_days": 7,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_codex_avail_radius_auth_resp_ratio_low",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_codex_avail_radius_auth_resp_ratio_low",
+      "job_id": "elastiflow_codex_avail_radius_auth_resp_ratio_low",
+      "chunking_config": {
+        "mode": "auto"
+      },
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "terms": {
+                "flow.export.type": [
+                  "netflow",
+                  "ipfix"
+                ]
+              }
+            },
+            {
+              "term": {
+                "l4.proto.name": "udp"
+              }
+            },
+            {
+              "terms": {
+                "flow.server.l4.port.id": [
+                  1645,
+                  1812
+                ]
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.client.ip.addr"
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.server.ip.addr"
+              }
+            }
+          ],
+          "must_not": [
+            {
+              "terms": {
+                "flow.client.ip.addr": []
+              }
+            },
+            {
+              "terms": {
+                "flow.server.ip.addr": []
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-codex-*"
+      ],
+      "aggregations": {
+        "buckets": {
+          "date_histogram": {
+            "field": "@timestamp",
+            "fixed_interval": "20m",
+            "time_zone": "UTC"
+          },
+          "aggregations": {
+            "@timestamp": {
+              "max": {
+                "field": "@timestamp"
+              }
+            },
+            "flow.server.ip.addr": {
+              "terms": {
+                "field": "flow.server.ip.addr",
+                "size": 20000
+              },
+              "aggregations": {
+                "requests": {
+                  "filter": {
+                    "terms": {
+                      "flow.dst.l4.port.id": [
+                        1645,
+                        1812
+                      ]
+                    }
+                  },
+                  "aggregations": {
+                    "packets": {
+                      "sum": {
+                        "field": "network.packets"
+                      }
+                    }
+                  }
+                },
+                "responses": {
+                  "filter": {
+                    "terms": {
+                      "flow.src.l4.port.id": [
+                        1645,
+                        1812
+                      ]
+                    }
+                  },
+                  "aggregations": {
+                    "packets": {
+                      "sum": {
+                        "field": "network.packets"
+                      }
+                    }
+                  }
+                },
+                "ratio": {
+                  "bucket_script": {
+                    "buckets_path": {
+                      "requests": "requests.packets",
+                      "responses": "responses.packets"
+                    },
+                    "script": "if(params.requests>0){params.responses/params.requests}else{1}"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
       "scroll_size": 1000,
       "delayed_data_check_config": {
         "enabled": true
