@@ -53,6 +53,7 @@ DETECTOR=$( cat << EOF
   ],
   "analysis_config": {
     "bucket_span": "30m",
+    "model_prune_window": "14d",
     "detectors": [
       {
         "detector_description": "Rare Conversation",

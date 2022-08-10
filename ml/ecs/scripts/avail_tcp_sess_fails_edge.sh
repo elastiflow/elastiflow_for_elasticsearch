@@ -52,6 +52,7 @@ DETECTOR=$( cat << EOF
   ],
   "analysis_config": {
     "bucket_span": "15m",
+    "model_prune_window": "14d",
     "detectors": [
       {
         "detector_description": "Excessive Unestablished Connections",
