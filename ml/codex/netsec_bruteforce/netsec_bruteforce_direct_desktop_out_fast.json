@@ -27,6 +27,7 @@
       "description": "Brute Force Direct Remote Desktop Access - outbound (fast)",
       "analysis_config": {
         "bucket_span": "10m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Access Attempts",

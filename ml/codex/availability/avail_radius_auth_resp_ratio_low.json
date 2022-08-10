@@ -26,6 +26,7 @@
       "description": "Low RADIUS AUTH Request/Response Ratio",
       "analysis_config": {
         "bucket_span": "20m",
+        "model_prune_window": "14d",
         "summary_count_field_name": "doc_count",
         "detectors": [
           {

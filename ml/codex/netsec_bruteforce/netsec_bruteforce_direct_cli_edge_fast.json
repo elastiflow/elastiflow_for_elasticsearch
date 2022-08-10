@@ -31,6 +31,7 @@
       "description": "Brute Force Direct CLI Access - edge (fast)",
       "analysis_config": {
         "bucket_span": "10m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Access Attempts",

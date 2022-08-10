@@ -25,6 +25,7 @@
       "description": "Unusual Destination ASN Traffic Volume",
       "analysis_config": {
         "bucket_span": "15m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Unusual Destination ASN Bytes",
@@ -110,6 +111,7 @@
       "description": "Unusual Destination ASN Traffic Volume",
       "analysis_config": {
         "bucket_span": "15m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Unusual Destination ASN Flows",
@@ -194,6 +196,7 @@
       "description": "Unusual Destination ASN Traffic Volume",
       "analysis_config": {
         "bucket_span": "15m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Unusual Destination ASN Packets",
@@ -279,6 +282,7 @@
       "description": "Unusual Source ASN Traffic Volume",
       "analysis_config": {
         "bucket_span": "15m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Unusual Source ASN Bytes",
@@ -364,6 +368,7 @@
       "description": "Unusual Source ASN Traffic Volume",
       "analysis_config": {
         "bucket_span": "15m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Unusual Source ASN Flows",
@@ -448,6 +453,7 @@
       "description": "Unusual Source ASN Traffic Volume",
       "analysis_config": {
         "bucket_span": "15m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Unusual Source ASN Packets",
@@ -537,6 +543,7 @@
       "description": "Unusual Egress Traffic Volume",
       "analysis_config": {
         "bucket_span": "15m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Unusual Egress Bytes",
@@ -633,6 +640,7 @@
       "description": "Unusual Egress Traffic Volume",
       "analysis_config": {
         "bucket_span": "15m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Unusual Egress Flows",
@@ -728,6 +736,7 @@
       "description": "Unusual Egress Traffic Volume",
       "analysis_config": {
         "bucket_span": "15m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Unusual Egress Packets",
@@ -824,6 +833,7 @@
       "description": "Unusual Ingress Traffic Volume",
       "analysis_config": {
         "bucket_span": "15m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Unusual Ingress Bytes",
@@ -920,6 +930,7 @@
       "description": "Unusual Ingress Traffic Volume",
       "analysis_config": {
         "bucket_span": "15m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Unusual Ingress Flows",
@@ -1015,6 +1026,7 @@
       "description": "Unusual Ingress Traffic Volume",
       "analysis_config": {
         "bucket_span": "15m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Unusual Ingress Packets",

@@ -25,6 +25,7 @@
       "description": "Unusual Destination ASN Traffic Volume",
       "analysis_config": {
         "bucket_span": "15m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Unusual Destination ASN Bytes",

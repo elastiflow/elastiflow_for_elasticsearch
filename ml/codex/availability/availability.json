@@ -26,6 +26,7 @@
       "description": "Low DHCP Relayed Messages",
       "analysis_config": {
         "bucket_span": "20m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Low DHCP Relayed Messages",
@@ -147,6 +148,7 @@
       "description": "Low DHCP Responses",
       "analysis_config": {
         "bucket_span": "20m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Low DHCP Responses",
@@ -268,6 +270,7 @@
       "description": "Low DHCP Request/Response Ratio",
       "analysis_config": {
         "bucket_span": "20m",
+        "model_prune_window": "14d",
         "summary_count_field_name": "doc_count",
         "detectors": [
           {
@@ -453,6 +456,7 @@
       "description": "Low DNS Responses",
       "analysis_config": {
         "bucket_span": "20m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Low DNS Responses",
@@ -569,6 +573,7 @@
       "description": "Low DNS Request/Response Ratio",
       "analysis_config": {
         "bucket_span": "20m",
+        "model_prune_window": "14d",
         "summary_count_field_name": "doc_count",
         "detectors": [
           {
@@ -749,6 +754,7 @@
       "description": "Low LDAP Request/Response Ratio",
       "analysis_config": {
         "bucket_span": "20m",
+        "model_prune_window": "14d",
         "summary_count_field_name": "doc_count",
         "detectors": [
           {
@@ -929,6 +935,7 @@
       "description": "Low NTP Responses",
       "analysis_config": {
         "bucket_span": "20m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Low NTP Responses",
@@ -1050,6 +1057,7 @@
       "description": "Low NTP Request/Response Ratio",
       "analysis_config": {
         "bucket_span": "20m",
+        "model_prune_window": "14d",
         "summary_count_field_name": "doc_count",
         "detectors": [
           {
@@ -1235,6 +1243,7 @@
       "description": "Low NTP Symmetric Messages",
       "analysis_config": {
         "bucket_span": "20m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Low NTP Symmetric Messages",
@@ -1356,6 +1365,7 @@
       "description": "Low RADIUS AUTH Request/Response Ratio",
       "analysis_config": {
         "bucket_span": "20m",
+        "model_prune_window": "14d",
         "summary_count_field_name": "doc_count",
         "detectors": [
           {
@@ -1540,6 +1550,7 @@
       "description": "Failed TCP Sessions - edge",
       "analysis_config": {
         "bucket_span": "15m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Unestablished Connections",
@@ -1673,6 +1684,7 @@
       "description": "Failed TCP Sessions - inbound",
       "analysis_config": {
         "bucket_span": "15m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Unestablished Connections",
@@ -1806,6 +1818,7 @@
       "description": "Failed TCP Sessions - outbound",
       "analysis_config": {
         "bucket_span": "15m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Unestablished Connections",
@@ -1939,6 +1952,7 @@
       "description": "Failed TCP Sessions - private",
       "analysis_config": {
         "bucket_span": "15m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Unestablished Connections",

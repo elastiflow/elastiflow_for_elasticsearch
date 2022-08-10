@@ -26,6 +26,7 @@
       "description": "Rare Client-Side Autonomous System",
       "analysis_config": {
         "bucket_span": "30m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Rare ASN",
@@ -115,6 +116,7 @@
       "description": "Rare Server-Side Autonomous System",
       "analysis_config": {
         "bucket_span": "30m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Rare ASN",
@@ -208,6 +210,7 @@
       "description": "Rare Conversation - inbound",
       "analysis_config": {
         "bucket_span": "30m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Rare Conversation",
@@ -313,6 +316,7 @@
       "description": "Rare Conversation - outbound",
       "analysis_config": {
         "bucket_span": "30m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Rare Conversation",
@@ -410,6 +414,7 @@
       "description": "Rare Conversation - private",
       "analysis_config": {
         "bucket_span": "30m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Rare Conversation",
@@ -504,6 +509,7 @@
       "description": "Rare Country - inbound",
       "analysis_config": {
         "bucket_span": "30m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Rare Country",
@@ -615,6 +621,7 @@
       "description": "Rare Country - outbound",
       "analysis_config": {
         "bucket_span": "30m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Rare Country",
@@ -722,6 +729,7 @@
       "description": "Rare Country - private",
       "analysis_config": {
         "bucket_span": "30m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Rare Country",

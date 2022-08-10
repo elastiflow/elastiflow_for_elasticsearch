@@ -22,6 +22,7 @@
       "description": "ICMP Scan Direct - edge (fast)",
       "analysis_config": {
         "bucket_span": "10m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "High Unique Destination IPs",
@@ -139,6 +140,7 @@
       "description": "ICMP Scan Direct - edge (slow)",
       "analysis_config": {
         "bucket_span": "240m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "High Unique Destination IPs",
@@ -256,6 +258,7 @@
       "description": "ICMP Scan Direct - inbound (fast)",
       "analysis_config": {
         "bucket_span": "10m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "High Unique Destination IPs",
@@ -373,6 +376,7 @@
       "description": "ICMP Scan Direct - inbound (slow)",
       "analysis_config": {
         "bucket_span": "240m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "High Unique Destination IPs",
@@ -486,6 +490,7 @@
       "description": "ICMP Scan Direct - outbound (fast)",
       "analysis_config": {
         "bucket_span": "10m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "High Unique Destination IPs",
@@ -599,6 +604,7 @@
       "description": "ICMP Scan Direct - outbound (slow)",
       "analysis_config": {
         "bucket_span": "240m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "High Unique Destination IPs",
@@ -712,6 +718,7 @@
       "description": "ICMP Scan Direct - private (fast)",
       "analysis_config": {
         "bucket_span": "10m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "High Unique Destination IPs",
@@ -820,6 +827,7 @@
       "description": "ICMP Scan Direct - private (slow)",
       "analysis_config": {
         "bucket_span": "240m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "High Unique Destination IPs",
@@ -940,6 +948,7 @@
       "description": "Port Scan Direct - edge (fast)",
       "analysis_config": {
         "bucket_span": "10m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "High Unique Ports Attempted",
@@ -1060,6 +1069,7 @@
       "description": "Port Scan Direct - edge (slow)",
       "analysis_config": {
         "bucket_span": "240m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "High Unique Ports Attempted",
@@ -1180,6 +1190,7 @@
       "description": "Port Scan Direct - inbound (fast)",
       "analysis_config": {
         "bucket_span": "10m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "High Unique Ports Attempted",
@@ -1300,6 +1311,7 @@
       "description": "Port Scan Direct - inbound (slow)",
       "analysis_config": {
         "bucket_span": "240m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "High Unique Ports Attempted",
@@ -1416,6 +1428,7 @@
       "description": "Port Scan Direct - outbound (fast)",
       "analysis_config": {
         "bucket_span": "10m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "High Unique Ports Attempted",
@@ -1532,6 +1545,7 @@
       "description": "Port Scan Direct - outbound (slow)",
       "analysis_config": {
         "bucket_span": "240m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "High Unique Ports Attempted",
@@ -1644,6 +1658,7 @@
       "description": "Port Scan Direct - private (fast)",
       "analysis_config": {
         "bucket_span": "10m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "High Unique Ports Attempted",
@@ -1753,6 +1768,7 @@
       "description": "Port Scan Direct - private (slow)",
       "analysis_config": {
         "bucket_span": "240m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "High Unique Ports Attempted",
@@ -1866,6 +1882,7 @@
       "description": "Port Scan Distributed - edge (fast)",
       "analysis_config": {
         "bucket_span": "10m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "High Unique Ports Attempted",
@@ -1979,6 +1996,7 @@
       "description": "Port Scan Distributed - edge (slow)",
       "analysis_config": {
         "bucket_span": "240m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "High Unique Ports Attempted",
@@ -2092,6 +2110,7 @@
       "description": "Port Scan Distributed - inbound (fast)",
       "analysis_config": {
         "bucket_span": "10m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "High Unique Ports Attempted",
@@ -2205,6 +2224,7 @@
       "description": "Port Scan Distributed - inbound (slow)",
       "analysis_config": {
         "bucket_span": "240m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "High Unique Ports Attempted",
@@ -2318,6 +2338,7 @@
       "description": "Port Scan Distributed - outbound (fast)",
       "analysis_config": {
         "bucket_span": "10m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "High Unique Ports Attempted",
@@ -2431,6 +2452,7 @@
       "description": "Port Scan Distributed - outbound (slow)",
       "analysis_config": {
         "bucket_span": "240m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "High Unique Ports Attempted",
@@ -2540,6 +2562,7 @@
       "description": "Port Scan Distributed - private (fast)",
       "analysis_config": {
         "bucket_span": "10m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "High Unique Ports Attempted",
@@ -2646,6 +2669,7 @@
       "description": "Port Scan Distributed - private (slow)",
       "analysis_config": {
         "bucket_span": "240m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "High Unique Ports Attempted",

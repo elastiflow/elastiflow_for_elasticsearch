@@ -18,6 +18,7 @@
       "description": "ICMP Scan Direct - private (fast)",
       "analysis_config": {
         "bucket_span": "10m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "High Unique Destination IPs",

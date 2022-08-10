@@ -31,6 +31,7 @@
       "description": "Brute Force Direct CLI Access - edge (fast)",
       "analysis_config": {
         "bucket_span": "10m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Access Attempts",
@@ -162,6 +163,7 @@
       "description": "Brute Force Direct CLI Access - edge (slow)",
       "analysis_config": {
         "bucket_span": "240m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Access Attempts",
@@ -293,6 +295,7 @@
       "description": "Brute Force Direct CLI Access - inbound (fast)",
       "analysis_config": {
         "bucket_span": "10m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Access Attempts",
@@ -424,6 +427,7 @@
       "description": "Brute Force Direct CLI Access - inbound (slow)",
       "analysis_config": {
         "bucket_span": "240m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Access Attempts",
@@ -551,6 +555,7 @@
       "description": "Brute Force Direct CLI Access - outbound (fast)",
       "analysis_config": {
         "bucket_span": "10m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Access Attempts",
@@ -678,6 +683,7 @@
       "description": "Brute Force Direct CLI Access - outbound (slow)",
       "analysis_config": {
         "bucket_span": "240m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Access Attempts",
@@ -801,6 +807,7 @@
       "description": "Brute Force Direct CLI Access - private (fast)",
       "analysis_config": {
         "bucket_span": "10m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Access Attempts",
@@ -921,6 +928,7 @@
       "description": "Brute Force Direct CLI Access - private (slow)",
       "analysis_config": {
         "bucket_span": "240m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Access Attempts",
@@ -1049,6 +1057,7 @@
       "description": "Brute Force Direct Remote Desktop Access - edge (fast)",
       "analysis_config": {
         "bucket_span": "10m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Access Attempts",
@@ -1203,6 +1212,7 @@
       "description": "Brute Force Direct Remote Desktop Access - edge (slow)",
       "analysis_config": {
         "bucket_span": "240m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Access Attempts",
@@ -1357,6 +1367,7 @@
       "description": "Brute Force Direct Remote Desktop Access - inbound (fast)",
       "analysis_config": {
         "bucket_span": "10m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Access Attempts",
@@ -1511,6 +1522,7 @@
       "description": "Brute Force Direct Remote Desktop Access - inbound (slow)",
       "analysis_config": {
         "bucket_span": "240m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Access Attempts",
@@ -1661,6 +1673,7 @@
       "description": "Brute Force Direct Remote Desktop Access - outbound (fast)",
       "analysis_config": {
         "bucket_span": "10m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Access Attempts",
@@ -1811,6 +1824,7 @@
       "description": "Brute Force Direct Remote Desktop Access - outbound (slow)",
       "analysis_config": {
         "bucket_span": "240m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Access Attempts",
@@ -1957,6 +1971,7 @@
       "description": "Brute Force Direct Remote Desktop Access - private (fast)",
       "analysis_config": {
         "bucket_span": "10m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Access Attempts",
@@ -2100,6 +2115,7 @@
       "description": "Brute Force Direct Remote Desktop Access - private (slow)",
       "analysis_config": {
         "bucket_span": "240m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Access Attempts",
@@ -2247,6 +2263,7 @@
       "description": "Brute Force Distributed CLI Access - edge (fast)",
       "analysis_config": {
         "bucket_span": "10m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Clients",
@@ -2366,6 +2383,7 @@
       "description": "Brute Force Distributed CLI Access - edge (slow)",
       "analysis_config": {
         "bucket_span": "240m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Clients",
@@ -2485,6 +2503,7 @@
       "description": "Brute Force Distributed CLI Access - inbound (fast)",
       "analysis_config": {
         "bucket_span": "10m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Clients",
@@ -2604,6 +2623,7 @@
       "description": "Brute Force Distributed CLI Access - inbound (slow)",
       "analysis_config": {
         "bucket_span": "240m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Clients",
@@ -2723,6 +2743,7 @@
       "description": "Brute Force Distributed CLI Access - outbound (fast)",
       "analysis_config": {
         "bucket_span": "10m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Clients",
@@ -2842,6 +2863,7 @@
       "description": "Brute Force Distributed CLI Access - outbound (slow)",
       "analysis_config": {
         "bucket_span": "240m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Clients",
@@ -2957,6 +2979,7 @@
       "description": "Brute Force Distributed CLI Access - private (fast)",
       "analysis_config": {
         "bucket_span": "10m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Clients",
@@ -3069,6 +3092,7 @@
       "description": "Brute Force Distributed CLI Access - private (slow)",
       "analysis_config": {
         "bucket_span": "240m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Clients",
@@ -3185,6 +3209,7 @@
       "description": "Brute Force Distributed Remote Desktop Access - edge (fast)",
       "analysis_config": {
         "bucket_span": "10m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Clients",
@@ -3327,6 +3352,7 @@
       "description": "Brute Force Distributed Remote Desktop Access - edge (slow)",
       "analysis_config": {
         "bucket_span": "240m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Clients",
@@ -3469,6 +3495,7 @@
       "description": "Brute Force Distributed Remote Desktop Access - inbound (fast)",
       "analysis_config": {
         "bucket_span": "10m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Clients",
@@ -3611,6 +3638,7 @@
       "description": "Brute Force Distributed Remote Desktop Access - inbound (slow)",
       "analysis_config": {
         "bucket_span": "240m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Clients",
@@ -3753,6 +3781,7 @@
       "description": "Brute Force Distributed Remote Desktop Access - outbound (fast)",
       "analysis_config": {
         "bucket_span": "10m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Clients",
@@ -3895,6 +3924,7 @@
       "description": "Brute Force Distributed Remote Desktop Access - outbound (slow)",
       "analysis_config": {
         "bucket_span": "240m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Clients",
@@ -4033,6 +4063,7 @@
       "description": "Brute Force Distributed Remote Desktop Access - private (fast)",
       "analysis_config": {
         "bucket_span": "10m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Clients",
@@ -4168,6 +4199,7 @@
       "description": "Brute Force Distributed Remote Desktop Access - private (slow)",
       "analysis_config": {
         "bucket_span": "240m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Clients",

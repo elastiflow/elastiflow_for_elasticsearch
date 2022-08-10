@@ -26,6 +26,7 @@
       "description": "Low DHCP Responses",
       "analysis_config": {
         "bucket_span": "20m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Low DHCP Responses",

@@ -19,6 +19,7 @@
       "description": "ICMP Flood DDoS Attack - outbound",
       "analysis_config": {
         "bucket_span": "5m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive ICMP Sources",

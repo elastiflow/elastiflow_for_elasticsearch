@@ -26,6 +26,7 @@
       "description": "Low DHCP Relayed Messages",
       "analysis_config": {
         "bucket_span": "20m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Low DHCP Relayed Messages",
@@ -147,6 +148,7 @@
       "description": "Low DHCP Responses",
       "analysis_config": {
         "bucket_span": "20m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Low DHCP Responses",
@@ -268,6 +270,7 @@
       "description": "Low DHCP Request/Response Ratio",
       "analysis_config": {
         "bucket_span": "20m",
+        "model_prune_window": "14d",
         "summary_count_field_name": "doc_count",
         "detectors": [
           {
@@ -453,6 +456,7 @@
       "description": "Low DNS Responses",
       "analysis_config": {
         "bucket_span": "20m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Low DNS Responses",
@@ -569,6 +573,7 @@
       "description": "Low DNS Request/Response Ratio",
       "analysis_config": {
         "bucket_span": "20m",
+        "model_prune_window": "14d",
         "summary_count_field_name": "doc_count",
         "detectors": [
           {
@@ -749,6 +754,7 @@
       "description": "Low LDAP Request/Response Ratio",
       "analysis_config": {
         "bucket_span": "20m",
+        "model_prune_window": "14d",
         "summary_count_field_name": "doc_count",
         "detectors": [
           {
@@ -929,6 +935,7 @@
       "description": "Low NTP Responses",
       "analysis_config": {
         "bucket_span": "20m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Low NTP Responses",
@@ -1050,6 +1057,7 @@
       "description": "Low NTP Request/Response Ratio",
       "analysis_config": {
         "bucket_span": "20m",
+        "model_prune_window": "14d",
         "summary_count_field_name": "doc_count",
         "detectors": [
           {
@@ -1235,6 +1243,7 @@
       "description": "Low NTP Symmetric Messages",
       "analysis_config": {
         "bucket_span": "20m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Low NTP Symmetric Messages",
@@ -1356,6 +1365,7 @@
       "description": "Low RADIUS AUTH Request/Response Ratio",
       "analysis_config": {
         "bucket_span": "20m",
+        "model_prune_window": "14d",
         "summary_count_field_name": "doc_count",
         "detectors": [
           {
@@ -1540,6 +1550,7 @@
       "description": "Failed TCP Sessions - edge",
       "analysis_config": {
         "bucket_span": "15m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Unestablished Connections",
@@ -1673,6 +1684,7 @@
       "description": "Failed TCP Sessions - inbound",
       "analysis_config": {
         "bucket_span": "15m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Unestablished Connections",
@@ -1806,6 +1818,7 @@
       "description": "Failed TCP Sessions - outbound",
       "analysis_config": {
         "bucket_span": "15m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Unestablished Connections",
@@ -1939,6 +1952,7 @@
       "description": "Failed TCP Sessions - private",
       "analysis_config": {
         "bucket_span": "15m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Unestablished Connections",
@@ -2077,6 +2091,7 @@
       "description": "Brute Force Direct CLI Access - edge (fast)",
       "analysis_config": {
         "bucket_span": "10m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Access Attempts",
@@ -2208,6 +2223,7 @@
       "description": "Brute Force Direct CLI Access - edge (slow)",
       "analysis_config": {
         "bucket_span": "240m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Access Attempts",
@@ -2339,6 +2355,7 @@
       "description": "Brute Force Direct CLI Access - inbound (fast)",
       "analysis_config": {
         "bucket_span": "10m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Access Attempts",
@@ -2470,6 +2487,7 @@
       "description": "Brute Force Direct CLI Access - inbound (slow)",
       "analysis_config": {
         "bucket_span": "240m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Access Attempts",
@@ -2597,6 +2615,7 @@
       "description": "Brute Force Direct CLI Access - outbound (fast)",
       "analysis_config": {
         "bucket_span": "10m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Access Attempts",
@@ -2724,6 +2743,7 @@
       "description": "Brute Force Direct CLI Access - outbound (slow)",
       "analysis_config": {
         "bucket_span": "240m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Access Attempts",
@@ -2847,6 +2867,7 @@
       "description": "Brute Force Direct CLI Access - private (fast)",
       "analysis_config": {
         "bucket_span": "10m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Access Attempts",
@@ -2967,6 +2988,7 @@
       "description": "Brute Force Direct CLI Access - private (slow)",
       "analysis_config": {
         "bucket_span": "240m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Access Attempts",
@@ -3095,6 +3117,7 @@
       "description": "Brute Force Direct Remote Desktop Access - edge (fast)",
       "analysis_config": {
         "bucket_span": "10m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Access Attempts",
@@ -3249,6 +3272,7 @@
       "description": "Brute Force Direct Remote Desktop Access - edge (slow)",
       "analysis_config": {
         "bucket_span": "240m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Access Attempts",
@@ -3403,6 +3427,7 @@
       "description": "Brute Force Direct Remote Desktop Access - inbound (fast)",
       "analysis_config": {
         "bucket_span": "10m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Access Attempts",
@@ -3557,6 +3582,7 @@
       "description": "Brute Force Direct Remote Desktop Access - inbound (slow)",
       "analysis_config": {
         "bucket_span": "240m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Access Attempts",
@@ -3707,6 +3733,7 @@
       "description": "Brute Force Direct Remote Desktop Access - outbound (fast)",
       "analysis_config": {
         "bucket_span": "10m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Access Attempts",
@@ -3857,6 +3884,7 @@
       "description": "Brute Force Direct Remote Desktop Access - outbound (slow)",
       "analysis_config": {
         "bucket_span": "240m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Access Attempts",
@@ -4003,6 +4031,7 @@
       "description": "Brute Force Direct Remote Desktop Access - private (fast)",
       "analysis_config": {
         "bucket_span": "10m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Access Attempts",
@@ -4146,6 +4175,7 @@
       "description": "Brute Force Direct Remote Desktop Access - private (slow)",
       "analysis_config": {
         "bucket_span": "240m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Access Attempts",
@@ -4293,6 +4323,7 @@
       "description": "Brute Force Distributed CLI Access - edge (fast)",
       "analysis_config": {
         "bucket_span": "10m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Clients",
@@ -4412,6 +4443,7 @@
       "description": "Brute Force Distributed CLI Access - edge (slow)",
       "analysis_config": {
         "bucket_span": "240m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Clients",
@@ -4531,6 +4563,7 @@
       "description": "Brute Force Distributed CLI Access - inbound (fast)",
       "analysis_config": {
         "bucket_span": "10m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Clients",
@@ -4650,6 +4683,7 @@
       "description": "Brute Force Distributed CLI Access - inbound (slow)",
       "analysis_config": {
         "bucket_span": "240m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Clients",
@@ -4769,6 +4803,7 @@
       "description": "Brute Force Distributed CLI Access - outbound (fast)",
       "analysis_config": {
         "bucket_span": "10m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Clients",
@@ -4888,6 +4923,7 @@
       "description": "Brute Force Distributed CLI Access - outbound (slow)",
       "analysis_config": {
         "bucket_span": "240m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Clients",
@@ -5003,6 +5039,7 @@
       "description": "Brute Force Distributed CLI Access - private (fast)",
       "analysis_config": {
         "bucket_span": "10m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Clients",
@@ -5115,6 +5152,7 @@
       "description": "Brute Force Distributed CLI Access - private (slow)",
       "analysis_config": {
         "bucket_span": "240m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Clients",
@@ -5231,6 +5269,7 @@
       "description": "Brute Force Distributed Remote Desktop Access - edge (fast)",
       "analysis_config": {
         "bucket_span": "10m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Clients",
@@ -5373,6 +5412,7 @@
       "description": "Brute Force Distributed Remote Desktop Access - edge (slow)",
       "analysis_config": {
         "bucket_span": "240m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Clients",
@@ -5515,6 +5555,7 @@
       "description": "Brute Force Distributed Remote Desktop Access - inbound (fast)",
       "analysis_config": {
         "bucket_span": "10m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Clients",
@@ -5657,6 +5698,7 @@
       "description": "Brute Force Distributed Remote Desktop Access - inbound (slow)",
       "analysis_config": {
         "bucket_span": "240m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Clients",
@@ -5799,6 +5841,7 @@
       "description": "Brute Force Distributed Remote Desktop Access - outbound (fast)",
       "analysis_config": {
         "bucket_span": "10m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Clients",
@@ -5941,6 +5984,7 @@
       "description": "Brute Force Distributed Remote Desktop Access - outbound (slow)",
       "analysis_config": {
         "bucket_span": "240m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Clients",
@@ -6079,6 +6123,7 @@
       "description": "Brute Force Distributed Remote Desktop Access - private (fast)",
       "analysis_config": {
         "bucket_span": "10m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Clients",
@@ -6214,6 +6259,7 @@
       "description": "Brute Force Distributed Remote Desktop Access - private (slow)",
       "analysis_config": {
         "bucket_span": "240m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Clients",
@@ -6349,6 +6395,7 @@
       "description": "TCP DDoS Attack - edge",
       "analysis_config": {
         "bucket_span": "5m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Client IPs",
@@ -6467,6 +6514,7 @@
       "description": "TCP DDoS Attack - inbound",
       "analysis_config": {
         "bucket_span": "5m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Client IPs",
@@ -6585,6 +6633,7 @@
       "description": "UDP Amplification Attack - edge",
       "analysis_config": {
         "bucket_span": "5m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive UDP Responders",
@@ -6732,6 +6781,7 @@
       "description": "UDP Amplification Attack - inbound",
       "analysis_config": {
         "bucket_span": "5m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive UDP Responders",
@@ -6875,6 +6925,7 @@
       "description": "ICMP Flood DDoS Attack - edge",
       "analysis_config": {
         "bucket_span": "5m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive ICMP Sources",
@@ -6989,6 +7040,7 @@
       "description": "ICMP Flood DDoS Attack - inbound",
       "analysis_config": {
         "bucket_span": "5m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive ICMP Sources",
@@ -7103,6 +7155,7 @@
       "description": "ICMP Flood DDoS Attack - outbound",
       "analysis_config": {
         "bucket_span": "5m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive ICMP Sources",
@@ -7217,6 +7270,7 @@
       "description": "ICMP Flood DDoS Attack - private",
       "analysis_config": {
         "bucket_span": "5m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive ICMP Sources",
@@ -7334,6 +7388,7 @@
       "description": "ICMP Flood Direct Attack - edge",
       "analysis_config": {
         "bucket_span": "5m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive ICMP Packets",
@@ -7459,6 +7514,7 @@
       "description": "ICMP Flood Direct Attack - inbound",
       "analysis_config": {
         "bucket_span": "5m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive ICMP Packets",
@@ -7576,6 +7632,7 @@
       "description": "ICMP Flood Direct Attack - outbound",
       "analysis_config": {
         "bucket_span": "5m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive ICMP Packets",
@@ -7693,6 +7750,7 @@
       "description": "ICMP Flood Direct Attack - private",
       "analysis_config": {
         "bucket_span": "5m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive ICMP Packets",
@@ -7808,6 +7866,7 @@
       "description": "ICMP Scan Direct - edge (fast)",
       "analysis_config": {
         "bucket_span": "10m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "High Unique Destination IPs",
@@ -7925,6 +7984,7 @@
       "description": "ICMP Scan Direct - edge (slow)",
       "analysis_config": {
         "bucket_span": "240m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "High Unique Destination IPs",
@@ -8042,6 +8102,7 @@
       "description": "ICMP Scan Direct - inbound (fast)",
       "analysis_config": {
         "bucket_span": "10m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "High Unique Destination IPs",
@@ -8159,6 +8220,7 @@
       "description": "ICMP Scan Direct - inbound (slow)",
       "analysis_config": {
         "bucket_span": "240m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "High Unique Destination IPs",
@@ -8272,6 +8334,7 @@
       "description": "ICMP Scan Direct - outbound (fast)",
       "analysis_config": {
         "bucket_span": "10m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "High Unique Destination IPs",
@@ -8385,6 +8448,7 @@
       "description": "ICMP Scan Direct - outbound (slow)",
       "analysis_config": {
         "bucket_span": "240m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "High Unique Destination IPs",
@@ -8498,6 +8562,7 @@
       "description": "ICMP Scan Direct - private (fast)",
       "analysis_config": {
         "bucket_span": "10m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "High Unique Destination IPs",
@@ -8606,6 +8671,7 @@
       "description": "ICMP Scan Direct - private (slow)",
       "analysis_config": {
         "bucket_span": "240m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "High Unique Destination IPs",
@@ -8726,6 +8792,7 @@
       "description": "Port Scan Direct - edge (fast)",
       "analysis_config": {
         "bucket_span": "10m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "High Unique Ports Attempted",
@@ -8846,6 +8913,7 @@
       "description": "Port Scan Direct - edge (slow)",
       "analysis_config": {
         "bucket_span": "240m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "High Unique Ports Attempted",
@@ -8966,6 +9034,7 @@
       "description": "Port Scan Direct - inbound (fast)",
       "analysis_config": {
         "bucket_span": "10m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "High Unique Ports Attempted",
@@ -9086,6 +9155,7 @@
       "description": "Port Scan Direct - inbound (slow)",
       "analysis_config": {
         "bucket_span": "240m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "High Unique Ports Attempted",
@@ -9202,6 +9272,7 @@
       "description": "Port Scan Direct - outbound (fast)",
       "analysis_config": {
         "bucket_span": "10m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "High Unique Ports Attempted",
@@ -9318,6 +9389,7 @@
       "description": "Port Scan Direct - outbound (slow)",
       "analysis_config": {
         "bucket_span": "240m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "High Unique Ports Attempted",
@@ -9430,6 +9502,7 @@
       "description": "Port Scan Direct - private (fast)",
       "analysis_config": {
         "bucket_span": "10m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "High Unique Ports Attempted",
@@ -9539,6 +9612,7 @@
       "description": "Port Scan Direct - private (slow)",
       "analysis_config": {
         "bucket_span": "240m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "High Unique Ports Attempted",
@@ -9652,6 +9726,7 @@
       "description": "Port Scan Distributed - edge (fast)",
       "analysis_config": {
         "bucket_span": "10m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "High Unique Ports Attempted",
@@ -9765,6 +9840,7 @@
       "description": "Port Scan Distributed - edge (slow)",
       "analysis_config": {
         "bucket_span": "240m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "High Unique Ports Attempted",
@@ -9878,6 +9954,7 @@
       "description": "Port Scan Distributed - inbound (fast)",
       "analysis_config": {
         "bucket_span": "10m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "High Unique Ports Attempted",
@@ -9991,6 +10068,7 @@
       "description": "Port Scan Distributed - inbound (slow)",
       "analysis_config": {
         "bucket_span": "240m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "High Unique Ports Attempted",
@@ -10104,6 +10182,7 @@
       "description": "Port Scan Distributed - outbound (fast)",
       "analysis_config": {
         "bucket_span": "10m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "High Unique Ports Attempted",
@@ -10217,6 +10296,7 @@
       "description": "Port Scan Distributed - outbound (slow)",
       "analysis_config": {
         "bucket_span": "240m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "High Unique Ports Attempted",
@@ -10326,6 +10406,7 @@
       "description": "Port Scan Distributed - private (fast)",
       "analysis_config": {
         "bucket_span": "10m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "High Unique Ports Attempted",
@@ -10432,6 +10513,7 @@
       "description": "Port Scan Distributed - private (slow)",
       "analysis_config": {
         "bucket_span": "240m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "High Unique Ports Attempted",
@@ -10542,6 +10624,7 @@
       "description": "Rare Client-Side Autonomous System",
       "analysis_config": {
         "bucket_span": "30m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Rare ASN",
@@ -10631,6 +10714,7 @@
       "description": "Rare Server-Side Autonomous System",
       "analysis_config": {
         "bucket_span": "30m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Rare ASN",
@@ -10724,6 +10808,7 @@
       "description": "Rare Conversation (inbound)",
       "analysis_config": {
         "bucket_span": "30m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Rare Conversation",
@@ -10829,6 +10914,7 @@
       "description": "Rare Conversation (outbound)",
       "analysis_config": {
         "bucket_span": "30m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Rare Conversation",
@@ -10926,6 +11012,7 @@
       "description": "Rare Conversation (private)",
       "analysis_config": {
         "bucket_span": "30m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Rare Conversation",
@@ -11020,6 +11107,7 @@
       "description": "Rare Country - inbound",
       "analysis_config": {
         "bucket_span": "30m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Rare Country",
@@ -11131,6 +11219,7 @@
       "description": "Rare Country - outbound",
       "analysis_config": {
         "bucket_span": "30m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Rare Country",
@@ -11238,6 +11327,7 @@
       "description": "Rare Country - private",
       "analysis_config": {
         "bucket_span": "30m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Rare Country",
@@ -11345,6 +11435,7 @@
       "description": "SYN Flood DDoS Attack - edge",
       "analysis_config": {
         "bucket_span": "5m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive SYN Senders",
@@ -11474,6 +11565,7 @@
       "description": "SYN Flood DDoS Attack - inbound",
       "analysis_config": {
         "bucket_span": "5m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive SYN Senders",
@@ -11599,6 +11691,7 @@
       "description": "SYN Flood DDoS Attack - outbound",
       "analysis_config": {
         "bucket_span": "5m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive SYN Senders",
@@ -11724,6 +11817,7 @@
       "description": "SYN Flood DDoS Attack - private",
       "analysis_config": {
         "bucket_span": "5m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive SYN Senders",
@@ -11848,6 +11942,7 @@
       "description": "SYN Flood Direct Attack - edge",
       "analysis_config": {
         "bucket_span": "5m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive SYN Packets",
@@ -11980,6 +12075,7 @@
       "description": "SYN Flood Direct Attack - inbound",
       "analysis_config": {
         "bucket_span": "5m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive SYN Packets",
@@ -12104,6 +12200,7 @@
       "description": "SYN Flood Direct Attack - outbound",
       "analysis_config": {
         "bucket_span": "5m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive SYN Packets",
@@ -12228,6 +12325,7 @@
       "description": "SYN Flood Direct Attack - private",
       "analysis_config": {
         "bucket_span": "5m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive SYN Packets",
@@ -12353,6 +12451,7 @@
       "description": "Unusual Destination ASN Traffic Volume",
       "analysis_config": {
         "bucket_span": "15m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Unusual Destination ASN Bytes",
@@ -12438,6 +12537,7 @@
       "description": "Unusual Destination ASN Traffic Volume",
       "analysis_config": {
         "bucket_span": "15m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Unusual Destination ASN Flows",
@@ -12522,6 +12622,7 @@
       "description": "Unusual Destination ASN Traffic Volume",
       "analysis_config": {
         "bucket_span": "15m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Unusual Destination ASN Packets",
@@ -12607,6 +12708,7 @@
       "description": "Unusual Source ASN Traffic Volume",
       "analysis_config": {
         "bucket_span": "15m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Unusual Source ASN Bytes",
@@ -12692,6 +12794,7 @@
       "description": "Unusual Source ASN Traffic Volume",
       "analysis_config": {
         "bucket_span": "15m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Unusual Source ASN Flows",
@@ -12776,6 +12879,7 @@
       "description": "Unusual Source ASN Traffic Volume",
       "analysis_config": {
         "bucket_span": "15m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Unusual Source ASN Packets",
@@ -12865,6 +12969,7 @@
       "description": "Unusual Egress Traffic Volume",
       "analysis_config": {
         "bucket_span": "15m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Unusual Egress Bytes",
@@ -12961,6 +13066,7 @@
       "description": "Unusual Egress Traffic Volume",
       "analysis_config": {
         "bucket_span": "15m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Unusual Egress Flows",
@@ -13056,6 +13162,7 @@
       "description": "Unusual Egress Traffic Volume",
       "analysis_config": {
         "bucket_span": "15m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Unusual Egress Packets",
@@ -13152,6 +13259,7 @@
       "description": "Unusual Ingress Traffic Volume",
       "analysis_config": {
         "bucket_span": "15m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Unusual Ingress Bytes",
@@ -13248,6 +13356,7 @@
       "description": "Unusual Ingress Traffic Volume",
       "analysis_config": {
         "bucket_span": "15m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Unusual Ingress Flows",
@@ -13343,6 +13452,7 @@
       "description": "Unusual Ingress Traffic Volume",
       "analysis_config": {
         "bucket_span": "15m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Unusual Ingress Packets",

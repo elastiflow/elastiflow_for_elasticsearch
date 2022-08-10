@@ -27,6 +27,7 @@
       "description": "Brute Force Distributed CLI Access - inbound (fast)",
       "analysis_config": {
         "bucket_span": "10m",
+        "model_prune_window": "14d",
         "detectors": [
           {
             "detector_description": "Excessive Clients",
