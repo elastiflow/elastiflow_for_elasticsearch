@@ -69,7 +69,7 @@ DETECTOR=$( cat << EOF
     "summary_count_field_name": "doc_count"
   },
   "analysis_limits": {
-    "model_memory_limit": "256mb"
+    "model_memory_limit": "192mb"
   },
   "data_description": {
     "time_field": "@timestamp",

@@ -72,7 +72,7 @@ DETECTOR=$( cat << EOF
     ]
   },
   "analysis_limits": {
-    "model_memory_limit": "1024mb"
+    "model_memory_limit": "2048mb"
   },
   "data_description": {
     "time_field": "@timestamp",

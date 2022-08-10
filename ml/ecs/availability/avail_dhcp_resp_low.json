@@ -45,7 +45,7 @@
         ]
       },
       "analysis_limits": {
-        "model_memory_limit": "512mb",
+        "model_memory_limit": "192mb",
         "categorization_examples_limit": 4
       },
       "data_description": {
