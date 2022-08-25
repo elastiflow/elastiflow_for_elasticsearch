@@ -1,0 +1,103 @@
+[
+  {
+    "job": {
+      "job_id": "elastiflow_ecs_avail_dhcp_broadcast_high",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "Core Services (DHCP)",
+            "url_value": "dashboards#/view/a9f3e040-9b94-11ec-a4df-e940aaa4214d?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:host.name,negate:!f,params:(query:'$host.name$'),type:phrase),query:(match_phrase:(host.name:'$host.name$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:destination.ip,negate:!f,params:(query:'255.255.255.255'),type:phrase),query:(match_phrase:(destination.ip:'255.255.255.255'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:network.transport,negate:!f,params:(query:'udp'),type:phrase),query:(match_phrase:(network.transport:'udp'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:source.port,negate:!f,params:(query:68),type:phrase),query:(match_phrase:(source.port:68))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:destination.port,negate:!f,params:(query:67),type:phrase),query:(match_phrase:(destination.port:67)))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:host.name,negate:!f,params:(query:'$host.name$'),type:phrase),query:(match_phrase:(host.name:'$host.name$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:destination.ip,negate:!f,params:(query:'255.255.255.255'),type:phrase),query:(match_phrase:(destination.ip:'255.255.255.255'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:network.transport,negate:!f,params:(query:'udp'),type:phrase),query:(match_phrase:(network.transport:'udp'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:source.port,negate:!f,params:(query:68),type:phrase),query:(match_phrase:(source.port:68))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:destination.port,negate:!f,params:(query:67),type:phrase),query:(match_phrase:(destination.port:67)))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/abfed250-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:host.name,negate:!f,params:(query:'$host.name$'),type:phrase),query:(match_phrase:(host.name:'$host.name$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:destination.ip,negate:!f,params:(query:'255.255.255.255'),type:phrase),query:(match_phrase:(destination.ip:'255.255.255.255'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:network.transport,negate:!f,params:(query:'udp'),type:phrase),query:(match_phrase:(network.transport:'udp'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:source.port,negate:!f,params:(query:68),type:phrase),query:(match_phrase:(source.port:68))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:destination.port,negate:!f,params:(query:67),type:phrase),query:(match_phrase:(destination.port:67)))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "availability",
+        "network_services"
+      ],
+      "description": "High DHCP Broadcast Messages",
+      "analysis_config": {
+        "bucket_span": "20m",
+        "model_prune_window": "14d",
+        "detectors": [
+          {
+            "detector_description": "High DHCP Broadcast Messages",
+            "function": "high_sum",
+            "field_name": "network.packets",
+            "partition_field_name": "host.name",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "host.name"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "192mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": true,
+        "annotations_enabled": true
+      },
+      "model_snapshot_retention_days": 7,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_ecs_avail_dhcp_broadcast_high",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_ecs_avail_dhcp_broadcast_high",
+      "job_id": "elastiflow_ecs_avail_dhcp_broadcast_high",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "term": {
+                "network.transport": "udp"
+              }
+            },
+            {
+              "term": {
+                "source.port": 68
+              }
+            },
+            {
+              "term": {
+                "destination.port": 67
+              }
+            },
+            {
+              "term": {
+                "destination.ip": "255.255.255.255"
+              }
+            },
+            {
+              "exists": {
+                "field": "host.name"
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-ecs-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  }
+]
