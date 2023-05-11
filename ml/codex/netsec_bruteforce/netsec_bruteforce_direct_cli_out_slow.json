@@ -33,9 +33,8 @@
             "detector_description": "Excessive Access Attempts",
             "function": "high_distinct_count",
             "field_name": "flow.client.l4.port.id",
-            "by_field_name": "flow.server.l4.port.name",
             "over_field_name": "flow.client.ip.addr",
-            "partition_field_name": "flow.server.ip.addr",
+            "partition_field_name": "flow.server.l4.port.name",
             "detector_index": 0
           }
         ],

@@ -37,9 +37,8 @@
             "detector_description": "Excessive Access Attempts",
             "function": "high_distinct_count",
             "field_name": "client.port",
-            "by_field_name": "flow.server.l4.port.name",
             "over_field_name": "client.ip",
-            "partition_field_name": "server.ip",
+            "partition_field_name": "flow.server.l4.port.name",
             "detector_index": 0
           }
         ],
@@ -169,9 +168,8 @@
             "detector_description": "Excessive Access Attempts",
             "function": "high_distinct_count",
             "field_name": "client.port",
-            "by_field_name": "flow.server.l4.port.name",
             "over_field_name": "client.ip",
-            "partition_field_name": "server.ip",
+            "partition_field_name": "flow.server.l4.port.name",
             "detector_index": 0
           }
         ],
@@ -301,9 +299,8 @@
             "detector_description": "Excessive Access Attempts",
             "function": "high_distinct_count",
             "field_name": "client.port",
-            "by_field_name": "flow.server.l4.port.name",
             "over_field_name": "client.ip",
-            "partition_field_name": "server.ip",
+            "partition_field_name": "flow.server.l4.port.name",
             "detector_index": 0
           }
         ],
@@ -433,9 +430,8 @@
             "detector_description": "Excessive Access Attempts",
             "function": "high_distinct_count",
             "field_name": "client.port",
-            "by_field_name": "flow.server.l4.port.name",
             "over_field_name": "client.ip",
-            "partition_field_name": "server.ip",
+            "partition_field_name": "flow.server.l4.port.name",
             "detector_index": 0
           }
         ],
@@ -561,9 +557,8 @@
             "detector_description": "Excessive Access Attempts",
             "function": "high_distinct_count",
             "field_name": "client.port",
-            "by_field_name": "flow.server.l4.port.name",
             "over_field_name": "client.ip",
-            "partition_field_name": "server.ip",
+            "partition_field_name": "flow.server.l4.port.name",
             "detector_index": 0
           }
         ],
@@ -689,9 +684,8 @@
             "detector_description": "Excessive Access Attempts",
             "function": "high_distinct_count",
             "field_name": "client.port",
-            "by_field_name": "flow.server.l4.port.name",
             "over_field_name": "client.ip",
-            "partition_field_name": "server.ip",
+            "partition_field_name": "flow.server.l4.port.name",
             "detector_index": 0
           }
         ],
@@ -813,9 +807,8 @@
             "detector_description": "Excessive Access Attempts",
             "function": "high_distinct_count",
             "field_name": "client.port",
-            "by_field_name": "flow.server.l4.port.name",
             "over_field_name": "client.ip",
-            "partition_field_name": "server.ip",
+            "partition_field_name": "flow.server.l4.port.name",
             "detector_index": 0
           }
         ],
@@ -934,9 +927,8 @@
             "detector_description": "Excessive Access Attempts",
             "function": "high_distinct_count",
             "field_name": "client.port",
-            "by_field_name": "flow.server.l4.port.name",
             "over_field_name": "client.ip",
-            "partition_field_name": "server.ip",
+            "partition_field_name": "flow.server.l4.port.name",
             "detector_index": 0
           }
         ],
@@ -1063,9 +1055,8 @@
             "detector_description": "Excessive Access Attempts",
             "function": "high_distinct_count",
             "field_name": "client.port",
-            "by_field_name": "flow.server.l4.port.name",
             "over_field_name": "client.ip",
-            "partition_field_name": "server.ip",
+            "partition_field_name": "flow.server.l4.port.name",
             "detector_index": 0
           }
         ],
@@ -1218,9 +1209,8 @@
             "detector_description": "Excessive Access Attempts",
             "function": "high_distinct_count",
             "field_name": "client.port",
-            "by_field_name": "flow.server.l4.port.name",
             "over_field_name": "client.ip",
-            "partition_field_name": "server.ip",
+            "partition_field_name": "flow.server.l4.port.name",
             "detector_index": 0
           }
         ],
@@ -1373,9 +1363,8 @@
             "detector_description": "Excessive Access Attempts",
             "function": "high_distinct_count",
             "field_name": "client.port",
-            "by_field_name": "flow.server.l4.port.name",
             "over_field_name": "client.ip",
-            "partition_field_name": "server.ip",
+            "partition_field_name": "flow.server.l4.port.name",
             "detector_index": 0
           }
         ],
@@ -1528,9 +1517,8 @@
             "detector_description": "Excessive Access Attempts",
             "function": "high_distinct_count",
             "field_name": "client.port",
-            "by_field_name": "flow.server.l4.port.name",
             "over_field_name": "client.ip",
-            "partition_field_name": "server.ip",
+            "partition_field_name": "flow.server.l4.port.name",
             "detector_index": 0
           }
         ],
@@ -1679,9 +1667,8 @@
             "detector_description": "Excessive Access Attempts",
             "function": "high_distinct_count",
             "field_name": "client.port",
-            "by_field_name": "flow.server.l4.port.name",
             "over_field_name": "client.ip",
-            "partition_field_name": "server.ip",
+            "partition_field_name": "flow.server.l4.port.name",
             "detector_index": 0
           }
         ],
@@ -1830,9 +1817,8 @@
             "detector_description": "Excessive Access Attempts",
             "function": "high_distinct_count",
             "field_name": "client.port",
-            "by_field_name": "flow.server.l4.port.name",
             "over_field_name": "client.ip",
-            "partition_field_name": "server.ip",
+            "partition_field_name": "flow.server.l4.port.name",
             "detector_index": 0
           }
         ],
@@ -1977,9 +1963,8 @@
             "detector_description": "Excessive Access Attempts",
             "function": "high_distinct_count",
             "field_name": "client.port",
-            "by_field_name": "flow.server.l4.port.name",
             "over_field_name": "client.ip",
-            "partition_field_name": "server.ip",
+            "partition_field_name": "flow.server.l4.port.name",
             "detector_index": 0
           }
         ],
@@ -2121,9 +2106,8 @@
             "detector_description": "Excessive Access Attempts",
             "function": "high_distinct_count",
             "field_name": "client.port",
-            "by_field_name": "flow.server.l4.port.name",
             "over_field_name": "client.ip",
-            "partition_field_name": "server.ip",
+            "partition_field_name": "flow.server.l4.port.name",
             "detector_index": 0
           }
         ],
@@ -2269,8 +2253,7 @@
             "detector_description": "Excessive Clients",
             "function": "high_distinct_count",
             "field_name": "client.ip",
-            "by_field_name": "flow.server.l4.port.name",
-            "partition_field_name": "server.ip",
+            "partition_field_name": "flow.server.l4.port.name",
             "detector_index": 0
           }
         ],
@@ -2389,8 +2372,7 @@
             "detector_description": "Excessive Clients",
             "function": "high_distinct_count",
             "field_name": "client.ip",
-            "by_field_name": "flow.server.l4.port.name",
-            "partition_field_name": "server.ip",
+            "partition_field_name": "flow.server.l4.port.name",
             "detector_index": 0
           }
         ],
@@ -2509,8 +2491,7 @@
             "detector_description": "Excessive Clients",
             "function": "high_distinct_count",
             "field_name": "client.ip",
-            "by_field_name": "flow.server.l4.port.name",
-            "partition_field_name": "server.ip",
+            "partition_field_name": "flow.server.l4.port.name",
             "detector_index": 0
           }
         ],
@@ -2629,8 +2610,7 @@
             "detector_description": "Excessive Clients",
             "function": "high_distinct_count",
             "field_name": "client.ip",
-            "by_field_name": "flow.server.l4.port.name",
-            "partition_field_name": "server.ip",
+            "partition_field_name": "flow.server.l4.port.name",
             "detector_index": 0
           }
         ],
@@ -2749,8 +2729,7 @@
             "detector_description": "Excessive Clients",
             "function": "high_distinct_count",
             "field_name": "client.ip",
-            "by_field_name": "flow.server.l4.port.name",
-            "partition_field_name": "server.ip",
+            "partition_field_name": "flow.server.l4.port.name",
             "detector_index": 0
           }
         ],
@@ -2869,8 +2848,7 @@
             "detector_description": "Excessive Clients",
             "function": "high_distinct_count",
             "field_name": "client.ip",
-            "by_field_name": "flow.server.l4.port.name",
-            "partition_field_name": "server.ip",
+            "partition_field_name": "flow.server.l4.port.name",
             "detector_index": 0
           }
         ],
@@ -2985,8 +2963,7 @@
             "detector_description": "Excessive Clients",
             "function": "high_distinct_count",
             "field_name": "client.ip",
-            "by_field_name": "flow.server.l4.port.name",
-            "partition_field_name": "server.ip",
+            "partition_field_name": "flow.server.l4.port.name",
             "detector_index": 0
           }
         ],
@@ -3098,8 +3075,7 @@
             "detector_description": "Excessive Clients",
             "function": "high_distinct_count",
             "field_name": "client.ip",
-            "by_field_name": "flow.server.l4.port.name",
-            "partition_field_name": "server.ip",
+            "partition_field_name": "flow.server.l4.port.name",
             "detector_index": 0
           }
         ],
@@ -3215,8 +3191,7 @@
             "detector_description": "Excessive Clients",
             "function": "high_distinct_count",
             "field_name": "client.ip",
-            "by_field_name": "flow.server.l4.port.name",
-            "partition_field_name": "server.ip",
+            "partition_field_name": "flow.server.l4.port.name",
             "detector_index": 0
           }
         ],
@@ -3358,8 +3333,7 @@
             "detector_description": "Excessive Clients",
             "function": "high_distinct_count",
             "field_name": "client.ip",
-            "by_field_name": "flow.server.l4.port.name",
-            "partition_field_name": "server.ip",
+            "partition_field_name": "flow.server.l4.port.name",
             "detector_index": 0
           }
         ],
@@ -3501,8 +3475,7 @@
             "detector_description": "Excessive Clients",
             "function": "high_distinct_count",
             "field_name": "client.ip",
-            "by_field_name": "flow.server.l4.port.name",
-            "partition_field_name": "server.ip",
+            "partition_field_name": "flow.server.l4.port.name",
             "detector_index": 0
           }
         ],
@@ -3644,8 +3617,7 @@
             "detector_description": "Excessive Clients",
             "function": "high_distinct_count",
             "field_name": "client.ip",
-            "by_field_name": "flow.server.l4.port.name",
-            "partition_field_name": "server.ip",
+            "partition_field_name": "flow.server.l4.port.name",
             "detector_index": 0
           }
         ],
@@ -3787,8 +3759,7 @@
             "detector_description": "Excessive Clients",
             "function": "high_distinct_count",
             "field_name": "client.ip",
-            "by_field_name": "flow.server.l4.port.name",
-            "partition_field_name": "server.ip",
+            "partition_field_name": "flow.server.l4.port.name",
             "detector_index": 0
           }
         ],
@@ -3930,8 +3901,7 @@
             "detector_description": "Excessive Clients",
             "function": "high_distinct_count",
             "field_name": "client.ip",
-            "by_field_name": "flow.server.l4.port.name",
-            "partition_field_name": "server.ip",
+            "partition_field_name": "flow.server.l4.port.name",
             "detector_index": 0
           }
         ],
@@ -4069,8 +4039,7 @@
             "detector_description": "Excessive Clients",
             "function": "high_distinct_count",
             "field_name": "client.ip",
-            "by_field_name": "flow.server.l4.port.name",
-            "partition_field_name": "server.ip",
+            "partition_field_name": "flow.server.l4.port.name",
             "detector_index": 0
           }
         ],
@@ -4205,8 +4174,7 @@
             "detector_description": "Excessive Clients",
             "function": "high_distinct_count",
             "field_name": "client.ip",
-            "by_field_name": "flow.server.l4.port.name",
-            "partition_field_name": "server.ip",
+            "partition_field_name": "flow.server.l4.port.name",
             "detector_index": 0
           }
         ],

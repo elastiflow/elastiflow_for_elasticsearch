@@ -29,8 +29,7 @@
             "detector_description": "Excessive Clients",
             "function": "high_distinct_count",
             "field_name": "client.ip",
-            "by_field_name": "flow.server.l4.port.name",
-            "partition_field_name": "server.ip",
+            "partition_field_name": "flow.server.l4.port.name",
             "detector_index": 0
           }
         ],
