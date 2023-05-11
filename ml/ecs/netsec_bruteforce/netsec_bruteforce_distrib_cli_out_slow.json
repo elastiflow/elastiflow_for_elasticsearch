@@ -23,7 +23,8 @@
         "security",
         "access",
         "bruteforce",
-        "outbound"
+        "outbound",
+        "slow"
       ],
       "description": "Brute Force Distributed CLI Access - outbound (slow)",
       "analysis_config": {

@@ -27,7 +27,8 @@
         "security",
         "access",
         "bruteforce",
-        "edge"
+        "edge",
+        "fast"
       ],
       "description": "Brute Force Direct CLI Access - edge (fast)",
       "analysis_config": {

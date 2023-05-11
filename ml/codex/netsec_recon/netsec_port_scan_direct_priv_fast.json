@@ -18,7 +18,8 @@
         "elastiflow",
         "security",
         "reconnaissance",
-        "private"
+        "private",
+        "fast"
       ],
       "description": "Port Scan Direct - private (fast)",
       "analysis_config": {

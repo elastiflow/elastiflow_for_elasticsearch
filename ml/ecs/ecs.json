@@ -2192,7 +2192,8 @@
         "security",
         "access",
         "bruteforce",
-        "edge"
+        "edge",
+        "fast"
       ],
       "description": "Brute Force Direct CLI Access - edge (fast)",
       "analysis_config": {
@@ -2324,7 +2325,8 @@
         "security",
         "access",
         "bruteforce",
-        "edge"
+        "edge",
+        "slow"
       ],
       "description": "Brute Force Direct CLI Access - edge (slow)",
       "analysis_config": {
@@ -2456,7 +2458,8 @@
         "security",
         "access",
         "bruteforce",
-        "inbound"
+        "inbound",
+        "fast"
       ],
       "description": "Brute Force Direct CLI Access - inbound (fast)",
       "analysis_config": {
@@ -2588,7 +2591,8 @@
         "security",
         "access",
         "bruteforce",
-        "inbound"
+        "inbound",
+        "slow"
       ],
       "description": "Brute Force Direct CLI Access - inbound (slow)",
       "analysis_config": {
@@ -2716,7 +2720,8 @@
         "security",
         "access",
         "bruteforce",
-        "outbound"
+        "outbound",
+        "fast"
       ],
       "description": "Brute Force Direct CLI Access - outbound (fast)",
       "analysis_config": {
@@ -2844,7 +2849,8 @@
         "security",
         "access",
         "bruteforce",
-        "outbound"
+        "outbound",
+        "slow"
       ],
       "description": "Brute Force Direct CLI Access - outbound (slow)",
       "analysis_config": {
@@ -2968,7 +2974,8 @@
         "security",
         "access",
         "bruteforce",
-        "private"
+        "private",
+        "fast"
       ],
       "description": "Brute Force Direct CLI Access - private (fast)",
       "analysis_config": {
@@ -3089,7 +3096,8 @@
         "security",
         "access",
         "bruteforce",
-        "private"
+        "private",
+        "slow"
       ],
       "description": "Brute Force Direct CLI Access - private (slow)",
       "analysis_config": {
@@ -3218,7 +3226,8 @@
         "security",
         "access",
         "bruteforce",
-        "edge"
+        "edge",
+        "fast"
       ],
       "description": "Brute Force Direct Remote Desktop Access - edge (fast)",
       "analysis_config": {
@@ -3373,7 +3382,8 @@
         "security",
         "access",
         "bruteforce",
-        "edge"
+        "edge",
+        "slow"
       ],
       "description": "Brute Force Direct Remote Desktop Access - edge (slow)",
       "analysis_config": {
@@ -3528,7 +3538,8 @@
         "security",
         "access",
         "bruteforce",
-        "inbound"
+        "inbound",
+        "fast"
       ],
       "description": "Brute Force Direct Remote Desktop Access - inbound (fast)",
       "analysis_config": {
@@ -3683,7 +3694,8 @@
         "security",
         "access",
         "bruteforce",
-        "inbound"
+        "inbound",
+        "slow"
       ],
       "description": "Brute Force Direct Remote Desktop Access - inbound (slow)",
       "analysis_config": {
@@ -3834,7 +3846,8 @@
         "security",
         "access",
         "bruteforce",
-        "outbound"
+        "outbound",
+        "fast"
       ],
       "description": "Brute Force Direct Remote Desktop Access - outbound (fast)",
       "analysis_config": {
@@ -3985,7 +3998,8 @@
         "security",
         "access",
         "bruteforce",
-        "outbound"
+        "outbound",
+        "slow"
       ],
       "description": "Brute Force Direct Remote Desktop Access - outbound (slow)",
       "analysis_config": {
@@ -4132,7 +4146,8 @@
         "security",
         "access",
         "bruteforce",
-        "private"
+        "private",
+        "fast"
       ],
       "description": "Brute Force Direct Remote Desktop Access - private (fast)",
       "analysis_config": {
@@ -4276,7 +4291,8 @@
         "security",
         "access",
         "bruteforce",
-        "private"
+        "private",
+        "slow"
       ],
       "description": "Brute Force Direct Remote Desktop Access - private (slow)",
       "analysis_config": {
@@ -4424,7 +4440,8 @@
         "security",
         "access",
         "bruteforce",
-        "edge"
+        "edge",
+        "fast"
       ],
       "description": "Brute Force Distributed CLI Access - edge (fast)",
       "analysis_config": {
@@ -4544,7 +4561,8 @@
         "security",
         "access",
         "bruteforce",
-        "edge"
+        "edge",
+        "slow"
       ],
       "description": "Brute Force Distributed CLI Access - edge (slow)",
       "analysis_config": {
@@ -4664,7 +4682,8 @@
         "security",
         "access",
         "bruteforce",
-        "inbound"
+        "inbound",
+        "fast"
       ],
       "description": "Brute Force Distributed CLI Access - inbound (fast)",
       "analysis_config": {
@@ -4784,7 +4803,8 @@
         "security",
         "access",
         "bruteforce",
-        "inbound"
+        "inbound",
+        "slow"
       ],
       "description": "Brute Force Distributed CLI Access - inbound (slow)",
       "analysis_config": {
@@ -4904,7 +4924,8 @@
         "security",
         "access",
         "bruteforce",
-        "outbound"
+        "outbound",
+        "fast"
       ],
       "description": "Brute Force Distributed CLI Access - outbound (fast)",
       "analysis_config": {
@@ -5024,7 +5045,8 @@
         "security",
         "access",
         "bruteforce",
-        "outbound"
+        "outbound",
+        "slow"
       ],
       "description": "Brute Force Distributed CLI Access - outbound (slow)",
       "analysis_config": {
@@ -5140,7 +5162,8 @@
         "security",
         "access",
         "bruteforce",
-        "private"
+        "private",
+        "fast"
       ],
       "description": "Brute Force Distributed CLI Access - private (fast)",
       "analysis_config": {
@@ -5253,7 +5276,8 @@
         "security",
         "access",
         "bruteforce",
-        "private"
+        "private",
+        "slow"
       ],
       "description": "Brute Force Distributed CLI Access - private (slow)",
       "analysis_config": {
@@ -5370,7 +5394,8 @@
         "security",
         "access",
         "bruteforce",
-        "edge"
+        "edge",
+        "fast"
       ],
       "description": "Brute Force Distributed Remote Desktop Access - edge (fast)",
       "analysis_config": {
@@ -5513,7 +5538,8 @@
         "security",
         "access",
         "bruteforce",
-        "edge"
+        "edge",
+        "slow"
       ],
       "description": "Brute Force Distributed Remote Desktop Access - edge (slow)",
       "analysis_config": {
@@ -5656,7 +5682,8 @@
         "security",
         "access",
         "bruteforce",
-        "inbound"
+        "inbound",
+        "fast"
       ],
       "description": "Brute Force Distributed Remote Desktop Access - inbound (fast)",
       "analysis_config": {
@@ -5799,7 +5826,8 @@
         "security",
         "access",
         "bruteforce",
-        "inbound"
+        "inbound",
+        "slow"
       ],
       "description": "Brute Force Distributed Remote Desktop Access - inbound (slow)",
       "analysis_config": {
@@ -5942,7 +5970,8 @@
         "security",
         "access",
         "bruteforce",
-        "outbound"
+        "outbound",
+        "fast"
       ],
       "description": "Brute Force Distributed Remote Desktop Access - outbound (fast)",
       "analysis_config": {
@@ -6085,7 +6114,8 @@
         "security",
         "access",
         "bruteforce",
-        "outbound"
+        "outbound",
+        "slow"
       ],
       "description": "Brute Force Distributed Remote Desktop Access - outbound (slow)",
       "analysis_config": {
@@ -6224,7 +6254,8 @@
         "security",
         "access",
         "bruteforce",
-        "private"
+        "private",
+        "fast"
       ],
       "description": "Brute Force Distributed Remote Desktop Access - private (fast)",
       "analysis_config": {
@@ -6360,7 +6391,8 @@
         "security",
         "access",
         "bruteforce",
-        "private"
+        "private",
+        "slow"
       ],
       "description": "Brute Force Distributed Remote Desktop Access - private (slow)",
       "analysis_config": {
@@ -7979,7 +8011,8 @@
         "elastiflow",
         "security",
         "reconnaissance",
-        "edge"
+        "edge",
+        "fast"
       ],
       "description": "ICMP Scan Direct - edge (fast)",
       "analysis_config": {
@@ -8098,7 +8131,8 @@
         "elastiflow",
         "security",
         "reconnaissance",
-        "edge"
+        "edge",
+        "slow"
       ],
       "description": "ICMP Scan Direct - edge (slow)",
       "analysis_config": {
@@ -8217,7 +8251,8 @@
         "elastiflow",
         "security",
         "reconnaissance",
-        "inbound"
+        "inbound",
+        "fast"
       ],
       "description": "ICMP Scan Direct - inbound (fast)",
       "analysis_config": {
@@ -8336,7 +8371,8 @@
         "elastiflow",
         "security",
         "reconnaissance",
-        "inbound"
+        "inbound",
+        "slow"
       ],
       "description": "ICMP Scan Direct - inbound (slow)",
       "analysis_config": {
@@ -8451,7 +8487,8 @@
         "elastiflow",
         "security",
         "reconnaissance",
-        "outbound"
+        "outbound",
+        "fast"
       ],
       "description": "ICMP Scan Direct - outbound (fast)",
       "analysis_config": {
@@ -8566,7 +8603,8 @@
         "elastiflow",
         "security",
         "reconnaissance",
-        "outbound"
+        "outbound",
+        "slow"
       ],
       "description": "ICMP Scan Direct - outbound (slow)",
       "analysis_config": {
@@ -8681,7 +8719,8 @@
         "elastiflow",
         "security",
         "reconnaissance",
-        "private"
+        "private",
+        "fast"
       ],
       "description": "ICMP Scan Direct - private (fast)",
       "analysis_config": {
@@ -8791,7 +8830,8 @@
         "elastiflow",
         "security",
         "reconnaissance",
-        "private"
+        "private",
+        "slow"
       ],
       "description": "ICMP Scan Direct - private (slow)",
       "analysis_config": {
@@ -8913,7 +8953,8 @@
         "elastiflow",
         "security",
         "reconnaissance",
-        "edge"
+        "edge",
+        "fast"
       ],
       "description": "Port Scan Direct - edge (fast)",
       "analysis_config": {
@@ -9035,7 +9076,8 @@
         "elastiflow",
         "security",
         "reconnaissance",
-        "edge"
+        "edge",
+        "slow"
       ],
       "description": "Port Scan Direct - edge (slow)",
       "analysis_config": {
@@ -9157,7 +9199,8 @@
         "elastiflow",
         "security",
         "reconnaissance",
-        "inbound"
+        "inbound",
+        "fast"
       ],
       "description": "Port Scan Direct - inbound (fast)",
       "analysis_config": {
@@ -9279,7 +9322,8 @@
         "elastiflow",
         "security",
         "reconnaissance",
-        "inbound"
+        "inbound",
+        "slow"
       ],
       "description": "Port Scan Direct - inbound (slow)",
       "analysis_config": {
@@ -9397,7 +9441,8 @@
         "elastiflow",
         "security",
         "reconnaissance",
-        "outbound"
+        "outbound",
+        "fast"
       ],
       "description": "Port Scan Direct - outbound (fast)",
       "analysis_config": {
@@ -9515,7 +9560,8 @@
         "elastiflow",
         "security",
         "reconnaissance",
-        "outbound"
+        "outbound",
+        "slow"
       ],
       "description": "Port Scan Direct - outbound (slow)",
       "analysis_config": {
@@ -9629,7 +9675,8 @@
         "elastiflow",
         "security",
         "reconnaissance",
-        "private"
+        "private",
+        "fast"
       ],
       "description": "Port Scan Direct - private (fast)",
       "analysis_config": {
@@ -9740,7 +9787,8 @@
         "elastiflow",
         "security",
         "reconnaissance",
-        "private"
+        "private",
+        "slow"
       ],
       "description": "Port Scan Direct - private (slow)",
       "analysis_config": {
@@ -9855,7 +9903,8 @@
         "elastiflow",
         "security",
         "reconnaissance",
-        "edge"
+        "edge",
+        "fast"
       ],
       "description": "Port Scan Distributed - edge (fast)",
       "analysis_config": {
@@ -9970,7 +10019,8 @@
         "elastiflow",
         "security",
         "reconnaissance",
-        "edge"
+        "edge",
+        "slow"
       ],
       "description": "Port Scan Distributed - edge (slow)",
       "analysis_config": {
@@ -10085,7 +10135,8 @@
         "elastiflow",
         "security",
         "reconnaissance",
-        "inbound"
+        "inbound",
+        "fast"
       ],
       "description": "Port Scan Distributed - inbound (fast)",
       "analysis_config": {
@@ -10200,7 +10251,8 @@
         "elastiflow",
         "security",
         "reconnaissance",
-        "inbound"
+        "inbound",
+        "slow"
       ],
       "description": "Port Scan Distributed - inbound (slow)",
       "analysis_config": {
@@ -10315,7 +10367,8 @@
         "elastiflow",
         "security",
         "reconnaissance",
-        "outbound"
+        "outbound",
+        "fast"
       ],
       "description": "Port Scan Distributed - outbound (fast)",
       "analysis_config": {
@@ -10430,7 +10483,8 @@
         "elastiflow",
         "security",
         "reconnaissance",
-        "outbound"
+        "outbound",
+        "slow"
       ],
       "description": "Port Scan Distributed - outbound (slow)",
       "analysis_config": {
@@ -10541,7 +10595,8 @@
         "elastiflow",
         "security",
         "reconnaissance",
-        "private"
+        "private",
+        "fast"
       ],
       "description": "Port Scan Distributed - private (fast)",
       "analysis_config": {
@@ -10649,7 +10704,8 @@
         "elastiflow",
         "security",
         "reconnaissance",
-        "private"
+        "private",
+        "slow"
       ],
       "description": "Port Scan Distributed - private (slow)",
       "analysis_config": {

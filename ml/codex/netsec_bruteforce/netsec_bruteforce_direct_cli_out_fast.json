@@ -23,7 +23,8 @@
         "security",
         "access",
         "bruteforce",
-        "outbound"
+        "outbound",
+        "fast"
       ],
       "description": "Brute Force Direct CLI Access - outbound (fast)",
       "analysis_config": {

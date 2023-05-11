@@ -19,7 +19,8 @@
         "security",
         "access",
         "bruteforce",
-        "private"
+        "private",
+        "slow"
       ],
       "description": "Brute Force Distributed CLI Access - private (slow)",
       "analysis_config": {

@@ -23,7 +23,8 @@
         "security",
         "access",
         "bruteforce",
-        "edge"
+        "edge",
+        "fast"
       ],
       "description": "Brute Force Distributed Remote Desktop Access - edge (fast)",
       "analysis_config": {

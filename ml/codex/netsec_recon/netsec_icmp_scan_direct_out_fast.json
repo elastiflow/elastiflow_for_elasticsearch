@@ -14,7 +14,8 @@
         "elastiflow",
         "security",
         "reconnaissance",
-        "outbound"
+        "outbound",
+        "fast"
       ],
       "description": "ICMP Scan Direct - outbound (fast)",
       "analysis_config": {

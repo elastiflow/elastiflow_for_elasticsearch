@@ -22,7 +22,8 @@
         "elastiflow",
         "security",
         "reconnaissance",
-        "edge"
+        "edge",
+        "slow"
       ],
       "description": "Port Scan Distributed - edge (slow)",
       "analysis_config": {

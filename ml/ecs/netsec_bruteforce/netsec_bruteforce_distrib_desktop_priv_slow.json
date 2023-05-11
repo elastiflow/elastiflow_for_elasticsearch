@@ -19,7 +19,8 @@
         "security",
         "access",
         "bruteforce",
-        "private"
+        "private",
+        "slow"
       ],
       "description": "Brute Force Distributed Remote Desktop Access - private (slow)",
       "analysis_config": {

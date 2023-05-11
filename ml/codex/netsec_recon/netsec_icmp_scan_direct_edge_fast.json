@@ -18,7 +18,8 @@
         "elastiflow",
         "security",
         "reconnaissance",
-        "edge"
+        "edge",
+        "fast"
       ],
       "description": "ICMP Scan Direct - edge (fast)",
       "analysis_config": {

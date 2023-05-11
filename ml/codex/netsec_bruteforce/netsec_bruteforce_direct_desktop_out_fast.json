@@ -23,7 +23,8 @@
         "security",
         "access",
         "bruteforce",
-        "outbound"
+        "outbound",
+        "fast"
       ],
       "description": "Brute Force Direct Remote Desktop Access - outbound (fast)",
       "analysis_config": {

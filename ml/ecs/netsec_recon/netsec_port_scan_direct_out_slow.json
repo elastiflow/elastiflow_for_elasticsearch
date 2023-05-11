@@ -22,7 +22,8 @@
         "elastiflow",
         "security",
         "reconnaissance",
-        "outbound"
+        "outbound",
+        "slow"
       ],
       "description": "Port Scan Direct - outbound (slow)",
       "analysis_config": {

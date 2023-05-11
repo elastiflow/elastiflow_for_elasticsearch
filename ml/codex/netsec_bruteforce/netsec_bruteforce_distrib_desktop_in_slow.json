@@ -23,7 +23,8 @@
         "security",
         "access",
         "bruteforce",
-        "inbound"
+        "inbound",
+        "slow"
       ],
       "description": "Brute Force Distributed Remote Desktop Access - inbound (slow)",
       "analysis_config": {

@@ -15,7 +15,7 @@
         "security",
         "reconnaissance",
         "private",
-        "private"
+        "fast"
       ],
       "description": "ICMP Scan Direct - private (fast)",
       "analysis_config": {

@@ -27,7 +27,8 @@
         "security",
         "access",
         "bruteforce",
-        "inbound"
+        "inbound",
+        "slow"
       ],
       "description": "Brute Force Direct CLI Access - inbound (slow)",
       "analysis_config": {
