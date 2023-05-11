@@ -1646,7 +1646,8 @@
       },
       "groups": [
         "elastiflow",
-        "availability"
+        "availability",
+        "edge"
       ],
       "description": "Failed TCP Sessions - edge",
       "analysis_config": {
@@ -1780,7 +1781,8 @@
       },
       "groups": [
         "elastiflow",
-        "availability"
+        "availability",
+        "inbound"
       ],
       "description": "Failed TCP Sessions - inbound",
       "analysis_config": {
@@ -1914,7 +1916,8 @@
       },
       "groups": [
         "elastiflow",
-        "availability"
+        "availability",
+        "outbound"
       ],
       "description": "Failed TCP Sessions - outbound",
       "analysis_config": {
@@ -2048,7 +2051,8 @@
       },
       "groups": [
         "elastiflow",
-        "availability"
+        "availability",
+        "private"
       ],
       "description": "Failed TCP Sessions - private",
       "analysis_config": {

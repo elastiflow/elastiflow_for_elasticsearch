@@ -16,7 +16,8 @@
       },
       "groups": [
         "elastiflow",
-        "availability"
+        "availability",
+        "inbound"
       ],
       "description": "Failed TCP Sessions - inbound",
       "analysis_config": {

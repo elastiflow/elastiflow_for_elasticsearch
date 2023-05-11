@@ -21,7 +21,8 @@
       "groups": [
         "elastiflow",
         "security",
-        "reconnaissance"
+        "reconnaissance",
+        "inbound"
       ],
       "description": "Port Scan Distributed - inbound (fast)",
       "analysis_config": {

@@ -17,7 +17,8 @@
       "groups": [
         "elastiflow",
         "security",
-        "activity"
+        "activity",
+        "private"
       ],
       "description": "Rare Country - private",
       "analysis_config": {

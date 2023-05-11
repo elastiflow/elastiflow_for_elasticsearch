@@ -21,7 +21,8 @@
       "groups": [
         "elastiflow",
         "security",
-        "activity"
+        "activity",
+        "outbound"
       ],
       "description": "Rare Country - outbound",
       "analysis_config": {

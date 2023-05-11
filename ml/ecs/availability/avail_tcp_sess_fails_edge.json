@@ -16,7 +16,8 @@
       },
       "groups": [
         "elastiflow",
-        "availability"
+        "availability",
+        "edge"
       ],
       "description": "Failed TCP Sessions - edge",
       "analysis_config": {

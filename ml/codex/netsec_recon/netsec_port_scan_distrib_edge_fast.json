@@ -21,7 +21,8 @@
       "groups": [
         "elastiflow",
         "security",
-        "reconnaissance"
+        "reconnaissance",
+        "edge"
       ],
       "description": "Port Scan Distributed - edge (fast)",
       "analysis_config": {

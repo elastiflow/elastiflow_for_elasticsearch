@@ -18,7 +18,8 @@
         "elastiflow",
         "security",
         "ddos",
-        "flood"
+        "flood",
+        "edge"
       ],
       "description": "TCP DDoS Attack - edge",
       "analysis_config": {

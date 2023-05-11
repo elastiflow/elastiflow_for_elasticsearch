@@ -18,7 +18,8 @@
         "elastiflow",
         "security",
         "ddos",
-        "amplification"
+        "amplification",
+        "inbound"
       ],
       "description": "UDP Amplification Attack - inbound",
       "analysis_config": {

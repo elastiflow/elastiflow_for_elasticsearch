@@ -18,7 +18,8 @@
         "elastiflow",
         "security",
         "access",
-        "bruteforce"
+        "bruteforce",
+        "private"
       ],
       "description": "Brute Force Direct CLI Access - private (slow)",
       "analysis_config": {

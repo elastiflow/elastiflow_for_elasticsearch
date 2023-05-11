@@ -205,7 +205,8 @@
       "groups": [
         "elastiflow",
         "security",
-        "activity"
+        "activity",
+        "inbound"
       ],
       "description": "Rare Conversation - inbound",
       "analysis_config": {
@@ -311,7 +312,8 @@
       "groups": [
         "elastiflow",
         "security",
-        "activity"
+        "activity",
+        "outbound"
       ],
       "description": "Rare Conversation - outbound",
       "analysis_config": {
@@ -409,7 +411,8 @@
       "groups": [
         "elastiflow",
         "security",
-        "activity"
+        "activity",
+        "private"
       ],
       "description": "Rare Conversation - private",
       "analysis_config": {
@@ -504,7 +507,8 @@
       "groups": [
         "elastiflow",
         "security",
-        "activity"
+        "activity",
+        "inbound"
       ],
       "description": "Rare Country - inbound",
       "analysis_config": {
@@ -616,7 +620,8 @@
       "groups": [
         "elastiflow",
         "security",
-        "activity"
+        "activity",
+        "outbound"
       ],
       "description": "Rare Country - outbound",
       "analysis_config": {
@@ -724,7 +729,8 @@
       "groups": [
         "elastiflow",
         "security",
-        "activity"
+        "activity",
+        "private"
       ],
       "description": "Rare Country - private",
       "analysis_config": {

@@ -18,7 +18,8 @@
         "elastiflow",
         "security",
         "ddos",
-        "flood"
+        "flood",
+        "edge"
       ],
       "description": "TCP DDoS Attack - edge",
       "analysis_config": {
@@ -137,7 +138,8 @@
         "elastiflow",
         "security",
         "ddos",
-        "flood"
+        "flood",
+        "inbound"
       ],
       "description": "TCP DDoS Attack - inbound",
       "analysis_config": {
@@ -256,7 +258,8 @@
         "elastiflow",
         "security",
         "ddos",
-        "amplification"
+        "amplification",
+        "edge"
       ],
       "description": "UDP Amplification Attack - edge",
       "analysis_config": {
@@ -404,7 +407,8 @@
         "elastiflow",
         "security",
         "ddos",
-        "amplification"
+        "amplification",
+        "inbound"
       ],
       "description": "UDP Amplification Attack - inbound",
       "analysis_config": {
@@ -548,7 +552,8 @@
         "elastiflow",
         "security",
         "ddos",
-        "flood"
+        "flood",
+        "edge"
       ],
       "description": "ICMP Flood DDoS Attack - edge",
       "analysis_config": {
@@ -663,7 +668,8 @@
         "elastiflow",
         "security",
         "ddos",
-        "flood"
+        "flood",
+        "inbound"
       ],
       "description": "ICMP Flood DDoS Attack - inbound",
       "analysis_config": {
@@ -778,7 +784,8 @@
         "elastiflow",
         "security",
         "ddos",
-        "flood"
+        "flood",
+        "outbound"
       ],
       "description": "ICMP Flood DDoS Attack - outbound",
       "analysis_config": {
@@ -893,7 +900,8 @@
         "elastiflow",
         "security",
         "ddos",
-        "flood"
+        "flood",
+        "private"
       ],
       "description": "ICMP Flood DDoS Attack - private",
       "analysis_config": {
@@ -1011,7 +1019,8 @@
         "elastiflow",
         "security",
         "ddos",
-        "flood"
+        "flood",
+        "edge"
       ],
       "description": "ICMP Flood Direct Attack - edge",
       "analysis_config": {
@@ -1137,7 +1146,8 @@
         "elastiflow",
         "security",
         "ddos",
-        "flood"
+        "flood",
+        "inbound"
       ],
       "description": "ICMP Flood Direct Attack - inbound",
       "analysis_config": {
@@ -1255,7 +1265,8 @@
         "elastiflow",
         "security",
         "ddos",
-        "flood"
+        "flood",
+        "outbound"
       ],
       "description": "ICMP Flood Direct Attack - outbound",
       "analysis_config": {
@@ -1373,7 +1384,8 @@
         "elastiflow",
         "security",
         "ddos",
-        "flood"
+        "flood",
+        "private"
       ],
       "description": "ICMP Flood Direct Attack - private",
       "analysis_config": {
@@ -1494,7 +1506,8 @@
         "elastiflow",
         "security",
         "ddos",
-        "flood"
+        "flood",
+        "edge"
       ],
       "description": "SYN Flood DDoS Attack - edge",
       "analysis_config": {
@@ -1624,7 +1637,8 @@
         "elastiflow",
         "security",
         "ddos",
-        "flood"
+        "flood",
+        "inbound"
       ],
       "description": "SYN Flood DDoS Attack - inbound",
       "analysis_config": {
@@ -1750,7 +1764,8 @@
         "elastiflow",
         "security",
         "ddos",
-        "flood"
+        "flood",
+        "outbound"
       ],
       "description": "SYN Flood DDoS Attack - outbound",
       "analysis_config": {
@@ -1876,7 +1891,8 @@
         "elastiflow",
         "security",
         "ddos",
-        "flood"
+        "flood",
+        "private"
       ],
       "description": "SYN Flood DDoS Attack - private",
       "analysis_config": {
@@ -2001,7 +2017,8 @@
         "elastiflow",
         "security",
         "ddos",
-        "flood"
+        "flood",
+        "edge"
       ],
       "description": "SYN Flood Direct Attack - edge",
       "analysis_config": {
@@ -2134,7 +2151,8 @@
         "elastiflow",
         "security",
         "ddos",
-        "flood"
+        "flood",
+        "inbound"
       ],
       "description": "SYN Flood Direct Attack - inbound",
       "analysis_config": {
@@ -2259,7 +2277,8 @@
         "elastiflow",
         "security",
         "ddos",
-        "flood"
+        "flood",
+        "outbound"
       ],
       "description": "SYN Flood Direct Attack - outbound",
       "analysis_config": {
@@ -2384,7 +2403,8 @@
         "elastiflow",
         "security",
         "ddos",
-        "flood"
+        "flood",
+        "private"
       ],
       "description": "SYN Flood Direct Attack - private",
       "analysis_config": {

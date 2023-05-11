@@ -26,7 +26,8 @@
         "elastiflow",
         "security",
         "access",
-        "bruteforce"
+        "bruteforce",
+        "inbound"
       ],
       "description": "Brute Force Direct Remote Desktop Access - inbound (fast)",
       "analysis_config": {

@@ -25,7 +25,8 @@
       "groups": [
         "elastiflow",
         "security",
-        "activity"
+        "activity",
+        "outbound"
       ],
       "description": "Rare Conversation - outbound",
       "analysis_config": {

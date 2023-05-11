@@ -14,7 +14,8 @@
         "elastiflow",
         "security",
         "ddos",
-        "flood"
+        "flood",
+        "inbound"
       ],
       "description": "ICMP Flood DDoS Attack - inbound",
       "analysis_config": {

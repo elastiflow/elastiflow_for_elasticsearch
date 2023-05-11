@@ -13,7 +13,8 @@
       "groups": [
         "elastiflow",
         "security",
-        "reconnaissance"
+        "reconnaissance",
+        "private"
       ],
       "description": "ICMP Scan Direct - private (slow)",
       "analysis_config": {

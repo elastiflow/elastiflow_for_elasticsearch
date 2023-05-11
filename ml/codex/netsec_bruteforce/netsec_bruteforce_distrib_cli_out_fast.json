@@ -22,7 +22,8 @@
         "elastiflow",
         "security",
         "access",
-        "bruteforce"
+        "bruteforce",
+        "outbound"
       ],
       "description": "Brute Force Distributed CLI Access - outbound (fast)",
       "analysis_config": {

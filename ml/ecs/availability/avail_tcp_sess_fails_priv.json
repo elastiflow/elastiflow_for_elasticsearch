@@ -16,7 +16,8 @@
       },
       "groups": [
         "elastiflow",
-        "availability"
+        "availability",
+        "private"
       ],
       "description": "Failed TCP Sessions - private",
       "analysis_config": {

@@ -22,7 +22,8 @@
         "elastiflow",
         "security",
         "access",
-        "bruteforce"
+        "bruteforce",
+        "edge"
       ],
       "description": "Brute Force Distributed CLI Access - edge (fast)",
       "analysis_config": {

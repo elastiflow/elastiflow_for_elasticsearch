@@ -17,7 +17,8 @@
       "groups": [
         "elastiflow",
         "security",
-        "reconnaissance"
+        "reconnaissance",
+        "inbound"
       ],
       "description": "ICMP Scan Direct - inbound (slow)",
       "analysis_config": {

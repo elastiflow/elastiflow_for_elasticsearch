@@ -26,7 +26,8 @@
         "elastiflow",
         "security",
         "access",
-        "bruteforce"
+        "bruteforce",
+        "inbound"
       ],
       "description": "Brute Force Direct CLI Access - inbound (fast)",
       "analysis_config": {

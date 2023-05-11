@@ -25,7 +25,8 @@
       "groups": [
         "elastiflow",
         "security",
-        "activity"
+        "activity",
+        "inbound"
       ],
       "description": "Rare Conversation - inbound",
       "analysis_config": {

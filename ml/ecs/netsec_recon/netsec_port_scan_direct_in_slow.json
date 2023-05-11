@@ -25,7 +25,8 @@
       "groups": [
         "elastiflow",
         "security",
-        "reconnaissance"
+        "reconnaissance",
+        "inbound"
       ],
       "description": "Port Scan Direct - inbound (slow)",
       "analysis_config": {

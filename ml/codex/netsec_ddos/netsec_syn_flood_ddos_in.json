@@ -22,7 +22,8 @@
         "elastiflow",
         "security",
         "ddos",
-        "flood"
+        "flood",
+        "inbound"
       ],
       "description": "SYN Flood DDoS Attack - inbound",
       "analysis_config": {

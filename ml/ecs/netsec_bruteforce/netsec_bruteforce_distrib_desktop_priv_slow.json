@@ -18,7 +18,8 @@
         "elastiflow",
         "security",
         "access",
-        "bruteforce"
+        "bruteforce",
+        "private"
       ],
       "description": "Brute Force Distributed Remote Desktop Access - private (slow)",
       "analysis_config": {

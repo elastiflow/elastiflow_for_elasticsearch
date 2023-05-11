@@ -18,7 +18,8 @@
         "elastiflow",
         "security",
         "ddos",
-        "amplification"
+        "amplification",
+        "edge"
       ],
       "description": "UDP Amplification Attack - edge",
       "analysis_config": {
