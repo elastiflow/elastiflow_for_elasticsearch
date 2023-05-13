@@ -11000,9 +11000,10 @@
       "groups": [
         "elastiflow",
         "security",
-        "activity"
+        "activity",
+        "inbound"
       ],
-      "description": "Rare Conversation (inbound)",
+      "description": "Rare Conversation - inbound",
       "analysis_config": {
         "bucket_span": "30m",
         "model_prune_window": "14d",
@@ -11106,9 +11107,10 @@
       "groups": [
         "elastiflow",
         "security",
-        "activity"
+        "activity",
+        "outbound"
       ],
-      "description": "Rare Conversation (outbound)",
+      "description": "Rare Conversation - outbound",
       "analysis_config": {
         "bucket_span": "30m",
         "model_prune_window": "14d",
@@ -11204,9 +11206,10 @@
       "groups": [
         "elastiflow",
         "security",
-        "activity"
+        "activity",
+        "private"
       ],
-      "description": "Rare Conversation (private)",
+      "description": "Rare Conversation - private",
       "analysis_config": {
         "bucket_span": "30m",
         "model_prune_window": "14d",
