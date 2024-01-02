@@ -1,0 +1,122 @@
+[
+  {
+    "job": {
+      "job_id": "elastiflow_codex_netsec_rare_geo_city_out",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.geo.country.name,negate:!f,params:(query:'$flow.server.geo.country.name$'),type:phrase),query:(match_phrase:(flow.server.geo.country.name:'$flow.server.geo.country.name$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.geo.city.name,negate:!f,params:(query:'$flow.server.geo.city.name$'),type:phrase),query:(match_phrase:(flow.server.geo.city.name:'$flow.server.geo.city.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Threats",
+            "url_value": "dashboards#/view/f7fbc0b0-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.geo.country.name,negate:!f,params:(query:'$flow.server.geo.country.name$'),type:phrase),query:(match_phrase:(flow.server.geo.country.name:'$flow.server.geo.country.name$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.geo.city.name,negate:!f,params:(query:'$flow.server.geo.city.name$'),type:phrase),query:(match_phrase:(flow.server.geo.city.name:'$flow.server.geo.city.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/abfed250-3d3f-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.geo.country.name,negate:!f,params:(query:'$flow.server.geo.country.name$'),type:phrase),query:(match_phrase:(flow.server.geo.country.name:'$flow.server.geo.country.name$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.geo.city.name,negate:!f,params:(query:'$flow.server.geo.city.name$'),type:phrase),query:(match_phrase:(flow.server.geo.city.name:'$flow.server.geo.city.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "security",
+        "activity",
+        "outbound"
+      ],
+      "description": "Rare City - outbound",
+      "analysis_config": {
+        "bucket_span": "30m",
+        "model_prune_window": "14d",
+        "detectors": [
+          {
+            "detector_description": "Rare City",
+            "function": "rare",
+            "by_field_name": "flow.server.geo.city.name",
+            "partition_field_name": "flow.server.geo.country.name",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "flow.server.geo.city.name",
+          "flow.server.geo.country.name",
+          "flow.server.l4.port.name",
+          "flow.server.ip.addr",
+          "flow.server.host.name",
+          "flow.client.ip.addr",
+          "flow.client.host.name"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "384mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": true,
+        "annotations_enabled": true
+      },
+      "model_snapshot_retention_days": 7,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_codex_netsec_rare_geo_city_out",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_codex_netsec_rare_geo_city_out",
+      "job_id": "elastiflow_codex_netsec_rare_geo_city_out",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "exists": {
+                "field": "flow.server.geo.city.name"
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.server.geo.country.name"
+              }
+            },
+            {
+              "term": {
+                "l4.session.established": "true"
+              }
+            },
+            {
+              "term": {
+                "flow.client.as.org": "PRIVATE"
+              }
+            }
+          ],
+          "must_not": [
+            {
+              "term": {
+                "flow.server.as.org": "PRIVATE"
+              }
+            },
+            {
+              "terms": {
+                "flow.client.ip.addr": []
+              }
+            },
+            {
+              "terms": {
+                "flow.server.ip.addr": []
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-codex-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  }
+]

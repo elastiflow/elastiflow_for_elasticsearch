@@ -1,16 +1,16 @@
 [
   {
     "job": {
-      "job_id": "elastiflow_ecs_netsec_rare_geo_country_priv",
+      "job_id": "elastiflow_ecs_netsec_rare_geo_city_priv",
       "custom_settings": {
         "custom_urls": [
           {
             "url_name": "Top Talkers",
-            "url_value": "dashboards#/view/6ffd0f89-824f-480e-bac3-6208b569a7c5?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:client.geo.country_name,negate:!f,params:(query:'$client.geo.country_name$'),type:phrase),query:(match_phrase:(client.geo.country_name:'$client.geo.country_name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+            "url_value": "dashboards#/view/6ffd0f89-824f-480e-bac3-6208b569a7c5?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:client.geo.country_name,negate:!f,params:(query:'$client.geo.country_name$'),type:phrase),query:(match_phrase:(client.geo.country_name:'$client.geo.country_name$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:client.geo.city_name,negate:!f,params:(query:'$client.geo.city_name$'),type:phrase),query:(match_phrase:(client.geo.city_name:'$client.geo.city_name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
           },
           {
             "url_name": "Flow Records",
-            "url_value": "dashboards#/view/31e00644-3a1e-4e11-9256-5f35aadd077c?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:client.geo.country_name,negate:!f,params:(query:'$client.geo.country_name$'),type:phrase),query:(match_phrase:(client.geo.country_name:'$client.geo.country_name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+            "url_value": "dashboards#/view/31e00644-3a1e-4e11-9256-5f35aadd077c?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:client.geo.country_name,negate:!f,params:(query:'$client.geo.country_name$'),type:phrase),query:(match_phrase:(client.geo.country_name:'$client.geo.country_name$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:client.geo.city_name,negate:!f,params:(query:'$client.geo.city_name$'),type:phrase),query:(match_phrase:(client.geo.city_name:'$client.geo.city_name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
           }
         ]
       },
@@ -20,19 +20,21 @@
         "activity",
         "private"
       ],
-      "description": "Rare Country - private",
+      "description": "Rare City - private",
       "analysis_config": {
         "bucket_span": "30m",
         "model_prune_window": "14d",
         "detectors": [
           {
-            "detector_description": "Rare Country",
+            "detector_description": "Rare City",
             "function": "rare",
-            "by_field_name": "client.geo.country_name",
+            "by_field_name": "client.geo.city_name",
+            "partition_field_name": "client.geo.country_name",
             "detector_index": 0
           }
         ],
         "influencers": [
+          "client.geo.city_name",
           "client.geo.country_name",
           "flow.server.l4.port.name",
           "server.ip",
@@ -55,15 +57,20 @@
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_ecs_netsec_rare_geo_country_priv",
+      "results_index_name": "custom-elastiflow_ecs_netsec_rare_geo_city_priv",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_ecs_netsec_rare_geo_country_priv",
-      "job_id": "elastiflow_ecs_netsec_rare_geo_country_priv",
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_rare_geo_city_priv",
+      "job_id": "elastiflow_ecs_netsec_rare_geo_city_priv",
       "query": {
         "bool": {
           "must": [
+            {
+              "exists": {
+                "field": "client.geo.city_name"
+              }
+            },
             {
               "exists": {
                 "field": "client.geo.country_name"
