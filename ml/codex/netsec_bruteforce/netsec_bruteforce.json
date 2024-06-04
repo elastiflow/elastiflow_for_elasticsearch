@@ -6,7 +6,7 @@
         "custom_urls": [
           {
             "url_name": "RiskIQ PassiveTotal",
-            "url_value": "https://elastiflow.com/netintel?ip=$flow.client.ip.addr$"
+            "url_value": "https://elastiflow.com/netintel/search?ip=$flow.client.ip.addr$"
           },
           {
             "url_name": "Top Conversations",
@@ -139,7 +139,7 @@
         "custom_urls": [
           {
             "url_name": "RiskIQ PassiveTotal",
-            "url_value": "https://elastiflow.com/netintel?ip=$flow.client.ip.addr$"
+            "url_value": "https://elastiflow.com/netintel/search?ip=$flow.client.ip.addr$"
           },
           {
             "url_name": "Top Conversations",
@@ -272,7 +272,7 @@
         "custom_urls": [
           {
             "url_name": "RiskIQ PassiveTotal",
-            "url_value": "https://elastiflow.com/netintel?ip=$flow.client.ip.addr$"
+            "url_value": "https://elastiflow.com/netintel/search?ip=$flow.client.ip.addr$"
           },
           {
             "url_name": "Top Conversations",
@@ -405,7 +405,7 @@
         "custom_urls": [
           {
             "url_name": "RiskIQ PassiveTotal",
-            "url_value": "https://elastiflow.com/netintel?ip=$flow.client.ip.addr$"
+            "url_value": "https://elastiflow.com/netintel/search?ip=$flow.client.ip.addr$"
           },
           {
             "url_name": "Top Conversations",
@@ -1040,7 +1040,7 @@
         "custom_urls": [
           {
             "url_name": "RiskIQ PassiveTotal",
-            "url_value": "https://elastiflow.com/netintel?ip=$flow.client.ip.addr$"
+            "url_value": "https://elastiflow.com/netintel/search?ip=$flow.client.ip.addr$"
           },
           {
             "url_name": "Top Conversations",
@@ -1196,7 +1196,7 @@
         "custom_urls": [
           {
             "url_name": "RiskIQ PassiveTotal",
-            "url_value": "https://elastiflow.com/netintel?ip=$flow.client.ip.addr$"
+            "url_value": "https://elastiflow.com/netintel/search?ip=$flow.client.ip.addr$"
           },
           {
             "url_name": "Top Conversations",
@@ -1352,7 +1352,7 @@
         "custom_urls": [
           {
             "url_name": "RiskIQ PassiveTotal",
-            "url_value": "https://elastiflow.com/netintel?ip=$flow.client.ip.addr$"
+            "url_value": "https://elastiflow.com/netintel/search?ip=$flow.client.ip.addr$"
           },
           {
             "url_name": "Top Conversations",
@@ -1508,7 +1508,7 @@
         "custom_urls": [
           {
             "url_name": "RiskIQ PassiveTotal",
-            "url_value": "https://elastiflow.com/netintel?ip=$flow.client.ip.addr$"
+            "url_value": "https://elastiflow.com/netintel/search?ip=$flow.client.ip.addr$"
           },
           {
             "url_name": "Top Conversations",

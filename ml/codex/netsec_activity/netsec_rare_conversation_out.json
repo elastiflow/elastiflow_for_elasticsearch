@@ -6,7 +6,7 @@
         "custom_urls": [
           {
             "url_name": "RiskIQ PassiveTotal",
-            "url_value": "https://elastiflow.com/netintel?ip=$flow.server.ip.addr$"
+            "url_value": "https://elastiflow.com/netintel/search?ip=$flow.server.ip.addr$"
           },
           {
             "url_name": "Top Talkers",
