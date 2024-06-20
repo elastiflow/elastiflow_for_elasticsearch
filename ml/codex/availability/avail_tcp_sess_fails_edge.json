@@ -5,6 +5,14 @@
       "custom_settings": {
         "custom_urls": [
           {
+            "url_name": "Lookup Client on ElastiFlow NetIntel",
+            "url_value": "https://elastiflow.com/netintel/search?ip=$flow.client.ip.addr$"
+          },
+          {
+            "url_name": "Lookup Server on ElastiFlow NetIntel",
+            "url_value": "https://elastiflow.com/netintel/search?ip=$flow.server.ip.addr$"
+          },
+          {
             "url_name": "Top Conversations",
             "url_value": "dashboards#/view/c2da3880-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.ip.addr,negate:!f,params:(query:'$flow.server.ip.addr$'),type:phrase),query:(match_phrase:(flow.server.ip.addr:'$flow.server.ip.addr$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.client.ip.addr,negate:!f,params:(query:'$flow.client.ip.addr$'),type:phrase),query:(match_phrase:(flow.client.ip.addr:'$flow.client.ip.addr$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.l4.port.name,negate:!f,params:(query:'$flow.server.l4.port.name$'),type:phrase),query:(match_phrase:(flow.server.l4.port.name:'$flow.server.l4.port.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
           },
@@ -35,10 +43,17 @@
         ],
         "influencers": [
           "flow.server.l4.port.name",
+          "flow.server.as.label",
           "flow.server.ip.addr",
           "flow.server.host.name",
+          "flow.server.cloud.provider.name",
+          "flow.server.cloud.region.name",
+          "flow.server.cloud.service.name",
+          "flow.client.as.label",
           "flow.client.ip.addr",
-          "flow.client.host.name"
+          "flow.client.host.name",
+          "flow.client.cloud.provider.name",
+          "flow.client.cloud.region.name"
         ]
       },
       "analysis_limits": {
@@ -51,7 +66,7 @@
       },
       "model_plot_config": {
         "enabled": true,
-        "annotations_enabled": true
+        "annotations_enabled": false
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,
@@ -107,6 +122,11 @@
             {
               "term": {
                 "flow.server.as.org": "PRIVATE"
+              }
+            },
+            {
+              "exists": {
+                "field": "sec.threat.name"
               }
             },
             {

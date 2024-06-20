@@ -5,6 +5,10 @@
       "custom_settings": {
         "custom_urls": [
           {
+            "url_name": "Lookup Server on ElastiFlow NetIntel",
+            "url_value": "https://elastiflow.com/netintel/search?ip=$server.ip$"
+          },
+          {
             "url_name": "Top Conversations",
             "url_value": "dashboards#/view/a3998237-07ba-4b06-bd44-2d0004b405ca?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:server.ip,negate:!f,params:(query:'$server.ip$'),type:phrase),query:(match_phrase:(server.ip:'$server.ip$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:client.ip,negate:!f,params:(query:'$client.ip$'),type:phrase),query:(match_phrase:(client.ip:'$client.ip$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.server.l4.port.name,negate:!f,params:(query:'$flow.server.l4.port.name$'),type:phrase),query:(match_phrase:(flow.server.l4.port.name:'$flow.server.l4.port.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
           },
@@ -34,9 +38,13 @@
           }
         ],
         "influencers": [
+          "flow.server.as.label",
           "flow.server.l4.port.name",
           "server.ip",
           "server.domain",
+          "flow.server.cloud.provider.name",
+          "flow.server.cloud.region.name",
+          "flow.server.cloud.service.name",
           "client.ip",
           "client.domain"
         ]
@@ -107,6 +115,11 @@
             {
               "term": {
                 "server.as.organization.name": "PRIVATE"
+              }
+            },
+            {
+              "exists": {
+                "field": "sec.threat.name"
               }
             },
             {
