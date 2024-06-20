@@ -5,7 +5,7 @@
       "custom_settings": {
         "custom_urls": [
           {
-            "url_name": "RiskIQ PassiveTotal",
+            "url_name": "ElastiFlow NetIntel",
             "url_value": "https://elastiflow.com/netintel/search?ip=$flow.client.ip.addr$"
           },
           {
@@ -62,7 +62,7 @@
       },
       "model_plot_config": {
         "enabled": true,
-        "annotations_enabled": true
+        "annotations_enabled": false
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,
