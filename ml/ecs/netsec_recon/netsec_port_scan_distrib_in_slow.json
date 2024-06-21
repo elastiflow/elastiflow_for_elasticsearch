@@ -94,6 +94,11 @@
               }
             },
             {
+              "term": {
+                "sec.threat.name": "Internet Scanner"
+              }
+            },
+            {
               "terms": {
                 "client.ip": []
               }

@@ -5,7 +5,7 @@
       "custom_settings": {
         "custom_urls": [
           {
-            "url_name": "RiskIQ PassiveTotal",
+            "url_name": "Lookup Source on ElastiFlow NetIntel",
             "url_value": "https://elastiflow.com/netintel/search?ip=$flow.src.ip.addr$"
           },
           {
@@ -35,6 +35,7 @@
           }
         ],
         "influencers": [
+          "flow.src.as.label",
           "flow.src.ip.addr",
           "flow.src.host.name"
         ]
@@ -49,7 +50,7 @@
       },
       "model_plot_config": {
         "enabled": true,
-        "annotations_enabled": true
+        "annotations_enabled": false
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,
@@ -95,6 +96,11 @@
             {
               "term": {
                 "flow.src.as.org": "PRIVATE"
+              }
+            },
+            {
+              "term": {
+                "sec.threat.name": "Internet Scanner"
               }
             },
             {
