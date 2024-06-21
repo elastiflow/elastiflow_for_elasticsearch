@@ -5,6 +5,10 @@
       "custom_settings": {
         "custom_urls": [
           {
+            "url_name": "Lookup Client on ElastiFlow NetIntel",
+            "url_value": "https://elastiflow.com/netintel/search?ip=$client.ip$"
+          },
+          {
             "url_name": "Top Conversations",
             "url_value": "dashboards#/view/a3998237-07ba-4b06-bd44-2d0004b405ca?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:server.ip,negate:!f,params:(query:'$server.ip$'),type:phrase),query:(match_phrase:(server.ip:'$server.ip$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:client.ip,negate:!f,params:(query:'$client.ip$'),type:phrase),query:(match_phrase:(client.ip:'$client.ip$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.server.l4.port.name,negate:!f,params:(query:'$flow.server.l4.port.name$'),type:phrase),query:(match_phrase:(flow.server.l4.port.name:'$flow.server.l4.port.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
           },
@@ -37,8 +41,12 @@
           "flow.server.l4.port.name",
           "server.ip",
           "server.domain",
+          "flow.client.as.label",
           "client.ip",
-          "client.domain"
+          "client.domain",
+          "flow.client.cloud.provider.name",
+          "flow.client.cloud.region.name",
+          "flow.client.cloud.service.name"
         ]
       },
       "analysis_limits": {
@@ -51,7 +59,7 @@
       },
       "model_plot_config": {
         "enabled": true,
-        "annotations_enabled": true
+        "annotations_enabled": false
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,
@@ -107,6 +115,11 @@
             {
               "term": {
                 "client.as.organization.name": "PRIVATE"
+              }
+            },
+            {
+              "exists": {
+                "field": "sec.threat.name"
               }
             },
             {

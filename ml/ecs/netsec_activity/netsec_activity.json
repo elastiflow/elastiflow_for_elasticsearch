@@ -5,6 +5,10 @@
       "custom_settings": {
         "custom_urls": [
           {
+            "url_name": "Lookup Client on ElastiFlow NetIntel",
+            "url_value": "https://elastiflow.com/netintel/search?ip=$client.ip$"
+          },
+          {
             "url_name": "Top Talkers",
             "url_value": "dashboards#/view/6ffd0f89-824f-480e-bac3-6208b569a7c5?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.client.as.label,negate:!f,params:(query:'$flow.client.as.label$'),type:phrase),query:(match_phrase:(flow.client.as.label:'$flow.client.as.label$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
           },
@@ -36,10 +40,10 @@
           }
         ],
         "influencers": [
-          "flow.client.as.label",
           "flow.server.l4.port.name",
           "server.ip",
           "server.domain",
+          "flow.client.as.label",
           "client.ip",
           "client.domain"
         ]
@@ -54,7 +58,7 @@
       },
       "model_plot_config": {
         "enabled": true,
-        "annotations_enabled": true
+        "annotations_enabled": false
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,
@@ -77,6 +81,13 @@
                 "l4.session.established": "true"
               }
             }
+          ],
+          "must_not": [
+            {
+              "term": {
+                "sec.threat.name": "Internet Scanner"
+              }
+            }
           ]
         }
       },
@@ -94,6 +105,10 @@
       "job_id": "elastiflow_ecs_netsec_rare_asn_server",
       "custom_settings": {
         "custom_urls": [
+          {
+            "url_name": "Lookup Server on ElastiFlow NetIntel",
+            "url_value": "https://elastiflow.com/netintel/search?ip=$server.ip$"
+          },
           {
             "url_name": "Top Talkers",
             "url_value": "dashboards#/view/6ffd0f89-824f-480e-bac3-6208b569a7c5?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.server.as.label,negate:!f,params:(query:'$flow.server.as.label$'),type:phrase),query:(match_phrase:(flow.server.as.label:'$flow.server.as.label$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
@@ -144,7 +159,7 @@
       },
       "model_plot_config": {
         "enabled": true,
-        "annotations_enabled": true
+        "annotations_enabled": false
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,
@@ -185,7 +200,7 @@
       "custom_settings": {
         "custom_urls": [
           {
-            "url_name": "RiskIQ PassiveTotal",
+            "url_name": "Lookup Client on ElastiFlow NetIntel",
             "url_value": "https://elastiflow.com/netintel/search?ip=$client.ip$"
           },
           {
@@ -222,6 +237,7 @@
         ],
         "influencers": [
           "flow.conversation.id",
+          "flow.client.as.label",
           "client.ip",
           "client.domain",
           "server.ip",
@@ -239,7 +255,7 @@
       },
       "model_plot_config": {
         "enabled": true,
-        "annotations_enabled": true
+        "annotations_enabled": false
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,
@@ -273,6 +289,11 @@
               "term": {
                 "client.as.organization.name": "PRIVATE"
               }
+            },
+            {
+              "term": {
+                "sec.threat.name": "Internet Scanner"
+              }
             }
           ]
         }
@@ -292,7 +313,7 @@
       "custom_settings": {
         "custom_urls": [
           {
-            "url_name": "RiskIQ PassiveTotal",
+            "url_name": "Lookup Server on ElastiFlow NetIntel",
             "url_value": "https://elastiflow.com/netintel/search?ip=$server.ip$"
           },
           {
@@ -331,6 +352,7 @@
           "flow.conversation.id",
           "client.ip",
           "client.domain",
+          "flow.server.as.label",
           "server.ip",
           "server.domain",
           "flow.server.l4.port.name"
@@ -346,7 +368,7 @@
       },
       "model_plot_config": {
         "enabled": true,
-        "annotations_enabled": true
+        "annotations_enabled": false
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,
@@ -445,7 +467,7 @@
       },
       "model_plot_config": {
         "enabled": true,
-        "annotations_enabled": true
+        "annotations_enabled": false
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,
@@ -491,6 +513,10 @@
       "custom_settings": {
         "custom_urls": [
           {
+            "url_name": "Lookup Client on ElastiFlow NetIntel",
+            "url_value": "https://elastiflow.com/netintel/search?ip=$client.ip$"
+          },
+          {
             "url_name": "Top Talkers",
             "url_value": "dashboards#/view/6ffd0f89-824f-480e-bac3-6208b569a7c5?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:client.geo.country_name,negate:!f,params:(query:'$client.geo.country_name$'),type:phrase),query:(match_phrase:(client.geo.country_name:'$client.geo.country_name$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:client.geo.city_name,negate:!f,params:(query:'$client.geo.city_name$'),type:phrase),query:(match_phrase:(client.geo.city_name:'$client.geo.city_name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
           },
@@ -518,8 +544,7 @@
           {
             "detector_description": "Rare City",
             "function": "rare",
-            "by_field_name": "client.geo.city_name",
-            "partition_field_name": "client.geo.country_name",
+            "by_field_name": "client_country_city",
             "detector_index": 0
           }
         ],
@@ -529,6 +554,7 @@
           "flow.server.l4.port.name",
           "server.ip",
           "server.domain",
+          "flow.client.as.label",
           "client.ip",
           "client.domain"
         ]
@@ -543,7 +569,7 @@
       },
       "model_plot_config": {
         "enabled": true,
-        "annotations_enabled": true
+        "annotations_enabled": false
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,
@@ -584,6 +610,11 @@
               }
             },
             {
+              "term": {
+                "sec.threat.name": "Internet Scanner"
+              }
+            },
+            {
               "terms": {
                 "client.ip": []
               }
@@ -602,6 +633,14 @@
       "scroll_size": 1000,
       "delayed_data_check_config": {
         "enabled": true
+      },
+      "runtime_mappings": {
+        "client_country_city": {
+          "type": "keyword",
+          "script": {
+            "source": "if (doc.containsKey('client.geo.country_name') && !doc['client.geo.country_name'].empty && doc.containsKey('client.geo.city_name') && !doc['client.geo.city_name'].empty) {emit(doc['client.geo.country_name'].value + '__' + doc['client.geo.city_name'].value)}"
+          }
+        }
       }
     }
   },
@@ -610,6 +649,10 @@
       "job_id": "elastiflow_ecs_netsec_rare_geo_city_out",
       "custom_settings": {
         "custom_urls": [
+          {
+            "url_name": "Lookup Server on ElastiFlow NetIntel",
+            "url_value": "https://elastiflow.com/netintel/search?ip=$server.ip$"
+          },
           {
             "url_name": "Top Talkers",
             "url_value": "dashboards#/view/6ffd0f89-824f-480e-bac3-6208b569a7c5?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:server.geo.country_name,negate:!f,params:(query:'$server.geo.country_name$'),type:phrase),query:(match_phrase:(server.geo.country_name:'$server.geo.country_name$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:server.geo.city_name,negate:!f,params:(query:'$server.geo.city_name$'),type:phrase),query:(match_phrase:(server.geo.city_name:'$server.geo.city_name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
@@ -638,8 +681,7 @@
           {
             "detector_description": "Rare City",
             "function": "rare",
-            "by_field_name": "server.geo.city_name",
-            "partition_field_name": "server.geo.country_name",
+            "by_field_name": "server_country_city",
             "detector_index": 0
           }
         ],
@@ -647,6 +689,7 @@
           "server.geo.city_name",
           "server.geo.country_name",
           "flow.server.l4.port.name",
+          "flow.server.as.label",
           "server.ip",
           "server.domain",
           "client.ip",
@@ -663,7 +706,7 @@
       },
       "model_plot_config": {
         "enabled": true,
-        "annotations_enabled": true
+        "annotations_enabled": false
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,
@@ -722,6 +765,14 @@
       "scroll_size": 1000,
       "delayed_data_check_config": {
         "enabled": true
+      },
+      "runtime_mappings": {
+        "server_country_city": {
+          "type": "keyword",
+          "script": {
+            "source": "if (doc.containsKey('server.geo.country_name') && !doc['server.geo.country_name'].empty && doc.containsKey('server.geo.city_name') && !doc['server.geo.city_name'].empty) {emit(doc['server.geo.country_name'].value + '__' + doc['server.geo.city_name'].value)}"
+          }
+        }
       }
     }
   },
@@ -779,7 +830,7 @@
       },
       "model_plot_config": {
         "enabled": true,
-        "annotations_enabled": true
+        "annotations_enabled": false
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,
@@ -842,6 +893,10 @@
       "custom_settings": {
         "custom_urls": [
           {
+            "url_name": "Lookup Client on ElastiFlow NetIntel",
+            "url_value": "https://elastiflow.com/netintel/search?ip=$client.ip$"
+          },
+          {
             "url_name": "Top Talkers",
             "url_value": "dashboards#/view/6ffd0f89-824f-480e-bac3-6208b569a7c5?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:client.geo.country_name,negate:!f,params:(query:'$client.geo.country_name$'),type:phrase),query:(match_phrase:(client.geo.country_name:'$client.geo.country_name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
           },
@@ -878,12 +933,13 @@
           "flow.server.l4.port.name",
           "server.ip",
           "server.domain",
+          "flow.client.as.label",
           "client.ip",
           "client.domain"
         ]
       },
       "analysis_limits": {
-        "model_memory_limit": "2048mb",
+        "model_memory_limit": "384mb",
         "categorization_examples_limit": 4
       },
       "data_description": {
@@ -892,7 +948,7 @@
       },
       "model_plot_config": {
         "enabled": true,
-        "annotations_enabled": true
+        "annotations_enabled": false
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,
@@ -928,6 +984,11 @@
               }
             },
             {
+              "term": {
+                "sec.threat.name": "Internet Scanner"
+              }
+            },
+            {
               "terms": {
                 "client.ip": []
               }
@@ -954,6 +1015,10 @@
       "job_id": "elastiflow_ecs_netsec_rare_geo_country_out",
       "custom_settings": {
         "custom_urls": [
+          {
+            "url_name": "Lookup Server on ElastiFlow NetIntel",
+            "url_value": "https://elastiflow.com/netintel/search?ip=$server.ip$"
+          },
           {
             "url_name": "Top Talkers",
             "url_value": "dashboards#/view/6ffd0f89-824f-480e-bac3-6208b569a7c5?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:server.geo.country_name,negate:!f,params:(query:'$server.geo.country_name$'),type:phrase),query:(match_phrase:(server.geo.country_name:'$server.geo.country_name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
@@ -989,6 +1054,7 @@
         "influencers": [
           "server.geo.country_name",
           "flow.server.l4.port.name",
+          "flow.server.as.label",
           "server.ip",
           "server.domain",
           "client.ip",
@@ -996,7 +1062,7 @@
         ]
       },
       "analysis_limits": {
-        "model_memory_limit": "2048mb",
+        "model_memory_limit": "384mb",
         "categorization_examples_limit": 4
       },
       "data_description": {
@@ -1005,7 +1071,7 @@
       },
       "model_plot_config": {
         "enabled": true,
-        "annotations_enabled": true
+        "annotations_enabled": false
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,
@@ -1105,7 +1171,7 @@
         ]
       },
       "analysis_limits": {
-        "model_memory_limit": "2048mb",
+        "model_memory_limit": "128mb",
         "categorization_examples_limit": 4
       },
       "data_description": {
@@ -1114,7 +1180,7 @@
       },
       "model_plot_config": {
         "enabled": true,
-        "annotations_enabled": true
+        "annotations_enabled": false
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,

@@ -52,7 +52,7 @@
       },
       "model_plot_config": {
         "enabled": true,
-        "annotations_enabled": true
+        "annotations_enabled": false
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,
@@ -172,7 +172,7 @@
       },
       "model_plot_config": {
         "enabled": true,
-        "annotations_enabled": true
+        "annotations_enabled": false
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,
@@ -292,7 +292,7 @@
       },
       "model_plot_config": {
         "enabled": true,
-        "annotations_enabled": true
+        "annotations_enabled": false
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,
@@ -441,7 +441,7 @@
       },
       "model_plot_config": {
         "enabled": true,
-        "annotations_enabled": true
+        "annotations_enabled": false
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,
@@ -583,7 +583,7 @@
       },
       "model_plot_config": {
         "enabled": true,
-        "annotations_enabled": true
+        "annotations_enabled": false
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,
@@ -699,7 +699,7 @@
       },
       "model_plot_config": {
         "enabled": true,
-        "annotations_enabled": true
+        "annotations_enabled": false
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,
@@ -815,7 +815,7 @@
       },
       "model_plot_config": {
         "enabled": true,
-        "annotations_enabled": true
+        "annotations_enabled": false
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,
@@ -931,7 +931,7 @@
       },
       "model_plot_config": {
         "enabled": true,
-        "annotations_enabled": true
+        "annotations_enabled": false
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,
@@ -1002,7 +1002,7 @@
       "custom_settings": {
         "custom_urls": [
           {
-            "url_name": "RiskIQ PassiveTotal",
+            "url_name": "Lookup Source on ElastiFlow NetIntel",
             "url_value": "https://elastiflow.com/netintel/search?ip=$flow.src.ip.addr$"
           },
           {
@@ -1037,8 +1037,10 @@
           }
         ],
         "influencers": [
+          "flow.src.as.label",
           "flow.src.ip.addr",
           "flow.src.host.name",
+          "flow.dst.as.label",
           "flow.dst.ip.addr",
           "flow.dst.host.name"
         ]
@@ -1053,7 +1055,7 @@
       },
       "model_plot_config": {
         "enabled": true,
-        "annotations_enabled": true
+        "annotations_enabled": false
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,
@@ -1129,7 +1131,7 @@
       "custom_settings": {
         "custom_urls": [
           {
-            "url_name": "RiskIQ PassiveTotal",
+            "url_name": "Lookup Source on ElastiFlow NetIntel",
             "url_value": "https://elastiflow.com/netintel/search?ip=$flow.src.ip.addr$"
           },
           {
@@ -1164,6 +1166,7 @@
           }
         ],
         "influencers": [
+          "flow.src.as.label",
           "flow.src.ip.addr",
           "flow.src.host.name",
           "flow.dst.ip.addr",
@@ -1180,7 +1183,7 @@
       },
       "model_plot_config": {
         "enabled": true,
-        "annotations_enabled": true
+        "annotations_enabled": false
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,
@@ -1299,7 +1302,7 @@
       },
       "model_plot_config": {
         "enabled": true,
-        "annotations_enabled": true
+        "annotations_enabled": false
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,
@@ -1418,7 +1421,7 @@
       },
       "model_plot_config": {
         "enabled": true,
-        "annotations_enabled": true
+        "annotations_enabled": false
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,
@@ -1539,7 +1542,7 @@
       },
       "model_plot_config": {
         "enabled": true,
-        "annotations_enabled": true
+        "annotations_enabled": false
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,
@@ -1670,7 +1673,7 @@
       },
       "model_plot_config": {
         "enabled": true,
-        "annotations_enabled": true
+        "annotations_enabled": false
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,
@@ -1797,7 +1800,7 @@
       },
       "model_plot_config": {
         "enabled": true,
-        "annotations_enabled": true
+        "annotations_enabled": false
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,
@@ -1924,7 +1927,7 @@
       },
       "model_plot_config": {
         "enabled": true,
-        "annotations_enabled": true
+        "annotations_enabled": false
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,
@@ -2000,7 +2003,7 @@
       "custom_settings": {
         "custom_urls": [
           {
-            "url_name": "RiskIQ PassiveTotal",
+            "url_name": "Lookup Client on ElastiFlow NetIntel",
             "url_value": "https://elastiflow.com/netintel/search?ip=$flow.client.ip.addr$"
           },
           {
@@ -2036,8 +2039,10 @@
           }
         ],
         "influencers": [
+          "flow.client.as.label",
           "flow.client.ip.addr",
           "flow.client.host.name",
+          "flow.server.as.label",
           "flow.server.ip.addr",
           "flow.server.host.name",
           "flow.server.l4.port.id"
@@ -2053,7 +2058,7 @@
       },
       "model_plot_config": {
         "enabled": true,
-        "annotations_enabled": true
+        "annotations_enabled": false
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,
@@ -2134,7 +2139,7 @@
       "custom_settings": {
         "custom_urls": [
           {
-            "url_name": "RiskIQ PassiveTotal",
+            "url_name": "Lookup Client on ElastiFlow NetIntel",
             "url_value": "https://elastiflow.com/netintel/search?ip=$flow.client.ip.addr$"
           },
           {
@@ -2170,6 +2175,7 @@
           }
         ],
         "influencers": [
+          "flow.client.as.label",
           "flow.client.ip.addr",
           "flow.client.host.name",
           "flow.server.ip.addr",
@@ -2187,7 +2193,7 @@
       },
       "model_plot_config": {
         "enabled": true,
-        "annotations_enabled": true
+        "annotations_enabled": false
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,
@@ -2313,7 +2319,7 @@
       },
       "model_plot_config": {
         "enabled": true,
-        "annotations_enabled": true
+        "annotations_enabled": false
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,
@@ -2439,7 +2445,7 @@
       },
       "model_plot_config": {
         "enabled": true,
-        "annotations_enabled": true
+        "annotations_enabled": false
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,

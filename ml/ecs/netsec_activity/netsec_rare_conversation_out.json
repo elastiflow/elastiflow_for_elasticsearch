@@ -5,7 +5,7 @@
       "custom_settings": {
         "custom_urls": [
           {
-            "url_name": "RiskIQ PassiveTotal",
+            "url_name": "Lookup Server on ElastiFlow NetIntel",
             "url_value": "https://elastiflow.com/netintel/search?ip=$server.ip$"
           },
           {
@@ -44,6 +44,7 @@
           "flow.conversation.id",
           "client.ip",
           "client.domain",
+          "flow.server.as.label",
           "server.ip",
           "server.domain",
           "flow.server.l4.port.name"
@@ -59,7 +60,7 @@
       },
       "model_plot_config": {
         "enabled": true,
-        "annotations_enabled": true
+        "annotations_enabled": false
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,

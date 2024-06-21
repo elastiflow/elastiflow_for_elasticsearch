@@ -1,7 +1,7 @@
 [
   {
     "job": {
-      "job_id": "elastiflow_codex_netsec_port_scan_direct_edge_slow",
+      "job_id": "elastiflow_codex_netsec_port_scan_direct_edge_fast_with_scanners",
       "custom_settings": {
         "custom_urls": [
           {
@@ -27,11 +27,11 @@
         "security",
         "reconnaissance",
         "edge",
-        "slow"
+        "fast"
       ],
-      "description": "Port Scan Direct - edge (slow)",
+      "description": "Port Scan Direct - edge (fast)",
       "analysis_config": {
-        "bucket_span": "240m",
+        "bucket_span": "10m",
         "model_prune_window": "14d",
         "detectors": [
           {
@@ -65,12 +65,12 @@
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,
-      "results_index_name": "custom-elastiflow_codex_netsec_port_scan_direct_edge_slow",
+      "results_index_name": "custom-elastiflow_codex_netsec_port_scan_direct_edge_fast_with_scanners",
       "allow_lazy_open": false
     },
     "datafeed": {
-      "datafeed_id": "datafeed-elastiflow_codex_netsec_port_scan_direct_edge_slow",
-      "job_id": "elastiflow_codex_netsec_port_scan_direct_edge_slow",
+      "datafeed_id": "datafeed-elastiflow_codex_netsec_port_scan_direct_edge_fast_with_scanners",
+      "job_id": "elastiflow_codex_netsec_port_scan_direct_edge_fast_with_scanners",
       "query": {
         "bool": {
           "must": [
@@ -99,11 +99,6 @@
             {
               "term": {
                 "flow.server.as.org": "PRIVATE"
-              }
-            },
-            {
-              "term": {
-                "sec.threat.name": "Internet Scanner"
               }
             },
             {

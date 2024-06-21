@@ -5,7 +5,7 @@
       "custom_settings": {
         "custom_urls": [
           {
-            "url_name": "RiskIQ PassiveTotal",
+            "url_name": "Lookup Source on ElastiFlow NetIntel",
             "url_value": "https://elastiflow.com/netintel/search?ip=$flow.src.ip.addr$"
           },
           {
@@ -35,6 +35,7 @@
           }
         ],
         "influencers": [
+          "flow.src.as.label",
           "flow.src.ip.addr",
           "flow.src.host.name"
         ]
@@ -49,7 +50,7 @@
       },
       "model_plot_config": {
         "enabled": true,
-        "annotations_enabled": true
+        "annotations_enabled": false
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,
@@ -98,6 +99,11 @@
               }
             },
             {
+              "term": {
+                "sec.threat.name": "Internet Scanner"
+              }
+            },
+            {
               "terms": {
                 "flow.src.ip.addr": []
               }
@@ -125,7 +131,7 @@
       "custom_settings": {
         "custom_urls": [
           {
-            "url_name": "RiskIQ PassiveTotal",
+            "url_name": "Lookup Source on ElastiFlow NetIntel",
             "url_value": "https://elastiflow.com/netintel/search?ip=$flow.src.ip.addr$"
           },
           {
@@ -155,6 +161,7 @@
           }
         ],
         "influencers": [
+          "flow.src.as.label",
           "flow.src.ip.addr",
           "flow.src.host.name"
         ]
@@ -169,7 +176,7 @@
       },
       "model_plot_config": {
         "enabled": true,
-        "annotations_enabled": true
+        "annotations_enabled": false
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,
@@ -218,6 +225,11 @@
               }
             },
             {
+              "term": {
+                "sec.threat.name": "Internet Scanner"
+              }
+            },
+            {
               "terms": {
                 "flow.src.ip.addr": []
               }
@@ -245,7 +257,7 @@
       "custom_settings": {
         "custom_urls": [
           {
-            "url_name": "RiskIQ PassiveTotal",
+            "url_name": "Lookup Source on ElastiFlow NetIntel",
             "url_value": "https://elastiflow.com/netintel/search?ip=$flow.src.ip.addr$"
           },
           {
@@ -275,6 +287,7 @@
           }
         ],
         "influencers": [
+          "flow.src.as.label",
           "flow.src.ip.addr",
           "flow.src.host.name"
         ]
@@ -289,7 +302,7 @@
       },
       "model_plot_config": {
         "enabled": true,
-        "annotations_enabled": true
+        "annotations_enabled": false
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,
@@ -338,6 +351,11 @@
               }
             },
             {
+              "term": {
+                "sec.threat.name": "Internet Scanner"
+              }
+            },
+            {
               "terms": {
                 "flow.src.ip.addr": []
               }
@@ -365,7 +383,7 @@
       "custom_settings": {
         "custom_urls": [
           {
-            "url_name": "RiskIQ PassiveTotal",
+            "url_name": "Lookup Source on ElastiFlow NetIntel",
             "url_value": "https://elastiflow.com/netintel/search?ip=$flow.src.ip.addr$"
           },
           {
@@ -395,6 +413,7 @@
           }
         ],
         "influencers": [
+          "flow.src.as.label",
           "flow.src.ip.addr",
           "flow.src.host.name"
         ]
@@ -409,7 +428,7 @@
       },
       "model_plot_config": {
         "enabled": true,
-        "annotations_enabled": true
+        "annotations_enabled": false
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,
@@ -455,6 +474,11 @@
             {
               "term": {
                 "flow.src.as.org": "PRIVATE"
+              }
+            },
+            {
+              "term": {
+                "sec.threat.name": "Internet Scanner"
               }
             },
             {
@@ -525,7 +549,7 @@
       },
       "model_plot_config": {
         "enabled": true,
-        "annotations_enabled": true
+        "annotations_enabled": false
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,
@@ -641,7 +665,7 @@
       },
       "model_plot_config": {
         "enabled": true,
-        "annotations_enabled": true
+        "annotations_enabled": false
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,
@@ -757,7 +781,7 @@
       },
       "model_plot_config": {
         "enabled": true,
-        "annotations_enabled": true
+        "annotations_enabled": false
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,
@@ -868,7 +892,7 @@
       },
       "model_plot_config": {
         "enabled": true,
-        "annotations_enabled": true
+        "annotations_enabled": false
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,
@@ -939,7 +963,7 @@
       "custom_settings": {
         "custom_urls": [
           {
-            "url_name": "RiskIQ PassiveTotal",
+            "url_name": "Lookup Client on ElastiFlow NetIntel",
             "url_value": "https://elastiflow.com/netintel/search?ip=$flow.client.ip.addr$"
           },
           {
@@ -978,6 +1002,7 @@
           }
         ],
         "influencers": [
+          "flow.client.as.label",
           "flow.client.ip.addr",
           "flow.client.host.name",
           "flow.server.ip.addr",
@@ -994,7 +1019,7 @@
       },
       "model_plot_config": {
         "enabled": true,
-        "annotations_enabled": true
+        "annotations_enabled": false
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,
@@ -1035,6 +1060,11 @@
               }
             },
             {
+              "term": {
+                "sec.threat.name": "Internet Scanner"
+              }
+            },
+            {
               "terms": {
                 "flow.client.ip.addr": []
               }
@@ -1062,7 +1092,7 @@
       "custom_settings": {
         "custom_urls": [
           {
-            "url_name": "RiskIQ PassiveTotal",
+            "url_name": "Lookup Client on ElastiFlow NetIntel",
             "url_value": "https://elastiflow.com/netintel/search?ip=$flow.client.ip.addr$"
           },
           {
@@ -1101,6 +1131,7 @@
           }
         ],
         "influencers": [
+          "flow.client.as.label",
           "flow.client.ip.addr",
           "flow.client.host.name",
           "flow.server.ip.addr",
@@ -1117,7 +1148,7 @@
       },
       "model_plot_config": {
         "enabled": true,
-        "annotations_enabled": true
+        "annotations_enabled": false
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,
@@ -1158,6 +1189,11 @@
               }
             },
             {
+              "term": {
+                "sec.threat.name": "Internet Scanner"
+              }
+            },
+            {
               "terms": {
                 "flow.client.ip.addr": []
               }
@@ -1185,7 +1221,7 @@
       "custom_settings": {
         "custom_urls": [
           {
-            "url_name": "RiskIQ PassiveTotal",
+            "url_name": "Lookup Client on ElastiFlow NetIntel",
             "url_value": "https://elastiflow.com/netintel/search?ip=$flow.client.ip.addr$"
           },
           {
@@ -1224,6 +1260,7 @@
           }
         ],
         "influencers": [
+          "flow.client.as.label",
           "flow.client.ip.addr",
           "flow.client.host.name",
           "flow.server.ip.addr",
@@ -1240,7 +1277,7 @@
       },
       "model_plot_config": {
         "enabled": true,
-        "annotations_enabled": true
+        "annotations_enabled": false
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,
@@ -1281,6 +1318,11 @@
               }
             },
             {
+              "term": {
+                "sec.threat.name": "Internet Scanner"
+              }
+            },
+            {
               "terms": {
                 "flow.client.ip.addr": []
               }
@@ -1308,7 +1350,7 @@
       "custom_settings": {
         "custom_urls": [
           {
-            "url_name": "RiskIQ PassiveTotal",
+            "url_name": "Lookup Client on ElastiFlow NetIntel",
             "url_value": "https://elastiflow.com/netintel/search?ip=$flow.client.ip.addr$"
           },
           {
@@ -1347,6 +1389,7 @@
           }
         ],
         "influencers": [
+          "flow.client.as.label",
           "flow.client.ip.addr",
           "flow.client.host.name",
           "flow.server.ip.addr",
@@ -1363,7 +1406,7 @@
       },
       "model_plot_config": {
         "enabled": true,
-        "annotations_enabled": true
+        "annotations_enabled": false
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,
@@ -1401,6 +1444,11 @@
             {
               "term": {
                 "flow.client.as.org": "PRIVATE"
+              }
+            },
+            {
+              "term": {
+                "sec.threat.name": "Internet Scanner"
               }
             },
             {
@@ -1482,7 +1530,7 @@
       },
       "model_plot_config": {
         "enabled": true,
-        "annotations_enabled": true
+        "annotations_enabled": false
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,
@@ -1601,7 +1649,7 @@
       },
       "model_plot_config": {
         "enabled": true,
-        "annotations_enabled": true
+        "annotations_enabled": false
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,
@@ -1716,7 +1764,7 @@
       },
       "model_plot_config": {
         "enabled": true,
-        "annotations_enabled": true
+        "annotations_enabled": false
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,
@@ -1828,7 +1876,7 @@
       },
       "model_plot_config": {
         "enabled": true,
-        "annotations_enabled": true
+        "annotations_enabled": false
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,
@@ -1941,7 +1989,7 @@
       },
       "model_plot_config": {
         "enabled": true,
-        "annotations_enabled": true
+        "annotations_enabled": false
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,
@@ -1979,6 +2027,11 @@
             {
               "term": {
                 "flow.server.as.org": "PRIVATE"
+              }
+            },
+            {
+              "term": {
+                "sec.threat.name": "Internet Scanner"
               }
             },
             {
@@ -2057,7 +2110,7 @@
       },
       "model_plot_config": {
         "enabled": true,
-        "annotations_enabled": true
+        "annotations_enabled": false
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,
@@ -2095,6 +2148,11 @@
             {
               "term": {
                 "flow.server.as.org": "PRIVATE"
+              }
+            },
+            {
+              "term": {
+                "sec.threat.name": "Internet Scanner"
               }
             },
             {
@@ -2173,7 +2231,7 @@
       },
       "model_plot_config": {
         "enabled": true,
-        "annotations_enabled": true
+        "annotations_enabled": false
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,
@@ -2211,6 +2269,11 @@
             {
               "term": {
                 "flow.client.as.org": "PRIVATE"
+              }
+            },
+            {
+              "term": {
+                "sec.threat.name": "Internet Scanner"
               }
             },
             {
@@ -2289,7 +2352,7 @@
       },
       "model_plot_config": {
         "enabled": true,
-        "annotations_enabled": true
+        "annotations_enabled": false
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,
@@ -2327,6 +2390,11 @@
             {
               "term": {
                 "flow.client.as.org": "PRIVATE"
+              }
+            },
+            {
+              "term": {
+                "sec.threat.name": "Internet Scanner"
               }
             },
             {
@@ -2405,7 +2473,7 @@
       },
       "model_plot_config": {
         "enabled": true,
-        "annotations_enabled": true
+        "annotations_enabled": false
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,
@@ -2521,7 +2589,7 @@
       },
       "model_plot_config": {
         "enabled": true,
-        "annotations_enabled": true
+        "annotations_enabled": false
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,
@@ -2633,7 +2701,7 @@
       },
       "model_plot_config": {
         "enabled": true,
-        "annotations_enabled": true
+        "annotations_enabled": false
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,
@@ -2742,7 +2810,7 @@
       },
       "model_plot_config": {
         "enabled": true,
-        "annotations_enabled": true
+        "annotations_enabled": false
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,
