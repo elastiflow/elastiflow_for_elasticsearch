@@ -5,7 +5,7 @@
       "custom_settings": {
         "custom_urls": [
           {
-            "url_name": "ElastiFlow NetIntel",
+            "url_name": "Lookup Source on ElastiFlow NetIntel",
             "url_value": "https://elastiflow.com/netintel/search?ip=$flow.src.ip.addr$"
           },
           {
@@ -40,8 +40,10 @@
           }
         ],
         "influencers": [
+          "flow.src.as.label",
           "flow.src.ip.addr",
           "flow.src.host.name",
+          "flow.dst.as.label",
           "flow.dst.ip.addr",
           "flow.dst.host.name"
         ]

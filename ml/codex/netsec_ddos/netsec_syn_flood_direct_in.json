@@ -5,7 +5,7 @@
       "custom_settings": {
         "custom_urls": [
           {
-            "url_name": "ElastiFlow NetIntel",
+            "url_name": "Lookup Client on ElastiFlow NetIntel",
             "url_value": "https://elastiflow.com/netintel/search?ip=$flow.client.ip.addr$"
           },
           {
@@ -41,6 +41,7 @@
           }
         ],
         "influencers": [
+          "flow.client.as.label",
           "flow.client.ip.addr",
           "flow.client.host.name",
           "flow.server.ip.addr",
