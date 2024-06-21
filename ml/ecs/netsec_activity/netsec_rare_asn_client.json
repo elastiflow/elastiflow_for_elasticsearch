@@ -5,6 +5,10 @@
       "custom_settings": {
         "custom_urls": [
           {
+            "url_name": "Lookup Client on ElastiFlow NetIntel",
+            "url_value": "https://elastiflow.com/netintel/search?ip=$client.ip$"
+          },
+          {
             "url_name": "Top Talkers",
             "url_value": "dashboards#/view/6ffd0f89-824f-480e-bac3-6208b569a7c5?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.client.as.label,negate:!f,params:(query:'$flow.client.as.label$'),type:phrase),query:(match_phrase:(flow.client.as.label:'$flow.client.as.label$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
           },
@@ -36,10 +40,10 @@
           }
         ],
         "influencers": [
-          "flow.client.as.label",
           "flow.server.l4.port.name",
           "server.ip",
           "server.domain",
+          "flow.client.as.label",
           "client.ip",
           "client.domain"
         ]
@@ -75,6 +79,13 @@
             {
               "term": {
                 "l4.session.established": "true"
+              }
+            }
+          ],
+          "must_not": [
+            {
+              "term": {
+                "sec.threat.name": "Internet Scanner"
               }
             }
           ]

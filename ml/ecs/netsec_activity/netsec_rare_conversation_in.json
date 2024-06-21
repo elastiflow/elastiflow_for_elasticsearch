@@ -5,7 +5,7 @@
       "custom_settings": {
         "custom_urls": [
           {
-            "url_name": "ElastiFlow NetIntel",
+            "url_name": "Lookup Client on ElastiFlow NetIntel",
             "url_value": "https://elastiflow.com/netintel/search?ip=$client.ip$"
           },
           {
@@ -42,6 +42,7 @@
         ],
         "influencers": [
           "flow.conversation.id",
+          "flow.client.as.label",
           "client.ip",
           "client.domain",
           "server.ip",
@@ -92,6 +93,11 @@
             {
               "term": {
                 "client.as.organization.name": "PRIVATE"
+              }
+            },
+            {
+              "term": {
+                "sec.threat.name": "Internet Scanner"
               }
             }
           ]

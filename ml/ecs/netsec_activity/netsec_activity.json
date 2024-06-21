@@ -1,3 +1,1235 @@
 [
-
+  {
+    "job": {
+      "job_id": "elastiflow_ecs_netsec_rare_asn_client",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "Lookup Client on ElastiFlow NetIntel",
+            "url_value": "https://elastiflow.com/netintel/search?ip=$client.ip$"
+          },
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/6ffd0f89-824f-480e-bac3-6208b569a7c5?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.client.as.label,negate:!f,params:(query:'$flow.client.as.label$'),type:phrase),query:(match_phrase:(flow.client.as.label:'$flow.client.as.label$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Threats",
+            "url_value": "dashboards#/view/b9f81d8f-5f4a-4396-9372-de586cd9e67c?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.client.as.label,negate:!f,params:(query:'$flow.client.as.label$'),type:phrase),query:(match_phrase:(flow.client.as.label:'$flow.client.as.label$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/31e00644-3a1e-4e11-9256-5f35aadd077c?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.client.as.label,negate:!f,params:(query:'$flow.client.as.label$'),type:phrase),query:(match_phrase:(flow.client.as.label:'$flow.client.as.label$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "security",
+        "activity"
+      ],
+      "description": "Rare Client-Side Autonomous System",
+      "analysis_config": {
+        "bucket_span": "30m",
+        "model_prune_window": "14d",
+        "detectors": [
+          {
+            "detector_description": "Rare ASN",
+            "function": "rare",
+            "by_field_name": "flow.client.as.label",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "flow.server.l4.port.name",
+          "server.ip",
+          "server.domain",
+          "flow.client.as.label",
+          "client.ip",
+          "client.domain"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "2048mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": true,
+        "annotations_enabled": false
+      },
+      "model_snapshot_retention_days": 7,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_ecs_netsec_rare_asn_client",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_rare_asn_client",
+      "job_id": "elastiflow_ecs_netsec_rare_asn_client",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "exists": {
+                "field": "flow.client.as.label"
+              }
+            },
+            {
+              "term": {
+                "l4.session.established": "true"
+              }
+            }
+          ],
+          "must_not": [
+            {
+              "term": {
+                "sec.threat.name": "Internet Scanner"
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-ecs-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  },
+  {
+    "job": {
+      "job_id": "elastiflow_ecs_netsec_rare_asn_server",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "Lookup Server on ElastiFlow NetIntel",
+            "url_value": "https://elastiflow.com/netintel/search?ip=$server.ip$"
+          },
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/6ffd0f89-824f-480e-bac3-6208b569a7c5?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.server.as.label,negate:!f,params:(query:'$flow.server.as.label$'),type:phrase),query:(match_phrase:(flow.server.as.label:'$flow.server.as.label$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Threats",
+            "url_value": "dashboards#/view/b9f81d8f-5f4a-4396-9372-de586cd9e67c?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.server.as.label,negate:!f,params:(query:'$flow.server.as.label$'),type:phrase),query:(match_phrase:(flow.server.as.label:'$flow.server.as.label$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/31e00644-3a1e-4e11-9256-5f35aadd077c?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.server.as.label,negate:!f,params:(query:'$flow.server.as.label$'),type:phrase),query:(match_phrase:(flow.server.as.label:'$flow.server.as.label$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "security",
+        "activity"
+      ],
+      "description": "Rare Server-Side Autonomous System",
+      "analysis_config": {
+        "bucket_span": "30m",
+        "model_prune_window": "14d",
+        "detectors": [
+          {
+            "detector_description": "Rare ASN",
+            "function": "rare",
+            "by_field_name": "flow.server.as.label",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "flow.server.as.label",
+          "flow.server.l4.port.name",
+          "server.ip",
+          "server.domain",
+          "client.ip",
+          "client.domain"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "2048mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": true,
+        "annotations_enabled": false
+      },
+      "model_snapshot_retention_days": 7,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_ecs_netsec_rare_asn_server",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_rare_asn_server",
+      "job_id": "elastiflow_ecs_netsec_rare_asn_server",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "exists": {
+                "field": "flow.server.as.label"
+              }
+            },
+            {
+              "term": {
+                "l4.session.established": "true"
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-ecs-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  },
+  {
+    "job": {
+      "job_id": "elastiflow_ecs_netsec_rare_conversation_in",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "Lookup Client on ElastiFlow NetIntel",
+            "url_value": "https://elastiflow.com/netintel/search?ip=$client.ip$"
+          },
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/6ffd0f89-824f-480e-bac3-6208b569a7c5?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.conversation.id,negate:!f,params:(query:'$flow.conversation.id$'),type:phrase),query:(match_phrase:(flow.conversation.id:'$flow.conversation.id$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Threats",
+            "url_value": "dashboards#/view/b9f81d8f-5f4a-4396-9372-de586cd9e67c?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.conversation.id,negate:!f,params:(query:'$flow.conversation.id$'),type:phrase),query:(match_phrase:(flow.conversation.id:'$flow.conversation.id$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/31e00644-3a1e-4e11-9256-5f35aadd077c?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.conversation.id,negate:!f,params:(query:'$flow.conversation.id$'),type:phrase),query:(match_phrase:(flow.conversation.id:'$flow.conversation.id$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "security",
+        "activity",
+        "inbound"
+      ],
+      "description": "Rare Conversation - inbound",
+      "analysis_config": {
+        "bucket_span": "30m",
+        "model_prune_window": "14d",
+        "detectors": [
+          {
+            "detector_description": "Rare Conversation",
+            "function": "rare",
+            "by_field_name": "flow.conversation.id",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "flow.conversation.id",
+          "flow.client.as.label",
+          "client.ip",
+          "client.domain",
+          "server.ip",
+          "server.domain",
+          "flow.server.l4.port.name"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "8192mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": true,
+        "annotations_enabled": false
+      },
+      "model_snapshot_retention_days": 7,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_ecs_netsec_rare_conversation_in",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_rare_conversation_in",
+      "job_id": "elastiflow_ecs_netsec_rare_conversation_in",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "exists": {
+                "field": "flow.conversation.id"
+              }
+            },
+            {
+              "term": {
+                "l4.session.established": "true"
+              }
+            },
+            {
+              "term": {
+                "server.as.organization.name": "PRIVATE"
+              }
+            }
+          ],
+          "must_not": [
+            {
+              "term": {
+                "client.as.organization.name": "PRIVATE"
+              }
+            },
+            {
+              "term": {
+                "sec.threat.name": "Internet Scanner"
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-ecs-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  },
+  {
+    "job": {
+      "job_id": "elastiflow_ecs_netsec_rare_conversation_out",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "Lookup Server on ElastiFlow NetIntel",
+            "url_value": "https://elastiflow.com/netintel/search?ip=$server.ip$"
+          },
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/6ffd0f89-824f-480e-bac3-6208b569a7c5?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.conversation.id,negate:!f,params:(query:'$flow.conversation.id$'),type:phrase),query:(match_phrase:(flow.conversation.id:'$flow.conversation.id$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Threats",
+            "url_value": "dashboards#/view/b9f81d8f-5f4a-4396-9372-de586cd9e67c?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.conversation.id,negate:!f,params:(query:'$flow.conversation.id$'),type:phrase),query:(match_phrase:(flow.conversation.id:'$flow.conversation.id$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/31e00644-3a1e-4e11-9256-5f35aadd077c?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.conversation.id,negate:!f,params:(query:'$flow.conversation.id$'),type:phrase),query:(match_phrase:(flow.conversation.id:'$flow.conversation.id$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "security",
+        "activity",
+        "outbound"
+      ],
+      "description": "Rare Conversation - outbound",
+      "analysis_config": {
+        "bucket_span": "30m",
+        "model_prune_window": "14d",
+        "detectors": [
+          {
+            "detector_description": "Rare Conversation",
+            "function": "rare",
+            "by_field_name": "flow.conversation.id",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "flow.conversation.id",
+          "client.ip",
+          "client.domain",
+          "flow.server.as.label",
+          "server.ip",
+          "server.domain",
+          "flow.server.l4.port.name"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "8192mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": true,
+        "annotations_enabled": false
+      },
+      "model_snapshot_retention_days": 7,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_ecs_netsec_rare_conversation_out",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_rare_conversation_out",
+      "job_id": "elastiflow_ecs_netsec_rare_conversation_out",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "exists": {
+                "field": "flow.conversation.id"
+              }
+            },
+            {
+              "term": {
+                "l4.session.established": "true"
+              }
+            },
+            {
+              "term": {
+                "client.as.organization.name": "PRIVATE"
+              }
+            }
+          ],
+          "must_not": [
+            {
+              "term": {
+                "server.as.organization.name": "PRIVATE"
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-ecs-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  },
+  {
+    "job": {
+      "job_id": "elastiflow_ecs_netsec_rare_conversation_priv",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/6ffd0f89-824f-480e-bac3-6208b569a7c5?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.conversation.id,negate:!f,params:(query:'$flow.conversation.id$'),type:phrase),query:(match_phrase:(flow.conversation.id:'$flow.conversation.id$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/31e00644-3a1e-4e11-9256-5f35aadd077c?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:flow.conversation.id,negate:!f,params:(query:'$flow.conversation.id$'),type:phrase),query:(match_phrase:(flow.conversation.id:'$flow.conversation.id$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "security",
+        "activity",
+        "private"
+      ],
+      "description": "Rare Conversation - private",
+      "analysis_config": {
+        "bucket_span": "30m",
+        "model_prune_window": "14d",
+        "detectors": [
+          {
+            "detector_description": "Rare Conversation",
+            "function": "rare",
+            "by_field_name": "flow.conversation.id",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "flow.conversation.id",
+          "client.ip",
+          "client.domain",
+          "server.ip",
+          "server.domain",
+          "flow.server.l4.port.name"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "8192mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": true,
+        "annotations_enabled": false
+      },
+      "model_snapshot_retention_days": 7,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_ecs_netsec_rare_conversation_priv",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_rare_conversation_priv",
+      "job_id": "elastiflow_ecs_netsec_rare_conversation_priv",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "exists": {
+                "field": "flow.conversation.id"
+              }
+            },
+            {
+              "term": {
+                "l4.session.established": "true"
+              }
+            },
+            {
+              "term": {
+                "flow.locality": "private"
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-ecs-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  },
+  {
+    "job": {
+      "job_id": "elastiflow_ecs_netsec_rare_geo_city_in",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "Lookup Client on ElastiFlow NetIntel",
+            "url_value": "https://elastiflow.com/netintel/search?ip=$client.ip$"
+          },
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/6ffd0f89-824f-480e-bac3-6208b569a7c5?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:client.geo.country_name,negate:!f,params:(query:'$client.geo.country_name$'),type:phrase),query:(match_phrase:(client.geo.country_name:'$client.geo.country_name$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:client.geo.city_name,negate:!f,params:(query:'$client.geo.city_name$'),type:phrase),query:(match_phrase:(client.geo.city_name:'$client.geo.city_name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Threats",
+            "url_value": "dashboards#/view/b9f81d8f-5f4a-4396-9372-de586cd9e67c?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:client.geo.country_name,negate:!f,params:(query:'$client.geo.country_name$'),type:phrase),query:(match_phrase:(client.geo.country_name:'$client.geo.country_name$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:client.geo.city_name,negate:!f,params:(query:'$client.geo.city_name$'),type:phrase),query:(match_phrase:(client.geo.city_name:'$client.geo.city_name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/31e00644-3a1e-4e11-9256-5f35aadd077c?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:client.geo.country_name,negate:!f,params:(query:'$client.geo.country_name$'),type:phrase),query:(match_phrase:(client.geo.country_name:'$client.geo.country_name$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:client.geo.city_name,negate:!f,params:(query:'$client.geo.city_name$'),type:phrase),query:(match_phrase:(client.geo.city_name:'$client.geo.city_name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "security",
+        "activity",
+        "inbound"
+      ],
+      "description": "Rare City - inbound",
+      "analysis_config": {
+        "bucket_span": "30m",
+        "model_prune_window": "14d",
+        "detectors": [
+          {
+            "detector_description": "Rare City",
+            "function": "rare",
+            "by_field_name": "client_country_city",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "client.geo.city_name",
+          "client.geo.country_name",
+          "flow.server.l4.port.name",
+          "server.ip",
+          "server.domain",
+          "flow.client.as.label",
+          "client.ip",
+          "client.domain"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "384mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": true,
+        "annotations_enabled": false
+      },
+      "model_snapshot_retention_days": 7,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_ecs_netsec_rare_geo_city_in",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_rare_geo_city_in",
+      "job_id": "elastiflow_ecs_netsec_rare_geo_city_in",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "exists": {
+                "field": "client.geo.city_name"
+              }
+            },
+            {
+              "exists": {
+                "field": "client.geo.country_name"
+              }
+            },
+            {
+              "term": {
+                "l4.session.established": "true"
+              }
+            },
+            {
+              "term": {
+                "server.as.organization.name": "PRIVATE"
+              }
+            }
+          ],
+          "must_not": [
+            {
+              "term": {
+                "client.as.organization.name": "PRIVATE"
+              }
+            },
+            {
+              "term": {
+                "sec.threat.name": "Internet Scanner"
+              }
+            },
+            {
+              "terms": {
+                "client.ip": []
+              }
+            },
+            {
+              "terms": {
+                "server.ip": []
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-ecs-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      },
+      "runtime_mappings": {
+        "client_country_city": {
+          "type": "keyword",
+          "script": {
+            "source": "if (doc.containsKey('client.geo.country_name') && !doc['client.geo.country_name'].empty && doc.containsKey('client.geo.city_name') && !doc['client.geo.city_name'].empty) {emit(doc['client.geo.country_name'].value + '__' + doc['client.geo.city_name'].value)}"
+          }
+        }
+      }
+    }
+  },
+  {
+    "job": {
+      "job_id": "elastiflow_ecs_netsec_rare_geo_city_out",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "Lookup Server on ElastiFlow NetIntel",
+            "url_value": "https://elastiflow.com/netintel/search?ip=$server.ip$"
+          },
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/6ffd0f89-824f-480e-bac3-6208b569a7c5?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:server.geo.country_name,negate:!f,params:(query:'$server.geo.country_name$'),type:phrase),query:(match_phrase:(server.geo.country_name:'$server.geo.country_name$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:server.geo.city_name,negate:!f,params:(query:'$server.geo.city_name$'),type:phrase),query:(match_phrase:(server.geo.city_name:'$server.geo.city_name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Threats",
+            "url_value": "dashboards#/view/b9f81d8f-5f4a-4396-9372-de586cd9e67c?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:server.geo.country_name,negate:!f,params:(query:'$server.geo.country_name$'),type:phrase),query:(match_phrase:(server.geo.country_name:'$server.geo.country_name$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:server.geo.city_name,negate:!f,params:(query:'$server.geo.city_name$'),type:phrase),query:(match_phrase:(server.geo.city_name:'$server.geo.city_name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/31e00644-3a1e-4e11-9256-5f35aadd077c?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:server.geo.country_name,negate:!f,params:(query:'$server.geo.country_name$'),type:phrase),query:(match_phrase:(server.geo.country_name:'$server.geo.country_name$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:server.geo.city_name,negate:!f,params:(query:'$server.geo.city_name$'),type:phrase),query:(match_phrase:(server.geo.city_name:'$server.geo.city_name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "security",
+        "activity",
+        "outbound"
+      ],
+      "description": "Rare City - outbound",
+      "analysis_config": {
+        "bucket_span": "30m",
+        "model_prune_window": "14d",
+        "detectors": [
+          {
+            "detector_description": "Rare City",
+            "function": "rare",
+            "by_field_name": "server_country_city",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "server.geo.city_name",
+          "server.geo.country_name",
+          "flow.server.l4.port.name",
+          "flow.server.as.label",
+          "server.ip",
+          "server.domain",
+          "client.ip",
+          "client.domain"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "384mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": true,
+        "annotations_enabled": false
+      },
+      "model_snapshot_retention_days": 7,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_ecs_netsec_rare_geo_city_out",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_rare_geo_city_out",
+      "job_id": "elastiflow_ecs_netsec_rare_geo_city_out",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "exists": {
+                "field": "server.geo.city_name"
+              }
+            },
+            {
+              "exists": {
+                "field": "server.geo.country_name"
+              }
+            },
+            {
+              "term": {
+                "l4.session.established": "true"
+              }
+            },
+            {
+              "term": {
+                "client.as.organization.name": "PRIVATE"
+              }
+            }
+          ],
+          "must_not": [
+            {
+              "term": {
+                "server.as.organization.name": "PRIVATE"
+              }
+            },
+            {
+              "terms": {
+                "client.ip": []
+              }
+            },
+            {
+              "terms": {
+                "server.ip": []
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-ecs-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      },
+      "runtime_mappings": {
+        "server_country_city": {
+          "type": "keyword",
+          "script": {
+            "source": "if (doc.containsKey('server.geo.country_name') && !doc['server.geo.country_name'].empty && doc.containsKey('server.geo.city_name') && !doc['server.geo.city_name'].empty) {emit(doc['server.geo.country_name'].value + '__' + doc['server.geo.city_name'].value)}"
+          }
+        }
+      }
+    }
+  },
+  {
+    "job": {
+      "job_id": "elastiflow_ecs_netsec_rare_geo_city_priv",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/6ffd0f89-824f-480e-bac3-6208b569a7c5?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:client.geo.country_name,negate:!f,params:(query:'$client.geo.country_name$'),type:phrase),query:(match_phrase:(client.geo.country_name:'$client.geo.country_name$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:client.geo.city_name,negate:!f,params:(query:'$client.geo.city_name$'),type:phrase),query:(match_phrase:(client.geo.city_name:'$client.geo.city_name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/31e00644-3a1e-4e11-9256-5f35aadd077c?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:client.geo.country_name,negate:!f,params:(query:'$client.geo.country_name$'),type:phrase),query:(match_phrase:(client.geo.country_name:'$client.geo.country_name$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:client.geo.city_name,negate:!f,params:(query:'$client.geo.city_name$'),type:phrase),query:(match_phrase:(client.geo.city_name:'$client.geo.city_name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "security",
+        "activity",
+        "private"
+      ],
+      "description": "Rare City - private",
+      "analysis_config": {
+        "bucket_span": "30m",
+        "model_prune_window": "14d",
+        "detectors": [
+          {
+            "detector_description": "Rare City",
+            "function": "rare",
+            "by_field_name": "client.geo.city_name",
+            "partition_field_name": "client.geo.country_name",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "client.geo.city_name",
+          "client.geo.country_name",
+          "flow.server.l4.port.name",
+          "server.ip",
+          "server.domain",
+          "client.ip",
+          "client.domain"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "128mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": true,
+        "annotations_enabled": false
+      },
+      "model_snapshot_retention_days": 7,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_ecs_netsec_rare_geo_city_priv",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_rare_geo_city_priv",
+      "job_id": "elastiflow_ecs_netsec_rare_geo_city_priv",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "exists": {
+                "field": "client.geo.city_name"
+              }
+            },
+            {
+              "exists": {
+                "field": "client.geo.country_name"
+              }
+            },
+            {
+              "term": {
+                "l4.session.established": "true"
+              }
+            },
+            {
+              "term": {
+                "flow.locality": "private"
+              }
+            }
+          ],
+          "must_not": [
+            {
+              "terms": {
+                "client.ip": []
+              }
+            },
+            {
+              "terms": {
+                "server.ip": []
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-ecs-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  },
+  {
+    "job": {
+      "job_id": "elastiflow_ecs_netsec_rare_geo_country_in",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "Lookup Client on ElastiFlow NetIntel",
+            "url_value": "https://elastiflow.com/netintel/search?ip=$client.ip$"
+          },
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/6ffd0f89-824f-480e-bac3-6208b569a7c5?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:client.geo.country_name,negate:!f,params:(query:'$client.geo.country_name$'),type:phrase),query:(match_phrase:(client.geo.country_name:'$client.geo.country_name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Threats",
+            "url_value": "dashboards#/view/b9f81d8f-5f4a-4396-9372-de586cd9e67c?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:client.geo.country_name,negate:!f,params:(query:'$client.geo.country_name$'),type:phrase),query:(match_phrase:(client.geo.country_name:'$client.geo.country_name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/31e00644-3a1e-4e11-9256-5f35aadd077c?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:client.geo.country_name,negate:!f,params:(query:'$client.geo.country_name$'),type:phrase),query:(match_phrase:(client.geo.country_name:'$client.geo.country_name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "security",
+        "activity",
+        "inbound"
+      ],
+      "description": "Rare Country - inbound",
+      "analysis_config": {
+        "bucket_span": "30m",
+        "model_prune_window": "14d",
+        "detectors": [
+          {
+            "detector_description": "Rare Country",
+            "function": "rare",
+            "by_field_name": "client.geo.country_name",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "client.geo.country_name",
+          "flow.server.l4.port.name",
+          "server.ip",
+          "server.domain",
+          "flow.client.as.label",
+          "client.ip",
+          "client.domain"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "384mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": true,
+        "annotations_enabled": false
+      },
+      "model_snapshot_retention_days": 7,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_ecs_netsec_rare_geo_country_in",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_rare_geo_country_in",
+      "job_id": "elastiflow_ecs_netsec_rare_geo_country_in",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "exists": {
+                "field": "client.geo.country_name"
+              }
+            },
+            {
+              "term": {
+                "l4.session.established": "true"
+              }
+            },
+            {
+              "term": {
+                "server.as.organization.name": "PRIVATE"
+              }
+            }
+          ],
+          "must_not": [
+            {
+              "term": {
+                "client.as.organization.name": "PRIVATE"
+              }
+            },
+            {
+              "term": {
+                "sec.threat.name": "Internet Scanner"
+              }
+            },
+            {
+              "terms": {
+                "client.ip": []
+              }
+            },
+            {
+              "terms": {
+                "server.ip": []
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-ecs-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  },
+  {
+    "job": {
+      "job_id": "elastiflow_ecs_netsec_rare_geo_country_out",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "Lookup Server on ElastiFlow NetIntel",
+            "url_value": "https://elastiflow.com/netintel/search?ip=$server.ip$"
+          },
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/6ffd0f89-824f-480e-bac3-6208b569a7c5?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:server.geo.country_name,negate:!f,params:(query:'$server.geo.country_name$'),type:phrase),query:(match_phrase:(server.geo.country_name:'$server.geo.country_name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Threats",
+            "url_value": "dashboards#/view/b9f81d8f-5f4a-4396-9372-de586cd9e67c?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:server.geo.country_name,negate:!f,params:(query:'$server.geo.country_name$'),type:phrase),query:(match_phrase:(server.geo.country_name:'$server.geo.country_name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/31e00644-3a1e-4e11-9256-5f35aadd077c?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:server.geo.country_name,negate:!f,params:(query:'$server.geo.country_name$'),type:phrase),query:(match_phrase:(server.geo.country_name:'$server.geo.country_name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "security",
+        "activity",
+        "outbound"
+      ],
+      "description": "Rare Country - outbound",
+      "analysis_config": {
+        "bucket_span": "30m",
+        "model_prune_window": "14d",
+        "detectors": [
+          {
+            "detector_description": "Rare Country",
+            "function": "rare",
+            "by_field_name": "server.geo.country_name",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "server.geo.country_name",
+          "flow.server.l4.port.name",
+          "flow.server.as.label",
+          "server.ip",
+          "server.domain",
+          "client.ip",
+          "client.domain"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "384mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": true,
+        "annotations_enabled": false
+      },
+      "model_snapshot_retention_days": 7,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_ecs_netsec_rare_geo_country_out",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_rare_geo_country_out",
+      "job_id": "elastiflow_ecs_netsec_rare_geo_country_out",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "exists": {
+                "field": "server.geo.country_name"
+              }
+            },
+            {
+              "term": {
+                "l4.session.established": "true"
+              }
+            },
+            {
+              "term": {
+                "client.as.organization.name": "PRIVATE"
+              }
+            }
+          ],
+          "must_not": [
+            {
+              "term": {
+                "server.as.organization.name": "PRIVATE"
+              }
+            },
+            {
+              "terms": {
+                "client.ip": []
+              }
+            },
+            {
+              "terms": {
+                "server.ip": []
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-ecs-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  },
+  {
+    "job": {
+      "job_id": "elastiflow_ecs_netsec_rare_geo_country_priv",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/6ffd0f89-824f-480e-bac3-6208b569a7c5?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:client.geo.country_name,negate:!f,params:(query:'$client.geo.country_name$'),type:phrase),query:(match_phrase:(client.geo.country_name:'$client.geo.country_name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/31e00644-3a1e-4e11-9256-5f35aadd077c?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:client.geo.country_name,negate:!f,params:(query:'$client.geo.country_name$'),type:phrase),query:(match_phrase:(client.geo.country_name:'$client.geo.country_name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "security",
+        "activity",
+        "private"
+      ],
+      "description": "Rare Country - private",
+      "analysis_config": {
+        "bucket_span": "30m",
+        "model_prune_window": "14d",
+        "detectors": [
+          {
+            "detector_description": "Rare Country",
+            "function": "rare",
+            "by_field_name": "client.geo.country_name",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "client.geo.country_name",
+          "flow.server.l4.port.name",
+          "server.ip",
+          "server.domain",
+          "client.ip",
+          "client.domain"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "128mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": true,
+        "annotations_enabled": false
+      },
+      "model_snapshot_retention_days": 7,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_ecs_netsec_rare_geo_country_priv",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_rare_geo_country_priv",
+      "job_id": "elastiflow_ecs_netsec_rare_geo_country_priv",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "exists": {
+                "field": "client.geo.country_name"
+              }
+            },
+            {
+              "term": {
+                "l4.session.established": "true"
+              }
+            },
+            {
+              "term": {
+                "flow.locality": "private"
+              }
+            }
+          ],
+          "must_not": [
+            {
+              "terms": {
+                "client.ip": []
+              }
+            },
+            {
+              "terms": {
+                "server.ip": []
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-ecs-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      }
+    }
+  }
 ]

@@ -5,6 +5,10 @@
       "custom_settings": {
         "custom_urls": [
           {
+            "url_name": "Lookup Client on ElastiFlow NetIntel",
+            "url_value": "https://elastiflow.com/netintel/search?ip=$flow.client.ip.addr$"
+          },
+          {
             "url_name": "Top Talkers",
             "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.client.geo.country.name,negate:!f,params:(query:'$flow.client.geo.country.name$'),type:phrase),query:(match_phrase:(flow.client.geo.country.name:'$flow.client.geo.country.name$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.client.geo.city.name,negate:!f,params:(query:'$flow.client.geo.city.name$'),type:phrase),query:(match_phrase:(flow.client.geo.city.name:'$flow.client.geo.city.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
           },
@@ -32,8 +36,7 @@
           {
             "detector_description": "Rare City",
             "function": "rare",
-            "by_field_name": "flow.client.geo.city.name",
-            "partition_field_name": "flow.client.geo.country.name",
+            "by_field_name": "client_country_city",
             "detector_index": 0
           }
         ],
@@ -43,6 +46,7 @@
           "flow.server.l4.port.name",
           "flow.server.ip.addr",
           "flow.server.host.name",
+          "flow.client.as.label",
           "flow.client.ip.addr",
           "flow.client.host.name"
         ]
@@ -57,7 +61,7 @@
       },
       "model_plot_config": {
         "enabled": true,
-        "annotations_enabled": true
+        "annotations_enabled": false
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,
@@ -98,6 +102,11 @@
               }
             },
             {
+              "term": {
+                "sec.threat.name": "Internet Scanner"
+              }
+            },
+            {
               "terms": {
                 "flow.client.ip.addr": []
               }
@@ -116,6 +125,14 @@
       "scroll_size": 1000,
       "delayed_data_check_config": {
         "enabled": true
+      },
+      "runtime_mappings": {
+        "client_country_city": {
+          "type": "keyword",
+          "script": {
+            "source": "if (doc.containsKey('flow.client.geo.country.name') && !doc['flow.client.geo.country.name'].empty && doc.containsKey('flow.client.geo.city.name') && !doc['flow.client.geo.city.name'].empty) {emit(doc['flow.client.geo.country.name'].value + '__' + doc['flow.client.geo.city.name'].value)}"
+          }
+        }
       }
     }
   }

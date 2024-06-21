@@ -5,7 +5,7 @@
       "custom_settings": {
         "custom_urls": [
           {
-            "url_name": "ElastiFlow NetIntel",
+            "url_name": "Lookup Server on ElastiFlow NetIntel",
             "url_value": "https://elastiflow.com/netintel/search?ip=$server.ip$"
           },
           {
@@ -44,6 +44,7 @@
           "flow.conversation.id",
           "client.ip",
           "client.domain",
+          "flow.server.as.label",
           "server.ip",
           "server.domain",
           "flow.server.l4.port.name"

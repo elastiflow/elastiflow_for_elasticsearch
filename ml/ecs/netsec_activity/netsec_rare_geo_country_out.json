@@ -5,6 +5,10 @@
       "custom_settings": {
         "custom_urls": [
           {
+            "url_name": "Lookup Server on ElastiFlow NetIntel",
+            "url_value": "https://elastiflow.com/netintel/search?ip=$server.ip$"
+          },
+          {
             "url_name": "Top Talkers",
             "url_value": "dashboards#/view/6ffd0f89-824f-480e-bac3-6208b569a7c5?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:server.geo.country_name,negate:!f,params:(query:'$server.geo.country_name$'),type:phrase),query:(match_phrase:(server.geo.country_name:'$server.geo.country_name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
           },
@@ -39,6 +43,7 @@
         "influencers": [
           "server.geo.country_name",
           "flow.server.l4.port.name",
+          "flow.server.as.label",
           "server.ip",
           "server.domain",
           "client.ip",

@@ -5,6 +5,10 @@
       "custom_settings": {
         "custom_urls": [
           {
+            "url_name": "Lookup Server on ElastiFlow NetIntel",
+            "url_value": "https://elastiflow.com/netintel/search?ip=$flow.server.ip.addr$"
+          },
+          {
             "url_name": "Top Talkers",
             "url_value": "dashboards#/view/a000b640-3d3e-11eb-bc2c-c5758316d788?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.geo.country.name,negate:!f,params:(query:'$flow.server.geo.country.name$'),type:phrase),query:(match_phrase:(flow.server.geo.country.name:'$flow.server.geo.country.name$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-codex-*',key:flow.server.geo.city.name,negate:!f,params:(query:'$flow.server.geo.city.name$'),type:phrase),query:(match_phrase:(flow.server.geo.city.name:'$flow.server.geo.city.name$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
           },
@@ -32,8 +36,7 @@
           {
             "detector_description": "Rare City",
             "function": "rare",
-            "by_field_name": "flow.server.geo.city.name",
-            "partition_field_name": "flow.server.geo.country.name",
+            "by_field_name": "server_country_city",
             "detector_index": 0
           }
         ],
@@ -41,6 +44,7 @@
           "flow.server.geo.city.name",
           "flow.server.geo.country.name",
           "flow.server.l4.port.name",
+          "flow.server.as.label",
           "flow.server.ip.addr",
           "flow.server.host.name",
           "flow.client.ip.addr",
@@ -57,7 +61,7 @@
       },
       "model_plot_config": {
         "enabled": true,
-        "annotations_enabled": true
+        "annotations_enabled": false
       },
       "model_snapshot_retention_days": 7,
       "daily_model_snapshot_retention_after_days": 1,
@@ -116,6 +120,14 @@
       "scroll_size": 1000,
       "delayed_data_check_config": {
         "enabled": true
+      },
+      "runtime_mappings": {
+        "server_country_city": {
+          "type": "keyword",
+          "script": {
+            "source": "if (doc.containsKey('flow.server.geo.country.name') && !doc['flow.server.geo.country.name'].empty && doc.containsKey('flow.server.geo.city.name') && !doc['flow.server.geo.city.name'].empty) {emit(doc['flow.server.geo.country.name'].value + '__' + doc['flow.server.geo.city.name'].value)}"
+          }
+        }
       }
     }
   }
