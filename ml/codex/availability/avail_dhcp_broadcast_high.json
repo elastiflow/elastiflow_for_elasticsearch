@@ -37,7 +37,8 @@
           }
         ],
         "influencers": [
-          "flow.export.host.name"
+          "flow.export.host.name",
+          "flow.in.src.mac.addr"
         ]
       },
       "analysis_limits": {
@@ -86,6 +87,11 @@
             {
               "exists": {
                 "field": "flow.export.host.name"
+              }
+            },
+            {
+              "exists": {
+                "field": "flow.in.src.mac.addr"
               }
             }
           ]

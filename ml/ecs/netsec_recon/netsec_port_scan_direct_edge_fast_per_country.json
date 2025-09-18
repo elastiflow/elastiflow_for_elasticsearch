@@ -1,0 +1,146 @@
+[
+  {
+    "job": {
+      "job_id": "elastiflow_ecs_netsec_port_scan_direct_edge_fast_per_country",
+      "custom_settings": {
+        "custom_urls": [
+          {
+            "url_name": "Lookup Client on ElastiFlow NetIntel",
+            "url_value": "https://elastiflow.com/netintel/search?ip=$client.ip$"
+          },
+          {
+            "url_name": "Top Talkers",
+            "url_value": "dashboards#/view/6ffd0f89-824f-480e-bac3-6208b569a7c5?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:server.ip,negate:!f,params:(query:'$server.ip$'),type:phrase),query:(match_phrase:(server.ip:'$server.ip$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:client.ip,negate:!f,params:(query:'$client.ip$'),type:phrase),query:(match_phrase:(client.ip:'$client.ip$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Threats",
+            "url_value": "dashboards#/view/b9f81d8f-5f4a-4396-9372-de586cd9e67c?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:server.ip,negate:!f,params:(query:'$server.ip$'),type:phrase),query:(match_phrase:(server.ip:'$server.ip$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:client.ip,negate:!f,params:(query:'$client.ip$'),type:phrase),query:(match_phrase:(client.ip:'$client.ip$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          },
+          {
+            "url_name": "Flow Records",
+            "url_value": "dashboards#/view/31e00644-3a1e-4e11-9256-5f35aadd077c?_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:server.ip,negate:!f,params:(query:'$server.ip$'),type:phrase),query:(match_phrase:(server.ip:'$server.ip$'))),('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'elastiflow-flow-ecs-*',key:client.ip,negate:!f,params:(query:'$client.ip$'),type:phrase),query:(match_phrase:(client.ip:'$client.ip$')))),refreshInterval:(pause:!t,value:0),time:(mode:absolute,from:'$earliest$',to:'$latest$'))"
+          }
+        ]
+      },
+      "groups": [
+        "elastiflow",
+        "security",
+        "reconnaissance",
+        "edge",
+        "fast"
+      ],
+      "description": "Port Scan Direct per Country - edge (fast)",
+      "analysis_config": {
+        "bucket_span": "10m",
+        "model_prune_window": "14d",
+        "detectors": [
+          {
+            "detector_description": "High Unique Ports Attempted",
+            "function": "high_distinct_count",
+            "field_name": "server.port",
+            "over_field_name": "client.ip",
+            "partition_field_name": "ml.partition_key",
+            "detector_index": 0
+          }
+        ],
+        "influencers": [
+          "flow.client.as.label",
+          "client.ip",
+          "client.domain",
+          "server.ip",
+          "server.domain",
+          "server.geo.country_name",
+          "ml.partition_key"
+        ]
+      },
+      "analysis_limits": {
+        "model_memory_limit": "8192mb",
+        "categorization_examples_limit": 4
+      },
+      "data_description": {
+        "time_field": "@timestamp",
+        "time_format": "epoch_ms"
+      },
+      "model_plot_config": {
+        "enabled": true,
+        "annotations_enabled": false
+      },
+      "model_snapshot_retention_days": 7,
+      "daily_model_snapshot_retention_after_days": 1,
+      "results_index_name": "custom-elastiflow_ecs_netsec_port_scan_direct_edge_fast_per_country",
+      "allow_lazy_open": false
+    },
+    "datafeed": {
+      "datafeed_id": "datafeed-elastiflow_ecs_netsec_port_scan_direct_edge_fast_per_country",
+      "job_id": "elastiflow_ecs_netsec_port_scan_direct_edge_fast_per_country",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "exists": {
+                "field": "client.ip"
+              }
+            },
+            {
+              "exists": {
+                "field": "server.ip"
+              }
+            },
+            {
+              "exists": {
+                "field": "server.port"
+              }
+            },
+            {
+              "exists": {
+                "field": "server.geo.country_name"
+              }
+            }
+          ],
+          "must_not": [
+            {
+              "term": {
+                "client.as.organization.name": "PRIVATE"
+              }
+            },
+            {
+              "term": {
+                "server.as.organization.name": "PRIVATE"
+              }
+            },
+            {
+              "term": {
+                "sec.threat.name": "Internet Scanner"
+              }
+            },
+            {
+              "terms": {
+                "client.ip": []
+              }
+            },
+            {
+              "terms": {
+                "server.ip": []
+              }
+            }
+          ]
+        }
+      },
+      "indices": [
+        "elastiflow-flow-ecs-*"
+      ],
+      "scroll_size": 1000,
+      "delayed_data_check_config": {
+        "enabled": true
+      },
+      "runtime_mappings": {
+        "ml.partition_key": {
+          "type": "keyword",
+          "script": {
+            "source": "if (doc.containsKey('server.geo.country_name') && !doc['server.geo.country_name'].empty && doc.containsKey('server.ip') && !doc['server.ip'].empty) {emit(doc['server.geo.country_name'].value + '__' + doc['server.ip'].value)}"
+          }
+        }
+      }
+    }
+  }
+]
